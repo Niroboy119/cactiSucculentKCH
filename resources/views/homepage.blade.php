@@ -126,7 +126,7 @@
 				                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
 				                    <i class="fa fa-bars"></i>
 				                </button>
-				                <a class="navbar-brand" href="index.html" style="color:#32CD32;">Cacti Succulent KCH</a>
+				                <a class="navbar-brand" href="homepage" style="color:#32CD32;">Cacti Succulent KCH</a>
 
 				            </div><!--/.navbar-header-->
 				            <!-- End Header Navigation -->
