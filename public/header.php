@@ -1,6 +1,37 @@
+<!--font-family-->
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+	<head>
+        <!-- title of site -->
+
+       
+        <!--font-awesome.min.css-->
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+
+        <!--linear icon css-->
+		<link rel="stylesheet" href="css/linearicons.css">
+
+		<!--animate.css-->
+        <link rel="stylesheet" href="css/animate.css">
+
+        <!--owl.carousel.css-->
+        <link rel="stylesheet" href="css/owl.carousel.min.css">
+		<link rel="stylesheet" href="css/owl.theme.default.min.css">
+		
+        <!--bootstrap.min.css-->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+		
+		<!-- bootsnav -->
+		<link rel="stylesheet" href="css/bootsnav.css" >	
+        
+        <!--style.css-->
+        <link rel="stylesheet" href="css/style.css">
+        
+        <!--responsive.css-->
+        <link rel="stylesheet" href="css/responsive.css">
+    </head>
+	
 <!-- top-area Start -->
-<div class="header">
-				<div class="header-area">
+<div class="top-area">
 					<!-- Start Navigation -->
 				    <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy"  data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
 
@@ -63,4 +94,5 @@
 			    <div class="clearfix"></div>
 
 			</div><!-- /.top-area-->
-			<!-- top-area End -->
+
+		
