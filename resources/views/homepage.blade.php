@@ -78,6 +78,25 @@
 		</header><!--/.welcome-hero-->
 		<!--welcome-hero end -->
 
+		<!-- Homepage register banner -->
+		<section id="register-banner">
+			
+				<div class="single-register-banner">
+					<img src="images/collection/bgimage10.jpeg"/>
+					
+					<!-- <div class="gardener-img">
+						<img src="images/collection/gardener.png"/>
+					</div> -->
+					<div class="register-text">
+					<h2>Begin your Journey Here!</h2>
+					<h3>Sign up for free!</h3>
+					<a class="begin-btn">Register</a>
+					<div>
+				</div>
+			
+		</section>
+		<!-- Homepage register banner end -->
+
 		<!--feature start -->
 		<section id="feature" class="feature">
 			<div class="container">

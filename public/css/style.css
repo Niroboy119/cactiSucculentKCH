@@ -161,12 +161,15 @@ nav.navbar.bootsnav ul.nav > li.dropdown span {
 .menu-ui-design::-webkit-scrollbar {
     width:5px;
 }
+
 .menu-ui-design::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 8px #000;
 }
+
 .menu-ui-design::-webkit-scrollbar-thumb {
   background-color: #32CD32	;
 }
+
 /*.menu-ui-design*/
 
 /*.attr-nav*/
@@ -354,6 +357,12 @@ div.single-welcome-hero video.home-banner{
     margin: 20px 0 22px;
     font-weight: 600;
     font-family:Arial, Helvetica, sans-serif;
+}
+
+.welcome-hero-txt a:hover{
+    background: #d8924c;
+    color: #fff;
+    transition: 0.3s;
 }
 
 .welcome-hero-txt a{
@@ -569,6 +578,86 @@ div.single-welcome-hero video.home-banner{
     border: 1px solid #5f5b57;
 }
 
+
+
+
+/* 
+REGISTER BANNER
+
+*/
+
+#register-banner{
+    display: flex;
+    width:100%;
+    height:100%;
+}
+
+.register-text a:hover{
+    background: #000;
+    color: #fff;
+    transition: 0.3s;
+    border-style: solid;
+}
+
+.register-text a{
+    margin-top: 15px;
+    margin-left: 950px;
+    display: inline-block;
+    font-size: 1em;
+    background: #fff;
+    padding: 10px 30px;
+    text-decoration: none;
+    color:#111;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 100;
+    border-style: solid;
+}
+
+div.single-register-banner img{
+    z-index: -1;
+    margin-top: 100px;
+    margin-left: 90px;
+    box-shadow: 10px 10px 5px #ccc;
+    float: left;
+    border: transparent;
+    position: absolute;
+    width:800px;
+    height: 500px;
+    /* filter: grayscale(80%); */
+}
+
+.register-text h3 {
+    font-size: 20px;
+    color:#000;
+    margin-top: 50px;
+    margin-left: 950px;
+    text-transform:none;
+    font-family:Verdana;
+}
+
+.register-text h2 {
+    font-size: 50px;
+    color: #000000;
+    /* font-weight: bold; */
+    /* text-shadow: 10px 10px 5px #ccc; */
+    margin-top: 90px;
+    margin-left: 950px;
+    width: 350px;
+    font-weight: 600;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    justify-content: center;
+}
+
+/* div.single-welcome-hero video.home-banner{
+    left: 50%;
+    width: 2000px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+} */
+
 /*-------------------------------------
         5. New-arrivals 
 --------------------------------------*/
@@ -754,8 +843,7 @@ p.arrival-review span {margin-right: 15px;}
 /*-------------------------------------
         7. Features
 --------------------------------------*/
-.feature {padding:80px 0 0px;}
-
+.feature {padding:0px 0 0px;}
 .feature-content,.blog-content{margin-top: 75px;}
 .single-feature,.single-blog {margin-bottom:30px;}
 
