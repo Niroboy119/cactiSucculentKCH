@@ -58,9 +58,9 @@
 				                		<a href="#"><span class="lnr lnr-user"></span></a>
 				                	</li><!--/.search-->
 				                    <li class="dropdown">
-				                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+				                        <a href="cart" class="dropdown-toggle" data-toggle="dropdown" >
 				                            <span class="lnr lnr-cart"></span>
-											<span class="badge badge-bg-1"></span>
+											<span class="badge badge-bg-1">3</span>
 				                        </a>
 				                    </li><!--/.dropdown-->
 				                </ul>
