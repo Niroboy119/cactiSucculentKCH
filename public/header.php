@@ -66,7 +66,7 @@
 				                            <li class="single-cart-list">
 				                                <a href="#" class="photo"><img src="images/collection/cacti1.jpg" class="cart-thumb" alt="image" /></a>
 				                                <div class="cart-list-txt">
-				                                	<h6><a href="#">arm <br> chair</a></h6>
+				                                	<h6><a href="#">Echeveia 'BlackPrince'</a></h6>
 				                                	<p>1 x - <span class="price">RM65.00</span></p>
 				                                </div><!--/.cart-list-txt-->
 				                                <div class="cart-close">
@@ -76,7 +76,7 @@
 				                            <li class="single-cart-list">
 				                                <a href="#" class="photo"><img src="images/collection/cacti2.jpg" class="cart-thumb" alt="image" /></a>
 				                                <div class="cart-list-txt">
-				                                	<h6><a href="#">single <br> armchair</a></h6>
+				                                	<h6><a href="#">Kalanchoe Rhombipilosa</a></h6>
 				                                	<p>1 x - <span class="price">RM80.00</span></p>
 				                                </div><!--/.cart-list-txt-->
 				                                <div class="cart-close">
@@ -86,7 +86,7 @@
 				                            <li class="single-cart-list">
 				                                <a href="#" class="photo"><img src="images/collection/cacti3.jpg" class="cart-thumb" alt="image" /></a>
 				                                <div class="cart-list-txt">
-				                                	<h6><a href="#">wooden arn <br> chair</a></h6>
+				                                	<h6><a href="#">Sedum Burrito</a></h6>
 				                                	<p>1 x - <span class="price">RM40.00</span></p>
 				                                </div><!--/.cart-list-txt-->
 				                                <div class="cart-close">
