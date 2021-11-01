@@ -76,7 +76,7 @@
                                 <div class="cart-info">
                                     <img src="images/collection/cacti1.jpg" alt="cart images">
                                     <div>
-                                        <p>Echeveia 'BlackPrince'</p>
+                                        <small>Name: Echeveia 'BlackPrince'</small><br>
                                         <small>Price: RM65.00</RM65></small>
                                         <br>
                                         <a href="">Remove</a>
@@ -91,7 +91,7 @@
                                 <div class="cart-info">
                                     <img src="images/collection/cacti2.jpg" alt="cart images">
                                     <div>
-                                        <p>Kalanchoe Rhombipilosa</p>
+                                        <small>Name: Kalanchoe Rhombipilosa</small><br>
                                         <small>Price: RM80.00</RM65></small>
                                         <br>
                                         <a href="">Remove</a>
@@ -106,7 +106,7 @@
                                 <div class="cart-info">
                                     <img src="images/collection/cacti3.jpg" alt="cart images">
                                     <div>
-                                        <p>Sedum Burrito</p>
+                                        <small>Name: Sedum Burrito</small><br>
                                         <small>Price: RM40.00</RM65></small>
                                         <br>
                                         <a href="">Remove</a>
@@ -121,15 +121,15 @@
                     <div class="total-price">
                         <table>
                             <tr>
-                                <td>Subtotal</td>
+                                <td>Subtotal:</td>
                                 <td>RM185.00</td>
                             </tr>
                             <tr>
-                                <td>Tax</td>
+                                <td>Tax:</td>
                                 <td>RM11.10</td>
                             </tr>
                             <tr>
-                                <td>Total</td>
+                                <td>Total:</td>
                                 <td>RM196.10</td>
                             </tr>
                         </table>
