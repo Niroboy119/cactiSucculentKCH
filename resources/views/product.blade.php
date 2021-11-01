@@ -1,4 +1,5 @@
 <?php include 'header.php'?>
+<?php ?>
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -64,7 +65,7 @@
 		<section id="new-arrivals" class="new-arrivals">
 			<div class="container">
 				<div class="section-header">
-					<h2><br><br>Products</h2>
+					<h2><br><br>PRODUCTS</h2>
 				</div><!--/.section-header-->
 				<div class="new-arrivals-content">
 					<div class="row">

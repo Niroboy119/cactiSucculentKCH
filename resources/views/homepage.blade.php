@@ -58,20 +58,12 @@
 								<div class="welcome-hero-content">
 									<div class="row">
 										<div class="col-sm-7">
-											<div class="single-welcome-hero">
+											<div class="single-welcome-hero">											
+													<video class="home-banner" src="videos/cactivid3.mp4" muted loop autoplay></video>
 												<div class="welcome-hero-txt">
-													<h1>Team G.O.A.T</h1>
 													<h2>Welcome To Cacti Succulent KCH</h2>
-													<p>
-														We are a local business operating in Kuching. We sell Cactus, Pots and Soils. Our products are homegrown and we make sure that they wont disappoint.
-													</p>
-												</div><!--/.welcome-hero-txt-->
-											</div><!--/.single-welcome-hero-->
-										</div><!--/.col-->
-										<div class="col-sm-5">
-											<div class="single-welcome-hero">
-												<div class="welcome-hero-img">
-													<img src="images/slider/cactus2.png" alt="slider image">
+													<h3>The gardening that matters</h3>
+													<a href="product">Explore</a>
 												</div><!--/.welcome-hero-txt-->
 											</div><!--/.single-welcome-hero-->
 										</div><!--/.col-->
@@ -79,13 +71,9 @@
 								</div><!--/.welcome-hero-content-->
 							</div><!-- /.container-->
 						</div><!-- /.single-slide-item-->
-
 					</div><!-- /.item .active-->
 				</div><!-- /.carousel-inner-->
 			</div><!--/#header-carousel-->
-
-			
-
 		</header><!--/.welcome-hero-->
 		<!--welcome-hero end -->
 
@@ -258,11 +246,9 @@
 
 		<!--owl.carousel.js-->
         <script src="js/owl.carousel.min.js"></script>
-
-
+		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 		
-        
         <!--Custom JS-->
         <script src="js/custom.js"></script>
         
