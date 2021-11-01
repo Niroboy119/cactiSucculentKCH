@@ -21,6 +21,7 @@ font-family: 'Roboto', sans-serif;
 9.  Clients
 10. News-letter
 11. Footer
+12. Cart Items
 ==========================================*/
 
 /*-------------------------------------
@@ -960,6 +961,78 @@ span.feature-review {margin-left: 10px;}
     transition: .3s;
 }
 .footer-social i:hover{color: #32CD32	;}
+
+/*-------------------------------------
+        12. Cart Items
+--------------------------------------*/
+.cart-page{
+    margin: 80px auto;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-info{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+th{
+    text-align: left;
+    padding: 5px;
+    color: #fff;
+    background: #3bff4b;
+    font-weight: normal;
+}
+
+td{
+    padding: 10px 5px;
+}
+
+td input{
+    width: 40px;
+    height: 30px;
+    padding: 5px;
+}
+
+td a{
+    color: #ff523b;
+    font-size: 12px;
+}
+
+td img{
+    width: 150px;
+    height: 150px;
+    margin-right: 10px;
+}
+
+.total-price{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.total-price table{
+    border-top: 3px solid #3bff4b;
+    width: 100%;
+    max-width: 200px;
+    vertical-align: auto;
+}
+
+td:last-child{
+    text-align: right;
+}
+
+td:last-child{
+    text-align: right;
+}
+
+/*--media less than 600 screen size--*/
+.cart-info p{
+    display: none;
+}
+
 
 /*===============================
     Scroll Top
