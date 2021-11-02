@@ -58,10 +58,46 @@
 				                		<a href="#"><span class="lnr lnr-user"></span></a>
 				                	</li><!--/.search-->
 				                    <li class="dropdown">
-				                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+				                        <a href="cart" class="dropdown-toggle" data-toggle="dropdown" >
 				                            <span class="lnr lnr-cart"></span>
-											<span class="badge badge-bg-1"></span>
+											<span class="badge badge-bg-1">3</span>
 				                        </a>
+										<ul class="dropdown-menu cart-list s-cate">
+				                            <li class="single-cart-list">
+				                                <a href="#" class="photo"><img src="images/collection/cacti1.jpg" class="cart-thumb" alt="image" /></a>
+				                                <div class="cart-list-txt">
+				                                	<h6><a href="#">Echeveia 'BlackPrince'</a></h6>
+				                                	<p>1 x - <span class="price">RM65.00</span></p>
+				                                </div><!--/.cart-list-txt-->
+				                                <div class="cart-close">
+				                                	<span class="lnr lnr-cross"></span>
+				                                </div><!--/.cart-close-->
+				                            </li><!--/.single-cart-list -->
+				                            <li class="single-cart-list">
+				                                <a href="#" class="photo"><img src="images/collection/cacti2.jpg" class="cart-thumb" alt="image" /></a>
+				                                <div class="cart-list-txt">
+				                                	<h6><a href="#">Kalanchoe Rhombipilosa</a></h6>
+				                                	<p>1 x - <span class="price">RM80.00</span></p>
+				                                </div><!--/.cart-list-txt-->
+				                                <div class="cart-close">
+				                                	<span class="lnr lnr-cross"></span>
+				                                </div><!--/.cart-close-->
+				                            </li><!--/.single-cart-list -->
+				                            <li class="single-cart-list">
+				                                <a href="#" class="photo"><img src="images/collection/cacti3.jpg" class="cart-thumb" alt="image" /></a>
+				                                <div class="cart-list-txt">
+				                                	<h6><a href="#">Sedum Burrito</a></h6>
+				                                	<p>1 x - <span class="price">RM40.00</span></p>
+				                                </div><!--/.cart-list-txt-->
+				                                <div class="cart-close">
+				                                	<span class="lnr lnr-cross"></span>
+				                                </div><!--/.cart-close-->
+				                            </li><!--/.single-cart-list -->
+				                            <li class="total">
+				                                <span>Total: RM196.10</span>
+				                                <button class="btn-cart pull-right" onclick="window.location.href='cart'">view cart</button>
+				                            </li>
+				                        </ul>
 				                    </li><!--/.dropdown-->
 				                </ul>
 				            </div><!--/.attr-nav-->

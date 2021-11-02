@@ -21,6 +21,10 @@ Route::get('/product', function () {
     return view('product');
 });
 
+Route::get('/cart', function () {
+    return view('cart');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
