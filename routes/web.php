@@ -21,11 +21,9 @@ Route::get('/product', function () {
     return view('product');
 });
 
-<<<<<<< Updated upstream
 Route::get('/cart', function () {
     return view('cart');
 });
-=======
 Route::get('/manageProducts', [App\Http\Controllers\ProductController::class, 'displayProducts'])->name('products');
 Route::get('/addProductForm', [App\Http\Controllers\ProductController::class, 'displayaddProductForm'])->name('products');
 Route::post('/addProduct', [App\Http\Controllers\ProductController::class, 'create'])->name('products');
@@ -33,7 +31,6 @@ Route::post('/addProduct', [App\Http\Controllers\ProductController::class, 'crea
 Route::get('/manageSuppliers', [App\Http\Controllers\SupplierController::class, 'display'])->name('suppliers');
 Route::post('/addSupplier', [App\Http\Controllers\SupplierController::class, 'create'])->name('suppliers');
 
->>>>>>> Stashed changes
 
 Auth::routes();
 
