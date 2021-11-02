@@ -28,6 +28,10 @@
         
         <!--responsive.css-->
         <link rel="stylesheet" href="css/responsive.css">
+
+		<!--responsive.css-->
+        <link rel="stylesheet" href="css/viewProductsAdmin.css">
+	
     </head>
 	
 <!-- top-area Start -->
