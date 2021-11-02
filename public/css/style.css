@@ -15,7 +15,7 @@ font-family: 'Roboto', sans-serif;
 3.  Welcome-hero
 4.  Populer-post
 5.  New-arrivals  
-6.  Sofa-coolection
+6.  Cacti-coolection
 7.  Features
 8.  Blog
 9.  Clients
@@ -162,12 +162,15 @@ nav.navbar.bootsnav ul.nav > li.dropdown span {
 .menu-ui-design::-webkit-scrollbar {
     width:5px;
 }
+
 .menu-ui-design::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 8px #000;
 }
+
 .menu-ui-design::-webkit-scrollbar-thumb {
   background-color: #32CD32	;
 }
+
 /*.menu-ui-design*/
 
 /*.attr-nav*/
@@ -355,6 +358,12 @@ div.single-welcome-hero video.home-banner{
     margin: 20px 0 22px;
     font-weight: 600;
     font-family:Arial, Helvetica, sans-serif;
+}
+
+.welcome-hero-txt a:hover{
+    background: #d8924c;
+    color: #fff;
+    transition: 0.3s;
 }
 
 .welcome-hero-txt a{
@@ -570,6 +579,86 @@ div.single-welcome-hero video.home-banner{
     border: 1px solid #5f5b57;
 }
 
+
+
+
+/* 
+REGISTER BANNER
+
+*/
+
+#register-banner{
+    display: flex;
+    width:100%;
+    height:100%;
+}
+
+.register-text a:hover{
+    background: #000;
+    color: #fff;
+    transition: 0.3s;
+    border-style: solid;
+}
+
+.register-text a{
+    margin-top: 15px;
+    margin-left: 950px;
+    display: inline-block;
+    font-size: 1em;
+    background: #fff;
+    padding: 10px 30px;
+    text-decoration: none;
+    color:#111;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 100;
+    border-style: solid;
+}
+
+div.single-register-banner img{
+    z-index: -1;
+    margin-top: 100px;
+    margin-left: 90px;
+    box-shadow: 10px 10px 5px #ccc;
+    float: left;
+    border: transparent;
+    position: absolute;
+    width:800px;
+    height: 500px;
+    /* filter: grayscale(80%); */
+}
+
+.register-text h3 {
+    font-size: 20px;
+    color:#000;
+    margin-top: 50px;
+    margin-left: 950px;
+    text-transform:none;
+    font-family:Verdana;
+}
+
+.register-text h2 {
+    font-size: 50px;
+    color: #000000;
+    /* font-weight: bold; */
+    /* text-shadow: 10px 10px 5px #ccc; */
+    margin-top: 90px;
+    margin-left: 950px;
+    width: 350px;
+    font-weight: 600;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    justify-content: center;
+}
+
+/* div.single-welcome-hero video.home-banner{
+    left: 50%;
+    width: 2000px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+} */
+
 /*-------------------------------------
         5. New-arrivals 
 --------------------------------------*/
@@ -694,13 +783,13 @@ p.arrival-review span {margin-right: 15px;}
 .single-new-arrival:hover h4 a{color:#32CD32	;}
 
 /*-------------------------------------
-        6. Sofa-coolection
+        6. Cacti-coolection
 --------------------------------------*/
-#sofa-collection {
+#Cacti-collection {
     position: relative;
     z-index: -1;
 }
-.sofa-collection{
+.Cacti-collection{
     position: relative;
     display: flex;
     align-items: center;
@@ -708,10 +797,10 @@ p.arrival-review span {margin-right: 15px;}
     background-position: center;
     background-size: cover;
 }
-.sofa-collection.collectionbg1{background: url(../images/collection/sofa-collection-banner.jpg)no-repeat;}
-.sofa-collection.collectionbg2{background: url(../images/collection/table-banner.jpg)no-repeat;}
+.Cacti-collection.collectionbg1{background: url(../images/collection/bgimage40.jpeg)no-repeat;}
+.Cacti-collection.collectionbg2{background: url(../images/collection/bgimage50.jpeg)no-repeat;}
 
-.sofa-collection:before,.sofa-collection:after {
+.Cacti-collection:before,.Cacti-collection:after {
     position: absolute;
     content: "";
     top: 0;
@@ -720,43 +809,42 @@ p.arrival-review span {margin-right: 15px;}
     width: 33.4%;
     background: rgba(51,59,62,.95);
 }
-.sofa-collection:after {
+.Cacti-collection:after {
     background: rgba(106,119,129,.3);
     left: auto;
     right: 0;
     width: 66.6%;
 }
-.sofa-collection-txt {
+.Cacti-collection-txt {
     position: relative;
     max-width: 596px;
     z-index: 1;
 }
-.sofa-collection-txt h2 {
+.Cacti-collection-txt h2 {
     font-size: 30px;
     color: #fff;
     font-weight: 700;
 }
-.sofa-collection-txt h4 {
+.Cacti-collection-txt h4 {
     font-size: 16px;
     color: #fff;
     font-weight: 700;
 }
-.sofa-collection-txt h4 span{color: #32CD32	;}
-.sofa-collection-txt p {
+.Cacti-collection-txt h4 span{color: #32CD32	;}
+.Cacti-collection-txt p {
     font-size: 16px;
     color: #fff;
     font-weight: 500;
     margin: 25px 0 10px;
 }
-.sofa-collection-price { margin-bottom: 3px;}
+.Cacti-collection-price { margin-bottom: 3px;}
 
-.btn-cart.welcome-add-cart.sofa-collection-btn{height: 50px;line-height: 50px;}
+.btn-cart.welcome-add-cart.Cacti-collection-btn{height: 50px;line-height: 50px;}
 
 /*-------------------------------------
         7. Features
 --------------------------------------*/
 .feature {padding:80px 0 0px;}
-
 .feature-content,.blog-content{margin-top: 75px;}
 .single-feature,.single-blog {margin-bottom:30px;}
 
