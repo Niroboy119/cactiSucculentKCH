@@ -97,6 +97,53 @@
 		</section>
 		<!-- Homepage register banner end -->
 
+		<!--Cacti-collection start -->
+		<section id="Cacti-collection">
+			<div class="owl-carousel owl-theme" id="collection-carousel">
+				<div class="Cacti-collection collectionbg1">
+					<div class="container">
+						<div class="Cacti-collection-txt">
+							<h2>unlimited succulent collection</h2>
+							<p>
+								our succulent are homegrown and the best in kuching. the owners specialized in this field for over 30 years of experience in growing succulent
+							</p>
+							<div class="Cacti-collection-price">
+								<h4>starting from <span>RM12</span></h4>
+							</div>
+							<button class="btn-cart welcome-add-cart Cacti-collection-btn" onclick="window.location.href='#'">
+								view more
+							</button>
+						</div>
+					</div>	
+				</div><!--/.Cacti-collection-->
+				<div class="Cacti-collection collectionbg2">
+					<div class="container">
+						<div class="Cacti-collection-txt">
+							<h2>other gardening appliances</h2>
+							<p>
+								we also provide soils and pots for your gardening
+							</p>
+							<div class="Cacti-collection-price">
+								<h4>starting from <span>RM12</span></h4>
+							</div>
+							<button class="btn-cart welcome-add-cart Cacti-collection-btn" onclick="window.location.href='#'">
+								view more
+							</button>
+						</div>
+					</div>
+				</div><!--/.Cacti-collection-->
+			</div><!--/.collection-carousel-->
+
+
+
+		<!-- <section id="about-banner">
+			<div class="container">
+				<div class="longphoto">
+					<img src="images/collection/bgimage20.jpeg">
+				</div>
+			</div>
+		</section> -->
+
 		<!--feature start -->
 		<section id="feature" class="feature">
 			<div class="container">
