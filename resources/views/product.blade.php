@@ -131,7 +131,7 @@
 															RM 199.00
 														</p>
 													</div>
-													<button class="btn-cart welcome-add-cart" onclick="window.location.href='#'">
+													<button class="btn-cart welcome-add-cart" onclick="window.location.href='cart'">
 														<span class="lnr lnr-plus-circle"></span>
 														add <span>to</span> cart
 													</button>
@@ -172,7 +172,7 @@
 															RM 299.00
 														</p>
 													</div>
-													<button class="btn-cart welcome-add-cart" onclick="window.location.href='#'">
+													<button class="btn-cart welcome-add-cart" onclick="window.location.href='cart'">
 														<span class="lnr lnr-plus-circle"></span>
 														add <span>to</span> cart
 													</button>
