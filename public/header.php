@@ -123,8 +123,8 @@
 									<li><a href="homepage">Home</a></li>
 									<li><a href="product">Products</a></li>
 									<li><a>Orders</a></li>
-									<li><a>About Us</a></li>
-									<li><a>Contact Us</a></li>
+									<li><a href = "aboutUs">About Us</a></li>
+									<li><a href = "contactUs">Contact Us</a></li>
 								</ul><!--/.nav -->
 				            </div><!-- /.navbar-collapse -->
 				        </div><!--/.container-->

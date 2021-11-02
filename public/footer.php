@@ -34,8 +34,8 @@
 								</div><!--/.hm-foot-title-->
 								<div class="hm-foot-menu">
 									<ul>
-										<li><a href="#">about us</a></li><!--/li-->
-										<li><a href="#">contact us</a></li><!--/li-->
+										<li><a href="aboutUs">about us</a></li><!--/li-->
+										<li><a href="contactUs">contact us</a></li><!--/li-->
 										<li><a href="#">store</a></li><!--/li-->
 									</ul><!--/ul-->
 								</div><!--/.hm-foot-menu-->
