@@ -1,11 +1,24 @@
 <?php include 'header.php'?>
 
+<?php
+use App\Models\Product;
+$products=Product::all();
+?>
+
 <!doctype html>
 
 <style>
 	img{
 		max-height:350px;
 	}
+
+	.Rows {
+    display: table;
+    width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+	}
+	
 </style>
 
 <html class="no-js" lang="en">
@@ -277,9 +290,10 @@
 
 				</div><!--/.section-header-->
 				<div class="new-arrivals-content">
-					<div class="row">
-						<div class="col-md-3 col-sm-4">
-							<div class="single-new-arrival">
+					<div class="Row">
+						
+						@foreach($products as $product)
+							<div class="single-new-arrival" style="float:left; padding:8px;">
 								<div class="single-new-arrival-bg">
 									<img src="images/collection/cacti1.jpg" alt="new-arrivals images">
 									<div class="single-new-arrival-bg-overlay"></div>
@@ -294,152 +308,13 @@
 										</p>
 									</div>
 								</div>
-								<h4><a href="#">Echeveia BlackPrince</a></h4>
-								<p class="arrival-product-price">RM 65.00</p>
+								<h4><a href="#">{{$product->Product_Name}}</a></h4>
+								<p class="arrival-product-price">RM {{$product->Product_Price}}</p>
 							</div>
-						</div>
-						<div class="col-md-3 col-sm-4">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img src="images/collection/cacti2.jpg" alt="new-arrivals images">
-									<div class="single-new-arrival-bg-overlay"></div>
-									<div class="new-arrival-cart">
-										<p>
-											<span class="lnr lnr-cart"></span>
-											<a href="#">add <span>to </span> cart</a>
-										</p>
-										<p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
-										</p>
-									</div>
-								</div>
-								<h4><a href="#">Sedum Burrito</a></h4>
-								<p class="arrival-product-price">RM 80.00</p>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-4">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img src="images/collection/cacti3.jpg" alt="new-arrivals images">
-									<div class="single-new-arrival-bg-overlay"></div>
-									<div class="new-arrival-cart">
-										<p>
-											<span class="lnr lnr-cart"></span>
-											<a href="#">add <span>to </span> cart</a>
-										</p>
-										<p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
-										</p>
-									</div>
-								</div>
-								<h4><a href="#">Ragnoria Plantus</a></h4>
-								<p class="arrival-product-price">RM 40.00</p>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-4">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img src="images/collection/cacti4.jpg" alt="new-arrivals images">
-									<div class="single-new-arrival-bg-overlay"></div>
-									<div class="new-arrival-cart">
-										<p>
-											<span class="lnr lnr-cart"></span>
-											<a href="#">add <span>to </span> cart</a>
-										</p>
-										<p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
-										</p>
-									</div>
-								</div>
-								<h4><a href="#">Robere Pansy</a></h4>
-								<p class="arrival-product-price">RM 100.00</p>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-4">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img src="images/collection/cacti5.jpg" alt="new-arrivals images">
-									<div class="single-new-arrival-bg-overlay"></div>
-									<div class="new-arrival-cart">
-										<p>
-											<span class="lnr lnr-cart"></span>
-											<a href="#">add <span>to </span> cart</a>
-										</p>
-										<p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
-										</p>
-									</div>
-								</div>
-								<h4><a href="#">Kalanchoe Rhombipilosa</a></h4>
-								<p class="arrival-product-price">RM 120.00</p>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-4">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img src="images/collection/cacti6.jpg" alt="new-arrivals images">
-									<div class="single-new-arrival-bg-overlay"></div>
-									<div class="new-arrival-cart">
-										<p>
-											<span class="lnr lnr-cart"></span>
-											<a href="#">add <span>to </span> cart</a>
-										</p>
-										<p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
-										</p>
-									</div>
-								</div>
-								<h4><a href="#">Cacti Ubulotus</a></h4>
-								<p class="arrival-product-price">RM 140.00</p>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-4">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img src="images/collection/cacti7.jpg" alt="new-arrivals images">
-									<div class="single-new-arrival-bg-overlay"></div>
-									<div class="new-arrival-cart">
-										<p>
-											<span class="lnr lnr-cart"></span>
-											<a href="#">add <span>to </span> cart</a>
-										</p>
-										<p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
-										</p>
-									</div>
-								</div>
-								<h4><a href="#">Lotus Pora</a></h4>
-								<p class="arrival-product-price">RM 90.00</p>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-4">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img src="images/collection/cacti8.jpg" alt="new-arrivals images">
-									<div class="single-new-arrival-bg-overlay"></div>
-									<div class="new-arrival-cart">
-										<p>
-											<span class="lnr lnr-cart"></span>
-											<a href="#">add <span>to </span> cart</a>
-										</p>
-										<p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
-										</p>
-									</div>
-								</div>
-								<h4><a href="#">Plantus Whiterus</a></h4>
-								<p class="arrival-product-price">RM 140.00</p>
-							</div>
-						</div>
+						@endforeach
+						
 					</div>
-				</div>
+				</div>		
 			</div><!--/.container-->
 		
 		</section><!--/.new-arrivals-->
