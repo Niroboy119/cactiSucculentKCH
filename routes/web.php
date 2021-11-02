@@ -25,6 +25,10 @@ Route::get('/product', function () {
 Route::get('/cart', function () {
     return view('cart');
 });
+
+Route::get('/aboutUs', function () {
+    return view('aboutUs');
+});
 Route::get('/manageProducts', [App\Http\Controllers\ProductController::class, 'displayProducts'])->name('products');
 Route::get('/addProductForm', [App\Http\Controllers\ProductController::class, 'displayaddProductForm'])->name('products');
 Route::post('/addProduct', [App\Http\Controllers\ProductController::class, 'create'])->name('products');
