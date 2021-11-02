@@ -90,11 +90,11 @@
 															RM 399.00
 														</p>
 													</div>
-													<button class="btn-cart welcome-add-cart" onclick="window.location.href='#'">
+													<button class="btn-cart welcome-add-cart" onclick="window.location.href='cart'">
 														<span class="lnr lnr-plus-circle"></span>
 														add <span>to</span> cart
 													</button>
-													<button class="btn-cart welcome-add-cart welcome-more-info" onclick="window.location.href='#'">
+													<button class="btn-cart welcome-add-cart welcome-more-info" onclick="window.location.href='product'">
 														more info
 													</button>
 												</div><!--/.welcome-hero-txt-->
