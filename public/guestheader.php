@@ -100,9 +100,6 @@
 				                            </li>
 				                        </ul>
 				                    </li><!--/.dropdown-->
-                                    <li class="guest-mode-btn">
-                                        <a class="guest-mode">Guest<a>
-                                    </li>
 				                </ul>
 				            </div><!--/.attr-nav-->
 				            <!-- End Atribute Navigation -->
