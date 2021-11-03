@@ -1,4 +1,8 @@
-<?php include 'header.php'?>
+<?php include 'guestheader.php'?>
+<?php 
+use App\Models\Product;
+$products=Product::all();
+?>
 
 <!doctype html>
 <html class="no-js" lang="en">
@@ -146,6 +150,7 @@
 			</div>
 		</section> -->
 
+		
 		<!--feature start -->
 		<section id="feature" class="feature">
 			<div class="container">
@@ -154,53 +159,24 @@
 				</div><!--/.section-header-->
 				<div class="feature-content">
 					<div class="row">
+					@foreach($products as $product)
 						<div class="col-sm-3">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img src="images/collection/cacti1.jpg" alt="feature image">
+							<div class="homepage-products">
+								<div class="homepage-products-bg">
+									<img src="images/collection/{{ $product->Product_Supplier}}">
 									</div>
 									<div class="single-feature-txt text-center">
-										<h3><a href="#">Echeveia 'BlackPrince'</a></h3>
-										<h5>RM 160.00</h5>
+										<h3><a href="#">{{$product->Product_Name}}</a></h3>
+										<h5>Price: RM{{$product->Product_Price}}</h5>
 									</div>
 								</div>
+							</div>
+							@endforeach
+							</div>
 						</div>
-						<div class="col-sm-3">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img src="images/collection/cacti2.jpg" alt="feature image">
-									</div>
-									<div class="single-feature-txt text-center">
-										<h3><a href="#">Bryophyllum</a></h3>
-										<h5>RM 200.00</h5>
-									</div>
-								</div>
-							</div>
-						<div class="col-sm-3">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img src="images/collection/cacti3.jpg" alt="feature image">
-									</div>
-									<div class="single-feature-txt text-center">
-										<h3><a href="#">Kalanchoe Rhombipilosa</a></h3>
-										<h5>RM 100.00</h5>
-									</div>
-								</div>
-							</div>
-						<div class="col-sm-3">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img src="images/collection/cacti4.jpg" alt="feature image">
-									</div>
-									<div class="single-feature-txt text-center">
-										<h3><a href="#">Sedum Burrito</a></h3>
-										<h5>RM 299.00</h5>
-									</div>
-								</div>
-							</div>
 					</div>
 				</div>
-			</div><!--/.container-->
+			</div>
 
 		</section><!--/.feature-->
 		<!--feature end -->

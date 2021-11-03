@@ -8,7 +8,7 @@ $products=Product::all();
 <!doctype html>
 
 <style>
-	img{
+	.single-new-arrival-bg img{
 		max-height:350px;
 	}
 

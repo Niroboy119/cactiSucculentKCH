@@ -11,6 +11,7 @@ class ProductController extends Controller
     public function displayProducts()
     {   
         return view('manageProducts/viewProducts');
+        $products=Product::all();
     }
 
     public function displayaddProductForm()
