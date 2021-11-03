@@ -31,7 +31,7 @@ $products=Product::all();
                     <div class="d-flex flex-row align-items-center">
                         <h4 class="mr-1">${{$product->Product_Quantity}}</h4>
                     </div>
-                    <div class="d-flex flex-column mt-4"><a class="btn btn-primary btn-sm" href="/addProductForm">Edit</a><button class="btn btn-outline-primary btn-sm mt-2" type="button">Delete</button></div>
+                    <div class="d-flex flex-column mt-4"><a class="btn btn-primary btn-sm" href="/editProduct/{{ $product->Product_ID }}">Edit</a><a class="btn btn-outline-primary btn-sm mt-2" href="/deleteProduct/{{ $product->Product_ID }}">Delete</a></div>
                 </div>
             </div>
             <br>
