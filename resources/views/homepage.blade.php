@@ -1,4 +1,13 @@
-<?php include 'guestheader.php'?>
+<?php
+use Illuminate\Support\Facades\Auth;
+
+	if (Auth::check()) {
+		include 'header.php';
+	}else {
+		include 'guestheader.php';
+	}
+?>
+
 <?php 
 use App\Models\Product;
 $products=Product::all();
@@ -68,7 +77,7 @@ $products=Product::all();
 											<div class="single-welcome-hero">											
 													<video class="home-banner" src="videos/cactivid3.mp4" muted loop autoplay></video>
 												<div class="welcome-hero-txt">
-													<h2>Welcome To Cacti Succulent KCH</h2>
+													<h2>Welcome To Cacti Succulent KCH, {{Auth::user()->name}}</h2>
 													<h3>The gardening that matters</h3>
 													<a href="product">Explore</a>
 												</div><!--/.welcome-hero-txt-->
