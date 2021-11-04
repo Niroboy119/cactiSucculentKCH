@@ -1,5 +1,6 @@
 <?php include 'header.php'?>
-<?php ?>
+<?php use App\Models\Product;
+    $products=Product::all();?>
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -71,54 +72,44 @@
                             <th>Quantity</th>
                             <th>Subtotal</th>
                         </tr>
+
+                        @foreach($products as $product)
+
                         <tr>
                             <td>
-                                <div class="cart-info">
-                                    <img src="images/collection/cacti1.jpg" alt="cart images">
-                                    <div>
-                                        <small>Name: Echeveia 'BlackPrince'</small><br>
-                                        <small>Price: RM65.00</RM65></small>
+                                <div class="items-info">
+                                    <div class="item-image">
+                                        <img src="images/collection/{{$product->Product_Supplier}}" alt="cart images">
+                                    </div>
+                                    <div class="items-details">
+                                        <div class="items-name">
+                                            <small>Name: {{$product->Product_Name}}</small><br>
+                                        </div>
+                                        <div class="items-price">
+                                            <small>Price: RM{{$product->Product_Price}}</small>
+                                        </div>
                                         <br>
-                                        <a href="">Remove</a>
+                                        <div class="items-removal">
+                                            <button class = "remove-items">
+                                                Remove
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </td>
-                            <td><input type="number" value="1"></td>
-                            <td>RM65.00</td>
+                            <div class="items-quantity">
+                                <td><input type="number" value="1" min="1"></td>
+                            </div>
+                            <div class="items-line-price">
+                                <td>RM{{$product->Product_Price}}</td>
+                            </div>
                         </tr>
-                        <tr>
-                            <td>
-                                <div class="cart-info">
-                                    <img src="images/collection/cacti2.jpg" alt="cart images">
-                                    <div>
-                                        <small>Name: Kalanchoe Rhombipilosa</small><br>
-                                        <small>Price: RM80.00</RM65></small>
-                                        <br>
-                                        <a href="">Remove</a>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><input type="number" value="1"></td>
-                            <td>RM80.00</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="cart-info">
-                                    <img src="images/collection/cacti3.jpg" alt="cart images">
-                                    <div>
-                                        <small>Name: Sedum Burrito</small><br>
-                                        <small>Price: RM40.00</RM65></small>
-                                        <br>
-                                        <a href="">Remove</a>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><input type="number" value="1"></td>
-                            <td>RM40.00</td>
-                        </tr>
+
+                        @endforeach
+
                     </table>
 
-                    <div class="total-price">
+                    <!-- <div class="total-price">
                         <table>
                             <tr>
                                 <td>Subtotal:</td>
@@ -133,7 +124,32 @@
                                 <td>RM196.10</td>
                             </tr>
                         </table>
+                    </div> -->
+                    <div class="totals">
+                        <div class="totals-item">
+                            <label>Subtotal</label>
+                        <div class="totals-value" id="cart-subtotal">
+                            65.00
+                        </div>
                     </div>
+                    <div class="totals-item">
+                        <label>Tax (5%)</label>
+                        <div class="totals-value" id="cart-tax">
+                            3.25
+                        </div>
+                    </div>
+                    <div class="totals-item">
+                        <label>Shipping</label>
+                    <div class="totals-value" id="cart-shipping">0</div>
+                    </div>
+                    <div class="totals-item totals-item-total">
+                        <label>Grand Total</label>
+                    <div class="totals-value" id="cart-total">133.25</div>
+                    </div>
+                    <button class="checkout">Checkout</button>
+
+                    <script src="js/cart.js"></script>
+                </div>
                 </div><!--/.small-container-->
             </div><!--.container-->
 		

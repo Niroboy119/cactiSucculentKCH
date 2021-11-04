@@ -319,12 +319,15 @@ ul.cart-list > li.total {
     border: 1px solid #32CD32	;
     width: 80px;
     height: 30px;
+    border-radius: 3px;
+}
+
+.btn-cart a{
     white-space: nowrap;
     color: #fff;
     font-size: 12px;
     font-weight: 500;
     text-transform: capitalize;
-    border-radius: 3px;
 }
 /*.cart-list*/
 
@@ -1212,7 +1215,7 @@ table{
     border-collapse: collapse;
 }
 
-.cart-info{
+.items-info{
     display: flex;
     flex-wrap: wrap;
 }
@@ -1221,7 +1224,7 @@ th{
     text-align: left;
     padding: 5px;
     color: #fff;
-    background: #3bff4b;
+    background: #32CD32;
     font-weight: normal;
     font-size: 20px;
 }
@@ -1236,10 +1239,10 @@ td input{
     padding: 5px;
 }
 
-td a{
-    color: #ff523b;
+/* td a{
+    color: #fff;
     font-size: 15px;
-}
+} */
 
 td small{
     font-size: 20px;
@@ -1251,17 +1254,72 @@ td img{
     margin-right: 10px;
 }
 
+.remove-items{
+    border: 0;
+    padding: 4px 8px;
+    background-color: #c66;
+    color: #fff;
+    font-family: bold;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+/* Totals section */
+.totals{
+    border-top: 3px solid #32CD32;
+    width: 100%;
+    font-size: 20px;
+}
+.totals-item {
+    float: right;
+    clear: both;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+label {
+    float: left;
+    clear: both;
+    width: 79%;
+    text-align: right;
+}
+
+.totals-value {
+    float: right;
+    width: 21%;
+    text-align: right;
+}
+    
+.totals-item-total {
+      font-family: bold;
+}
+
 .total-price{
     display: flex;
     justify-content: flex-end;
 }
 
-.total-price table{
+/* .total-price table{
     border-top: 3px solid #3bff4b;
     width: 100%;
     max-width: 200px;
     font-size: 20px;
-}
+} */
+
+.checkout {
+    float: right;
+    border: 0;
+    margin-top: 20px;
+    padding: 6px 25px;
+    background-color: #32CD32;
+    color: #fff;
+    font-size: 25px;
+    border-radius: 3px;
+  }
+  
+  .checkout:hover {
+    background-color: #494;
+  }
 
 td:last-child{
     text-align: right;
@@ -1269,7 +1327,7 @@ td:last-child{
 }
 
 /*--media less than 600 screen size--*/
-.cart-info p{
+.items-info p{
     display: none;
 }
 
