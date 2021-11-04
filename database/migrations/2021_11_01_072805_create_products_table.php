@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->integer('Product_Quantity');
             $table->string('Product_Type');
             $table->string('Product_Desc');
-            $table->integer('Product_Price');
+            $table->double('Product_Price');
             $table->string('Product_Supplier');
         });
     }
