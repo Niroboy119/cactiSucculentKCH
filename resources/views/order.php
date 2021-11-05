@@ -14,7 +14,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
         
         <!-- title of site -->
-        <title>Cacti Succulent KCH Products</title>
+        <title>Cacti Succulent KCH Orders</title>
 
         <!-- For favicon png -->
 		<link rel="shortcut icon" type="image/icon" href="logo/favicon.png"/>
@@ -48,10 +48,10 @@
     </head>
 	
 	<body>
-    <section id="contact-us" class="contact-us">
+    <section id="order" class="order">
             <div class="container">
                 <div class="section-header">
-                    <h2><br><br><br>Contact Us</h2>
+                    <h2><br><br><br>Order</h2>
                 </div><!--/.section-header-->
                 <div class="carousel-inner" role="listbox">
                     <div class="welcome-hero-txt">

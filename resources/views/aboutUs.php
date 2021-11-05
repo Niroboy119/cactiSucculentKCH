@@ -48,18 +48,25 @@
     </head>
 	
 	<body>
-		<div class="carousel-inner" role="listbox">
-			<div class="welcome-hero-txt">
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<h2 style="color:black; text-align:center;">Under Construction</h2>
-				<br>							
-			</div>
-		</div>	
+    <section id="about-us" class="about-us">
+            <div class="container">
+                <div class="section-header">
+                    <h2><br><br><br>About Us</h2>
+                </div><!--/.section-header-->
+                <div class="carousel-inner" role="listbox">
+                    <div class="welcome-hero-txt">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <h2 style="color:black; text-align:center;">Under Construction</h2>
+                        <br>							
+                    </div>
+                </div>	
+            </div>
+        </section>
 
 		<!-- Include all js compiled plugins (below), or include individual files as needed -->
 

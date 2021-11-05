@@ -116,9 +116,9 @@
 				            <!-- Collect the nav links, forms, and other content for toggling -->
 				            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
 								<ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-									<li><a href="homepage">Home</a></li>
-									<li><a href="product">Products</a></li>
-									<li><a>Orders</a></li>
+									<li><a href = "homepage">Home</a></li>
+									<li><a href = "product">Products</a></li>
+									<li><a href = "order">Orders</a></li>
 									<li><a href = "aboutUs">About Us</a></li>
 									<li><a href = "contactUs">Contact Us</a></li>
 								</ul><!--/.nav -->
