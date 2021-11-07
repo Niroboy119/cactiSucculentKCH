@@ -77,7 +77,11 @@ $products=Product::all();
 											<div class="single-welcome-hero">											
 													<video class="home-banner" src="videos/cactivid3.mp4" muted loop autoplay></video>
 												<div class="welcome-hero-txt">
-													<h2>Welcome To Cacti Succulent KCH, {{Auth::user()->name}}</h2>
+													@if(Auth::check())
+													<h2 style="text-align:left;float:left;">Welcome To Cacti Succulent KCH, {{Auth::user()->name}}</h2>
+													@else
+													<h2>Welcome To Cacti Succulent KCH</h2>
+													@endif
 													<h3>The gardening that matters</h3>
 													<a href="product">Explore</a>
 												</div><!--/.welcome-hero-txt-->

@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+<?php
+Session::put('key','');
+session(['key'=>'value']);
+?>
+
 @section('content')
 
 <div class="container">
@@ -18,6 +23,7 @@
                 </div>
                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
                     <div class="card-body p-4 p-lg-5 text-black">
+                    <!-- action="{{ route('login') }} -->
                         <form method="POST" action="{{ route('login') }}"> 
                             @csrf 
 

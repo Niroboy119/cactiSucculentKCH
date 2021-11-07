@@ -235,7 +235,7 @@ $products=Product::all();
 									<div class="row">
 										<div class="col-md-4 col-sm-12">
 											<div class="single-inner-populer-product-img">
-											<img src="images/collection/pcacti1.png" style="max-height:800px; padding-top:35px;">
+											<img class="single-populer-product-img" src="images/collection/pcacti1.png" style="max-height:800px; padding-top:35px;">
 											</div>
 										</div>
 										<div class="col-md-8 col-sm-12">
