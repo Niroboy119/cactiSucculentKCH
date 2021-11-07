@@ -64,7 +64,7 @@
 									<ul>
 										<li><a href="#">my account</a></li><!--/li-->
 										<li><a href="#">order history</a></li><!--/li-->
-										<li><a href="#">my cart</a></li><!--/li-->
+										<li><a href="cart">my cart</a></li><!--/li-->
 									</ul><!--/ul-->
 								</div><!--/.hm-foot-menu-->
 							</div><!--/.hm-footer-widget-->

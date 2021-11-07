@@ -295,12 +295,12 @@ $products=Product::all();
 						@foreach($products as $product)
 							<div class="single-new-arrival" style="float:left; padding:8px;">
 								<div class="single-new-arrival-bg">
-									<img src="images/collection/cacti1.jpg" alt="new-arrivals images">
+									<img src="images/collection/{{$product->Product_Supplier}}" alt="new-arrivals images">
 									<div class="single-new-arrival-bg-overlay"></div>
 									<div class="new-arrival-cart">
 										<p>
 											<span class="lnr lnr-cart"></span>
-											<a href="#">add <span>to </span> cart</a>
+											<a href="cart">add <span>to </span> cart</a>
 										</p>
 										<p class="arrival-review pull-right">
 											<span class="lnr lnr-heart"></span>
