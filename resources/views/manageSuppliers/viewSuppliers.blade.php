@@ -3,22 +3,22 @@
 @section('content')
 
 <?php
-use App\Models\Product;
-$products=Product::all();
+use App\Models\Supplier;
+$suppliers=Supplier::all();
 ?>
 
 
 <br><br>
 <div class="d-flex justify-content-center h-100">
-    <div class="search"> <input onchange="searchProduct()" id="searchBar" style=" padding-right:700px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Product Name...." name=""> <button onclick="searchProduct2()" type="button" class="btn btn-outline-primary">search</button> <i class="fa fa-search"></i> </a> </div>
+    <div class="search"> <input onchange="searchSupplier()" id="searchBar" style=" padding-right:700px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Supplier Name...." name=""> <button onclick="searchSupplier2()" type="button" class="btn btn-outline-primary">search</button> <i class="fa fa-search"></i> </a> </div>
 </div>
 
 <br>
 
 <script type="text/javascript">
-function searchProduct()
+function searchSupplier()
 {
-    var link= "/searchProducts/"+document.getElementById("searchBar").value;
+    var link= "/searchSuppliers/"+document.getElementById("searchBar").value;
     document.addEventListener("keyup", function(event) {
         if (event.keyCode === 13) {
             location.replace(link);
@@ -26,10 +26,10 @@ function searchProduct()
     });
 }
 
-function searchProduct2()
+function searchSupplier2()
 {
     var search=document.getElementById("searchBar").value;
-    var link= "/searchProducts/"+search;
+    var link= "/searchSuppliers/"+search;
     if(!search.isEmpty())
     {
         location.replace(link);
@@ -40,9 +40,9 @@ function searchProduct2()
 <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
         <div class="col-md-10">
-            @foreach($products as $product)
+            @foreach($suppliers as $supplier)
             <div class="row p-2 bg-white border rounded">
-                <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}"></div>
+                <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/suppliers/'.$supplier->Supplier_Image)}}"></div>
                 <div class="col-md-6 mt-1">
                     <h5>{{$product->Product_Name}}</h5>
                     <div class="d-flex flex-row">
@@ -67,12 +67,10 @@ function searchProduct2()
                     <div class="d-flex flex-column mt-4"><a class="btn btn-primary btn-sm" href="/editProduct/{{ $product->Product_ID }}">Edit</a><a class="btn btn-outline-primary btn-sm mt-2" href="/deleteProduct/{{ $product->Product_ID }}">Delete</a></div>
                 </div>
             </div>
-            <script type="text/javascript">
-                function confirmDelete() 
-                {
-                    return confirm('Are you sure you want to delete?');
-                }
-             </script>
+
+            function confirmDelete() {
+    return confirm('Are you sure you want to delete?');
+}
             <br>
             @endforeach
         </div>

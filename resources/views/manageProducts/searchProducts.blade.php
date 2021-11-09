@@ -4,38 +4,16 @@
 
 <?php
 use App\Models\Product;
-$products=Product::all();
+$products = $product
 ?>
 
 
 <br><br>
 <div class="d-flex justify-content-center h-100">
-    <div class="search"> <input onchange="searchProduct()" id="searchBar" style=" padding-right:700px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Product Name...." name=""> <button onclick="searchProduct2()" type="button" class="btn btn-outline-primary">search</button> <i class="fa fa-search"></i> </a> </div>
+    <div class="search"> <input style=" padding-right:700px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Product Name...." name=""> <button type="button" class="btn btn-outline-primary">search</button> <i class="fa fa-search"></i> </a> </div>
 </div>
 
 <br>
-
-<script type="text/javascript">
-function searchProduct()
-{
-    var link= "/searchProducts/"+document.getElementById("searchBar").value;
-    document.addEventListener("keyup", function(event) {
-        if (event.keyCode === 13) {
-            location.replace(link);
-        }
-    });
-}
-
-function searchProduct2()
-{
-    var search=document.getElementById("searchBar").value;
-    var link= "/searchProducts/"+search;
-    if(!search.isEmpty())
-    {
-        location.replace(link);
-    }
-}
-</script>
 
 <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
@@ -67,12 +45,6 @@ function searchProduct2()
                     <div class="d-flex flex-column mt-4"><a class="btn btn-primary btn-sm" href="/editProduct/{{ $product->Product_ID }}">Edit</a><a class="btn btn-outline-primary btn-sm mt-2" href="/deleteProduct/{{ $product->Product_ID }}">Delete</a></div>
                 </div>
             </div>
-            <script type="text/javascript">
-                function confirmDelete() 
-                {
-                    return confirm('Are you sure you want to delete?');
-                }
-             </script>
             <br>
             @endforeach
         </div>

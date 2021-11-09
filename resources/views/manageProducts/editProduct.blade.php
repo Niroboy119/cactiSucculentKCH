@@ -13,7 +13,7 @@ $product = Product::where([ 'Product_ID' => $id ]);
                 <div class="card-header">{{ __('Edit Product') }}</div>
 
                 <div class="card-body">
-                    <form action="/updateProduct/{{$product->value('Product_ID')}}" method="POST" >
+                    <form action="/updateProduct/{{$product->value('Product_ID')}}" method="POST" enctype="multipart/form-data">
                    
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -92,6 +92,37 @@ $product = Product::where([ 'Product_ID' => $id ]);
                                 <input id="Supplier" type="Supplier" value="{{$product->value('Product_Supplier')}}" class="form-control @error('Supplier') is-invalid @enderror" name="Supplier" required autocomplete="Supplier">
 
                                 @error('Supplier')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="file" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
+
+                            <div class="col-md-6">
+                                <input  id="profile-img" onchange="readURL(this);" type="file" name="file" required>
+                                <img src="{{URL::asset('storage/images/products/'.$product->value('Product_Image'))}}" id="profile-img-tag" width="200px" />
+
+                                <script type="text/javascript">
+                                    function readURL(input) {
+                                        if (input.files && input.files[0]) {
+                                            var reader = new FileReader();
+                                            
+                                            reader.onload = function (e) {
+                                                $('#profile-img-tag').attr('src', e.target.result);
+                                            }
+                                            reader.readAsDataURL(input.files[0]);
+                                        }
+                                    }
+                                    $("#profile-img").change(function(){
+                                        readURL(this);
+                                    });
+                                </script>
+
+                                @error('file')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

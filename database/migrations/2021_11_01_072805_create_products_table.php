@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->string('Product_Desc');
             $table->integer('Product_Price');
             $table->string('Product_Supplier');
+            $table->string('Product_Image');
         });
     }
 

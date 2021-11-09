@@ -39,6 +39,8 @@ class ProductController extends Controller
         $product->Product_Desc=$request->Desc;
         $product->Product_Price=$request->Price;
         $product->Product_Supplier=$request->Supplier;
+        $request->file->store('images/products', 'public');
+        $product->Product_Image=$request->file->hashName();
 
         $product->save();
         return redirect('/manageProducts');
@@ -48,16 +50,11 @@ class ProductController extends Controller
 
     public function update(Request $request,$id)
     {
-        $product = new Product();
-        $product->Product_Name=$request->name;
-        $product->Product_Quantity=$request->quantity;
-        $product->Product_Type=$request->Type;
-        $product->Product_Desc=$request->Desc;
-        $product->Product_Price=$request->Price;
-        $product->Product_Supplier=$request->Supplier;
+        $request->file->store('images/products', 'public');
+        
         Product::where('Product_ID', $id)->update(array('Product_Name' => $request->name, 
         'Product_Quantity' => $request->quantity, 'Product_Type' => $request->Type, 'Product_Desc' => $request->Desc,
-        'Product_Price' => $request->Price, 'Product_Supplier' => $request->Supplier));
+        'Product_Price' => $request->Price, 'Product_Supplier' => $request->Supplier, 'Product_Image' => $request->file->hashName() ));
        
         return redirect('/manageProducts');
 
@@ -164,5 +161,32 @@ class ProductController extends Controller
 
     //     return redirect()->back()->with('success', 'Product added to cart successfully!');
     // }
+
+    public function increaseQuantity($id)
+    {
+        $product=Product::where('Product_ID', $id);
+        $quantity=$product->value('Product_Quantity')+1;
+        Product::where('Product_ID', $id)->update(array('Product_Quantity' => $quantity));
+       
+        return redirect('/manageProducts');
+
+    }
+
+    public function decreaseQuantity($id)
+    {
+        $product=Product::where('Product_ID', $id);
+        $quantity=$product->value('Product_Quantity')-1;
+        Product::where('Product_ID', $id)->update(array('Product_Quantity' => $quantity));
+       
+        return redirect('/manageProducts');
+
+    }
+
+    public function searchProducts($search)
+    {   
+        $product = Product::where ( 'Product_Name', 'LIKE', '%' . $search . '%' )->get ();
+        return view('manageProducts/searchProducts',compact('product'));
+    }
+    
 
 }
