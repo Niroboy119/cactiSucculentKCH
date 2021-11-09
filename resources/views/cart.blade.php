@@ -85,6 +85,9 @@
                                         <div class="items-name">
                                             <small>Name: {{$product->Product_Name}}</small><br>
                                         </div>
+                                        <div class="items-description">
+                                            <small>Description: {{$product->Product_Desc}}</small><br>
+                                        </div>
                                         <div class="items-price">
                                             <small>Price: RM{{$product->Product_Price}}</small>
                                         </div>
@@ -126,25 +129,12 @@
                         </table>
                     </div> -->
                     <div class="totals">
-                        <div class="totals-item">
-                            <label>Subtotal</label>
-                        <div class="totals-value" id="cart-subtotal">
-                            65.00
+                        <div class="totals-item totals-item-total">
+                            <label>Total</label>
+                            <div class="totals-value" id="cart-total">
+                                RM 145.00
+                            </div>
                         </div>
-                    </div>
-                    <div class="totals-item">
-                        <label>Tax (5%)</label>
-                        <div class="totals-value" id="cart-tax">
-                            3.25
-                        </div>
-                    </div>
-                    <div class="totals-item">
-                        <label>Shipping</label>
-                    <div class="totals-value" id="cart-shipping">0</div>
-                    </div>
-                    <div class="totals-item totals-item-total">
-                        <label>Grand Total</label>
-                    <div class="totals-value" id="cart-total">133.25</div>
                     </div>
                     <button class="checkout">Checkout</button>
 

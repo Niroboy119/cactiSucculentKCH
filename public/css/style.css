@@ -1286,12 +1286,15 @@ label {
 
 .totals-value {
     float: right;
+    font-size: 25px;
+    font-weight: bold;
     width: 21%;
     text-align: right;
 }
     
 .totals-item-total {
-      font-family: bold;
+      font-weight: bold;
+      font-size: 25px;
 }
 
 .total-price{

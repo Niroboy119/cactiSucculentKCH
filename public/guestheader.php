@@ -100,7 +100,7 @@
 				                            </li><!--/.single-cart-list-->
 
 				                            <li class="total">
-				                                <span>Total: RM133.25</span>
+				                                <span>Total: RM145.00</span>
 												<button class="btn-cart pull-right"><a href='cart'>view cart</a></button>
 				                            </li>
 				                        </ul>

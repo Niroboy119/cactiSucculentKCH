@@ -53,6 +53,10 @@ Route::post('/updateProduct/{id}', [App\Http\Controllers\ProductController::clas
 Route::get('/manageSuppliers', [App\Http\Controllers\SupplierController::class, 'display'])->name('suppliers');
 Route::post('/addSupplier', [App\Http\Controllers\SupplierController::class, 'create'])->name('suppliers');
 
+// //cart function
+// Route::get('/', 'ProductController@index');
+// Route::get('cart', 'ProductController@cart');
+// Route::get('add-to-cart/{Product_ID}', 'ProductController@addToCart');
 
 Auth::routes();
 

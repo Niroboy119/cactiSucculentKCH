@@ -301,6 +301,7 @@ $products=Product::all();
 										<p>
 											<span class="lnr lnr-cart"></span>
 											<a href="cart">add <span>to </span> cart</a>
+											<!-- <a href="{{ url('add-to-cart/'.$product->Product_ID) }}">add <span>to </span> cart</a> -->
 										</p>
 										<p class="arrival-review pull-right">
 											<span class="lnr lnr-heart"></span>
