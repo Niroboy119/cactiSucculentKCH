@@ -1,5 +1,4 @@
-<?php
-use Illuminate\Support\Facades\Auth;
+<?php use Illuminate\Support\Facades\Auth;
 
 	if (Auth::check()) {
 		include 'header.php';

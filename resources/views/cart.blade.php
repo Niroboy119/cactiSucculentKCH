@@ -73,6 +73,8 @@
                             <th>Subtotal</th>
                         </tr>
 
+
+                        @if(session("cart"))
                         @foreach($products as $product)
 
                         <tr>
@@ -108,7 +110,9 @@
                             </div>
                         </tr>
 
+
                         @endforeach
+                        @endif
 
                     </table>
 

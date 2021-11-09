@@ -55,8 +55,10 @@ Route::post('/addSupplier', [App\Http\Controllers\SupplierController::class, 'cr
 
 // //cart function
 // Route::get('/', 'ProductController@index');
-// Route::get('cart', 'ProductController@cart');
-// Route::get('add-to-cart/{Product_ID}', 'ProductController@addToCart');
+// // Route::get('cart', 'ProductController@cart');
+// // Route::get('add-to-cart/{Product_ID}', 'ProductController@addToCart');
+// Route::get('cart', 'ProductsController@cart');
+Route::get('cart/{Product_ID}', 'App\Http\Controllers\ProductController@addToCart');
 
 Auth::routes();
 

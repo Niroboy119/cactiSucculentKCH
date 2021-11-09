@@ -1,4 +1,9 @@
-<?php include 'header.php'?>
+<?php 
+
+session_start();?>
+<?php 
+
+include 'header.php'?>
 
 <?php
 use App\Models\Product;
@@ -286,22 +291,30 @@ $products=Product::all();
 				<div class="section-header">
 					<br>
 					<br>
+
 					<h2>All Products</h2>
 
 				</div><!--/.section-header-->
 				<div class="new-arrivals-content">
 					<div class="Row">
-						
+
 						@foreach($products as $product)
 							<div class="single-new-arrival" style="float:left; padding:8px;">
 								<div class="single-new-arrival-bg">
-									<img src="images/collection/{{$product->Product_Supplier}}" alt="new-arrivals images">
+									<img src="{{$product->Product_Image}}" alt="new-arrivals images">
 									<div class="single-new-arrival-bg-overlay"></div>
 									<div class="new-arrival-cart">
+										
+									<!-- <p 
+									class="btn-holder"><a href="javascript:void(0);" data-id="{{$product->Product_ID}}" 
+										class="btn btn-warning btn-block text-center add-to-cart" role="button">Add to cart</a>
+                                <i class="fa fa-circle-o-notch fa-spin btn-loading" style="font-size:24px; display: none"></i>
+                            </p> -->
 										<p>
 											<span class="lnr lnr-cart"></span>
-											<a href="cart">add <span>to </span> cart</a>
-											<!-- <a href="{{ url('add-to-cart/'.$product->Product_ID) }}">add <span>to </span> cart</a> -->
+											<!-- <a href="cart">add <span>to </span> cart</a> -->
+											<a href="{{ url('cart/'.$product->Product_ID) }}">add <span>to </span> cart</a>
+											
 										</p>
 										<p class="arrival-review pull-right">
 											<span class="lnr lnr-heart"></span>
@@ -313,6 +326,30 @@ $products=Product::all();
 								<p class="arrival-product-price">RM {{$product->Product_Price}}</p>
 							</div>
 						@endforeach
+
+    <!-- <script type="text/javascript">
+        $(".add-to-cart").click(function (e) {
+            e.preventDefault();
+
+            var ele = $(this);
+
+            ele.siblings('.btn-loading').show();
+
+            $.ajax({
+                url: '{{ url('cart') }}' + '/' + ele.attr("data-id"),
+                method: "get",
+                data: {_token: '{{ csrf_token() }}'},
+                dataType: "json",
+                success: function (response) {
+
+                    ele.siblings('.btn-loading').hide();
+
+                    $("span#status").html('<div class="alert alert-success">'+response.msg+'</div>');
+                    $("#header-bar").html(response.data);
+                }
+            });
+        });
+    </script> -->
 						
 					</div>
 				</div>		
