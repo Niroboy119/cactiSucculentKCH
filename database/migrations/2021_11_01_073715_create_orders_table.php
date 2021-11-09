@@ -14,12 +14,14 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->increments('Order_ID');
+            $table->increments('Order_ID')->unique();
+            $table->bigInteger('userId')->unsigned();
+            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
             $table->date('Order_Date');
-            $table->string('Order_Description');
+            #$table->string('Order_Description');
             $table->string('Order_Status');
-            $table->date('Order_EarliestArrivalDate');
-            $table->date('Order_LatestArrivalDate');
+            $table->date('Order_EarliestArrivalDate')->nullable();
+            $table->date('Order_LatestArrivalDate')->nullable();
         });
     }
 
