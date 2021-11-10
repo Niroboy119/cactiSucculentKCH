@@ -74,28 +74,27 @@
                         </tr>
 
 
-                        @if(session("cart"))
-                        @foreach($products as $product)
-
+                        @if(session('cart'))
+                            @foreach(session('cart') as $id=>$details)
                         <tr>
                             <td>
                                 <div class="items-info">
                                     <div class="item-image">
-                                        <img src="images/collection/{{$product->Product_Supplier}}" alt="cart images">
+                                        <img src="images/collection/cacti1.jpg" alt="cart images">
                                     </div>
                                     <div class="items-details">
                                         <div class="items-name">
-                                            <small>Name: {{$product->Product_Name}}</small><br>
+                                            <small>Name: {{$details['Product_Name']}}</small><br>
                                         </div>
                                         <div class="items-description">
-                                            <small>Description: {{$product->Product_Desc}}</small><br>
+                                            <small>Description: {{$details['Product_Desc']}}</small><br>
                                         </div>
                                         <div class="items-price">
-                                            <small>Price: RM{{$product->Product_Price}}</small>
+                                            <small>Price: RM{{$details['Product_Price']}}</small>
                                         </div>
                                         <br>
                                         <div class="items-removal">
-                                            <button class = "remove-items">
+                                            <button class = "remove-items" data-id="{{ $id }}">
                                                 Remove
                                             </button>
                                         </div>
@@ -103,13 +102,9 @@
                                 </div>
                             </td>
                             <div class="items-quantity">
-                                <td><input type="number" value="1" min="1"></td>
-                            </div>
-                            <div class="items-line-price">
-                                <td>RM{{$product->Product_Price}}</td>
+                                <td><input type="number" value="{{ $details['Product_Quantity'] }}"></td>
                             </div>
                         </tr>
-
 
                         @endforeach
                         @endif

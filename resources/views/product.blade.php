@@ -310,11 +310,9 @@ $products=Product::all();
 										class="btn btn-warning btn-block text-center add-to-cart" role="button">Add to cart</a>
                                 <i class="fa fa-circle-o-notch fa-spin btn-loading" style="font-size:24px; display: none"></i>
                             </p> -->
-										<p>
+							<p>
 											<span class="lnr lnr-cart"></span>
-											<!-- <a href="cart">add <span>to </span> cart</a> -->
-											<a href="{{ url('cart/'.$product->Product_ID) }}">add <span>to </span> cart</a>
-											
+											<a href="{{ url('cart/'.$product->Product_ID) }}" role="button">add <span>to </span> cart</a>
 										</p>
 										<p class="arrival-review pull-right">
 											<span class="lnr lnr-heart"></span>

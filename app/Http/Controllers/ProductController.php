@@ -73,8 +73,11 @@ class ProductController extends Controller
                     $id => [
                         "Product_Name" => $product->Product_Name,
                         "Product_Quantity" => 1,
+                        "Product_Type" => $product->Product_Type,
+                        "Product_Desc" => $product->Product_Desc,
                         "Product_Price" => $product->Product_Price,
-                        //"photo" => $product->photo
+                        "Product_Supplier" => $product->Product_Supplier,
+                        "Product_Image" => $product->Product_Image
                     ]
             ];
             session()->put('cart', $cart);
@@ -82,16 +85,19 @@ class ProductController extends Controller
         }
         // if cart not empty then check if this product exist then increment quantity
         if(isset($cart[$id])) {
-            $cart[$id]['quantity']++;
+            $cart[$id]['Product_Quantity']++;
             session()->put('cart', $cart);
             return redirect()->back()->with('success', 'Product added to cart successfully!');
         }
         // if item not exist in cart then add to cart with quantity = 1
         $cart[$id] = [
-            "name" => $product->name,
-            "quantity" => 1,
-            "price" => $product->price,
-            "photo" => $product->photo
+                    "Product_Name" => $product->Product_Name,
+                    "Product_Quantity" => 1,
+                    "Product_Type" => $product->Product_Type,
+                    "Product_Desc" => $product->Product_Desc,
+                    "Product_Price" => $product->Product_Price,
+                    "Product_Supplier" => $product->Product_Supplier,
+                    "Product_Image" => $product->Product_Image
         ];
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
