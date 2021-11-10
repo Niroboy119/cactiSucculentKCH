@@ -193,6 +193,12 @@ class ProductController extends Controller
         $product = Product::where ( 'Product_Name', 'LIKE', '%' . $search . '%' )->get ();
         return view('manageProducts/searchProducts',compact('product'));
     }
+
+    public function search($search)
+    {   
+        $product = Product::where ( 'Product_Name', 'LIKE', '%' . $search . '%' )->get ();
+        return view('search',compact('product'));
+    }
     
 
 }

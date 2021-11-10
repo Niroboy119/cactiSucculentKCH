@@ -51,3 +51,4 @@ $products = $product
     </div>
 </div>
 @endsection
+

@@ -5,32 +5,32 @@
 
        
         <!--font-awesome.min.css-->
-        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
 
         <!--linear icon css-->
-		<link rel="stylesheet" href="css/linearicons.css">
+		<link rel="stylesheet" href="/css/linearicons.css">
 
 		<!--animate.css-->
-        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="/css/animate.css">
 
         <!--owl.carousel.css-->
-        <link rel="stylesheet" href="css/owl.carousel.min.css">
-		<link rel="stylesheet" href="css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="/css/owl.carousel.min.css">
+		<link rel="stylesheet" href="/css/owl.theme.default.min.css">
 		
         <!--bootstrap.min.css-->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
 		
 		<!-- bootsnav -->
-		<link rel="stylesheet" href="css/bootsnav.css" >	
+		<link rel="stylesheet" href="/css/bootsnav.css" >	
         
         <!--style.css-->
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="/css/style.css">
         
         <!--responsive.css-->
-        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="/css/responsive.css">
 
 		<!--responsive.css-->
-        <link rel="stylesheet" href="css/viewProductsAdmin.css">
+        <link rel="stylesheet" href="/css/viewProductsAdmin.css">
 	
     </head>
 	
@@ -40,7 +40,27 @@
 				    <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy"  data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
 
 				        <!-- Start Top Search -->
-				        <div class="top-search">
+						<div class="top-search">
+				            <div class="container">
+				                <div class="input-group">
+				                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+				                    <input onchange = "search()" id ="searchBar2" type="text" class="form-control" placeholder="Search">
+				                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+				                </div>
+				            </div>
+				        </div>
+						<script type="text/javascript">
+							function search()
+							{
+								var link= "/search/"+document.getElementById("searchBar2").value;
+								document.addEventListener("keyup", function(event) {
+									if (event.keyCode === 13) {
+										location.replace(link);
+									}
+								});
+							}
+						</script>
+				        <!-- <div class="top-search">
 				            <div class="container">
 				                <div class="input-group">
 				                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
@@ -48,7 +68,7 @@
 				                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
 				                </div>
 				            </div>
-				        </div>
+				        </div> -->
 				        <!-- End Top Search -->
 
 				        <div class="container">            
@@ -122,10 +142,11 @@
 				            <!-- Collect the nav links, forms, and other content for toggling -->
 				            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
 								<ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-									<li><a href="homepage">Home</a></li>
-									<li><a href="product">Products</a></li>
-									<li><a>About Us</a></li>
-									<li><a>Contact Us</a></li>
+									<li><a href = "homepage">Home</a></li>
+									<li><a href = "product">Products</a></li>
+									<li><a href = "order">Orders</a></li>
+									<li><a href = "aboutUs">About Us</a></li>
+									<li><a href = "contactUs">Contact Us</a></li>
 								</ul><!--/.nav -->
 				            </div><!-- /.navbar-collapse -->
 				        </div><!--/.container-->

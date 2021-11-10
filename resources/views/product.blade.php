@@ -1,5 +1,4 @@
 <?php 
-
 session_start();?>
 <?php 
 
@@ -15,6 +14,8 @@ $products=Product::all();
 <style>
 	.single-new-arrival-bg img{
 		max-height:350px;
+		max-width:300px;
+    	object-fit: cover;	
 	}
 
 	.Rows {
