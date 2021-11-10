@@ -301,7 +301,7 @@ $products=Product::all();
 						@foreach($products as $product)
 							<div class="single-new-arrival" style="float:left; padding:8px;">
 								<div class="single-new-arrival-bg">
-									<img src="{{$product->Product_Image}}" alt="new-arrivals images">
+									<img src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" alt="new-arrivals images">
 									<div class="single-new-arrival-bg-overlay"></div>
 									<div class="new-arrival-cart">
 										

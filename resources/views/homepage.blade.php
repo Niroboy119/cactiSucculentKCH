@@ -175,7 +175,7 @@ $products=Product::all();
 						<div class="col-sm-3">
 							<div class="homepage-products">
 								<div class="homepage-products-bg">
-									<img src="images/collection/{{ $product->Product_Supplier}}">
+									<img src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}">
 									</div>
 									<div class="single-feature-txt text-center">
 										<h3><a href="#">{{$product->Product_Name}}</a></h3>
