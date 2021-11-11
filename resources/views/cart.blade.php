@@ -69,7 +69,7 @@
                     <table>
                         <tr>
                             <th>Product</th>
-                            <th>Quantity</th>
+                            <th>Item Quantity</th>
                             <th>Subtotal</th>
                         </tr>
 
@@ -94,16 +94,20 @@
                                         </div>
                                         <br>
                                         <div class="items-removal">
-                                            <button class = "remove-items" data-id="{{ $id }}">
+                                            <button class = "btn btn-info btn-sm update-cart" data-id="{{ $id }}">
+                                                <i class="fa fa-refresh"></i>
+                                            </button>
+                                        
+                                            <button class = "btn btn-danger btn-sm remove-from-cart" data-id="{{ $id }}">
                                                 Remove
                                             </button>
                                         </div>
                                     </div>
                                 </div>
                             </td>
-                            <div class="items-quantity">
-                                <td><input type="number" value="{{ $details['Product_Quantity'] }}"></td>
-                            </div>
+                                <div class="items-quantity">
+                                    <td><input type="number" value="{{ $details['Product_Quantity'] }}"></td>
+                                </div>
                         </tr>
 
                         @endforeach
@@ -111,22 +115,6 @@
 
                     </table>
 
-                    <!-- <div class="total-price">
-                        <table>
-                            <tr>
-                                <td>Subtotal:</td>
-                                <td>RM185.00</td>
-                            </tr>
-                            <tr>
-                                <td>Tax:</td>
-                                <td>RM11.10</td>
-                            </tr>
-                            <tr>
-                                <td>Total:</td>
-                                <td>RM196.10</td>
-                            </tr>
-                        </table>
-                    </div> -->
                     <div class="totals">
                         <div class="totals-item totals-item-total">
                             <label>Total</label>
@@ -136,6 +124,44 @@
                         </div>
                     </div>
                     <button class="checkout">Checkout</button>
+
+                    @section('scripts')
+
+                        <script type="text/javascript">
+
+                            $(".update-cart").click(function (e) {
+                                    e.preventDefault();
+
+                                    var ele = $(this);
+
+                                        $.ajax({
+                                            url: '{{ url('update-cart') }}',
+                                            method: "patch",
+                                            data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity: ele.parents("tr").find(".Product_Quantity").val()},
+                                            success: function (response) {
+                                                window.location.reload();
+                                            }
+                                        });
+                                    });
+                                    $(".remove-from-cart").click(function (e) {
+                                        e.preventDefault();
+
+                                        var ele = $(this);
+
+                                        if(confirm("Are you sure?")) {
+                                            $.ajax({
+                                                url: '{{ url('remove-from-cart') }}',
+                                                method: "DELETE",
+                                                data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
+                                                success: function (response) {
+                                                    window.location.reload();
+                                                }
+                                            });
+                                        }
+                                    });
+                            </script>
+
+                    @endsection
 
                     <script src="js/cart.js"></script>
                 </div>

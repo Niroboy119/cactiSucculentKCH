@@ -15,7 +15,7 @@ $products=Product::all();
 	.single-new-arrival-bg img{
 		max-height:350px;
 		max-width:300px;
-    	object-fit: cover;	
+		object-fit: cover;
 	}
 
 	.Rows {
@@ -34,7 +34,7 @@ $products=Product::all();
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <!-- The above 3 meta tags must come first in the head; any other head content must come after these tags -->
 
         <!--font-family-->
 		<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">

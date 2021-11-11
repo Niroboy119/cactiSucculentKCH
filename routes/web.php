@@ -59,16 +59,14 @@ Route::get('/searchProducts/{search}', [App\Http\Controllers\ProductController::
 
 Route::get('/search/{search}', [App\Http\Controllers\ProductController::class, 'search'])->name('products');
 
-
 Route::get('/manageSuppliers', [App\Http\Controllers\SupplierController::class, 'display'])->name('suppliers');
 Route::post('/addSupplier', [App\Http\Controllers\SupplierController::class, 'create'])->name('suppliers');
 
-// //cart function
-// Route::get('/', 'ProductController@index');
-// // Route::get('cart', 'ProductController@cart');
-// // Route::get('add-to-cart/{Product_ID}', 'ProductController@addToCart');
-// Route::get('cart', 'ProductsController@cart');
+
 Route::get('cart/{Product_ID}', 'App\Http\Controllers\ProductController@addToCart');
+
+Route::patch('update-cart', 'ProductController@update');
+Route::delete('remove-from-cart', 'ProductController@remove');
 
 Auth::routes();
 

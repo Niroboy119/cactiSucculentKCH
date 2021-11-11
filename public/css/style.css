@@ -1221,7 +1221,7 @@ table{
 }
 
 th{
-    text-align: left;
+    text-align: center;
     padding: 5px;
     color: #fff;
     background: #32CD32;
@@ -1237,6 +1237,7 @@ td input{
     width: 40px;
     height: 30px;
     padding: 5px;
+    margin: 0px 200px;
 }
 
 /* td a{
@@ -1254,7 +1255,15 @@ td img{
     margin-right: 10px;
 }
 
-.remove-items{
+.update-cart{
+    border: 0;
+    padding: 8px 8px;
+    font-family: bold;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+.remove-from-cart{
     border: 0;
     padding: 4px 8px;
     background-color: #c66;
@@ -1262,6 +1271,10 @@ td img{
     font-family: bold;
     font-size: 15px;
     border-radius: 5px;
+}
+
+.items-quantity{
+    
 }
 
 /* Totals section */
