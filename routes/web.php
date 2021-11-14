@@ -65,8 +65,7 @@ Route::post('/addSupplier', [App\Http\Controllers\SupplierController::class, 'cr
 
 Route::get('cart/{Product_ID}', 'App\Http\Controllers\ProductController@addToCart');
 
-Route::patch('update-cart', 'ProductController@update');
-Route::delete('remove-from-cart', 'ProductController@remove');
+
 
 Auth::routes();
 
@@ -79,3 +78,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('cart/delete/{Product_ID}', 'App\Http\Controllers\ProductController@removeCartProducts');

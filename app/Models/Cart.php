@@ -32,4 +32,12 @@ class Cart extends Model
         $this->items[$id] = $storedItem;
         $this->totalPrice += $item->price;
     }
+
+    public function remove($id){
+        if($this->items){
+            if(array_key_exists($id, $this->items)){
+                $storedItem = $this->items[$id].remove;
+            }
+        }
+    }
 }

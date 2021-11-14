@@ -63,24 +63,26 @@
 		<section id="shopping-cart" class="shopping-cart">
             <div class="container">
                 <div class="section-header">
-                    <h2><br><br><br>Shopping Cart</h2>
+                    <h2 style="font-size:40px"><br>Shopping Cart</h2>
                 </div><!--/.section-header-->
                 <div class="small-container cart-page">
                     <table>
+                        <thead>
                         <tr>
-                            <th>Product</th>
-                            <th>Item Quantity</th>
-                            <th>Subtotal</th>
+                            <th style="width:60%">Product</th>
+                            <th class="text-center" style="width:20%">Quantity</th>
+                            <th class="text-center" style="width:20%">Subtotal</th>
                         </tr>
+                        </thead>
 
-
+                        <tbody>
                         @if(session('cart'))
                             @foreach(session('cart') as $id=>$details)
                         <tr>
-                            <td>
+                            <td data-th="Product">
                                 <div class="items-info">
                                     <div class="item-image">
-                                        <img src="images/collection/cacti1.jpg" alt="cart images">
+                                        <img src="{{URL::asset('storage/images/products/'.$details['Product_Image'])}}" alt="cart images">
                                     </div>
                                     <div class="items-details">
                                         <div class="items-name">
@@ -94,75 +96,60 @@
                                         </div>
                                         <br>
                                         <div class="items-removal">
-                                            <button class = "btn btn-info btn-sm update-cart" data-id="{{ $id }}">
-                                                <i class="fa fa-refresh"></i>
-                                            </button>
-                                        
-                                            <button class = "btn btn-danger btn-sm remove-from-cart" data-id="{{ $id }}">
-                                                Remove
-                                            </button>
+                                        <a href="{{ url('cart/delete/'.$id) }}" role="button">Remove <span>From </span> Cart</a> 
                                         </div>
                                     </div>
                                 </div>
                             </td>
-                                <div class="items-quantity">
-                                    <td><input type="number" value="{{ $details['Product_Quantity'] }}"></td>
-                                </div>
+                            <td data-th="Quantity">
+                                    <input style="margin-left:100px; margin-right:100px" type="number" value="{{ $details['Product_Quantity'] }}">
+                            </td>
+                            <td data-th="Subtotal" class="text-center">
+                                    <p class="text-center" style="font-size:20px">RM {{ $details['Product_Price'] * $details['Product_Quantity'] }}</p>
+                            </td>
                         </tr>
-
                         @endforeach
-                        @endif
-
+                        </tbody>
                     </table>
+
+                    <!-- <div class="total-price">
+                        <table>
+                            <tr>
+                                <td>Subtotal:</td>
+                                <td>RM185.00</td>
+                            </tr>
+                            <tr>
+                                <td>Tax:</td>
+                                <td>RM11.10</td>
+                            </tr>
+                            <tr>
+                                <td>Total:</td>
+                                <td>RM196.10</td>
+                            </tr>
+                        </table>
+                    </div> -->
+                   
+                    <?php $total = 0 ?>
+                        @foreach((array) session('cart') as $id => $details)
+                            <?php $total += $details['Product_Price'] * $details['Product_Quantity'] ?>
+                        @endforeach
 
                     <div class="totals">
                         <div class="totals-item totals-item-total">
                             <label>Total</label>
                             <div class="totals-value" id="cart-total">
-                                RM 145.00
+                                RM {{$total}}
                             </div>
                         </div>
                     </div>
+                    
+                    
                     <button class="checkout">Checkout</button>
-
-                    @section('scripts')
-
-                        <script type="text/javascript">
-
-                            $(".update-cart").click(function (e) {
-                                    e.preventDefault();
-
-                                    var ele = $(this);
-
-                                        $.ajax({
-                                            url: '{{ url('update-cart') }}',
-                                            method: "patch",
-                                            data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity: ele.parents("tr").find(".Product_Quantity").val()},
-                                            success: function (response) {
-                                                window.location.reload();
-                                            }
-                                        });
-                                    });
-                                    $(".remove-from-cart").click(function (e) {
-                                        e.preventDefault();
-
-                                        var ele = $(this);
-
-                                        if(confirm("Are you sure?")) {
-                                            $.ajax({
-                                                url: '{{ url('remove-from-cart') }}',
-                                                method: "DELETE",
-                                                data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
-                                                success: function (response) {
-                                                    window.location.reload();
-                                                }
-                                            });
-                                        }
-                                    });
-                            </script>
-
-                    @endsection
-
+                    @else
+                        <div>
+                            <h1 class="text-center" style="font-size:30px;color:#808080">Your Cart is Empty!</h1>
+                        </div>
+                    @endif
                     <script src="js/cart.js"></script>
                 </div>
                 </div><!--/.small-container-->

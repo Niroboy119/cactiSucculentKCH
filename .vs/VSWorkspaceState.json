@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\database",
+    "\\public"
   ],
   "PreviewInSolutionExplorer": false
 }
