@@ -43,10 +43,6 @@ Route::get('/contactUs', function () {
 });
 
 
-
-
-
-
 Route::get('/manageProducts', [App\Http\Controllers\ProductController::class, 'displayProducts'])->name('products');
 Route::get('/addProductForm', [App\Http\Controllers\ProductController::class, 'displayaddProductForm'])->name('products');
 Route::post('/addProduct', [App\Http\Controllers\ProductController::class, 'create'])->name('products');
@@ -64,8 +60,6 @@ Route::post('/addSupplier', [App\Http\Controllers\SupplierController::class, 'cr
 
 
 Route::get('cart/{Product_ID}', 'App\Http\Controllers\ProductController@addToCart');
-
-
 
 Auth::routes();
 

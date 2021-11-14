@@ -44,7 +44,6 @@ class ProductController extends Controller
 
         $product->save();
         return redirect('/manageProducts');
-
     }
 
 
@@ -57,7 +56,6 @@ class ProductController extends Controller
         'Product_Price' => $request->Price, 'Product_Supplier' => $request->Supplier, 'Product_Image' => $request->file->hashName() ));
        
         return redirect('/manageProducts');
-
     }
 
     
@@ -81,7 +79,6 @@ class ProductController extends Controller
         Product::where('Product_ID', $id)->update(array('Product_Quantity' => $quantity));
        
         return redirect('/manageProducts');
-
     }
 
     public function decreaseQuantity($id)
@@ -91,7 +88,6 @@ class ProductController extends Controller
         Product::where('Product_ID', $id)->update(array('Product_Quantity' => $quantity));
        
         return redirect('/manageProducts');
-
     }
 
     public function searchProducts($search)
@@ -110,6 +106,8 @@ class ProductController extends Controller
     // Cart Functions
         public function addToCart($id){
             $product = Product::find($id);
+            $cartquantity=$product->value('Product_Quantity')-1;
+            Product::where('Product_ID', $id)->update(array('Product_Quantity' => $cartquantity));
             if(!$product) {
                 abort(404);
             }
@@ -151,14 +149,16 @@ class ProductController extends Controller
         }
 
         public function removeCartProducts($id){
+               $product = Product::find($id);
                $cart = session()->get('cart');
                if(isset($cart[$id])) {
+                   $removedQuantity = $cart[$id]['Product_Quantity'];
+                   $refreshQuantity=$product->value('Product_Quantity')+$removedQuantity;
+                   Product::where('Product_ID', $id)->update(array('Product_Quantity' => $refreshQuantity));
                    unset($cart[$id]);
                    session()->put('cart', $cart);
                        return redirect()->back()->with('success', 'Product added to cart successfully!');
                }
         }
         // Cart function ends here
-    
-
 }

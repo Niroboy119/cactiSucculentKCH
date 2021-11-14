@@ -66,6 +66,7 @@
                     <h2 style="font-size:40px"><br>Shopping Cart</h2>
                 </div><!--/.section-header-->
                 <div class="small-container cart-page">
+                @if(session('cart'))
                     <table>
                         <thead>
                         <tr>
@@ -76,7 +77,6 @@
                         </thead>
 
                         <tbody>
-                        @if(session('cart'))
                             @foreach(session('cart') as $id=>$details)
                         <tr>
                             <td data-th="Product">
