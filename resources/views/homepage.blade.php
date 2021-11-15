@@ -1,12 +1,6 @@
 <?php use Illuminate\Support\Facades\Auth;
-
-	if (Auth::check()) {
-		include 'header.php';
-	}else {
-		include 'guestheader.php';
-	}
+	$user=Auth::check();
 ?>
-
 <?php 
 use App\Models\Product;
 $products=Product::all();
@@ -16,6 +10,13 @@ $products=Product::all();
 <html class="no-js" lang="en">
 
     <head>
+		@if($user){
+		@include('header')
+		}@else{
+			@include('guestheader')
+		}
+		@endif
+
         <!-- meta data -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -58,7 +59,6 @@ $products=Product::all();
     </head>
 	
 	<body>
-
 		
 		<!--welcome-hero start -->
 		<header id="home" class="welcome-hero">

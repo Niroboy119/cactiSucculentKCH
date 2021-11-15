@@ -1,8 +1,9 @@
+<?php use Illuminate\Support\Facades\Auth;
+	$user=Auth::check();
+?>
+
 <?php 
 session_start();?>
-<?php 
-
-include 'header.php'?>
 
 <?php
 use App\Models\Product;
@@ -30,6 +31,12 @@ $products=Product::all();
 <html class="no-js" lang="en">
 
     <head>
+		@if($user){
+		@include('header')
+		}@else{
+			@include('guestheader')
+		}
+		@endif
         <!-- meta data -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">

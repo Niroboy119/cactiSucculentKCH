@@ -1,10 +1,19 @@
-<?php include 'header.php'?>
+<?php use Illuminate\Support\Facades\Auth;
+	$user=Auth::check();
+?>
+
 <?php use App\Models\Product;
     $products=Product::all();?>
 <!doctype html>
 <html class="no-js" lang="en">
 
     <head>
+    @if($user){
+		@include('header')
+		}@else{
+			@include('guestheader')
+		}
+		@endif
         <!-- meta data -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -92,7 +101,7 @@
                                             <small>Description: {{$details['Product_Desc']}}</small><br>
                                         </div>
                                         <div class="items-price">
-                                            <small>Price: RM{{$details['Product_Price']}}</small>
+                                            <small>Price: RM {{$details['Product_Price']}}</small>
                                         </div>
                                         <br>
                                         <div class="items-removal">
@@ -110,24 +119,8 @@
                         </tr>
                         @endforeach
                         </tbody>
+                        
                     </table>
-
-                    <!-- <div class="total-price">
-                        <table>
-                            <tr>
-                                <td>Subtotal:</td>
-                                <td>RM185.00</td>
-                            </tr>
-                            <tr>
-                                <td>Tax:</td>
-                                <td>RM11.10</td>
-                            </tr>
-                            <tr>
-                                <td>Total:</td>
-                                <td>RM196.10</td>
-                            </tr>
-                        </table>
-                    </div> -->
                    
                     <?php $total = 0 ?>
                         @foreach((array) session('cart') as $id => $details)
@@ -142,14 +135,14 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
+    
                     <button class="checkout">Checkout</button>
                     @else
                         <div>
                             <h1 class="text-center" style="font-size:30px;color:#808080">Your Cart is Empty!</h1>
                         </div>
                     @endif
+                    
                     <script src="js/cart.js"></script>
                 </div>
                 </div><!--/.small-container-->
