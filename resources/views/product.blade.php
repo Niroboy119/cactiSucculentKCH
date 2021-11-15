@@ -33,13 +33,12 @@ $products=Product::all();
     <head>
 
 		<!-- Displays appropriate header -->
-        @if($user){
+        @if($user)
 		    @include('header')
-		}@else{
+		@else
 			@include('guestheader')
-		}
 		@endif
-		
+
         <!-- meta data -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">

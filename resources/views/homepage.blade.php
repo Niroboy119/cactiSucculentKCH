@@ -1,6 +1,7 @@
 <?php use Illuminate\Support\Facades\Auth;
 	$user=Auth::check();
 ?>
+
 <?php 
 use App\Models\Product;
 $products=Product::all();
@@ -10,13 +11,11 @@ $products=Product::all();
 <html class="no-js" lang="en">
 
     <head>
-
 		<!-- Displays appropriate header -->
-        @if($user){
+        @if($user)
 		    @include('header')
-		}@else{
+		@else
 			@include('guestheader')
-		}
 		@endif
 
         <!-- meta data -->
@@ -100,10 +99,8 @@ $products=Product::all();
 
 		<!-- Homepage register banner -->
 		<section id="register-banner">
-			
 				<div class="single-register-banner">
 					<img src="images/collection/bgimage10.jpeg"/>
-					
 					<!-- <div class="gardener-img">
 						<img src="images/collection/gardener.png"/>
 					</div> -->
@@ -113,7 +110,6 @@ $products=Product::all();
 					<a class="begin-btn">Register</a>
 					<div>
 				</div>
-			
 		</section>
 		<!-- Homepage register banner end -->
 
@@ -154,8 +150,6 @@ $products=Product::all();
 				</div><!--/.Cacti-collection-->
 			</div><!--/.collection-carousel-->
 
-
-
 		<!-- <section id="about-banner">
 			<div class="container">
 				<div class="longphoto">
@@ -164,7 +158,6 @@ $products=Product::all();
 			</div>
 		</section> -->
 
-		
 		<!--feature start -->
 		<section id="feature" class="feature">
 			<div class="container">
@@ -191,7 +184,6 @@ $products=Product::all();
 					</div>
 				</div>
 			</div>
-
 		</section><!--/.feature-->
 		<!--feature end -->
 

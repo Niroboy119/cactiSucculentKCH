@@ -140,6 +140,8 @@ html,body{height: 100%;}
 /*-------------------------------------
         2. Top-area
 --------------------------------------*/
+
+
 nav.navbar.bootsnav {
     background-color: #fff;
     border-bottom: transparent;
@@ -355,21 +357,28 @@ ul.cart-list > li.total {
 --------------------------------------*/
 div.single-welcome-hero video.home-banner{
     left: 50%;
-    width: 2000px;
+    width: 2200px;
+    /* display:flex; */
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: -1;
 }
 
+/* #home {
+    height:1000px;
+} */
+
 .welcome-hero {
     position: relative;
     z-index: 1;
     background: #f8f9fd;
 }
+
 .header-area{position: absolute;top:0;left:0;width: 100%;z-index: 99;}
 
 /*welcome-hero-content*/
+
 .single-welcome-hero{
     display: flex;
     align-items: center;
@@ -377,17 +386,20 @@ div.single-welcome-hero video.home-banner{
     justify-content: center;
     height: 650px;
 }
+
 /* .welcome-hero-txt h2 {
     color: #998d80;
     font-size: 24px;
     font-weight: 400;
 } */
+
 .welcome-hero-txt h2 {
     font-size: 80px;
     color: #ffffff;
     /* font-weight: bold; */
-    margin: 20px 0 22px;
+    margin: 35px 0 20px;
     font-weight: 600;
+    width: 50%;
     font-family:Arial, Helvetica, sans-serif;
 }
 
@@ -422,6 +434,7 @@ div.single-welcome-hero video.home-banner{
     margin: 0;
     padding-left: 35px;
 }
+
 .packages-price p:before {
     position:  absolute;
     content:  "";
@@ -431,6 +444,7 @@ div.single-welcome-hero video.home-banner{
     top: 45%;
     left: 0;
 }
+
 .btn-cart.welcome-add-cart,.btn-cart.welcome-add-cart.welcome-more-info {
     width: 170px;
     height: 60px;
@@ -446,6 +460,7 @@ div.single-welcome-hero video.home-banner{
     -o-transition: 0.3s linear; 
     transition: 0.3s linear;
 }
+
 .btn-cart.welcome-add-cart span {text-transform:  lowercase;}
 .btn-cart.welcome-add-cart span.lnr.lnr-plus-circle {
     position:  relative;
@@ -453,16 +468,19 @@ div.single-welcome-hero video.home-banner{
     font-size: 16px;
     margin-right: 5px;
 }
+
 .btn-cart.welcome-add-cart.welcome-more-info{
     color: #32CD32	;
     background: transparent;
     border:transparent;
 }
+
 .btn-cart.welcome-add-cart:hover{
     color: #32CD32	;
     background: transparent;
     border: 1px solid #32CD32	;
 }
+
 .btn-cart.welcome-add-cart.welcome-more-info:hover{
     background: transparent;
     color: #32CD32	;
@@ -817,6 +835,11 @@ p.arrival-review span {margin-right: 15px;}
 /*-------------------------------------
         5. HomePage Products
 --------------------------------------*/
+#home {
+    /* height:1000px; */
+}
+
+
 .homepage-products{margin-bottom: 50px;text-align: center;}
 .homepage-products-bg {
     position: relative;

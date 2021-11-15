@@ -8,11 +8,10 @@
     <head>
 
         <!-- Displays appropriate header -->
-        @if($user){
+        @if($user)
 		    @include('header')
-		}@else{
+		@else
 			@include('guestheader')
-		}
 		@endif
 
         <!-- meta data -->
@@ -65,14 +64,14 @@
                     <h2><br><br><br>Order</h2>
                 </div><!--/.section-header-->
                 <div class="carousel-inner" role="listbox">
-                    <div class="welcome-hero-txt">
+                    <div>
                         <br>
                         <br>
                         <br>
                         <br>
                         <br>
                         <br>
-                        <h2 style="color:black; text-align:center;">Under Construction</h2>
+                        <h2 style="color:black; text-align:center; font-size: 80px;">Under Construction</h2>
                         <br>							
                     </div>
                 </div>	

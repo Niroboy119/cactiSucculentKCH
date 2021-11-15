@@ -90,6 +90,7 @@
 											@endif
 				                        </a>
 										
+										@if(session('cart'))
 										<ul class="dropdown-menu cart-list s-cate">
 				                                <div class="cart-close">
 				                                	<span class="lnr lnr-cross"></span>
@@ -119,8 +120,8 @@
 				                                <span>Total: RM {{ $total }}</span>
 												<button class="btn-cart pull-right"><a href='cart'>view cart</a></button>
 				                            </li>
-											
 				                        </ul>
+										@endif
 				                    </li><!--/.dropdown-->
 				                </ul>
 				            </div><!--/.attr-nav-->
