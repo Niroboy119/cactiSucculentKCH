@@ -100,7 +100,7 @@
 											@foreach((array) session('cart') as $id => $details)
 													<?php $total += $details['Product_Price'] * $details['Product_Quantity'] ?>
 											@endforeach
-
+										
 											@if(session('cart'))
                             					@foreach(session('cart') as $id=>$details)
 													<li class="single-cart-list">
@@ -110,16 +110,17 @@
 															<p>{{$details['Product_Quantity']}} x - <span class="price">RM {{$details['Product_Price']}}</span></p>
 														</div><!--/.cart-list-txt-->
 														<div class="cart-close">
-															<span class="lnr lnr-cross"></span>
+															<a href="{{ url('/cart/delete/'.$id) }}" class="lnr lnr-cross" role="button"></a>
 														</div><!--/.cart-close-->
 													</li><!--/.single-cart-list -->
 												@endforeach
-											@endif
+											
 				                            	
 				                            <li class="total">
 				                                <span>Total: RM {{ $total }}</span>
-												<button class="btn-cart pull-right"><a href='/cart'>view cart</a></button>
+												<button class="btn-cart pull-right"><a href='cart'>view cart</a></button>
 				                            </li>
+											@endif
 				                        </ul>
 										@endif
 				                    </li><!--/.dropdown-->
