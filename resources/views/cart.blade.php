@@ -137,7 +137,13 @@
                         </div>
                     </div>
     
-                    <button class="checkout">Checkout</button>
+                    <button class="checkout" type="submit" onclick="goToCheckout()">Checkout</button>
+                    <script>
+                        function goToCheckout(){
+                            window.location.href = "checkout";
+                        }
+                    </script>   
+                     
                     @else
                         <div>
                             <h1 class="text-center" style="font-size:30px;color:#808080">Your Cart is Empty!</h1>

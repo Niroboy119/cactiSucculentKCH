@@ -42,6 +42,10 @@ Route::get('/contactUs', function () {
     return view('contactUs');
 });
 
+Route::get('/checkout', function () {
+    return view('checkout');
+});
+
 
 Route::get('/manageProducts', [App\Http\Controllers\ProductController::class, 'displayProducts'])->name('products');
 Route::get('/addProductForm', [App\Http\Controllers\ProductController::class, 'displayaddProductForm'])->name('products');

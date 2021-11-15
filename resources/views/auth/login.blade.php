@@ -1,10 +1,4 @@
 @extends('layouts.app')
-
-<?php
-Session::put('key','');
-session(['key'=>'value']);
-?>
-
 @section('content')
 
 <div class="container">
