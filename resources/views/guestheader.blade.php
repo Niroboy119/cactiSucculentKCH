@@ -80,7 +80,7 @@
 				                		<a href="#"><span class="lnr lnr-magnifier"></span></a>
 				                	</li><!--/.search-->
 									<li class="dropdown">
-				                        <a href="cart" class="dropdown-toggle" data-toggle="dropdown" >
+				                        <a href="/cart" class="dropdown-toggle" data-toggle="dropdown" >
 				                            <span class="lnr lnr-cart"></span>
 											@if(count((array) session('cart')) != 0)
 												<span class="badge badge-bg-1" aria-hidden="true">{{ count((array) session('cart')) }}</span>
@@ -107,7 +107,7 @@
 															<p>{{$details['Product_Quantity']}} x - <span class="price">RM {{$details['Product_Price']}}</span></p>
 														</div><!--/.cart-list-txt-->
 														<div class="cart-close">
-															<a href="{{ url('cart/delete/'.$id) }}" class="lnr lnr-cross" role="button"></a>
+															<a href="{{ url('/cart/delete/'.$id) }}" class="lnr lnr-cross" role="button"></a>
 														</div><!--/.cart-close-->
 													</li><!--/.single-cart-list -->
 												@endforeach
@@ -130,7 +130,7 @@
 				                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
 				                    <i class="fa fa-bars"></i>
 				                </button>
-				                <a class="navbar-brand" href="homepage" style="color:#32CD32;">Cacti Succulent KCH</a>
+				                <a class="navbar-brand" href="/homepage" style="color:#32CD32;">Cacti Succulent KCH</a>
 
 				            </div><!--/.navbar-header-->
 				            <!-- End Header Navigation -->
@@ -138,10 +138,10 @@
 				            <!-- Collect the nav links, forms, and other content for toggling -->
 				            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
 								<ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-									<li><a href = "homepage">Home</a></li>
-									<li><a href = "product">Products</a></li>
-									<li><a href = "aboutUs">About Us</a></li>
-									<li><a href = "contactUs">Contact Us</a></li>
+									<li><a href = "/homepage">Home</a></li>
+									<li><a href = "/product">Products</a></li>
+									<li><a href = "/aboutUs">About Us</a></li>
+									<li><a href = "/contactUs">Contact Us</a></li>
 								</ul><!--/.nav -->
 				            </div><!-- /.navbar-collapse -->
 				        </div><!--/.container-->

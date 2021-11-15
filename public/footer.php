@@ -1,27 +1,27 @@
 	<!--font-awesome.min.css-->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
 
 <!--linear icon css-->
-<link rel="stylesheet" href="css/linearicons.css">
+<link rel="stylesheet" href="/css/linearicons.css">
 
 <!--animate.css-->
-<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="/css/animate.css">
 
 <!--owl.carousel.css-->
-<link rel="stylesheet" href="css/owl.carousel.min.css">
-<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/css/owl.theme.default.min.css">
 
 <!--bootstrap.min.css-->
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
 
 <!-- bootsnav -->
-<link rel="stylesheet" href="css/bootsnav.css" >	
+<link rel="stylesheet" href="/css/bootsnav.css" >	
 
 <!--style.css-->
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 
 <!--responsive.css-->
-<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="/css/responsive.css">
 	<!--Footer for Index Page -->
 	<section id="newsletter"  class="newsletter">
 			<div class="container">
@@ -34,8 +34,8 @@
 								</div><!--/.hm-foot-title-->
 								<div class="hm-foot-menu">
 									<ul>
-										<li><a href="aboutUs">about us</a></li><!--/li-->
-										<li><a href="contactUs">contact us</a></li><!--/li-->
+										<li><a href="/aboutUs">about us</a></li><!--/li-->
+										<li><a href="/contactUs">contact us</a></li><!--/li-->
 										<li><a href="#">store</a></li><!--/li-->
 									</ul><!--/ul-->
 								</div><!--/.hm-foot-menu-->
@@ -64,7 +64,7 @@
 									<ul>
 										<li><a href="#">my account</a></li><!--/li-->
 										<li><a href="#">order history</a></li><!--/li-->
-										<li><a href="cart">my cart</a></li><!--/li-->
+										<li><a href="/cart">my cart</a></li><!--/li-->
 									</ul><!--/ul-->
 								</div><!--/.hm-foot-menu-->
 							</div><!--/.hm-footer-widget-->

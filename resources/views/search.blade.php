@@ -1,8 +1,6 @@
-
-<?php 
-
-include 'header.php'?>
-
+<?php use Illuminate\Support\Facades\Auth;
+	$user=Auth::check();
+?>
 <!doctype html>
 
 <style>
@@ -14,9 +12,9 @@ include 'header.php'?>
 
 	.Rows {
     display: table;
-    width: 100%; /*Optional*/
-    table-layout: fixed; /*Optional*/
-    border-spacing: 10px; /*Optional*/
+    width: 100%; 
+    table-layout: fixed; 
+    border-spacing: 10px; 
 	}
 	
 </style>
@@ -24,12 +22,18 @@ include 'header.php'?>
 <html class="no-js" lang="en">
 
     <head>
+		<!-- Displays appropriate header -->
+        @if($user)
+		    @include('header')
+		@else
+			@include('guestheader')
+		@endif
         <!-- meta data -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
+	
         <!--font-family-->
 		<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
         
@@ -66,12 +70,6 @@ include 'header.php'?>
         
 
     </head>
-	
-	<body>
-
-		</section><!--/.populer-products-->
-		<!--populer-products end-->
-
 		<!--new-arrivals start -->
 		<section id="new-arrivals" class="new-arrivals">
 			<div class="container">
@@ -79,7 +77,7 @@ include 'header.php'?>
 					<br>
 					<br>
 
-					<h2>"Search Results"</h2>
+					<h2>Search Results</h2>
 
 				</div><!--/.section-header-->
 				<div class="new-arrivals-content">
