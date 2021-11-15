@@ -10,8 +10,10 @@ $products=Product::all();
 <html class="no-js" lang="en">
 
     <head>
-		@if($user){
-		@include('header')
+
+		<!-- Displays appropriate header -->
+        @if($user){
+		    @include('header')
 		}@else{
 			@include('guestheader')
 		}

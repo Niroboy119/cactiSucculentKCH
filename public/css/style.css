@@ -821,7 +821,8 @@ p.arrival-review span {margin-right: 15px;}
 .homepage-products-bg {
     position: relative;
     max-height: 40%;
-    max-width: 85%;
+    max-width:fit-content;
+    /* max-width: 85%; */
     background: #f8f9fc;
     /* #f8f9fc */
     display: flex;
@@ -941,6 +942,7 @@ p.arrival-review span {margin-right: 15px;}
 #Cacti-collection {
     position: relative;
     z-index: -1;
+    margin-top: 300px;
 }
 .Cacti-collection{
     position: relative;

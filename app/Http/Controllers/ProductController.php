@@ -58,7 +58,6 @@ class ProductController extends Controller
         return redirect('/manageProducts');
     }
 
-    
     public function index()
     {
          $products = Product::all();
@@ -106,8 +105,6 @@ class ProductController extends Controller
     // Cart Functions
         public function addToCart($id){
             $product = Product::find($id);
-            $cartquantity=$product->value('Product_Quantity')-1;
-            Product::where('Product_ID', $id)->update(array('Product_Quantity' => $cartquantity));
             if(!$product) {
                 abort(404);
             }
@@ -134,6 +131,7 @@ class ProductController extends Controller
                 session()->put('cart', $cart);
                 return redirect()->back()->with('success', 'Product added to cart successfully!');
             }
+
             // if item not exist in cart then add to cart with quantity = 1
             $cart[$id] = [
                         "Product_Name" => $product->Product_Name,
@@ -152,9 +150,6 @@ class ProductController extends Controller
                $product = Product::find($id);
                $cart = session()->get('cart');
                if(isset($cart[$id])) {
-                   $removedQuantity = $cart[$id]['Product_Quantity'];
-                   $refreshQuantity=$product->value('Product_Quantity')+$removedQuantity;
-                   Product::where('Product_ID', $id)->update(array('Product_Quantity' => $refreshQuantity));
                    unset($cart[$id]);
                    session()->put('cart', $cart);
                        return redirect()->back()->with('success', 'Product added to cart successfully!');

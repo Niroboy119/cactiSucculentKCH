@@ -31,12 +31,15 @@ $products=Product::all();
 <html class="no-js" lang="en">
 
     <head>
-		@if($user){
-		@include('header')
+
+		<!-- Displays appropriate header -->
+        @if($user){
+		    @include('header')
 		}@else{
 			@include('guestheader')
 		}
 		@endif
+		
         <!-- meta data -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">

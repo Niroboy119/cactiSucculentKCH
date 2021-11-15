@@ -1,9 +1,21 @@
-<?php include 'header.php'?>
+<?php use Illuminate\Support\Facades\Auth;
+	$user=Auth::check();
+?>
+
 <!doctype html>
 
 <html class="no-js" lang="en">
 
     <head>
+
+        <!-- Displays appropriate header -->
+        @if($user){
+		    @include('header')
+		}@else{
+			@include('guestheader')
+		}
+		@endif
+
         <!-- meta data -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
