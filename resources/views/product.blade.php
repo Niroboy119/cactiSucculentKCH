@@ -2,12 +2,18 @@
 	$user=Auth::check();
 ?>
 
+
+
 <?php 
 session_start();?>
 
 <?php
 use App\Models\Product;
 $products=Product::all();
+?>
+
+<?php
+$product = Product::where([ 'Product_ID' => 6 ]);
 ?>
 
 <!doctype html>
@@ -84,43 +90,51 @@ $products=Product::all();
 	
 	<body>
 		
-	
+
 		<!--welcome-hero start -->
 		<header id="home" class="welcome-hero">
+
 
 			<div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
 				<!--/.carousel-indicator -->
 				 <ol class="carousel-indicators">
 					<li data-target="#header-carousel" data-slide-to="0" class="active"><span class="small-circle"></span></li>
+					
+					@foreach($products as $product)
 					<li data-target="#header-carousel" data-slide-to="1"><span class="small-circle"></span></li>
-					<li data-target="#header-carousel" data-slide-to="2"><span class="small-circle"></span></li>
-				</ol><!-- /ol-->
+					@endforeach
+				</ol>
+				<!-- /ol-->
 				<!--/.carousel-indicator -->
 
 				<!--/.carousel-inner -->
 				<div class="carousel-inner" role="listbox">
+
 					<!-- .item -->
+
 					<div class="item active">
+
 						<div class="single-slide-item slide1">
-							<div class="container">
+
+						<div class="container">
 								<div class="welcome-hero-content">
 									<div class="row">
 										<div class="col-sm-7">
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-txt">
 													<h4>Cacti collection</h4>
-													<h2 style="color:black;">Echeveia BlackPrince</h2>
+													<h2 style="color:black;">{{$product->Product_Name}}</h2>
 													<p>
-													Echeveria 'Black Prince' is an evergreen succulent forming striking rosettes, nearly black leaves which surround a glowing green center. In the fall and winter, it sends up leafy stems topped with remarkable clusters of bright scarlet-red flowers. 
+													{{$product->Product_Desc}}
 													</p>
 													<div class="packages-price">
 														<p>
-															RM 399.00
+														RM {{$product->Product_Price}}
 														</p>
 													</div>
-													<button class="btn-cart welcome-add-cart" onclick="window.location.href='cart'">
-														<span class="lnr lnr-plus-circle"></span>
-														add <span>to</span> cart
+													<button class="btn-cart welcome-add-cart" style="color:white;"onClick="parent.open('{{ url('cart/'.$product->Product_ID) }}')">
+														<span class="lnr lnr-plus-circle" ></span>
+														add <span>to </span> cart
 													</button>
 													<button class="btn-cart welcome-add-cart welcome-more-info" onclick="window.location.href='product'">
 														more info
@@ -131,39 +145,48 @@ $products=Product::all();
 										<div class="col-sm-5">
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-img">
-													<img src="images/collection/cacti1.jpg" style="max-height:500px">
+													<img src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" style="max-height:500px">
 												</div><!--/.welcome-hero-txt-->
 											</div><!--/.single-welcome-hero-->
 										</div><!--/.col-->
 									</div><!--/.row-->
 								</div><!--/.welcome-hero-content-->
 							</div><!-- /.container-->
+
 						</div><!-- /.single-slide-item-->
 
 					</div><!-- /.item .active-->
+				
 
-					<div class="item">
+					@foreach($products as $product)
+
+					<!-- .item -->
+
+					<div class="item ">
+
 						<div class="single-slide-item slide2">
+
 							<div class="container">
 								<div class="welcome-hero-content">
 									<div class="row">
 										<div class="col-sm-7">
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-txt">
-													<h4>Cacti Collection</h4>
-													<h2 style="color:black;">Sedum Burrito</h2>
+													<h4>Cacti collection</h4>
+													<h2 style="color:black;">{{$product->Product_Name}}</h2>
 													<p>
-													Sedum morganianum, the donkey tail or burro's tail, is a species of flowering plant in the family Crassulaceae, native to southern Mexico and Honduras. It is a succulent perennial producing trailing stems up to 60 cm long.</p>
+													{{$product->Product_Desc}}
+													</p>
 													<div class="packages-price">
 														<p>
-															RM 199.00
+														RM {{$product->Product_Price}}
 														</p>
 													</div>
-													<button class="btn-cart welcome-add-cart" onclick="window.location.href='cart'">
-														<span class="lnr lnr-plus-circle"></span>
-														add <span>to</span> cart
+													<button class="btn-cart welcome-add-cart" style="color:white;"onClick="parent.open('{{ url('cart/'.$product->Product_ID) }}')">
+														<span class="lnr lnr-plus-circle" ></span>
+														add <span>to </span> cart
 													</button>
-													<button class="btn-cart welcome-add-cart welcome-more-info" onclick="window.location.href='#'">
+													<button class="btn-cart welcome-add-cart welcome-more-info" onclick="window.location.href='product'">
 														more info
 													</button>
 												</div><!--/.welcome-hero-txt-->
@@ -172,56 +195,20 @@ $products=Product::all();
 										<div class="col-sm-5">
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-img">
-												<img src="images/collection/cacti2.jpg" style="max-height:500px">
+													<img src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" style="max-height:500px">
 												</div><!--/.welcome-hero-txt-->
 											</div><!--/.single-welcome-hero-->
 										</div><!--/.col-->
 									</div><!--/.row-->
 								</div><!--/.welcome-hero-content-->
 							</div><!-- /.container-->
+
 						</div><!-- /.single-slide-item-->
 
 					</div><!-- /.item .active-->
+					@endforeach
 
-					<div class="item">
-						<div class="single-slide-item slide3">
-							<div class="container">
-								<div class="welcome-hero-content">
-									<div class="row">
-										<div class="col-sm-7">
-											<div class="single-welcome-hero">
-												<div class="welcome-hero-txt">
-													<h4>Cacti Collection</h4>
-													<h2 style="color:black;">Kalanchoe Rhombipilosa</h2>
-													<p>
-													Kalanchoe rhombopilosa is a beautiful and unique succulent that looks like a precious stone or a silver butterfly. A big plus side of Kalanchoe rhombopilosa is that it doesn’t grow too large, therefore it doesn’t occupy a lot of space. </p>
-													<div class="packages-price">
-														<p>
-															RM 299.00
-														</p>
-													</div>
-													<button class="btn-cart welcome-add-cart" onclick="window.location.href='cart'">
-														<span class="lnr lnr-plus-circle"></span>
-														add <span>to</span> cart
-													</button>
-													<button class="btn-cart welcome-add-cart welcome-more-info" onclick="window.location.href='#'">
-														more info
-													</button>
-												</div><!--/.welcome-hero-txt-->
-											</div><!--/.single-welcome-hero-->
-										</div><!--/.col-->
-										<div class="col-sm-5">
-											<div class="single-welcome-hero">
-												<div class="welcome-hero-img">
-												<img src="images/collection/cacti3.jpg" style="max-height:500px">												</div><!--/.welcome-hero-txt-->
-											</div><!--/.single-welcome-hero-->
-										</div><!--/.col-->
-									</div><!--/.row-->
-								</div><!--/.welcome-hero-content-->
-							</div><!-- /.container-->
-						</div><!-- /.single-slide-item-->
-						
-					</div><!-- /.item .active-->
+					
 				</div><!-- /.carousel-inner-->
 
 			</div><!--/#header-carousel-->
@@ -266,7 +253,7 @@ $products=Product::all();
 												<div class="populer-products-price">
 													<h4>Sales Start from <span>RM 15.00</span></h4>
 												</div>
-												<button class="btn-cart welcome-add-cart populer-products-btn" onclick="window.location.href='#'">
+												<button class="btn-cart welcome-add-cart populer-products-btn" onclick="{{ url('cart/'.$product->Product_ID) }}">
 													discover more
 												</button>
 											</div>
