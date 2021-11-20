@@ -75,7 +75,7 @@ $products=Product::all();
 									<div class="row">
 										<div class="col-sm-7">
 											<div class="single-welcome-hero">											
-													<video class="home-banner" src="videos/cactivid3.mp4" muted loop autoplay></video>
+											<iframe src="https://www.youtube.com/embed/_vKQZp-MGFg?autoplay=1&mute=1&loop=1&playlist=_vKQZp-MGFg"></iframe>
 												<div class="welcome-hero-txt">
 													@if(Auth::check())
 													<h2 style="text-align:left;float:left;">Welcome To Cacti Succulent KCH, {{Auth::user()->name}}</h2>
@@ -105,9 +105,15 @@ $products=Product::all();
 						<img src="images/collection/gardener.png"/>
 					</div> -->
 					<div class="register-text">
+					@if(Auth::check())
+					<h2>Our Background</h2>
+					<h3>Find out more about us</h3>
+					<a class="begin-btn" href="aboutUs">Discover</a>
+					@else
 					<h2>Begin your Journey Here!</h2>
-					<h3>Sign up for free!</h3>
-					<a class="begin-btn">Register</a>
+					<h3 style="margin-top:10px;">Sign up for free!</h3>
+					<a class="begin-btn" href="register">Register</a>
+					@endif
 					<div>
 				</div>
 		</section>
@@ -126,9 +132,10 @@ $products=Product::all();
 							<div class="Cacti-collection-price">
 								<h4>starting from <span>RM12</span></h4>
 							</div>
-							<button class="btn-cart welcome-add-cart Cacti-collection-btn" onclick="window.location.href='#'">
-								view more
-							</button>
+							<a href="product">View More</a>
+							<!-- <button class="btn-cart welcome-add-cart Cacti-collection-btn" style="color:white;" onclick="window.location='http://127.0.0.1:8000/product'">
+								View <span>More </span>
+							</button> -->
 						</div>
 					</div>	
 				</div><!--/.Cacti-collection-->
@@ -142,14 +149,17 @@ $products=Product::all();
 							<div class="Cacti-collection-price">
 								<h4>starting from <span>RM12</span></h4>
 							</div>
-							<button class="btn-cart welcome-add-cart Cacti-collection-btn" onclick="window.location.href='#'">
-								view more
-							</button>
+							<div>
+								<a href="product">View More</a>
+							</div>
+							<!-- <button class="btn-cart welcome-add-cart Cacti-collection-btn" type="button" style="color:white;" onclick="window.location='http://127.0.0.1:8000/product'">
+								View <span>More </span>
+							</button> -->
 						</div>
 					</div>
 				</div><!--/.Cacti-collection-->
 			</div><!--/.collection-carousel-->
-
+		</section>
 		<!-- <section id="about-banner">
 			<div class="container">
 				<div class="longphoto">
@@ -189,7 +199,12 @@ $products=Product::all();
 
 		<!-- Include all js compiled plugins (below), or include individual files as needed -->
 
-		<script src="js/jquery.js"></script>
+		<script src="js/jquery.js">
+			function Function(){
+				window.location.href = "http://127.0.0.1:8000/product"
+			}
+
+		</script>
         
         <!--modernizr.min.js-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>

@@ -98,9 +98,9 @@
                                         <div class="items-name">
                                             <small>Name: {{$details['Product_Name']}}</small><br>
                                         </div>
-                                        <div class="items-description">
+                                        <!-- <div class="items-description">
                                             <small>Description: {{$details['Product_Desc']}}</small><br>
-                                        </div>
+                                        </div> -->
                                         <div class="items-price">
                                             <small>Price: RM {{$details['Product_Price']}}</small>
                                         </div>

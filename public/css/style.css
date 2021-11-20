@@ -660,7 +660,7 @@ REGISTER BANNER
     color:#111;
     text-transform: uppercase;
     letter-spacing: 2px;
-    z-index: 100;
+    /* z-index: 100; */
     border-style: solid;
 }
 
@@ -698,6 +698,35 @@ div.single-register-banner img{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     justify-content: center;
 }
+
+.single-welcome-hero{
+    width: fit-content;
+    height: 100vh;
+  }
+      
+  iframe {
+    position: absolute;
+    top: 50%;
+    left: 80%;
+    width: 150vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+
+  @media (min-aspect-ratio: 16/9) {
+    .single-welcome-hero iframe {
+      /* height = 100 * (9 / 16) = 56.25 */
+      height: 56.25vw;
+    }
+  }
+      
+  @media (max-aspect-ratio: 16/9) {
+    .single-welcome-hero iframe {
+      /* width = 100 / (9 / 16) = 177.777777 */
+      width: 177.78vh;
+    }
+  }
 
 /* div.single-welcome-hero video.home-banner{
     left: 50%;
@@ -964,7 +993,7 @@ p.arrival-review span {margin-right: 15px;}
 --------------------------------------*/
 #Cacti-collection {
     position: relative;
-    z-index: -1;
+    
     margin-top: 300px;
 }
 .Cacti-collection{
@@ -1003,11 +1032,33 @@ p.arrival-review span {margin-right: 15px;}
     color: #fff;
     font-weight: 700;
 }
+
 .Cacti-collection-txt h4 {
     font-size: 16px;
     color: #fff;
     font-weight: 700;
 }
+
+.Cacti-collection-txt a:hover{
+    background: #32CD32;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.Cacti-collection-txt a{
+    display: inline-block;
+    font-size: 1em;
+    background: #fff;
+    padding: 10px 30px;
+    text-decoration: none;
+    color:#111;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 100;
+}
+
+
 .Cacti-collection-txt h4 span{color: #32CD32	;}
 .Cacti-collection-txt p {
     font-size: 16px;
