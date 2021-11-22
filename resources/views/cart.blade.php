@@ -106,7 +106,7 @@
                                         </div>
                                         <br>
                                         <div class="items-removal">
-                                        <a href="{{ url('cart/delete/'.$id) }}" role="button" onclick="return confirm('Are you sure?')">Remove <span>From </span> Cart</a> 
+                                        <a href="{{ url('cart/delete/'.$id) }}" role="button" onclick="return confirm('Are you sure to remove this item?')">Remove <span>From </span> Cart</a> 
                                         </div>
                                     </div>
                                 </div>
