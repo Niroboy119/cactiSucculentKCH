@@ -121,7 +121,9 @@
                                 </div>
                             </td>
                             <td data-th="Subtotal" class="text-center">
+                                <div class="items-total">
                                     <p class="text-center" style="font-size:20px">RM {{ $details['Product_Price'] * $details['Product_Quantity'] }}</p>
+                                </div>    
                             </td>
                         </tr>
                         @endforeach

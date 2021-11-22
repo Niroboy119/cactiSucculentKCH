@@ -64,7 +64,7 @@
             </div>
             <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Billing address</h4>
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation" novalidate method="HEAD" action="/product">
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">First name</label>
@@ -146,7 +146,7 @@
                     </div>
                 </div>
                 <hr class="mb-4">
-                <button class="btn btn-success btn-lg btn-block" type="submit">Continue to checkout</button>
+                <button class="btn btn-success btn-lg btn-block" type="submit" onclick="return confirm('Order request sent. Redirect to home?')" >Place Order</button>
             </form>
         </div>
       </div>    
@@ -183,6 +183,6 @@
         }, false);
       })();
     </script>
-
+    
   </body>
 </html>
