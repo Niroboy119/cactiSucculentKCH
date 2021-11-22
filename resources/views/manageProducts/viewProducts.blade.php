@@ -31,7 +31,7 @@
     <div id="app">
         <nav style="position:fixed; top:0; left:0; z-index:9999; width: 100%; background: #000000; height: 80px; padding-left: 20px;" class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div    class="container">
-                <a style="color:#32CD32;" class="navbar-brand" href="{{ url('/dashboard') }}">
+                <a style="color:#32CD32;" class="navbar-brand" href="{{ url('/') }}">
                     Cacti Succulent KCH
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -109,7 +109,7 @@
             <p>Administrator</p>
             <div>
             <li>
-            <a href="/dashboard">Dashboard</a>
+                <a href="#">Dashboard</a>
             </li>
             <li>
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Manage Products</a>
@@ -134,10 +134,10 @@
                 </ul>
             </li>
             <li>
-                <a href="/dashboard">Manage Orders</a>
+                <a href="#">Manage Orders</a>
             </li>
             <li>
-                <a href="/dashboard">Profile Page</a>
+                <a href="#">Profile Page</a>
             </li>
         </div>
         </ul>
@@ -201,11 +201,22 @@ function searchProduct2()
                     </div>
                     <a style="padding-left:44px; padding-right:44px; border-color:#32CD32; background:#32CD32" href="/increaseQuantity/{{ $product->Product_ID }}" class="btn btn-primary btn-sm" >+</a>
                     <a style="padding-left:44px; padding-right:44px; border-color:#32CD32; background:#32CD32" href="/decreaseQuantity/{{ $product->Product_ID }}"  class="btn btn-primary btn-sm" >-</a>
-                    <div class="d-flex flex-column mt-4"><a style="border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" href="/editProduct/{{ $product->Product_ID }}">Edit</a><a onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" href="/deleteProduct/{{ $product->Product_ID }}" >Delete</a></div>
+                    <div class="d-flex flex-column mt-4"><a style="border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" href="/editProduct/{{ $product->Product_ID }}">Edit</a><a onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" href="/deleteProduct/{{ $product->Product_ID }}" onclick= "return myFunction();">Delete</a></div>
                 </div>
             </div>
-            <script type="text/javascript">
-               
+                <script type="text/javascript">
+                function myFunction() 
+                {
+                    if (confirm("Are you sure you want to delete?")) {
+
+                    return true;
+
+                    } else {
+
+                        return false;
+                    }
+
+                }
              </script>
             <br>
             @endforeach
