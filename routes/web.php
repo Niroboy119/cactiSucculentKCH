@@ -56,8 +56,12 @@ Route::post('/updateProduct/{id}', [App\Http\Controllers\ProductController::clas
 Route::get('/increaseQuantity/{id}', [App\Http\Controllers\ProductController::class, 'increaseQuantity'])->name('products');
 Route::get('/decreaseQuantity/{id}', [App\Http\Controllers\ProductController::class, 'decreaseQuantity'])->name('products');
 Route::get('/searchProducts/{search}', [App\Http\Controllers\ProductController::class, 'searchProducts'])->name('products');
+Route::get('/searchProducts', [App\Http\Controllers\ProductController::class, 'displayProducts'])->name('products');
+
 
 Route::get('/search/{search}', [App\Http\Controllers\ProductController::class, 'search'])->name('products');
+
+Route::get('/test', [App\Http\Controllers\ProductController::class, 'test'])->name('products');
 
 Route::get('/manageSuppliers', [App\Http\Controllers\SupplierController::class, 'display'])->name('suppliers');
 Route::post('/addSupplier', [App\Http\Controllers\SupplierController::class, 'create'])->name('suppliers');

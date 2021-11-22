@@ -49,12 +49,19 @@ class ProductController extends Controller
 
     public function update(Request $request,$id)
     {
-        $request->file->store('images/products', 'public');
-        
-        Product::where('Product_ID', $id)->update(array('Product_Name' => $request->name, 
-        'Product_Quantity' => $request->quantity, 'Product_Type' => $request->Type, 'Product_Desc' => $request->Desc,
-        'Product_Price' => $request->Price, 'Product_Supplier' => $request->Supplier, 'Product_Image' => $request->file->hashName() ));
-       
+        if($request->img_Text=="1")
+        {
+            $request->file->store('images/products', 'public');
+            Product::where('Product_ID', $id)->update(array('Product_Name' => $request->name, 
+            'Product_Quantity' => $request->quantity, 'Product_Type' => $request->Type, 'Product_Desc' => $request->Desc,
+            'Product_Price' => $request->Price, 'Product_Supplier' => $request->Supplier, 'Product_Image' => $request->file->hashName() ));
+        }
+        else
+        {
+            Product::where('Product_ID', $id)->update(array('Product_Name' => $request->name, 
+            'Product_Quantity' => $request->quantity, 'Product_Type' => $request->Type, 'Product_Desc' => $request->Desc,
+            'Product_Price' => $request->Price, 'Product_Supplier' => $request->Supplier ));
+        }
         return redirect('/manageProducts');
     }
 
@@ -68,6 +75,11 @@ class ProductController extends Controller
      public function cart()
      {
          return view('cart');
+     }
+
+     public function test()
+     {
+         return view('manageProducts/test');
      }
 
     
@@ -91,8 +103,8 @@ class ProductController extends Controller
 
     public function searchProducts($search)
     {   
-        $product = Product::where ( 'Product_Name', 'LIKE', '%' . $search . '%' )->get ();
-        return view('manageProducts/searchProducts',compact('product'));
+        $product = Product::where ( 'Product_Name', 'LIKE', $search . '%' )->get ();
+        return view('manageProducts/searchProducts',compact('product','search'));
     }
 
     public function search($search)
