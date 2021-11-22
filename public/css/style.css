@@ -1331,6 +1331,18 @@ td img{
     margin-right: 10px;
 }
 
+.items-details{
+    color: black;
+}
+
+.items-total p{
+    color: black;
+}
+
+.totals{
+    color: black;
+}
+
 .update-cart{
     border: 0;
     padding: 8px 8px;
