@@ -46,6 +46,10 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
+Route::get('/dashboard', function () {
+    return view('admin/dashboard');
+});
+
 
 Route::get('/manageProducts', [App\Http\Controllers\ProductController::class, 'displayProducts'])->name('products');
 Route::get('/addProductForm', [App\Http\Controllers\ProductController::class, 'displayaddProductForm'])->name('products');
@@ -59,12 +63,21 @@ Route::get('/searchProducts/{search}', [App\Http\Controllers\ProductController::
 Route::get('/searchProducts', [App\Http\Controllers\ProductController::class, 'displayProducts'])->name('products');
 
 
+Route::get('/manageSuppliers', [App\Http\Controllers\SupplierController::class, 'displaySuppliers'])->name('suppliers');
+Route::get('/addSupplierForm', [App\Http\Controllers\SupplierController::class, 'displayaddSupplierForm'])->name('suppliers');
+Route::post('/addSupplier', [App\Http\Controllers\SupplierController::class, 'create'])->name('suppliers');
+Route::get('/deleteSupplier/{id}', [App\Http\Controllers\SupplierController::class, 'deleteSupplier'])->name('suppliers');
+Route::get('/editSupplier/{id}', [App\Http\Controllers\SupplierController::class, 'editSupplier'])->name('suppliers');
+Route::post('/updateSupplier/{id}', [App\Http\Controllers\SupplierController::class, 'update'])->name('suppliers');
+Route::get('/searchSuppliers/{search}', [App\Http\Controllers\SupplierController::class, 'searchSuppliers'])->name('suppliers');
+Route::get('/searchSuppliers', [App\Http\Controllers\SupplierController::class, 'displaySuppliers'])->name('suppliers');
+
+
 Route::get('/search/{search}', [App\Http\Controllers\ProductController::class, 'search'])->name('products');
 
 Route::get('/test', [App\Http\Controllers\ProductController::class, 'test'])->name('products');
 
-Route::get('/manageSuppliers', [App\Http\Controllers\SupplierController::class, 'display'])->name('suppliers');
-Route::post('/addSupplier', [App\Http\Controllers\SupplierController::class, 'create'])->name('suppliers');
+
 
 
 Route::get('cart/{Product_ID}', 'App\Http\Controllers\ProductController@addToCart');

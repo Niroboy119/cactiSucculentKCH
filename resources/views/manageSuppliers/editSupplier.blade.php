@@ -96,6 +96,10 @@
 
     <link href="{{ asset('sass/test.css') }}" rel="stylesheet">
 
+<?php
+use App\Models\Supplier;
+$supplier = Supplier::where([ 'Supplier_ID' => $id ]);
+?>
 
 <div class="wrapper">
 
@@ -143,77 +147,119 @@
         </ul>
     </nav>
 
-<!-- Page Content -->
-
-
-<?php
-use App\Models\Product;
-$products=Product::all();
-?>
-
-<div class="combine">
-<br><br> 
-
-<div class="d-flex justify-content-center h-100">
-    <div style="margin-left:100px;" class="search"> <input  onchange="searchProduct()" id="searchBar" style=" padding-right:750px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Product Name...." name=""> <button style="border-color:#32CD32; color:#32CD32;" onclick="searchProduct2()" type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" class="btn btn-outline-primary">Search Product</button> <i class="fa fa-search"></i> </a> </div>
-</div>
-
-<br>
-
-<script type="text/javascript">
-    window.scrollTo(0, 0);
-function searchProduct()
-{
-    var link= "/searchProducts/"+document.getElementById("searchBar").value;
-    document.addEventListener("keyup", function(event) {
-        if (event.keyCode === 13) {
-            location.replace(link);
-        }
-    });
-}
-
-function searchProduct2()
-{
-    var link= "/searchProducts/"+document.getElementById("searchBar").value;
-    if(document.getElementById("searchBar").value!="")
-    {
-        location.replace(link);
-    }
-}
-</script>
-
-
-<div style="margin-left=-120px;" class="container mt-5 mb-5">
-    <div class="d-flex justify-content-center row">
-        <div class="col-md-10">
-            @foreach($products as $product)
-            <div class="row p-2 bg-white border rounded">
-                <div class="col-md-3 mt-1"><img  style="width:300px; height: 150px;" class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}"></div>
-                <div class="col-md-6 mt-1">
-                    <h4>{{$product->Product_Name}}</h4>
-                    <div class="mt-1 mb-1 spec-1"><span style="font-size:17px;">Type Of {{$product->Product_Type}}</span><span style="background:#32CD32" class="dot"></span><span style="font-size:17px;">${{$product->Product_Price}}</div>
-                    <div class="mt-1 mb-1 spec-1"><span style="font-size:17px;">Supplied By {{$product->Product_Supplier}}</span></div>
-                    <p style="color:black;" class="text-justify text-truncate para mb-0">{{$product->Product_Desc}}<br><br></p>
-                </div>
-                <div class="align-items-center align-content-center col-md-3 border-left mt-1">
-                    <div class="d-flex flex-row align-items-center">
-                        <h4>{{$product->Product_Quantity}} <span style="color:red;">  In   Stock</span></h4>
-                    </div>
-                    <a style="padding-left:44px; padding-right:44px; border-color:#32CD32; background:#32CD32" href="/increaseQuantity/{{ $product->Product_ID }}" class="btn btn-primary btn-sm" >+</a>
-                    <a style="padding-left:44px; padding-right:44px; border-color:#32CD32; background:#32CD32" href="/decreaseQuantity/{{ $product->Product_ID }}"  class="btn btn-primary btn-sm" >-</a>
-                    <div class="d-flex flex-column mt-4"><a style="border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" href="/editProduct/{{ $product->Product_ID }}">Edit</a><a onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" href="/deleteProduct/{{ $product->Product_ID }}" >Delete</a></div>
-                </div>
+<div style="margin-top:130px; margin-left:260px;" class="container tm-mt-big tm-mb-big">
+      <div class="row">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+            <div class="row">
+              <div class="col-12">
+                <h2 class="tm-block-title d-inline-block">Edit Supplier</h2>
+              </div>
             </div>
-            <script type="text/javascript">
-               
-             </script>
-            <br>
-            @endforeach
+            <div class="row tm-edit-product-row">
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                <form action="/updateSupplier/{{$supplier->value('Supplier_ID')}}" method="POST" enctype="multipart/form-data">
+                  <div class="form-group mb-3">
+                    <label
+                      for="name"
+                      >Name
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      value="{{$supplier->value('Supplier_Name')}}"
+                      class="form-control validate"
+                      required
+                    />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label
+                      for="Address"
+                      >Address</label
+                    >
+                    <textarea
+                      id="Address"
+                      name="Address"
+                      class="form-control validate"
+                      rows="3"
+                      required
+                    >{{$supplier->value('Supplier_Address')}}</textarea>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label
+                      for="email"
+                      >Email
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      class="form-control validate"
+                      value="{{$supplier->value('Supplier_Email')}}"
+                      required
+                    />
+                    </div>
+                    <div class="form-group mb-3">
+                    <label
+                      for="phoneno"
+                      >Mobile Number
+                    </label>
+                    <input
+                      id="phoneno"
+                      name="phoneno"
+                      type="phoneno"
+                      class="form-control validate"
+                      value="{{$supplier->value('Supplier_PhoneNo')}}"
+                      required
+                    />
+                   
+                  </div>
+                  
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                <div class="tm-product-img-dummy mx-auto">
+                <img src="{{URL::asset('storage/images/suppliers/'.$supplier->value('Supplier_Image'))}}" id="imgTag" height="330px" width="400px" />
+                </div>
+                <div class="custom-file mt-3 mb-3">
+                  <input onchange="readURL(this);" id="fileInput" type="file" style="display:none;" name="file">
+                  <input  hidden id="img_Text" type="img_Text" value="0" name="img_Text">
+                  <input
+                    type="button"
+                    class="btn btn-primary btn-block mx-auto"
+                    style="border-color:#32CD32; background:#32CD32;"
+                    value="UPLOAD SUPPLIER IMAGE"
+                    onclick="document.getElementById('fileInput').click();"
+                  />
+                </div>
+                </div>
+                {{ csrf_field() }}
+              <div class="col-12">
+                <button type="submit" style="border-color:#32CD32; background:#32CD32;" class="btn btn-primary btn-block text-uppercase">Update Supplier</button>
+              </div>
+            </form>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<div>
-</div>  
 
-            </body>
-            </html>
+                                <script type="text/javascript">
+                                    function readURL(input) {
+                                            if (input.files && input.files[0]) {
+                                                var reader = new FileReader();
+                                                
+                                                reader.onload = function (e) {
+                                                    $('#imgTag').attr('src', e.target.result);
+                                                }
+                                                reader.readAsDataURL(input.files[0]);
+                                            }
+                                            var img_File_text=document.getElementById("img_Text");
+                                            img_File_text.value="1";
+                                        }
+                                        $("#fileInput").change(function(){
+                                            readURL(this);
+                                        });
+                                    </script>
+                                    </body>
+                                    </html>

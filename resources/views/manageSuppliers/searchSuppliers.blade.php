@@ -147,24 +147,25 @@
 
 
 <?php
-use App\Models\Product;
-$products=Product::all();
+use App\Models\Supplier;
+$suppliers=$supplier;
+$s=$search;
 ?>
 
 <div class="combine">
 <br><br> 
 
 <div class="d-flex justify-content-center h-100">
-    <div style="margin-left:100px;" class="search"> <input  onchange="searchProduct()" id="searchBar" style=" padding-right:750px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Product Name...." name=""> <button style="border-color:#32CD32; color:#32CD32;" onclick="searchProduct2()" type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" class="btn btn-outline-primary">Search Product</button> <i class="fa fa-search"></i> </a> </div>
+    <div style="margin-left:100px;" class="search"> <input  value="{{$s}}" onchange="searchSupplier()" id="searchBar" style=" padding-right:750px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Supplier Name...." name=""> <button style="border-color:#32CD32; color:#32CD32;" onclick="searchSupplier2()" type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" class="btn btn-outline-primary">Search Supplier</button> <i class="fa fa-search"></i> </a> </div>
 </div>
 
 <br>
 
 <script type="text/javascript">
     window.scrollTo(0, 0);
-function searchProduct()
+function searchSupplier()
 {
-    var link= "/searchProducts/"+document.getElementById("searchBar").value;
+    var link= "/searchSuppliers/"+document.getElementById("searchBar").value;
     document.addEventListener("keyup", function(event) {
         if (event.keyCode === 13) {
             location.replace(link);
@@ -172,9 +173,9 @@ function searchProduct()
     });
 }
 
-function searchProduct2()
+function searchSupplier2()
 {
-    var link= "/searchProducts/"+document.getElementById("searchBar").value;
+    var link= "/searchSuppliers/"+document.getElementById("searchBar").value;
     if(document.getElementById("searchBar").value!="")
     {
         location.replace(link);
@@ -186,22 +187,17 @@ function searchProduct2()
 <div style="margin-left=-120px;" class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
         <div class="col-md-10">
-            @foreach($products as $product)
+            @foreach($suppliers as $supplier)
             <div class="row p-2 bg-white border rounded">
-                <div class="col-md-3 mt-1"><img  style="width:300px; height: 150px;" class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}"></div>
+                <div class="col-md-3 mt-1"><img  style="width:300px; height: 150px;" class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/suppliers/'.$supplier->Supplier_Image)}}"></div>
                 <div class="col-md-6 mt-1">
-                    <h4>{{$product->Product_Name}}</h4>
-                    <div class="mt-1 mb-1 spec-1"><span style="font-size:17px;">Type Of {{$product->Product_Type}}</span><span style="background:#32CD32" class="dot"></span><span style="font-size:17px;">${{$product->Product_Price}}</div>
-                    <div class="mt-1 mb-1 spec-1"><span style="font-size:17px;">Supplied By {{$product->Product_Supplier}}</span></div>
-                    <p style="color:black;" class="text-justify text-truncate para mb-0">{{$product->Product_Desc}}<br><br></p>
+                    <h4>{{$supplier->Supplier_Name}}</h4>
+                    <div class="mt-1 mb-1 spec-1"><span style="font-size:17px;">Email: {{$supplier->Supplier_Email}}</span><span style="background:#32CD32" class="dot"></span><span style="font-size:17px;">Mobile: {{$supplier->Supplier_PhoneNo}}</div>
+                    <p style="color:black;" class="text-justify text-truncate para mb-0">{{$supplier->Supplier_Address}}<br><br></p>
                 </div>
                 <div class="align-items-center align-content-center col-md-3 border-left mt-1">
-                    <div class="d-flex flex-row align-items-center">
-                        <h4>{{$product->Product_Quantity}} <span style="color:red;">  In   Stock</span></h4>
-                    </div>
-                    <a style="padding-left:44px; padding-right:44px; border-color:#32CD32; background:#32CD32" href="/increaseQuantity/{{ $product->Product_ID }}" class="btn btn-primary btn-sm" >+</a>
-                    <a style="padding-left:44px; padding-right:44px; border-color:#32CD32; background:#32CD32" href="/decreaseQuantity/{{ $product->Product_ID }}"  class="btn btn-primary btn-sm" >-</a>
-                    <div class="d-flex flex-column mt-4"><a style="border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" href="/editProduct/{{ $product->Product_ID }}">Edit</a><a onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" href="/deleteProduct/{{ $product->Product_ID }}" >Delete</a></div>
+                    <br/>    
+                <div class="d-flex flex-column mt-4"><a style="border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" href="/editSupplier/{{ $supplier->Supplier_ID }}">Edit</a><a onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" href="/deleteSupplier/{{ $supplier->Supplier_ID }}" >Delete</a></div>
                 </div>
             </div>
             <script type="text/javascript">

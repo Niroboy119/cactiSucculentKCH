@@ -18,6 +18,8 @@ class CreateSuppliersTable extends Migration
             $table->string('Supplier_Name');
             $table->integer('Supplier_PhoneNo')->unique();
             $table->string('Supplier_Email')->unique();
+            $table->string('Supplier_Image');
+            $table->string('Supplier_Address');
         });
     }
 
