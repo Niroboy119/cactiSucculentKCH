@@ -79,6 +79,9 @@
 				                	<li class="search">
 				                		<a href="#"><span class="lnr lnr-magnifier"></span></a>
 				                	</li><!--/.search-->
+									<li class="user">
+				                		<a href="login"><span class="lnr lnr-user"></span></a>
+				                	</li><!--/.search-->
 									<li class="dropdown">
 				                        <a href="/cart" class="dropdown-toggle" data-toggle="dropdown" >
 				                            <span class="lnr lnr-cart"></span>
@@ -121,6 +124,8 @@
 				                        </ul>
 										@endif
 				                    </li><!--/.dropdown-->
+
+									
 				                </ul>
 				            </div><!--/.attr-nav-->
 				            <!-- End Atribute Navigation -->
