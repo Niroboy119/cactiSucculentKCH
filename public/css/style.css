@@ -1365,7 +1365,7 @@ td img{
 .quantity-update a{
     display: inline-block;
     font-size: 15px;
-    background: rgb(79, 209, 182);
+    background: #32CD32;
     padding: 5px 13px;
     text-decoration: none;
     color:rgb(255, 255, 255);

@@ -119,9 +119,6 @@
                                         <a href="{{ url('cart/decreaseCartQuantity/'.$id ) }}" style="margin-right:60px;display:inline-block;" class="btn btn-primary btn-sm" >-</a>
                                     </div>
                                 </div>
-                                <!-- <div class="items-update">
-                                    <a href="{{ url('cart/update/'.$id) }}" role="button"><span><i class="fa fa-refresh"></i></span></a>
-                                </div>     -->
                             </td>
                             <td data-th="Subtotal" class="text-center">
                                     <p class="text-center" style="font-size:20px">RM {{ $details['Product_Price'] * $details['Product_Quantity'] }}</p>
