@@ -13,7 +13,12 @@ body {
 }
 
 .product-image {
-    width: 100%
+    width: 
+    100%
+}
+
+a:hover.co {
+    background-color: #32CD32;
 }
 
 .dot {

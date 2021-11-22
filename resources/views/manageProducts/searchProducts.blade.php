@@ -152,7 +152,7 @@ $s = $search
 <div class="combine">
 <br><br>
 <div class="d-flex justify-content-center h-100">
-    <div style="margin-left:100px;" class="search"> <input value="{{$s}}" onchange="searchProduct()" id="searchBar" style=" padding-right:750px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Product Name...." name=""> <button style="border-color:#32CD32; color:#32CD32;" onclick="searchProduct2()" type="button" class="btn btn-outline-primary">Search Product</button> <i class="fa fa-search"></i> </a> </div>
+    <div style="margin-left:100px;" class="search"> <input value="{{$s}}" onchange="searchProduct()" id="searchBar" style=" padding-right:750px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Product Name...." name=""> <button style="border-color:#32CD32; color:#32CD32;" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" onclick="searchProduct2()" type="button" class="btn btn-outline-primary">Search Product</button> <i class="fa fa-search"></i> </a> </div>
 
 </div>
 
@@ -202,14 +202,11 @@ function searchProduct2()
                     </div>
                     <a style="padding-left:44px; padding-right:44px; border-color:#32CD32; background:#32CD32" href="/increaseQuantity/{{ $product->Product_ID }}" class="btn btn-primary btn-sm" >+</a>
                     <a style="padding-left:44px; padding-right:44px; border-color:#32CD32; background:#32CD32" href="/decreaseQuantity/{{ $product->Product_ID }}"  class="btn btn-primary btn-sm" >-</a>
-                    <div class="d-flex flex-column mt-4"><a style="border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" href="/editProduct/{{ $product->Product_ID }}">Edit</a><a style="border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" href="/deleteProduct/{{ $product->Product_ID }}">Delete</a></div>
+                    <div class="d-flex flex-column mt-4"><a style="border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" href="/editProduct/{{ $product->Product_ID }}">Edit</a><a onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" href="/deleteProduct/{{ $product->Product_ID }}" >Delete</a></div>
                 </div>
             </div>
             <script type="text/javascript">
-                function confirmDelete()   
-                {
-                    return confirm('Are you sure you want to delete?');
-                }
+              
              </script>
             <br>
             @endforeach
