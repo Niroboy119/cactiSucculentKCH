@@ -201,13 +201,21 @@ function searchProduct2()
                     </div>
                     <a style="padding-left:44px; padding-right:44px; border-color:#32CD32; background:#32CD32" href="/increaseQuantity/{{ $product->Product_ID }}" class="btn btn-primary btn-sm" >+</a>
                     <a style="padding-left:44px; padding-right:44px; border-color:#32CD32; background:#32CD32" href="/decreaseQuantity/{{ $product->Product_ID }}"  class="btn btn-primary btn-sm" >-</a>
-                    <div class="d-flex flex-column mt-4"><a style="border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" href="/editProduct/{{ $product->Product_ID }}">Edit</a><a style="border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" href="/deleteProduct/{{ $product->Product_ID }}">Delete</a></div>
+                    <div class="d-flex flex-column mt-4"><a style="border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" href="/editProduct/{{ $product->Product_ID }}">Edit</a><a style="border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" href="/deleteProduct/{{ $product->Product_ID }}" onclick= "return myFunction();">Delete</a></div>
                 </div>
             </div>
-            <script type="text/javascript">
-                function confirmDelete()   
+                <script type="text/javascript">
+                function myFunction() 
                 {
-                    return confirm('Are you sure you want to delete?');
+                    if (confirm("Are you sure you want to delete?")) {
+
+                    return true;
+
+                    } else {
+
+                        return false;
+                    }
+
                 }
              </script>
             <br>
