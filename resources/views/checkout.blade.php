@@ -82,18 +82,6 @@
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="username">Username</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">@</span>
-                    </div>
-                    <input type="text" class="form-control" id="username" placeholder="Username" required>
-                    <div class="invalid-feedback" style="width: 100%;">
-                        Your username is required.
-                    </div>
-                </div>
-                </div>
 
                 <div class="mb-3">
                     <label for="email">Email <span class="text-muted">(Optional)</span></label>
@@ -121,7 +109,7 @@
                         <label for="country">Country</label>
                         <select class="custom-select d-block w-100" id="country" required>
                         <option value="">Choose...</option>
-                        <option>United States</option>
+                        <option>Malaysia</option>
                         </select>
                         <div class="invalid-feedback">
                         Please select a valid country.
@@ -131,7 +119,7 @@
                         <label for="state">State</label>
                         <select class="custom-select d-block w-100" id="state" required>
                         <option value="">Choose...</option>
-                        <option>California</option>
+                        <option>Sarawak</option>
                         </select>
                         <div class="invalid-feedback">
                         Please provide a valid state.
