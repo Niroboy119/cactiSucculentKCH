@@ -106,7 +106,7 @@
                                         </div>
                                         <br>
                                         <div class="items-removal">
-                                        <a href="{{ url('cart/delete/'.$id) }}" role="button">Remove <span>From </span> Cart</a> 
+                                        <a href="{{ url('cart/delete/'.$id) }}" role="button" onclick="return confirm('Are you sure?')">Remove <span>From </span> Cart</a> 
                                         </div>
                                     </div>
                                 </div>
@@ -114,9 +114,9 @@
                             <td data-th="Quantity">
                                 <div class="quantity-update">
                                     <div class="row">
-                                        <a href="" style="margin-left:60px;display:inline-block;"class="btn btn-primary btn-sm"  >+</a>
+                                        <a href="{{ url('cart/increaseCartQuantity/'.$id ) }}" role="button" style="margin-left:60px;display:inline-block;"class="btn btn-primary btn-sm"  >+</a>
                                         <a style="float:center;display:inline-block;background-color:white;color:black;font-size:20px" type="number" class="number">{{ $details['Product_Quantity'] }}</a>
-                                        <a href="" style="margin-right:60px;display:inline-block;" class="btn btn-primary btn-sm" >-</a>
+                                        <a href="{{ url('cart/decreaseCartQuantity/'.$id ) }}" style="margin-right:60px;display:inline-block;" class="btn btn-primary btn-sm" >-</a>
                                     </div>
                                 </div>
                                 <!-- <div class="items-update">

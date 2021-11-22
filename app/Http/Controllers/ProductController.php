@@ -158,16 +158,26 @@ class ProductController extends Controller
             return redirect()->back()->with('success', 'Product added to cart successfully!');
         }
 
-        public function updateCartProducts($id){
-            $product = Product::find($id);
-            $product = Product::find($quantity);
-
-            if($id and $quantity) {
-                $cart = session()->get('cart');
-                $cart[$id]["$product->Product_Quantity"] = $quantity;
+        public function IncreaseCartProducts($id){
+            $cart = session()->get('cart');
+            if(isset($cart[$id])) {
+                $cart[$id]['Product_Quantity']++;
                 session()->put('cart', $cart);
-                session()->flash('success', 'Cart updated successfully');
-            }              
+                return redirect()->back()->with('success', 'Product added to cart successfully!');
+            }            
+        }
+
+        public function DecreaseCartProducts($id){
+            $cart = session()->get('cart');
+            if(isset($cart[$id])) {
+                if($cart[$id]['Product_Quantity']>1){
+                    $cart[$id]['Product_Quantity']--;
+                    session()->put('cart', $cart);
+                }else{
+                    session()->put('cart', $cart);
+                }
+                return redirect()->back()->with('success', 'Product deleted to cart successfully!');
+            }            
         }
 
         public function removeCartProducts($id){
