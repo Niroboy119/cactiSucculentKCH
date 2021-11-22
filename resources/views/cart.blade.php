@@ -112,7 +112,16 @@
                                 </div>
                             </td>
                             <td data-th="Quantity">
-                                    <input style="margin-left:100px; margin-right:100px" type="number" value="{{ $details['Product_Quantity'] }}">
+                                <div class="quantity-update">
+                                    <div class="row">
+                                        <a href="" style="margin-left:60px;display:inline-block;"class="btn btn-primary btn-sm"  >+</a>
+                                        <a style="float:center;display:inline-block;background-color:white;color:black;font-size:20px" type="number" class="number">{{ $details['Product_Quantity'] }}</a>
+                                        <a href="" style="margin-right:60px;display:inline-block;" class="btn btn-primary btn-sm" >-</a>
+                                    </div>
+                                </div>
+                                <!-- <div class="items-update">
+                                    <a href="{{ url('cart/update/'.$id) }}" role="button"><span><i class="fa fa-refresh"></i></span></a>
+                                </div>     -->
                             </td>
                             <td data-th="Subtotal" class="text-center">
                                     <p class="text-center" style="font-size:20px">RM {{ $details['Product_Price'] * $details['Product_Quantity'] }}</p>

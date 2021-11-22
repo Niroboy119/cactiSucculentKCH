@@ -78,3 +78,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('cart/delete/{Product_ID}', 'App\Http\Controllers\ProductController@removeCartProducts');
+Route::get('cart/update/{Product_ID}', 'App\Http\Contorllers\ProductController@updateCartProducts');

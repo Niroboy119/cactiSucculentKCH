@@ -1362,6 +1362,18 @@ td img{
     z-index: 100;
 }
 
+.quantity-update a{
+    display: inline-block;
+    font-size: 15px;
+    background: rgb(79, 209, 182);
+    padding: 5px 13px;
+    text-decoration: none;
+    color:rgb(255, 255, 255);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 100;
+}
+
 /* Totals section */
 .totals{
     border-top: 3px solid #32CD32;

@@ -146,6 +146,18 @@ class ProductController extends Controller
             return redirect()->back()->with('success', 'Product added to cart successfully!');
         }
 
+        public function updateCartProducts($id){
+            $product = Product::find($id);
+            $product = Product::find($quantity);
+
+            if($id and $quantity) {
+                $cart = session()->get('cart');
+                $cart[$id]["$product->Product_Quantity"] = $quantity;
+                session()->put('cart', $cart);
+                session()->flash('success', 'Cart updated successfully');
+            }              
+        }
+
         public function removeCartProducts($id){
                $product = Product::find($id);
                $cart = session()->get('cart');

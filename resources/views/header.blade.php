@@ -70,7 +70,7 @@
 									if (event.keyCode === 13) {
 										location.replace(link);
 									}
-								}); 
+								});
 							}
 						</script>
 				        <!-- End Top Search -->
