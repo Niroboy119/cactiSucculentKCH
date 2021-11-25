@@ -64,7 +64,7 @@
             </div>
             <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Billing address</h4>
-            <form class="needs-validation" novalidate method="HEAD" action="/product">
+            <form class="needs-validation" novalidate method="HEAD" action="{{ url('checkout/proceedtocheckout') }}">
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">First name</label>
@@ -134,8 +134,9 @@
                     </div>
                 </div>
                 <hr class="mb-4">
-                <a class="btn btn-success btn-lg btn-block" href="{{ url('checkout/proceedtocheckout') }}" role="button" onclick="return confirm('Confirm Checkout?')">Place Order</a>
-              
+                <!-- <a class="btn btn-success btn-lg btn-block" href="{{ url('checkout/proceedtocheckout') }}" role="button" onclick="return confirm('Confirm Checkout?')">Place Order</a> -->
+                <button class="btn btn-success btn-lg btn-block" type="submit" >Place Order</button>
+                <!-- return confirm('Order request sent. Redirect to home?') -->
             </form>
         </div>
       </div>    
@@ -165,12 +166,26 @@
               if (form.checkValidity() === false) {
                 event.preventDefault();
                 event.stopPropagation();
-              }
+              }else{
+                redirectTo();
+              }  
               form.classList.add('was-validated');
             }, false);
           });
         }, false);
       })();
+    </script>
+
+    <script>
+        function redirectTo(){
+            var ask = window.confirm('Order request sent. Redirect to home?');
+            if (ask) {
+                window.alert("redirecting to product page!");
+
+                //window.location.href = "{{ url('checkout/proceedtocheckout') }}";
+            }
+        }
+
     </script>
     
   </body>
