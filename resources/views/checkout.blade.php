@@ -87,7 +87,7 @@
                     <label for="email">Email <span class="text-muted">(Optional)</span></label>
                     <input type="email" class="form-control" id="email" placeholder="you@example.com">
                     <div class="invalid-feedback">
-                        Please enter a valid email address for shipping updates.
+                        Please enter a valid email address for delivery updates.
                     </div>
                 </div>
 
@@ -95,7 +95,7 @@
                     <label for="address">Address</label>
                     <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
                     <div class="invalid-feedback">
-                        Please enter your shipping address.
+                        Please enter your home address.
                     </div>
                 </div>
 
@@ -134,7 +134,8 @@
                     </div>
                 </div>
                 <hr class="mb-4">
-                <button class="btn btn-success btn-lg btn-block" type="submit" onclick="return confirm('Order request sent. Redirect to home?')" >Place Order</button>
+                <a class="btn btn-success btn-lg btn-block" href="{{ url('checkout/proceedtocheckout') }}" role="button" onclick="return confirm('Confirm Checkout?')">Place Order</a>
+              
             </form>
         </div>
       </div>    

@@ -180,6 +180,11 @@ class ProductController extends Controller
             }            
         }
 
+        public function proceedToCheckout(Request $request){
+            $request->session()->forget('cart');
+            return redirect('/product');
+        }
+
         public function removeCartProducts($id){
                $product = Product::find($id);
                $cart = session()->get('cart');
@@ -189,5 +194,7 @@ class ProductController extends Controller
                        return redirect()->back()->with('success', 'Product added to cart successfully!');
                }
         }
+
+        
         // Cart function ends here
 }
