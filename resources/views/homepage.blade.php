@@ -224,7 +224,7 @@ $products=Product::all();
         <script src="js/custom.js"></script>
 
 		<!--footer start -->
-		<?php include 'footer.php'?>
+		@include('footer')
 		<!--footer end -->
         
     </body>
