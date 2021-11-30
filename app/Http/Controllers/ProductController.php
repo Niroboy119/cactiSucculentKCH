@@ -89,7 +89,8 @@ class ProductController extends Controller
         $quantity=$product->value('Product_Quantity')+1;
         Product::where('Product_ID', $id)->update(array('Product_Quantity' => $quantity));
        
-        return redirect('/manageProducts');
+        return redirect()->back();
+
     }
 
     public function decreaseQuantity($id)
@@ -98,7 +99,7 @@ class ProductController extends Controller
         $quantity=$product->value('Product_Quantity')-1;
         Product::where('Product_ID', $id)->update(array('Product_Quantity' => $quantity));
        
-        return redirect('/manageProducts');
+        return redirect()->back();
     }
 
     public function searchProducts($search)

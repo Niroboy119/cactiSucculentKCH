@@ -74,7 +74,7 @@
 
 				        <div class="container">            
 				            <!-- Start Atribute Navigation -->
-				            <div class="attr-nav">
+							 <div class="attr-nav">
 				                <ul>
 				                	<li class="search">
 				                		<a href="#"><span class="lnr lnr-magnifier"></span></a>
