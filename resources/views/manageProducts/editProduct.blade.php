@@ -275,7 +275,7 @@ $product = Product::where([ 'Product_ID' => $id ]);
                 <img src="{{URL::asset('storage/images/products/'.$product->value('Product_Image'))}}" id="imgTag" height="330px" width="400px" />
                 </div>
                 <div class="custom-file mt-3 mb-3">
-                  <input onchange="readURL(this);" id="fileInput" type="file" style="display:none;" name="file" required>
+                  <input onchange="readURL(this);" id="fileInput" type="file" style="display:none;" name="file" >
                   <input  hidden id="img_Text" type="img_Text" value="0" name="img_Text">
                   <input
                     type="button"
