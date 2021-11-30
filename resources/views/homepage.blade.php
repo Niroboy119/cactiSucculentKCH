@@ -100,7 +100,7 @@ $products=Product::all();
 		<!-- Homepage register banner -->
 		<section id="register-banner">
 				<div class="single-register-banner">
-					<img src="images/collection/bgimage10.jpeg"/>
+					<img src="images/homepage/bgimage10.jpeg"/>
 					<!-- <div class="gardener-img">
 						<img src="images/collection/gardener.png"/>
 					</div> -->

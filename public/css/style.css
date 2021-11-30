@@ -1004,8 +1004,8 @@ p.arrival-review span {margin-right: 15px;}
     background-position: center;
     background-size: cover;
 }
-.Cacti-collection.collectionbg1{background: url(../images/collection/bgimage40.jpeg)no-repeat;}
-.Cacti-collection.collectionbg2{background: url(../images/collection/bgimage50.jpeg)no-repeat;}
+.Cacti-collection.collectionbg1{background: url(../images/homepage/bgimage40.jpeg)no-repeat;}
+.Cacti-collection.collectionbg2{background: url(../images/homepage/bgimage50.jpeg)no-repeat;}
 
 .Cacti-collection:before,.Cacti-collection:after {
     position: absolute;
