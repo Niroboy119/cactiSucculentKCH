@@ -90,7 +90,7 @@ class ProductController extends Controller
         Product::where('Product_ID', $id)->update(array('Product_Quantity' => $quantity));
        
         return redirect()->back();
-
+     
     }
 
     public function decreaseQuantity($id)
@@ -114,7 +114,6 @@ class ProductController extends Controller
         return view('search',compact('product'));
     }
 
-
     // Cart Functions
         public function addToCart($id){
             $product = Product::find($id);
@@ -133,7 +132,7 @@ class ProductController extends Controller
                             "Product_Price" => $product->Product_Price,
                             "Product_Supplier" => $product->Product_Supplier,
                             "Product_Image" => $product->Product_Image
-                        ]
+                        ]   
                 ];
                 session()->put('cart', $cart);
                 return redirect()->back()->with('success', 'Product added to cart successfully!');
@@ -195,7 +194,6 @@ class ProductController extends Controller
                        return redirect()->back()->with('success', 'Product added to cart successfully!');
                }
         }
-
         
         // Cart function ends here
 }

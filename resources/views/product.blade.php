@@ -381,7 +381,7 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 
 	</body>
 
-	<?php include 'footer.php'?>
+	@include('footer')
 
 
         
