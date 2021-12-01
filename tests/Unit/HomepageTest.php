@@ -40,14 +40,4 @@ class HomepageTest extends TestCase
         $response = $this->get('/register');
         $response->assertStatus(200);
     }
-
-    public function test_IncreaseCartProducts(){
-        $response = $this->get('cart/increaseCartQuantity/{Product_ID}');
-        $response->assertStatus(200);   
-    }
-
-    public function test_DecreaseCartProducts(){
-        $response = $this->get('cart/decreaseCartQuantity/{Product_ID}');
-        $response->assertStatus(200);
-    }
 }
