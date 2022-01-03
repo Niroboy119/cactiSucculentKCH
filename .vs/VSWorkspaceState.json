@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\bootstrap",
+    "\\config",
+    "\\database",
+    "\\public",
+    "\\routes",
+    "\\storage",
+    "\\tests"
+  ],
+  "PreviewInSolutionExplorer": false
+}
