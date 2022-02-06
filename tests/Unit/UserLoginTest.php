@@ -48,7 +48,7 @@ class UserLoginTest extends TestCase
             'email' => 'john@gmail.com'
         ]);
 
-        $this->assertTrue($user1->name != $user2->name);
+        $this->assertTrue($user1->email != $user2->email);
     }
 
     public function test_if_new_user_added(){
@@ -65,7 +65,10 @@ class UserLoginTest extends TestCase
 
     public function test_if_user_can_login(){
 
-        $user = User::factory()->make();
+        $user = User::factory()->make([
+            'email' => 'testemail@test.com',
+            'password' => bcrypt('test123'),
+        ]);
 
         $response = $this->actingAs($user)->get('/login');
 
