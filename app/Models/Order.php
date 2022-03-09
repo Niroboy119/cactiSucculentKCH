@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     public $timestamps = false;
+
+    protected $table = 'orders';
     
     protected $casts = [
         'Order_Date' => 'datetime:d/m/Y', 

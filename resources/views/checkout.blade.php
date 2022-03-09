@@ -64,7 +64,8 @@
             </div>
             <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Billing address</h4>
-            <form class="needs-validation" novalidate method="HEAD" action="{{ url('checkout/proceedtocheckout') }}">
+            <form class="needs-validation" novalidate method="POST" action="/checkout" enctype='multipart/form-data'>
+                @csrf    
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">First name</label>
@@ -82,7 +83,6 @@
                     </div>
                 </div>
 
-
                 <div class="mb-3">
                     <label for="email">Email <span class="text-muted">(Optional)</span></label>
                     <input type="email" class="form-control" id="email" placeholder="you@example.com">
@@ -92,16 +92,40 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
-                    <div class="invalid-feedback">
-                        Please enter your home address.
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" onclick="javascript:yesnoCheck();">
+                        <label class="form-check-label" for="inlineRadio1">Home deliver</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2" onclick="javascript:yesnoCheck();">
+                        <label class="form-check-label" for="inlineRadio2">Pick up</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3" onclick="javascript:yesnoCheck();">
+                        <label class="form-check-label" for="inlineRadio3">Remote Pick up</label>
+                    </div>
+                </div>    
+
+                <div class="mb-3" id="ifYes"> 
+                    <div class="mb-3">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+                        <div class="invalid-feedback">
+                            Please enter your home address.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+                        <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-                    <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                    <label for="phonenumber">Phone Number</label>
+                    <input type="number" class="form-control" id="phonenumber" placeholder="+06-111-111-111" pattern="^(?:\d{2}-\d{3}-\d{3}-\d{3}|\d{11})$" required>
                 </div>
 
                 <div class="row">
@@ -174,6 +198,26 @@
           });
         }, false);
       })();
+    </script>
+
+    <script type="text/javascript">
+
+        function yesnoCheck() {
+            if (document.getElementById('inlineRadio2').checked) {
+                document.getElementById('ifYes').style.display = 'none';
+            } else{
+                document.getElementById('ifYes').style.display = 'block';
+            }
+
+        // function checkDelivery(){
+        //     if ((document.getElementById('inlineRadio1').checked || document.getElementById('inlineRadio2').checked) && (document.getElementById('ifYes').style.visibility = 'hidden')) {
+        //         document.getElementById('ifYes').style.visibility = 'visible';
+        //     }
+        // }
+
+    }
+
+
     </script>
 
     <script>

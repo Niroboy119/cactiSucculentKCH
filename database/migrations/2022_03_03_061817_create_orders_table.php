@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateOrdersTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('orders', function (Blueprint $table) {
+            $table->bigIncrements('order_Id');
+            $table->unsignedInteger('user_Id');
+            $table->foreign('user_Id')->references('id')->on('users');
+
+            $table->enum('status', ['pending', 'processing', 'completed', 'decline'])->default('pending');
+            $table->decimal('grand_total', 20, 6);
+            $table->unsignedInteger('item_count');
+            $table->string('delivery_type');    
+            
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('orders');
+    }
+}

@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -100,3 +100,5 @@ Route::get('cart/update/{Product_ID}', 'App\Http\Contorllers\ProductController@u
 Route::get('cart/increaseCartQuantity/{Product_ID}', 'App\Http\Controllers\ProductController@IncreaseCartProducts');
 Route::get('cart/decreaseCartQuantity/{Product_ID}', 'App\Http\Controllers\ProductController@DecreaseCartProducts');
 Route::get('checkout/proceedtocheckout','App\Http\Controllers\ProductController@proceedToCheckout');
+
+Route::post('/checkout', [OrderController::class, "store"]);
