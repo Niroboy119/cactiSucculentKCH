@@ -14,13 +14,13 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->bigIncrements('order_Id');
-            $table->unsignedInteger('user_Id');
-            $table->foreign('user_Id')->references('id')->on('users');
+            $table->id('order_Id')->unique(); //uniquely identifies each order
+            $table->bigInteger('user_Id')->unsigned();
+            $table->foreign('user_Id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->enum('status', ['pending', 'processing', 'completed', 'decline'])->default('pending');
-            $table->decimal('grand_total', 20, 6);
             $table->unsignedInteger('item_count');
+            $table->decimal('grand_total', 20, 2);
+            $table->enum('status', ['pending', 'processing', 'completed', 'decline', 'cancelled'])->default('pending');
             $table->string('delivery_type');    
             
             $table->timestamps();

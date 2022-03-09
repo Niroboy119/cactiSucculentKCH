@@ -64,19 +64,19 @@
             </div>
             <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Billing address</h4>
-            <form class="needs-validation" novalidate method="POST" action="/checkout" enctype='multipart/form-data'>
+            <form class="needs-validation" novalidate action="/checkout" method="POST" >
                 @csrf    
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">First name</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                        <input type="text" class="form-control" id="firstName" placeholder="" value="" name="firstName" required>
                         <div class="invalid-feedback">
                         Valid first name is required.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="lastName">Last name</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="" required>
                         <div class="invalid-feedback">
                         Valid last name is required.
                         </div>
@@ -85,7 +85,7 @@
 
                 <div class="mb-3">
                     <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                    <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com">
                     <div class="invalid-feedback">
                         Please enter a valid email address for delivery updates.
                     </div>
@@ -93,17 +93,17 @@
 
                 <div class="mb-3">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" onclick="javascript:yesnoCheck();">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="homeDelivery" onclick="javascript:yesnoCheck();">
                         <label class="form-check-label" for="inlineRadio1">Home deliver</label>
                     </div>
 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2" onclick="javascript:yesnoCheck();">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="pickUp" onclick="javascript:yesnoCheck();">
                         <label class="form-check-label" for="inlineRadio2">Pick up</label>
                     </div>
 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3" onclick="javascript:yesnoCheck();">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="remotePickUp" onclick="javascript:yesnoCheck();">
                         <label class="form-check-label" for="inlineRadio3">Remote Pick up</label>
                     </div>
                 </div>    
@@ -111,7 +111,7 @@
                 <div class="mb-3" id="ifYes"> 
                     <div class="mb-3">
                         <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+                        <input type="text" class="form-control" id="address" name="address" placeholder="1234 Main St" required>
                         <div class="invalid-feedback">
                             Please enter your home address.
                         </div>
@@ -119,13 +119,13 @@
 
                     <div class="mb-3">
                         <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-                        <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                        <input type="text" class="form-control" id="address2" name="address2" placeholder="Apartment or suite">
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <label for="phonenumber">Phone Number</label>
-                    <input type="number" class="form-control" id="phonenumber" placeholder="+06-111-111-111" pattern="^(?:\d{2}-\d{3}-\d{3}-\d{3}|\d{11})$" required>
+                    <input type="number" class="form-control" id="phonenumber" name="phonenumber" placeholder="+06-111-111-111" pattern="^(?:\d{2}-\d{3}-\d{3}-\d{3}|\d{11})$" required>
                 </div>
 
                 <div class="row">
@@ -133,7 +133,7 @@
                         <label for="country">Country</label>
                         <select class="custom-select d-block w-100" id="country" required>
                         <option value="">Choose...</option>
-                        <option>Malaysia</option>
+                        <option value="Malaysia">Malaysia</option>
                         </select>
                         <div class="invalid-feedback">
                         Please select a valid country.
@@ -143,7 +143,7 @@
                         <label for="state">State</label>
                         <select class="custom-select d-block w-100" id="state" required>
                         <option value="">Choose...</option>
-                        <option>Sarawak</option>
+                        <option value="Sarawak">Sarawak</option>
                         </select>
                         <div class="invalid-feedback">
                         Please provide a valid state.
@@ -151,7 +151,7 @@
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="zip">Zip</label>
-                        <input type="text" class="form-control" id="zip" placeholder="" required>
+                        <input type="text" class="form-control" id="zip" name="zip" placeholder="" required>
                         <div class="invalid-feedback">
                         Zip code required.
                         </div>

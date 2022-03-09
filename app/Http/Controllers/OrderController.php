@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
     public function store(Request $request){
 
@@ -17,9 +21,14 @@ class OrderController extends Controller
         }
 
         $order = new Order();
-        $order->user_Id = Auth::user()->id;
+        $order->user_Id = auth()->id();
         $order->grand_total = $order_total;
-        $order->item_count = count((array) session('cart'));      
+        $order->item_count = count((array) session('cart'));
+        $order->delivery_type = $request->inlineRadioOptions;
+
+        $order->save();
+        $request->session()->forget('cart');
+        
         
         return redirect('/homepage');
     }

@@ -101,4 +101,4 @@ Route::get('cart/increaseCartQuantity/{Product_ID}', 'App\Http\Controllers\Produ
 Route::get('cart/decreaseCartQuantity/{Product_ID}', 'App\Http\Controllers\ProductController@DecreaseCartProducts');
 Route::get('checkout/proceedtocheckout','App\Http\Controllers\ProductController@proceedToCheckout');
 
-Route::post('/checkout', [OrderController::class, "store"]);
+Route::post('/checkout', [OrderController::class, 'store']);
