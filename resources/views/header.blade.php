@@ -83,7 +83,7 @@
 				                		<a href="#"><span class="lnr lnr-magnifier"></span></a>
 				                	</li><!--/.search-->
 									<li class="user dropdown show">
-				                		<a><span id="navbarDropdown" class="lnr lnr-user" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre></span></a>
+				                		<a href="/userProfile"><span id="navbarDropdown" class="lnr lnr-user" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre></span></a>
 
 										<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 											<a class="dropdown-item" href="{{ route('logout') }}"
