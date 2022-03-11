@@ -50,6 +50,14 @@ Route::get('/dashboard', function () {
     return view('admin/dashboard');
 });
 
+Route::get('/userProfile', function(){
+    return view('userProfile');
+});
+
+Route::get('/editUserProfile', function(){
+    return view('editUserProfile');
+});
+
 
 Route::get('/manageProducts', [App\Http\Controllers\ProductController::class, 'displayProducts'])->name('products');
 Route::get('/addProductForm', [App\Http\Controllers\ProductController::class, 'displayaddProductForm'])->name('products');
@@ -100,3 +108,4 @@ Route::get('cart/update/{Product_ID}', 'App\Http\Contorllers\ProductController@u
 Route::get('cart/increaseCartQuantity/{Product_ID}', 'App\Http\Controllers\ProductController@IncreaseCartProducts');
 Route::get('cart/decreaseCartQuantity/{Product_ID}', 'App\Http\Controllers\ProductController@DecreaseCartProducts');
 Route::get('checkout/proceedtocheckout','App\Http\Controllers\ProductController@proceedToCheckout');
+Route::post('updateUser/{id}', 'App\Http\Controllers\UserController@updateUser');
