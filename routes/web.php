@@ -57,6 +57,7 @@ Route::post('/addProduct', [App\Http\Controllers\ProductController::class, 'crea
 Route::get('/deleteProduct/{id}', [App\Http\Controllers\ProductController::class, 'deleteProduct'])->name('products');
 Route::get('/editProduct/{id}', [App\Http\Controllers\ProductController::class, 'editProduct'])->name('products');
 Route::post('/updateProduct/{id}', [App\Http\Controllers\ProductController::class, 'update'])->name('products');
+Route::post('/updateStatus/{id}', [App\Http\Controllers\OrderController::class, 'updateS'])->name('orders');
 Route::get('/increaseQuantity/{id}', [App\Http\Controllers\ProductController::class, 'increaseQuantity'])->name('products');
 Route::get('/decreaseQuantity/{id}', [App\Http\Controllers\ProductController::class, 'decreaseQuantity'])->name('products');
 Route::get('/searchProducts/{search}', [App\Http\Controllers\ProductController::class, 'searchProducts'])->name('products');

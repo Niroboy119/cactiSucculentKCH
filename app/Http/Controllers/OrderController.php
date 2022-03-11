@@ -32,6 +32,12 @@ class OrderController extends Controller
         
         return redirect('/homepage');
     }
+	
+	 public function updateS($id)
+    {
+        Order::where('order_Id', $id)->update(array('status' => 'cancelled'));
+        return redirect('/order');
+    }
 
 }
 

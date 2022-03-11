@@ -2,6 +2,58 @@
 	$user=Auth::check();
 ?>
 <!doctype html>
+<?php
+use App\Models\Order;
+$orders=Order::all();
+?>
+
+<?php
+$order = Order::where([ 'order_Id' => auth()->id() ]);
+?>
+
+<style>
+.card-order {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  padding: 20px 20px 20px 20px;
+  width: 100%;
+}
+
+.card-order:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container-order {
+  padding: 5px 16px 0px;
+
+}
+
+.button {
+  border: none;
+  color: white;
+  padding: 1px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 970px 0px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: white; 
+  color: red; 
+  border: 2px solid red;
+}
+
+.button1:hover {
+  background-color: red;
+  color: white;
+}
+
+}
+</style>
 
 <html class="no-js" lang="en">
 
@@ -58,25 +110,83 @@
     </head>
 	
 	<body>
-    <section id="order" class="order">
-            <div class="container">
-                <div class="section-header">
-                    <h2><br><br><br>Order</h2>
-                </div><!--/.section-header-->
-                <div class="carousel-inner" role="listbox">
-                    <div>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <h2 style="color:black; text-align:center; font-size: 80px;">Under Construction</h2>
-                        <br>							
-                    </div>
-                </div>	
-            </div>
-        </section>
+  <!--new-arrivals start -->
+  <section id="new-arrivals" class="new-arrivals">
+			<div class="container">
+				<div class="section-header">
+					<br>
+					<br>
+
+					<h2>All Orders</h2>
+
+				</div><!--/.section-header-->
+				<div class="new-arrivals-content">
+					<div class="Row">
+                    @foreach($orders as $order)
+                    @if(auth()->id() == $order->user_Id)
+
+                    <div class="card-order">
+                            <div class="container-order">
+                                <h4><b style="color:#32CD32;">Order ID: {{$order->order_Id}}</b></h4> 
+                                <p style="color:black;">Grand Total: RM <a>{{$order->grand_total}}</a></p> 
+                                <p style="color:black;">Grand Total: <a>{{$order->delivery_type}}</a></p> 
+                                @if($order->status == "pending")
+                                <p style="color:black;">Order Status: <a style="color:#32CD32;">{{$order->status}}</a></p>
+                                @else
+                                <p style="color:black;">Order Status: <a style="color:red;">{{$order->status}}</a></p>
+                                @endif
+                            </div>
+                            <form action="/updateStatus/{{$order->order_Id}}" method="POST">
+                            {{ csrf_field() }}
+                            @if($order->status == "pending")
+                            <button type ="submit" class="button button1" >Cancel</button>
+                            @endif
+                            </form>
+                            </div>
+                            @endif
+                        @endforeach
+                        <script type="text/javascript">
+							function cancel()
+							{
+								var link= "/cancel/"+document.getElementById("searchBar2").value;
+								document.addEventListener("keyup", function(event) {
+									if (event.keyCode === 13) {
+										location.replace(link);
+									}
+								});
+							}
+						</script>
+
+    <!-- <script type="text/javascript">
+        $(".add-to-cart").click(function (e) {
+            e.preventDefault();
+
+            var ele = $(this);
+
+            ele.siblings('.btn-loading').show();
+
+            $.ajax({
+                url: '{{ url('cart') }}' + '/' + ele.attr("data-id"),
+                method: "get",
+                data: {_token: '{{ csrf_token() }}'},
+                dataType: "json",
+                success: function (response) {
+
+                    ele.siblings('.btn-loading').hide();
+
+                    $("span#status").html('<div class="alert alert-success">'+response.msg+'</div>');
+                    $("#header-bar").html(response.data);
+                }
+            });
+        });
+    </script> -->
+						
+					</div>
+				</div>		
+			</div><!--/.container-->
+		
+		</section><!--/.new-arrivals-->
+		<!--new-arrivals end -->
 
 		<!-- Include all js compiled plugins (below), or include individual files as needed -->
 
@@ -102,6 +212,6 @@
         <script src="js/custom.js"></script>
 	</body>
 
-	<?php include 'footer.php'?>
+	@include('footer')
 	
 </html>
