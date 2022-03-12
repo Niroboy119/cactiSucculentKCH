@@ -81,19 +81,21 @@
                                     </div>
 
                                     <div class="col-12 col-md-5">
-                                        <!-- Section Heading -->
-                                        <div class="section-heading">
-                                            <br>
-                                            <br>
-                                            <h2>CONTACT US</h2>
-                                            <p>Any questions? Feel free to contact us. We will provide our best services to solve your concerns!</p>
-                                        </div>
-                                        <!-- Contact Information -->
-                                        <div class="contact-information">
-                                            <p><span>Phone:</span> <a href="tel:+60198182384">(+60)19-818-2384</a></p>
-                                            <p><span>Location:</span> Kuching Metropolian Area, Kuching, Sarawak, Malaysia</p>
-                                            <p><span>Email:</span> <a href="mailto:anniepeksf@gmail.com">anniepeksf@gmail.com</a></p>
-                                            <p><span>Open Hours:</span> Mon - Sun: 8am - 5am</p>
+                                        <div class="contact-info-area">
+                                            <!-- Section Heading -->
+                                            <div class="section-heading">
+                                                <br>
+                                                <br>
+                                                <h2>CONTACT US</h2>
+                                                <p>Any questions? Feel free to contact us. We will provide our best services to solve your concerns!</p>
+                                            </div>
+                                            <!-- Contact Information -->
+                                            <div class="contact-information">
+                                                <p><span>Phone:</span> <a href="tel:+60198182384">(+60)19-818-2384</a></p>
+                                                <p><span>Location:</span> Kuching Metropolian Area, Kuching, Sarawak, Malaysia</p>
+                                                <p><span>Email:</span> <a href="mailto:anniepeksf@gmail.com">anniepeksf@gmail.com</a></p>
+                                                <p><span>Open Hours:</span> Mon - Sun: 8am - 5am</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -108,12 +110,13 @@
         <!-- Contact Area Start -->
         <section class="contact-area">
             <div class="container">
-                <div class="row align-items-center justify-content-between">                                <div class="col-12 col-lg-5">
-                    <!-- Section Heading -->
-                    <div class="section-heading-touch">
-                        <h2>GET IN TOUCH</h2>
-                        <p>Send us a message, we will call back later</p>
-                    </div>
+                <div class="row align-items-center justify-content-between">                                
+                    <div class="col-12 col-lg-5">
+                        <!-- Section Heading -->
+                        <div class="section-heading-touch">
+                            <h2>GET IN TOUCH</h2>
+                            <p>Send us a message, we will call back later</p>
+                        </div>
                         <!-- Contact Form Area -->
                         <div class="contact-form-area mb-100">
                             <form action="#" method="post">
@@ -140,7 +143,6 @@
                                 </div>
                                 <div class="send-message">
                                     <button type="submit" class="btn mt-15">Send Message</button>
-                                    <!-- <button class="our-product" onclick="window.location.href='/product'">Our Product</button> -->
                                 </div>
                             </div>
                             </form>
