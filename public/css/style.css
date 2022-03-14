@@ -1456,6 +1456,185 @@ td:last-child{
     display: none;
 }
 
+/*===============================
+    13. About Us Page
+===============================*/
+.description-benefits-area {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 50px; }
+  .single-benefits-area img {
+    margin-bottom: 30px; }
+  .single-benefits-area p {
+    margin-bottom: 0; }
+
+
+.our-product {
+    margin-left: 770px;
+    border: 0;
+    padding: 10px 25px;
+    background-color: #32CD32;
+    color: #fff;
+    font-size: 25px;
+    border-radius: 3px;
+  }
+
+.about-contact {
+    margin-left: 1000px;
+    margin: 20px;
+    border: 0;
+    padding: 10px 25px;
+    background-color: #32CD32;
+    color: #fff;
+    font-size: 25px;
+    border-radius: 3px;
+  }
+/*===============================
+  14 Contact Area Page
+===============================*/
+.contact-thumbnail {
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15); }
+    @media only screen and (max-width: 767px) {
+      .contact-thumbnail {
+        margin-bottom: 50px; }
+    }
+
+.contact-information{
+    margin-left: 50px;
+  }
+  .contact-information p {
+      font-size: 22px;
+      line-height: 1.3;
+      color: #707070;
+      margin-bottom: 13px; }
+      .contact-information p span {
+          color: #303030; }
+      .contact-information p:last-child {
+          margin-bottom: 0; } 
+  .contact-information a {
+      font-size: 22px;
+      color: #707070;
+      text-transform: lowercase;
+  }
+
+.section-padding-0-100 {
+    padding-top: 0;
+    padding-bottom: 100px;
+}
+
+.section-heading {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 50px; 
+    margin-left: 50px;}
+    .section-heading h2 {
+      font-size: 30px;
+      text-transform: uppercase;
+      margin-bottom: 10px; }
+      @media only screen and (max-width: 767px) {
+        .section-heading h2 {
+          font-size: 24px; } }
+    .section-heading p {
+      font-size: 20px;
+      color: #707070;
+      margin-bottom: 0;
+    }
+    .section-heading-touch {
+        position: relative;
+        z-index: 1;
+        margin-bottom: 50px;
+        margin-left: -16px; 
+        }
+        .section-heading-touch h2 {
+          font-size: 35px;
+          text-transform: uppercase;
+          margin-bottom: 10px; }
+          @media only screen and (max-width: 767px) {
+            .section-heading-touch h2 {
+              font-size: 24px; } }
+        .section-heading-touch p {
+          font-size: 20px;
+          color: #707070;
+          margin-bottom: 0;
+        }
+.contact-form-area .form-control {
+    position: relative;
+    z-index: 2;
+    height: 45px;
+    width: 100%;
+    background-color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #e1e1e1;
+    border-radius: 2px;
+    padding: 15px 20px;
+    font-weight: 400;
+    color: #b7b7b7;
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms; }
+        .contact-form-area .form-control:focus {
+            box-shadow: none;
+            border-color: #70c745; }
+        .contact-form-area textarea.form-control {
+            height: 80px; }
+        .contact-form-area .form-group-1{
+            margin-left: -16px;}
+        .contact-form-area .form-group-2{
+            margin-right: -15px;
+}
+          
+.send-message {
+    -webkit-transition-duration: 400ms;
+    transition-duration: 400ms;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    min-width: 150px;
+    height: 50px;
+    color: #ffffff;
+    background-color: #70c745;
+    border: 2px solid #70c745;
+    border-radius: 2px;
+    padding: 0 20px;
+    font-size: 40px;
+    line-height: 45px;
+    text-transform: uppercase;
+    font-weight: 600; 
+}
+
+.map-area {
+    position: relative;
+    margin-left: -100px;
+    z-index: 2;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.15); }
+    .map-area iframe {
+      width: 100%;
+      height: 520px;
+      border: none;
+      margin-bottom: 0;
+      border-radius: 5px; }
+      @media only screen and (max-width: 767px) {
+        .map-area iframe {
+          height: 320px; } 
+}
+
+.contact-area {
+    background-color: lightgrey;
+    width: 600px;
+    border: 15px solid green;
+    padding: 50px;
+    margin-left: 390px;
+  }
+
+.contact-info-area {
+    background-color: lightgrey;
+    width: 540px;
+    border: 15px solid green;
+    padding: 50px;
+    
+  }
 
 /*===============================
     Scroll Top
