@@ -60,77 +60,68 @@ use App\Models\User;
     </head>
 	
 	<body>
-    <section id="user-profile" class="user-profile">
+		<section id="user-profile" class="user-profile">
             <div class="container">
                 <div class="section-header">
                     <h2><br>Edit Profile</h2>
                     <br>
-                    <br>
+                    <h3 style="color: #32CD32;"> Enter new details to update </h3>
                 </div><!--/.section-header-->
-                <div class="carousel-inner" role="listbox">
-                    <div>
-                    @if(Auth::check())
-                    <!-- Basic Information -->
-                    <div style="border-style:groove;border-width:2px;border-radius:10px;height:400px;">
-                    <h1 style="margin:10px 0px 0px 10px;">Basic Information</h1>
-                    <br>
-
-                    <form action="updateUser/{{Auth::id()}}" method="POST" enctype="multipart/form-data">                  
-                        <div class="form-group mb-3 {{$errors->get('email')?'has-error':''}}">
-                            <label
-                            for="name">Name
-                            </label>
-                                <input
-                                id="name"
-                                name="name"
-                                type="text"
-                                class="form-control validate"
-                                value="{{Auth::user()->name}}"
-                                />
-                            <label
-                            for="name">Home Address
-                            </label>
-                                <input
-                                id="cust_address"
-                                name="cust_address"
-                                type="text"
-                                class="form-control validate"
-                                value="{{Auth::user()->cust_address}}"
-                                />
-                                <label
-                                for="name">Email
-                                </label>
-                                    <input
-                                    id="email"
-                                    name="email"
-                                    type="text"
-                                    class="form-control validate"
-                                    value="{{Auth::user()->email}}"
-                                    />
-                                    @foreach($errors->get('email') as $error)
-                                        <small id="emailhelpblock" style="font-size:15px; color:red;">This email is already taken or is your current email.</small>
-                                    @endforeach
-                                <label
-                                for="name">Phone Number
-                                </label>
-                                    <input
-                                    id="cust_phone_number"
-                                    name="cust_phone_number"
-                                    type="text"
-                                    class="form-control validate"
-                                    value="{{Auth::user()->cust_phone_number}}"
-                                    />
-                                <div class="col-12">
-                                    <button type="submit" style="border-color:#32CD32; background:#32CD32;" class="btn btn-primary btn-block text-uppercase">Edit Profile</button>
-                                </div>  
-                                        {{ csrf_field() }}
-                                </div>
-                                
-                            </form>
-                    @endif
-                        <br>							
+                <br>
+                <br>
+                <br>
+				<form action="updateUser/{{Auth::id()}}" method="POST" enctype="multipart/form-data">
+				{{ csrf_field() }}
+                <div class="row gutters-sm">
+            		<div class="col-md-12" style="margin-top:25px">
+              			<div class="card mb-3">
+							<div class="card-body">
+							<div class="row">
+								<div class="col-sm-3">
+								<h6 class="mb-0">Full Name</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+								<input id="name" name="name" type="text" class="form-control" value="{{Auth::user()->name}}">
+								</div>
+							</div>
+							<hr>
+								<div class="row">
+									<div class="col-sm-3">
+									<h6 class="mb-0">Email</h6>
+									</div>
+									<div class="col-sm-9 text-secondary">
+									<input id="email" name="email" type="email" class="form-control" value="{{Auth::user()->email}}">
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+									<h6 class="mb-0">Phone Number</h6>
+									</div>
+									<div class="col-sm-9 text-secondary">
+									<input id="cust_phone_number" name="cust_phone_number" type="text" class="form-control" value="{{Auth::user()->cust_phone_number}}">
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+									<h6 class="mb-0">Home Address</h6>
+									</div>
+									<div class="col-sm-9 text-secondary">
+									<input id="cust_address" name="cust_address" type="text" class="form-control" value="{{Auth::user()->cust_address}}">
+									</div>
+								</div>
+								<hr>
+                  		<div class="row">
+                    <div class="col-sm-3">
+                            <button type="submit" style="border-color:#32CD32; background:#32CD32;float:center;" class="btn btn-primary btn-block text-uppercase">Edit Profile</button>
                     </div>
-                </div>	
+                    <br><br><br><br>
+                  </div>
+                </div>
+              </div>
+			  
+			</form>
             </div>
         </section>
 

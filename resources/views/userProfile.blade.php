@@ -1,5 +1,8 @@
 <?php use Illuminate\Support\Facades\Auth;
 	$user=Auth::check();
+    $userphonenumber = Auth::user()->cust_phone_number;
+    $userhomeaddress = Auth::user()->cust_address;
+    $userprofilepicture = Auth::user()->profilepicture;
     // $userProfile=User::where(['id'=>$id]);
 ?>
 
@@ -7,7 +10,6 @@
 <html class="no-js" lang="en">
 
     <head>
-
         <!-- Displays appropriate header -->
         @if($user)
 		    @include('header')
@@ -27,12 +29,13 @@
         <!-- title of site -->
         <title>Cacti Succulent KCH Products</title>
 
+        <link rel="stylesheet" href="css/profilepage.css">
+
         <!-- For favicon png -->
 		<link rel="shortcut icon" type="image/icon" href="logo/favicon.png"/>
        
         <!--font-awesome.min.css-->
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-
+        <link rel="stylesheet" href="css/profilepage.css">
         <!--linear icon css-->
 		<link rel="stylesheet" href="css/linearicons.css">
 
@@ -50,12 +53,10 @@
 		<link rel="stylesheet" href="css/bootsnav.css" >	
         
         <!--style.css-->
-        <link rel="stylesheet" href="css/style.css">
+        <!-- <link rel="stylesheet" href="css/style.css"> -->
         
         <!--responsive.css-->
         <link rel="stylesheet" href="css/responsive.css">
-        
-
     </head>
 	
 	<body>
@@ -63,72 +64,113 @@
             <div class="container">
                 <div class="section-header">
                     <h2><br>My Profile</h2>
+                    <br>
+                    <h3 style="color: #32CD32;"> Manage and secure your account! </h3>
                 </div><!--/.section-header-->
-                <div class="carousel-inner" role="listbox">
-                    <div>
-                    @if(Auth::check())
-                    <br>
-                    <!-- <div class="col-sm-3">
-							<div class="homepage-products">
-								<div class="homepage-products-bg" style="border-radius:50%;">
-									<img src="images/homepage/bgimage10.jpeg">
-								</div>  
-							</div>
-					</div> This section is for the profile picture. -->
-                    <br>
-                    <br>
-
-
-                    <!-- Basic Information -->
-                    <div style="border-style:groove;border-width:2px;border-radius:10px;height:140px;">
-                    <h1 style="margin:10px 0px 0px 10px;">Basic Information</h1>
-                    <br>
-
-                    <!-- <h2 style="text-align:left; font-size: 18px; display:inline; margin-left:10px;"> Name: </h2> <input style="text-align:left; font-size: 18px; display:inline; margin-left:10px;" type="text" name="" placeholder="{{Auth::user()->name}}"> -->
-                    <h2 style="text-align:left; font-size: 18px; display:inline; margin-left:10px;"> Name: </h2><h2 style="display:inline; color: #32CD32;">{{Auth::user()->name}}</h2> <h2 style=" text-align:left; display:inline; color: #32CD32;"><a style=" display:inline; color: #aeaeae; font-size:14px" href="{{ route('logout') }}" onclick="event.preventDefault();
-															document.getElementById('logout-form').submit();">&nbsp;&nbsp;&nbsp;edit</a></h2>
-                    <br>
-                    <br>
-                    <h2 style="text-align:left; font-size: 18px; display:inline; margin:10px 0px 10px 10px;"> Home Address: </h2><h2 style="display:inline; color: #32CD32; font-size: 18px;">{{Auth::user()->cust_address}} </h2> <h2 style=" text-align:left; display:inline; color: #32CD32;"><a style=" display:inline; color: #aeaeae; font-size:14px" href="{{ route('logout') }}" onclick="event.preventDefault();
-															document.getElementById('logout-form').submit();">&nbsp;&nbsp;&nbsp;edit</a></h2>
-                    <br>
-                    </div>
-                    <!--  -->
-
-                    <br>
-
-                    <!-- Contact Information -->
-                    <div style="border-style:groove;border-width:2px;border-radius:10px;height:140px;">
-                    <h1 style="margin:10px 0px 0px 10px;">Contact Information<h1>
-                    <br>
-                    <h2 style="text-align:left; font-size: 18px; display:inline; margin-left:10px;"> Email Address: </h2><h2 style="display:inline; color: #32CD32; font-size: 18px">{{Auth::user()->email}}</h2> <h2 style=" text-align:left; display:inline; color: #32CD32;"><a style=" display:inline; color: #aeaeae; font-size:14px" href="{{ route('logout') }}" onclick="event.preventDefault();
-															document.getElementById('logout-form').submit();">&nbsp;&nbsp;&nbsp;edit</a></h2>
-                    <br>
-                    <br>
-                    <h2 style="text-align:left; font-size: 18px; display:inline; margin:10px 0px 10px 10px;"> Phone Number: </h2><h2 style="display:inline; color: #32CD32;">{{Auth::user()->cust_phone_number}}</h2> <h2 style=" text-align:left; display:inline; color: #32CD32;"><a style=" display:inline; color: #aeaeae; font-size:14px" href="{{ route('logout') }}" onclick="event.preventDefault();
-															document.getElementById('logout-form').submit();">&nbsp;&nbsp;&nbsp;edit</a></h2>
-                    </div>
-                    <!--  -->
-                    
-                    
-                    <br>
-                    <div>
-                    <a href="/editUserProfile">
-                        <button style="border-color:#32CD32; background:#32CD32;" class="btn btn-primary btn-block text-uppercase">Edit Profile</button>
-                    </a>
-                    </div>
-                    <br>
-                    <div>
-                                            <h2 style=" text-align:left; display:inline; color: #32CD32;"><a style=" text-align:left; display:inline; color: #32CD32; font-size:18px" href="{{ route('logout') }}" onclick="event.preventDefault();
-															document.getElementById('logout-form').submit();">Logout</a></h2>
-                        <a href></a>
-                    </div>
-                    <br>
-                    <br>
+                <br>
+                <br>
+                <br>
+                <div class="row gutters-sm">
+            <div id="profileContainer" class="col-md-4 mb-3">
+              <div class="card" style="margin-top:25px">
+              <form action="updateUserProfile/{{Auth::id()}}" method="POST" enctype="multipart/form-data">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    @if($userprofilepicture!=null)
+                    <img src="{{URL::asset('storage/images/profilepic/'.$userprofilepicture)}}" alt="Admin" class="rounded-circle" style="max-width:100%;height:auto;float:center">
+                    @else
+                      <img src="{{url('/images/collection/profilepic.png')}}" alt="Admin" class="rounded-circle" style="max-width:100%;height:auto;float:center">
                     @endif
-                        <br>							
+                  </div>
+                  <div class="custom-file mt-3 mb-3">
+                  <input onchange="readURL(this);" id="fileInputPP" type="file" style="display:none;" name="file" >
+                  <input  hidden id="img_Text" type="img_Text" value="0" name="img_Text">
+                  <input
+                    type="button"
+                    class="btn btn-primary btn-block mx-auto"
+                    style="border-color:#32CD32; background:#32CD32;"
+                    value="Choose Profile Photo"
+                    onclick="document.getElementById('fileInputPP').click();"
+                  />
+                  <!-- <div class="col-4">
+                    <button type="submit" style="border-color:#32CD32; background:#32CD32;">Update Picture</button>
+                  </div> -->
+                </div>
+                {{ csrf_field() }}
+            </form>
+                </div>
+              </div>
+              <br>
+              <div class="card mt-5">
+              <ul id="profilepagelist">
+                    <hr>
+                    <li><a href="/order">My Orders</a></li>
+                    <hr>
+                    <li><a href="cart">My Cart</a></li>
+                    <hr>
+                    <li><a href="{{ route('logout') }}">Logout</a></li>
+                    <hr>
+              </ul>
+              </div>
+            </div>
+
+            <div class="col-md-8" style="margin-top:25px">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Full Name</h6>
                     </div>
-                </div>	
+                    <div class="col-sm-9 text-secondary">
+                        <h7 style="display:inline; color: #32CD32;font:sans-serif">{{Auth::user()->name}}</h7>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <h7 style="display:inline; color: #32CD32;font:sans-serif">{{Auth::user()->email}}</h7>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Phone Number</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        @if($userphonenumber!=null)
+                        <h7 id="phone-number" style="display:inline; color: #32CD32;font:sans-serif">{{Auth::user()->cust_phone_number}}</h7>
+                        @else
+                        <h7 style="display:inline; color: #b9b9b9;font:sans-serif; font-style:italic;">Fill in your phone number!</h7>
+                        @endif
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Home Address</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        @if($userhomeaddress!=null)
+                        <h7 style="display:inline; color: #32CD32;font:sans-serif">{{Auth::user()->cust_address}}</h7>
+                        @else
+                        <h7 style="display:inline; color: #b9b9b9;font:sans-serif; font-style:italic;">Fill in your home address!</h7>
+                        @endif
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-12">
+                        <a href="/editUserProfile">
+                            <button style="border-color:#32CD32; background:#32CD32;" class="btn btn-primary btn-block text-uppercase">Edit Profile</button>
+                        </a>
+                    </div>
+                    <br><br><br><br>
+                  </div>
+                </div>
+              </div>
             </div>
         </section>
 
@@ -151,8 +193,11 @@
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 		
-        @include('footer')
+        
         <!--Custom JS-->
         <script src="js/custom.js"></script>
 	</body>
+    <footer>
+    @include('footer')
+    </footer>
 </html>
