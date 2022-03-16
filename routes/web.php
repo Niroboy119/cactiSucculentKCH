@@ -58,6 +58,10 @@ Route::get('/editUserProfile', function(){
     return view('editUserProfile');
 });
 
+Route::get('/editPassword', function(){
+    return view('editPassword');
+});
+
 Route::get('/reset-password/{token}', function ($token) {
     return view('reset', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
@@ -114,5 +118,7 @@ Route::get('cart/decreaseCartQuantity/{Product_ID}', 'App\Http\Controllers\Produ
 Route::get('checkout/proceedtocheckout','App\Http\Controllers\ProductController@proceedToCheckout');
 Route::post('updateUser/{id}', 'App\Http\Controllers\UserController@updateUser');
 Route::post('updateUserProfile/{id}','App\Http\Controllers\UserController@updateUserProfile');
-Route::post('resetEmailPassword/{id}', 'App\Http\Controllers\UserController@resetEmailPassword');
+
 Route::post('/checkout', [OrderController::class, 'store']);
+
+Route::post('/changePassword',[App\Http\Controllers\UserController::class,'changePassword'])->name('changePassword');

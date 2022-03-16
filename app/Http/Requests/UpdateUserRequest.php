@@ -24,7 +24,9 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'email' => 'unique:users,email,'.Auth::id()
         ];
     }
+
+    
 }

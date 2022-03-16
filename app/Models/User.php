@@ -25,6 +25,7 @@ class User extends Authenticatable
         'cust_phone_number',
         'cust_address',
         'password',
+        'profilepicture'
     ];
 
     /**

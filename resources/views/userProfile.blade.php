@@ -66,40 +66,37 @@
                     <h2><br>My Profile</h2>
                     <br>
                     <h3 style="color: #32CD32;"> Manage and secure your account! </h3>
+                    
                 </div><!--/.section-header-->
                 <br>
-                <br>
+                <hr>
+                
                 <br>
                 <div class="row gutters-sm">
-            <div id="profileContainer" class="col-md-4 mb-3">
-              <div class="card" style="margin-top:25px">
-              <form action="updateUserProfile/{{Auth::id()}}" method="POST" enctype="multipart/form-data">
-                <div class="card-body">
-                  <div class="d-flex flex-column align-items-center text-center">
-                    @if($userprofilepicture!=null)
-                    <img src="{{URL::asset('storage/images/profilepic/'.$userprofilepicture)}}" alt="Admin" class="rounded-circle" style="max-width:100%;height:auto;float:center">
-                    @else
-                      <img src="{{url('/images/collection/profilepic.png')}}" alt="Admin" class="rounded-circle" style="max-width:100%;height:auto;float:center">
-                    @endif
+                      <div id="profileContainer" class="col-md-4 mb-3">
+                          <div class="card" style="margin-top:25px">
+                      <form action="updateUser/{{Auth::id()}}" method="POST" enctype="multipart/form-data">
+                          <div class="card-body">
+                              <div class="d-flex flex-column align-items-center text-center">
+                                <div class="profileimage">
+                                @if($userprofilepicture!=null)
+                                <img src="{{URL::asset('storage/images/profilepic/'.$userprofilepicture)}}" alt="Admin" class="rounded-circle">
+                                @else
+                                <img src="{{url('/images/collection/profilepic.png')}}" alt="Admin" class="rounded-circle" style="max-width:100%;height:auto;border-radius:30%;float:center">
+                                @endif
+                              </div>
+                              </div>
+                            
+                                
+                                
+                                <!-- <div class="col-4">
+                                  <button type="submit" style="border-color:#32CD32; background:#32CD32;">Update Picture</button>
+                                </div> -->
+                            
+                            {{ csrf_field() }}
+                      </form>
                   </div>
-                  <div class="custom-file mt-3 mb-3">
-                  <input onchange="readURL(this);" id="fileInputPP" type="file" style="display:none;" name="file" >
-                  <input  hidden id="img_Text" type="img_Text" value="0" name="img_Text">
-                  <input
-                    type="button"
-                    class="btn btn-primary btn-block mx-auto"
-                    style="border-color:#32CD32; background:#32CD32;"
-                    value="Choose Profile Photo"
-                    onclick="document.getElementById('fileInputPP').click();"
-                  />
-                  <!-- <div class="col-4">
-                    <button type="submit" style="border-color:#32CD32; background:#32CD32;">Update Picture</button>
-                  </div> -->
                 </div>
-                {{ csrf_field() }}
-            </form>
-                </div>
-              </div>
               <br>
               <div class="card mt-5">
               <ul id="profilepagelist">
@@ -108,15 +105,16 @@
                     <hr>
                     <li><a href="cart">My Cart</a></li>
                     <hr>
-                    <li><a href="{{ route('logout') }}">Logout</a></li>
+                    <li><a onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a></li>
                     <hr>
               </ul>
               </div>
             </div>
 
-            <div class="col-md-8" style="margin-top:25px">
+            <div class="col-md-8" style="margin-top:25px ;box-shadow:2px 2px 4px; border-radius:3%;">
               <div class="card mb-3">
-                <div class="card-body">
+                <div class="card-body" style="margin-left:15px; margin-top:20px">
+                  <br>
                   <div class="row">
                     <div class="col-sm-3">
                       <h6 class="mb-0">Full Name</h6>
@@ -162,9 +160,15 @@
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-2">
                         <a href="/editUserProfile">
                             <button style="border-color:#32CD32; background:#32CD32;" class="btn btn-primary btn-block text-uppercase">Edit Profile</button>
+                        </a>
+                    </div>
+                    
+                    <div class="col-sm-2">
+                    <a href="/editPassword">
+                            <button style="border-color:#32CD32; background:#32CD32;" class="btn btn-primary btn-block text-uppercase">Change Password</button>
                         </a>
                     </div>
                     <br><br><br><br>
