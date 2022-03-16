@@ -63,7 +63,7 @@
     <section id="user-profile" class="user-profile">
             <div class="container">
                 <div class="section-header">
-                    <h2><br>My Profile</h2>
+                    <h2><br> My Profile </h2>
                     <br>
                     <h3 style="color: #32CD32;"> Manage and secure your account! </h3>
                     
@@ -101,9 +101,9 @@
               <div class="card mt-5">
               <ul id="profilepagelist">
                     <hr>
-                    <li><a href="/order">My Orders</a></li>
+                    <li><a href="/order"> My Orders </a></li>
                     <hr>
-                    <li><a href="cart">My Cart</a></li>
+                    <li><a href="cart"> My Cart </a></li>
                     <hr>
                     <li><a onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a></li>
                     <hr>
@@ -117,7 +117,7 @@
                   <br>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Full Name</h6>
+                      <h6 class="mb-0"> Full Name </h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                         <h7 style="display:inline; color: #32CD32;font:sans-serif">{{Auth::user()->name}}</h7>

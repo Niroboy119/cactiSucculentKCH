@@ -30,6 +30,7 @@ use App\Models\User;
         <!-- title of site -->
         <title>Cacti Succulent KCH Products</title>
 
+        <script src="{{ asset('js/app.js') }}" defer></script>
         <!-- For favicon png -->
 		<link rel="shortcut icon" type="image/icon" href="logo/favicon.png"/>
        
@@ -58,6 +59,8 @@ use App\Models\User;
         
         <!--responsive.css-->
         <link rel="stylesheet" href="css/responsive.css">
+
+        
         
 
     </head>
@@ -77,14 +80,14 @@ use App\Models\User;
                       <div id="profileContainer" class="col-md-4 mb-3">
                           <div class="card" style="margin-top:25px">
                         <form action="updateUser/{{Auth::id()}}" method="POST" enctype="multipart/form-data">
-                          
+                          <div>
                               <div class="d-flex flex-column align-items-center text-center">
-                              <img src="{{URL::asset('storage/images/profilepic/'.$userprofilepic)}}" alt="UserProfile" class="rounded-circle" style="max-width:200px;max-height:200px;float:center;border-radius:100%">
+                              <img src="{{URL::asset('storage/images/profilepic/'.$userprofilepic)}}" id="imgTag" alt="UserProfile" class="rounded-circle" style="max-width:200px;max-height:200px;float:center;border-radius:100%">
                               </div>
                               <br>
-                              
+
                             <div class="custom-file mt-3 mb-3">
-                                <input onchange="readURL(this);" id="fileInput" type="file" style="display:none;" name="profilepicfile" >
+                                <input onchange="readURL(this);" id="fileInput" type="file" style="display:none;" name="profilepicfile">
                                 <input  hidden id="img_Text" type="img_Text" value="0" name="img_Text">
                                 <div class="col-sm-12">
                                 <input
@@ -95,12 +98,10 @@ use App\Models\User;
                                     onclick="document.getElementById('fileInput').click();"
                                 />
                                 </div>
+                              </div>
                                 <!-- <div class="col-4">
                                   <button type="submit" style="border-color:#32CD32; background:#32CD32;">Update Picture</button>
                                 </div> -->
-                            
-                            
-
                   </div>
                 </div>
               <br>

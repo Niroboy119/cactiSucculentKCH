@@ -176,8 +176,7 @@ $product = Product::where([ 'Product_ID' => $id ]);
                   <div class="form-group mb-3">
                     <label
                       for="Desc"
-                      >Description</label
-                    >
+                      >Description</label>
                     <textarea
                       id="Desc"
                       name="Desc"
@@ -268,7 +267,7 @@ $product = Product::where([ 'Product_ID' => $id ]);
                                 @enderror
                 
                 </div>
-                  
+  
               </div>
               <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                 <div class="tm-product-img-dummy mx-auto">
