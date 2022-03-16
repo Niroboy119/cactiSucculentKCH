@@ -166,9 +166,7 @@ border-radius:12px;
 										@endif
 				                    </li><!--/.dropdown-->
 									<li>
-										<form action="/login">
-										<button type ="submit" class="button11" >Login</button>
-										</form>
+										<a href="/login" style="font-size:18px;font-style:sans-serif;">Login</a>
 				                	</li>
 								</ul>
 
