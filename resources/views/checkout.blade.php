@@ -205,6 +205,7 @@
         function yesnoCheck() {
             if (document.getElementById('inlineRadio2').checked) {
                 document.getElementById('ifYes').style.display = 'none';
+                document.getElementById('address').required = false;
             } else{
                 document.getElementById('ifYes').style.display = 'block';
             }
