@@ -2,7 +2,50 @@
     $products=Product::all();?>
 <!--font-family-->
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-	<head>
+<style>
+
+.button11 {
+padding-top:42px;
+padding-left:15px;
+border:2px;
+color:#32CD32;
+background: color #32CD32;
+border-radius:12px;
+
+}
+
+.button11:hover{
+	color:green;
+}
+
+
+
+.button {
+  border: none;
+  color: white;
+  padding: 1px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 970px 0px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: white; 
+  color: red; 
+  border: 2px solid red;
+}
+
+.button1:hover {
+  background-color: red;
+  color: white;
+}
+
+</style>
+<head>
         <!-- title of site -->
 
         <!--font-awesome.min.css-->
@@ -79,9 +122,7 @@
 				                	<li class="search">
 				                		<a href="#"><span class="lnr lnr-magnifier"></span></a>
 				                	</li><!--/.search-->
-									<li class="user">
-				                		<a href="login"><span class="lnr lnr-user"></span></a>
-				                	</li><!--/.search-->
+									
 									<li class="dropdown">
 				                        <a href="/cart" class="dropdown-toggle" data-toggle="dropdown" >
 				                            <span class="lnr lnr-cart"></span>
@@ -124,6 +165,12 @@
 				                        </ul>
 										@endif
 				                    </li><!--/.dropdown-->
+									<li>
+										<form action="/login">
+										<button type ="submit" class="button11" >Login</button>
+										</form>
+				                	</li>
+								</ul>
 
 									
 				                </ul>
