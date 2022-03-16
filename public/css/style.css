@@ -1621,17 +1621,17 @@ td:last-child{
 }
 
 .contact-area {
-    background-color: lightgrey;
+    background-color: white;
     width: 600px;
-    border: 15px solid green;
+    border: 15px solid #70c745;
     padding: 50px;
     margin-left: 390px;
   }
 
 .contact-info-area {
-    background-color: lightgrey;
+    background-color: white;
     width: 540px;
-    border: 15px solid green;
+    border: 15px solid #70c745;
     padding: 50px;
     
   }
