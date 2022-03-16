@@ -125,9 +125,9 @@ use App\Models\User;
                                         });
                                     </script>
 
-            <div class="col-md-8" style="margin-top:25px">
+            <div class="col-md-8" style="margin-top:25px ;box-shadow:2px 2px 4px; border-radius:3%;">
               <div class="card mb-3">
-                <div class="card-body">
+                <div class="card-body" style="margin-left:15px; margin-top:20px">
                   <div class="row">
                     <div class="col-sm-3">
                       <h6 class="mb-0">Full Name</h6>
@@ -177,7 +177,7 @@ use App\Models\User;
                             <button style="border-color:#32CD32; background:#32CD32;" class="btn btn-primary btn-block text-uppercase">Edit Profile</button>
                         </a>
                     </div>
-                    <br><br><br><br>
+                    <br><br>
                   </div>
                 </div>
               </div>
