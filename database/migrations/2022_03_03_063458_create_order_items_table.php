@@ -19,7 +19,7 @@ class CreateOrderItemsTable extends Migration
             $table->bigInteger('order_Id')->index()->unsigned();
             $table->integer('product_Id')->index()->unsigned();
             $table->unsignedInteger('quantity');
-            $table->decimal('price', 20, 6);
+            $table->decimal('price', 20, 2);
 
             $table->foreign('order_Id')->references('order_Id')->on('orders')->onDelete('cascade');
             $table->foreign('product_Id')->references('Product_ID')->on('products')->onDelete('cascade');
