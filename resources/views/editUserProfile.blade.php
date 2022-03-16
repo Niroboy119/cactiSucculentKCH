@@ -107,6 +107,24 @@ use App\Models\User;
               <br>
             </div>
 
+            <script type="text/javascript">
+                                    function readURL(input) {
+                                            if (input.files && input.files[0]) {
+                                                var reader = new FileReader();
+                                                
+                                                reader.onload = function (e) {
+                                                    $('#imgTag').attr('src', e.target.result);
+                                                }
+                                                reader.readAsDataURL(input.files[0]);
+                                            }
+                                            var img_File_text=document.getElementById("img_Text");
+                                            img_File_text.value="1";
+                                        }
+                                        $("#fileInput").change(function(){
+                                            readURL(this);
+                                        });
+                                    </script>
+
             <div class="col-md-8" style="margin-top:25px">
               <div class="card mb-3">
                 <div class="card-body">
