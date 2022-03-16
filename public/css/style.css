@@ -1470,7 +1470,7 @@ td:last-child{
 
 
 .our-product {
-    margin-left: 770px;
+    margin-left: 570px;
     border: 0;
     padding: 10px 25px;
     background-color: #32CD32;
@@ -1606,12 +1606,12 @@ td:last-child{
 
 .map-area {
     position: relative;
-    margin-left: -100px;
+    margin-left: -250px;
     z-index: 2;
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.15); }
     .map-area iframe {
-      width: 100%;
-      height: 520px;
+      width: 80%;
+      height: 490px;
       border: none;
       margin-bottom: 0;
       border-radius: 5px; }
@@ -1625,7 +1625,7 @@ td:last-child{
     width: 600px;
     border: 15px solid #70c745;
     padding: 50px;
-    margin-left: 390px;
+    margin-left: 200px;
   }
 
 .contact-info-area {
