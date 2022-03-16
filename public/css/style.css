@@ -125,6 +125,7 @@ html,body{height: 100%;}
 
 /* section-header */
 .section-header{
+    font-family: 'Roboto', sans-serif;
     position: relative;
     text-align: center;
 }
@@ -1502,10 +1503,12 @@ td:last-child{
     }
 
 .contact-information{
+    font-family: 'Roboto', sans-serif;
     margin-left: 50px;
   }
   .contact-information p {
-      font-size: 22px;
+    font-family: 'Roboto', sans-serif;
+      font-size: 20px;
       line-height: 1.3;
       color: #707070;
       margin-bottom: 13px; }
@@ -1514,7 +1517,8 @@ td:last-child{
       .contact-information p:last-child {
           margin-bottom: 0; } 
   .contact-information a {
-      font-size: 22px;
+    font-family: 'Roboto', sans-serif;
+      font-size: 20px;
       color: #707070;
       text-transform: lowercase;
   }
@@ -1525,36 +1529,41 @@ td:last-child{
 }
 
 .section-heading {
+    font-family: 'Roboto', sans-serif;
     position: relative;
     z-index: 1;
     margin-bottom: 50px; 
     margin-left: 50px;}
     .section-heading h2 {
+        font-family: 'Roboto', sans-serif;
       font-size: 30px;
       text-transform: uppercase;
       margin-bottom: 10px; }
       @media only screen and (max-width: 767px) {
         .section-heading h2 {
-          font-size: 24px; } }
+          font-size: 20px; } }
     .section-heading p {
       font-size: 20px;
       color: #707070;
       margin-bottom: 0;
     }
     .section-heading-touch {
+        font-family: 'Roboto', sans-serif;
         position: relative;
         z-index: 1;
         margin-bottom: 50px;
         margin-left: -16px; 
         }
         .section-heading-touch h2 {
+            font-family: 'Roboto', sans-serif;
           font-size: 35px;
           text-transform: uppercase;
           margin-bottom: 10px; }
           @media only screen and (max-width: 767px) {
             .section-heading-touch h2 {
-              font-size: 24px; } }
+              font-size: 20px; } }
         .section-heading-touch p {
+            font-family: 'Roboto', sans-serif;
           font-size: 20px;
           color: #707070;
           margin-bottom: 0;
@@ -1598,6 +1607,7 @@ td:last-child{
     border: 2px solid #70c745;
     border-radius: 2px;
     padding: 0 20px;
+    font-family: 'Roboto', sans-serif;
     font-size: 40px;
     line-height: 45px;
     text-transform: uppercase;
@@ -1621,6 +1631,7 @@ td:last-child{
 }
 
 .contact-area {
+    font-family: 'Roboto', sans-serif;
     background-color: white;
     width: 600px;
     border: 15px solid #70c745;
@@ -1629,12 +1640,17 @@ td:last-child{
   }
 
 .contact-info-area {
+    font-family: 'Roboto', sans-serif;
     background-color: white;
     width: 540px;
     border: 15px solid #70c745;
     padding: 50px;
     
   }
+
+.contact-info-area a {
+    font-family: 'Roboto', sans-serif;
+}
 
 /*===============================
     Scroll Top

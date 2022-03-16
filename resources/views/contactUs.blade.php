@@ -91,9 +91,9 @@
                                             </div>
                                             <!-- Contact Information -->
                                             <div class="contact-information">
-                                                <p><span>Phone:</span> <a href="tel:+60198182384">(+60)19-818-2384</a></p>
-                                                <p><span>Location:</span> Kuching Metropolian Area, Kuching, Sarawak, Malaysia</p>
-                                                <p><span>Email:</span> <a href="mailto:anniepeksf@gmail.com">anniepeksf@gmail.com</a></p>
+                                                <p style ="font-family: 'Roboto', sans-serif;"><span>Phone:</span> <a href="tel:+60198182384">(+60)19-818-2384</a></p>
+                                                <p><span style="font-family: 'Roboto', sans-serif;">Location:</span> Kuching Metropolian Area, Kuching, Sarawak, Malaysia</p>
+                                                <p style="font-family: 'Roboto', sans-serif;"><span style>Email:</span> <a href="mailto:anniepeksf@gmail.com">anniepeksf@gmail.com</a></p>
                                                 <p><span>Open Hours:</span> Mon - Sun: 8am - 5am</p>
                                             </div>
                                         </div>
@@ -123,7 +123,7 @@
                             <div class="row">
                                 <div class="col-12 col-md-7">
                                     <div class="form-group-1">
-                                        <input type="name" class="form-control" id="contact-name" placeholder="Your Name">
+                                        <input type="name" class="form-control" id="contact-name" placeholder="Your Name" style="font-family: 'Roboto', sans-serif;">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-5">
