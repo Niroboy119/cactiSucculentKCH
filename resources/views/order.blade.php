@@ -153,7 +153,7 @@ $order = Order::where([ 'order_Id' => auth()->id() ]);
                                 <p style="color:black;">Grand Total: RM <a>{{$order->grand_total}}</a></p> 
                                 <p style="color:black;">Delivery Type: <a>{{$order->delivery_type}}</a></p> 
                                 @if($order->status == "pending")
-                                <p style="color:black;">Order Status: <a style="color:#32CD32;">{{$order->status}}</a></p>
+                                <p style="color:black;">Order Status: <a style="color:#FED000;">{{$order->status}}</a></p>
                                 @else
                                 <p style="color:black;">Order Status: <a style="color:red;">{{$order->status}}</a></p>
                                 @endif
