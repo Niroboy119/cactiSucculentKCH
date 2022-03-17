@@ -8,6 +8,16 @@ $orders=Order::all();
 ?>
 
 <?php
+use App\Models\OrderItem;
+$orderItems=OrderItem::all();
+?>
+
+<?php
+use App\Models\Product;
+$products=Product::all();
+?>
+
+<?php
 $order = Order::where([ 'order_Id' => auth()->id() ]);
 ?>
 
@@ -128,6 +138,18 @@ $order = Order::where([ 'order_Id' => auth()->id() ]);
                     <div class="card-order">
                             <div class="container-order">
                                 <h4><b style="color:#32CD32;">Order ID: {{$order->order_Id}}</b></h4> 
+                                <p style="color:black;">Items Ordered: <a>
+                                     @foreach($orderItems as $orderItem)
+                                     @if($orderItem->order_Id == $order->order_Id)
+                                     @foreach($products as $product)
+
+                                     @if($orderItem->product_Id == $product->Product_ID)
+                                     ({{$orderItem->quantity}}x) {{$product->Product_Name}}@if($order->item_count>=2) |@endif
+                                     @endif
+
+                                     @endforeach 
+                                     @endif 
+                                    @endforeach</a></p>  
                                 <p style="color:black;">Grand Total: RM <a>{{$order->grand_total}}</a></p> 
                                 <p style="color:black;">Delivery Type: <a>{{$order->delivery_type}}</a></p> 
                                 @if($order->status == "pending")
@@ -213,5 +235,7 @@ $order = Order::where([ 'order_Id' => auth()->id() ]);
 	</body>
 
 	@include('footer')
-	
+	<!--<a>@foreach($orderItems as $orderItem)
+                                     @if($order->order_Id == $orderItem->order_Id)@foreach($products as $product)@if($orderItem->order_Id == $product->Product_ID){{$product->Product_Name}}@endif 
+                                     @endforeach @endif @endforeach</a></p> -->
 </html>
