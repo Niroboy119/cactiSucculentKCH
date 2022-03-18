@@ -113,6 +113,11 @@ class ProductController extends Controller
         $product = Product::where ( 'Product_Name', 'LIKE', '%' . $search . '%' )->get ();
         return view('search',compact('product'));
     }
+	
+	 public function exploreProduct($id){
+        return view('item',compact('id'));
+
+    }
 
     // Cart Functions
         public function addToCart($id){

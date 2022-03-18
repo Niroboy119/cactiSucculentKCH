@@ -32,6 +32,13 @@ $product = Product::where([ 'Product_ID' => 6 ]);
     border-spacing: 10px; /*Optional*/
 	}
 	
+	.expand{
+		margin-right: 12px;
+		
+	}
+
+	
+	
 </style>
 
 <html class="no-js" lang="en">
@@ -124,9 +131,9 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 												<div class="welcome-hero-txt">
 													<h4>Cacti collection</h4>
 													<h2 style="color:black;">{{$product->Product_Name}}</h2>
-													<p>
+													<!--<p>
 													{{$product->Product_Desc}}
-													</p>
+													</p>-->
 													<div class="packages-price">
 														<p>
 														RM {{$product->Product_Price}}
@@ -174,9 +181,6 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 												<div class="welcome-hero-txt">
 													<h4>Cacti collection</h4>
 													<h2 style="color:black;">{{$product->Product_Name}}</h2>
-													<p>
-													{{$product->Product_Desc}}
-													</p>
 													<div class="packages-price">
 														<p>
 														RM {{$product->Product_Price}}
@@ -312,8 +316,8 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 											<a href="{{ url('cart/'.$product->Product_ID) }}" role="button">add <span>to </span> cart</a>
 										</p>
 										<p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
+											<a href="{{ url('/item/'.$product->Product_ID)}}" role="button" class="lnr lnr-frame-expand expand"></a>
+
 										</p>
 									</div>
 								</div>

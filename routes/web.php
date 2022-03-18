@@ -33,6 +33,9 @@ Route::get('/order', function () {
 Route::get('/cart', function () {
     return view('cart');
 });
+Route::get('/item', function () {
+    return view('item');
+});
 
 Route::get('/aboutUs', function () {
     return view('aboutUs');
@@ -89,7 +92,7 @@ Route::get('/searchSuppliers/{search}', [App\Http\Controllers\SupplierController
 Route::get('/searchSuppliers', [App\Http\Controllers\SupplierController::class, 'displaySuppliers'])->name('suppliers');
 
 
-Route::get('/search/{search}', [App\Http\Controllers\ProductController::class, 'search'])->name('products');
+Route::get('search/{search}', [App\Http\Controllers\ProductController::class, 'search'])->name('products');
 
 Route::get('/test', [App\Http\Controllers\ProductController::class, 'test'])->name('products');
 
@@ -97,6 +100,8 @@ Route::get('/test', [App\Http\Controllers\ProductController::class, 'test'])->na
 
 
 Route::get('cart/{Product_ID}', 'App\Http\Controllers\ProductController@addToCart');
+Route::get('/item/{Product_ID}', 'App\Http\Controllers\ProductController@exploreProduct');
+
 
 Auth::routes();
 
