@@ -37,6 +37,13 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 		
 	}
 
+	/* .center {
+		margin: auto;
+		width: 60%;
+		border: 5px solid #FFFF00;
+		padding: 10px;
+	} */
+
 	
 	
 </style>
@@ -118,43 +125,43 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 
 					<!-- .item -->
 
-					<div class="item active">
+					<div class="item active ">
 
 						<div class="single-slide-item slide1">
 
 						<div class="container">
 								<div class="welcome-hero-content">
 									<div class="row">
-										<div class="col-sm-7">
+									<div class="col-sm-7">
+											<div class="single-welcome-hero">
+												<div class="welcome-hero-img">
+													<img src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" style="width:390px;height:500px;">
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-5">
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-txt">
 													<h4>Cacti collection</h4>
 													<h2 style="color:black;">{{$product->Product_Name}}</h2>
-													<!--<p>
+													<p>
 													{{$product->Product_Desc}}
-													</p>-->
-													<div class="packages-price">
-														<p>
+													</p>
+													<div>
+														<h3 style="font-size:33px;color:#32CD32;">
 														RM {{$product->Product_Price}}
-														</p>
+														</h3>
 													</div>
-													<button class="btn-cart welcome-add-cart" style="color:white;"onClick="parent.open('{{ url('cart/'.$product->Product_ID) }}')">
+													<button class="btn-cart welcome-add-cart" style=" width:550px;color:white;"onClick="parent.open('{{ url('cart/'.$product->Product_ID) }}')">
 														<span class="lnr lnr-plus-circle" ></span>
 														add <span>to </span> cart
 													</button>
-													<button class="btn-cart welcome-add-cart welcome-more-info" onclick="window.location.href='product'">
-														more info
-													</button>
+													
+													
 												</div><!--/.welcome-hero-txt-->
 											</div><!--/.single-welcome-hero-->
 										</div><!--/.col-->
-										<div class="col-sm-5">
-											<div class="single-welcome-hero">
-												<div class="welcome-hero-img">
-													<img src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" style="max-height:500px">
-												</div><!--/.welcome-hero-txt-->
-											</div><!--/.single-welcome-hero-->
-										</div><!--/.col-->
+										
 									</div><!--/.row-->
 									@endif
 									@endforeach

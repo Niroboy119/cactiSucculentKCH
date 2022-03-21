@@ -20,9 +20,7 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 
 <style>
 	.single-new-arrival-bg img{
-		max-height:350px;
-		max-width:300px;
-		object-fit: cover;
+		
 	}
 
 	.Rows {
@@ -143,7 +141,7 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 														<span class="lnr lnr-plus-circle" ></span>
 														add <span>to </span> cart
 													</button>
-													<button class="btn-cart welcome-add-cart welcome-more-info" onclick="window.location.href='product'">
+													<button class="btn-cart welcome-add-cart welcome-more-info" onClick="parent.open('{{ url('item/'.$product->Product_ID) }}')">
 														more info
 													</button>
 												</div><!--/.welcome-hero-txt-->
@@ -152,7 +150,7 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 										<div class="col-sm-5">
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-img">
-													<img src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" style="max-height:500px">
+													<img src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" style="width:390px;height:500px;">
 												</div><!--/.welcome-hero-txt-->
 											</div><!--/.single-welcome-hero-->
 										</div><!--/.col-->
@@ -190,7 +188,7 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 														<span class="lnr lnr-plus-circle" ></span>
 														add <span>to </span> cart
 													</button>
-													<button class="btn-cart welcome-add-cart welcome-more-info" onclick="window.location.href='product'">
+													<button class="btn-cart welcome-add-cart welcome-more-info" onClick="parent.open('{{ url('item/'.$product->Product_ID) }}')">
 														more info
 													</button>
 												</div><!--/.welcome-hero-txt-->
@@ -302,7 +300,7 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 						@foreach($products as $product)
 							<div class="single-new-arrival" style="float:left; padding:8px;">
 								<div class="single-new-arrival-bg">
-									<img src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" alt="new-arrivals images">
+									<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" alt="new-arrivals images">
 									<div class="single-new-arrival-bg-overlay"></div>
 									<div class="new-arrival-cart">
 										
@@ -316,12 +314,12 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 											<a href="{{ url('cart/'.$product->Product_ID) }}" role="button">add <span>to </span> cart</a>
 										</p>
 										<p class="arrival-review pull-right">
-											<a href="{{ url('/item/'.$product->Product_ID)}}" role="button" class="lnr lnr-frame-expand expand"></a>
+											<a href="{{ url('item/'.$product->Product_ID)}}" role="button" class="lnr lnr-frame-expand expand"></a>
 
 										</p>
 									</div>
 								</div>
-								<h4><a href="#">{{$product->Product_Name}}</a></h4>
+								<h4><a href="{{ url('item/'.$product->Product_ID)}}">{{$product->Product_Name}}</a></h4>
 								<p class="arrival-product-price">RM {{$product->Product_Price}}</p>
 							</div>
 						@endforeach
