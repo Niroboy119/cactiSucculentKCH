@@ -135,7 +135,7 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 								<h4><a href="{{ url('item/'.$product->Product_ID)}}">{{$product->Product_Name}}</a></h4>
 								<p class="arrival-product-price">RM {{$product->Product_Price}}</p>
 							</div>
-						
+						@endif
 						@endforeach
 
     <!-- <script type="text/javascript">
