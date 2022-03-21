@@ -26,6 +26,18 @@ Route::get('/product', function () {
     return view('product');
 });
 
+Route::get('/plants', function () {
+    return view('productPlants');
+});
+
+Route::get('/pots', function () {
+    return view('productPots');
+});
+
+Route::get('/soils', function () {
+    return view('productSoils');
+});
+
 Route::get('/order', function () {
     return view('order');
 });
