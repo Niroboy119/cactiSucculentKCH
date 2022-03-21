@@ -61,9 +61,9 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
-Route::get('/dashboard', function () {
-    return view('admin/dashboard');
-});
+// Route::get('/dashboard', function () {
+//     return view('admin/dashboard');
+// });
 
 Route::get('/userProfile', function(){
     return view('userProfile');
@@ -117,15 +117,21 @@ Route::get('/item/{Product_ID}', 'App\Http\Controllers\ProductController@explore
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/homepage', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('/admin', function () {
+      return view('admin.dashboard');
+    })->name('dashboard');
+  });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Auth::routes();
 
-Auth::routes();
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('cart/delete/{Product_ID}', 'App\Http\Controllers\ProductController@removeCartProducts');
 Route::get('cart/update/{Product_ID}', 'App\Http\Contorllers\ProductController@updateCartProducts');
