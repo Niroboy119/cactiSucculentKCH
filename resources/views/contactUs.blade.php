@@ -92,7 +92,7 @@
                                             <!-- Contact Information -->
                                             <div class="contact-information">
                                                 <p style ="font-family: 'Roboto', sans-serif;"><span>Phone:</span> <a href="tel:+60198182384">(+60)19-818-2384</a></p>
-                                                <p><span style="font-family: 'Roboto', sans-serif;">Location:</span> Kuching Metropolian Area, Kuching, Sarawak, Malaysia</p>
+                                                <p><span style="font-family: 'Roboto', sans-serif;">Location:</span> 95, Lor Bayan 6, 93250 Kuching, Sarawak, Malaysia.</p>
                                                 <p style="font-family: 'Roboto', sans-serif;"><span style>Email:</span> <a href="mailto:anniepeksf@gmail.com">anniepeksf@gmail.com</a></p>
                                                 <p><span>Open Hours:</span> Mon - Sun: 8am - 5am</p>
                                             </div>
@@ -118,31 +118,32 @@
                             <p>Send us a message, we will call back later</p>
                         </div>
                         <!-- Contact Form Area -->
+                        
                         <div class="contact-form-area mb-100">
-                            <form action="#" method="post">
+                            <form autocomplete="off">
                             <div class="row">
                                 <div class="col-12 col-md-7">
                                     <div class="form-group-1">
-                                        <input type="name" class="form-control" id="contact-name" placeholder="Your Name" style="font-family: 'Roboto', sans-serif;">
+                                        <input type="text" name="Name" class="form-control" id="name" placeholder="Your Name *" style="font-family: 'Roboto', sans-serif; font-color: 'black';" value="" required="">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-5">
                                     <div class="form-group-2">
+                                        <input type="phone" class="form-control" id="contact-phone" placeholder="Your Phone">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
                                         <input type="email" class="form-control" id="contact-email" placeholder="Your Email">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="contact-subject" placeholder="Subject">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <textarea class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+                                        <textarea class="form-control" name="message" id="contact-message" cols="30" rows="10" placeholder="Message"></textarea>
                                     </div>
                                 </div>
                                 <div class="send-message">
-                                    <button type="submit" class="btn mt-15">Send Message</button>
+                                    <button type="submit" name="submit" onclick="gotowhatsapp()" class="btn mt-15" onclick="gotowhatsapp()" value="Send us a message">Send us a message</button>                            
                                 </div>
                             </div>
                             </form>
@@ -161,7 +162,7 @@
                         <br>
                         <!-- Google Maps -->
                             <div class="map-area mb-100">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.4560447005656!2d110.31118131475417!3d1.4972899989080632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x25b31bf5fe5b2d95!2zMcKwMjknNTAuMiJOIDExMMKwMTgnNDguMSJF!5e0!3m2!1sen!2smy!4v1647103966368!5m2!1sen!2smy" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.448798736178!2d110.31955021475427!3d1.5012669989051661!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31fb09f9ab2206eb%3A0x840ff960f044ec76!2s95%2C%20Lor%20Bayan%206%2C%2093250%20Kuching%2C%20Sarawak!5e0!3m2!1sen!2smy!4v1647838409264!5m2!1sen!2smy" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe></iframe>
                             </div>
                     </div>
             </div>
@@ -189,6 +190,9 @@
         
         <!--Custom JS-->
         <script src="js/custom.js"></script>
+
+        <!-- Contactus.js-->
+        <script src="js/contactus.js"></script>
 	</body>
 
 	<!--footer start -->
