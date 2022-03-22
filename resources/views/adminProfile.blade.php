@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -110,7 +109,7 @@
             <p>Administrator</p>
             <div>
             <li>
-            <a href="/dashboard">Dashboard</a>
+                <a href="/dashboard">Dashboard</a>
             </li>
             <li>
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Manage Products</a>
@@ -138,14 +137,79 @@
                 <a href="/dashboard">Manage Orders</a>
             </li>
             <li>
-                <a href="adminProfile">Profile Page</a>
+                <a href="/adminProfile">Profile Page</a>
             </li>
         </div>
         </ul>
     </nav>
 
 <!-- Page Content -->
-<h2 style="margin-top:300px; margin-left:500px; color:black; text-align:center;  font-size: 80px;">Under Construction</h2>
+<div style="margin-left=-120px;" class="container mt-5 mb-5">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-10">
+                <div>
+                    <h2><br> Admin Profile </h2>
+                   
+                    <!-- <h3 style="color: #32CD32;"> Manage and secure your account! </h3> -->
+                    
+                </div><!--/.section-header-->
+                <br>
+                <hr>
+                <br>
+            <div class="col-md-12" style="margin-top:25px ;">
+              <div class="card mb-3">
+                <div class="card-body" style="margin-left:15px; margin-top:20px;">
+                  <br>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"> Full Name </h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <h7 style="display:inline; color: #32CD32;font:sans-serif">Admin Username here</h7>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <h7 style="display:inline; color: #32CD32;font:sans-serif">Email Here!</h7>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Phone Number</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <h7 style="display:inline; color: #b9b9b9;font:sans-serif; font-style:italic;">Fill in your phone number!</h7>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Business Address</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <h7 style="display:inline; color: #b9b9b9;font:sans-serif; font-style:italic;">Fill in your business address!</h7>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-2">
+                        <a href="/">
+                            <button style="border-color:#32CD32; background:#32CD32;" class="btn btn-primary btn-block text-uppercase">Edit Profile</button>
+                        </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+</div>
+</div>
 
-</body>
-</html>
+
+
+            </body>
+            </html>

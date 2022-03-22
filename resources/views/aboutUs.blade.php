@@ -116,10 +116,12 @@
                 </div>
             </div>
         </div>
-        <div class = "about us button">
+        
+        <!-- <div class = "about us button">
                 <button class="our-product" onclick="window.location.href='/product'">Our Product</button>
                 <button class="about-contact" onclick="window.location.href='/contactUs'">Contact Us</button>
-        </div>
+        </div> -->
+
     </section>
 
 		<!-- Include all js compiled plugins (below), or include individual files as needed -->

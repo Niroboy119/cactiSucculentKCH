@@ -57,15 +57,15 @@
 
                             <div class="pt-1 mb-4">
                                 <button type="submit" class="btn btn-success btn-lg btn-block">{{ __('Login') }}</button>
-
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+                                
                             </div>
 
-                            <a class="small text-muted" href="#!">Forgot password?</a>
+                            <a class="small text-muted" href="/forgotPasswordLink">Forgot password?</a>
                             <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="{{ route('register') }}" style="color: #393f81;">Register here</a></p>
                             <a href="#!" class="small text-muted">Terms of use.</a>
                             <a href="#!" class="small text-muted">Privacy policy</a>
