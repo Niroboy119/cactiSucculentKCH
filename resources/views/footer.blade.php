@@ -76,7 +76,7 @@
 								</div><!--/.hm-foot-title-->
 								<div class="hm-foot-para">
 									<p>
-										Block C618 Floridale Condominium, Kuching Sarawak
+										<a href="https://goo.gl/maps/TYhecnvRdJzK5xEC6" target="_blank" rel="noopener noreferrer">95, Lor Bayan 6, 93250 Kuching, Sarawak, Malaysia.</a>
 									</p>
 								</div><!--/.hm-foot-para-->
 							</div><!--/.hm-footer-widget-->

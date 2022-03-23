@@ -124,7 +124,7 @@
                             <div class="row">
                                 <div class="col-12 col-md-7">
                                     <div class="form-group-1">
-                                        <input type="text" name="Name" class="form-control" id="name" placeholder="Your Name *" style="font-family: 'Roboto', sans-serif; font-color: 'black';" value="" required="">
+                                        <input type="name" name="Name" class="form-control" id="name" placeholder="Your Name" style="font-family: 'Roboto', sans-serif; font-color: 'black';" value="" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-5">
