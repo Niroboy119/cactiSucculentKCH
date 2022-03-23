@@ -3,6 +3,11 @@
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Str;
+use App\Http\Controllers\ForgotPasswordController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +20,10 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
+    return view('homepage');
+});
+
+Route::get('/home', function () {
     return view('homepage');
 });
 
@@ -61,12 +70,16 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('admin/dashboard');
-// });
+Route::get('/dashboard', function () {
+    return view('admin/dashboard');
+});
 
 Route::get('/userProfile', function(){
     return view('userProfile');
+});
+
+Route::get('/newFormPassword', function(){
+    return view('newFormPassword');
 });
 
 Route::get('/editUserProfile', function(){
@@ -77,9 +90,52 @@ Route::get('/editPassword', function(){
     return view('editPassword');
 });
 
-Route::get('/reset-password/{token}', function ($token) {
-    return view('reset', ['token' => $token]);
-})->middleware('guest')->name('password.reset');
+// Route::get('/reset-password/{token}', function ($token) {
+//     return view('forgotPasswordForm', ['token' => $token]);
+// })->middleware('guest')->name('password.reset');
+
+Route::get('/forgotPasswordLink/{token}', [App\Http\Controllers\ResetPasswordController::class, 'showResetForm'])->name('forgotPasswordLink');
+
+Route::get('/adminProfile', function(){
+    return view('adminProfile');
+});
+
+
+Route::get('/forgotPasswordLink', function () {
+    return view('forgotPasswordLink');
+})->middleware('guest')->name('password.request');
+
+///Reset password link
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
+ 
+    $status = Password::sendResetLink($request->only('email'));
+ 
+    return $status === Password::RESET_LINK_SENT
+    ? back()->with(['status' => __($status)])
+    : back()->withErrors(['email' => __($status)]);
+})->middleware('guest')->name('password.email');
+
+///Reset Password form update
+Route::post('/reset-password', function (Request $request) {
+    $request->validate(['token' => 'required','email' => 'required|email','password' => 'required|min:8|confirmed',]);
+ 
+    $status = Password::reset(
+        $request->only('email', 'password', 'password_confirmation', 'token'),
+        function ($user, $password) {
+        $user->forceFill(['password' => Hash::make($password)])->setRememberToken(Str::random(60));
+ 
+        $user->save();
+ 
+        event(new PasswordReset($user));
+        }
+    );
+ 
+    return $status===Password::PASSWORD_RESET
+    ? redirect()->route('homepage')->with('status', __($status))
+    : back()->withErrors(['email' => [__($status)]]);
+})->middleware('guest')->name('password.update');
+///------------------------------------------------------------------------
 
 Route::get('/manageProducts', [App\Http\Controllers\ProductController::class, 'displayProducts'])->name('products');
 Route::get('/addProductForm', [App\Http\Controllers\ProductController::class, 'displayaddProductForm'])->name('products');
@@ -118,6 +174,7 @@ Route::get('/item/{Product_ID}', 'App\Http\Controllers\ProductController@explore
 Auth::routes();
 
 Route::get('/homepage', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/forgotPasswordForm',[App\Http\Controllers\HomeController::class, 'forgotPasswordForm'])->name('forgotPasswordForm');
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin', function () {
@@ -145,3 +202,20 @@ Route::post('updateUserProfile/{id}','App\Http\Controllers\UserController@update
 Route::post('/checkout', [OrderController::class, 'store']);
 
 Route::post('/changePassword',[App\Http\Controllers\UserController::class,'changePassword'])->name('changePassword');
+
+Route::get('/editSupplier/{id}', [App\Http\Controllers\SupplierController::class,'editSupplier'])->name('editSupplier');
+
+
+
+Route::post('updateUserProfile/{id}','App\Http\Controllers\UserController@update');
+
+
+Route::post('/changePassword',[App\Http\Controllers\UserController::class,'changePassword'])->name('changePassword');
+Route::post('/resetPassword', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'resetPassword'])->name('resetPassword');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

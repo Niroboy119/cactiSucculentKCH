@@ -6,7 +6,6 @@
     $products=Product::all();?>
 <!doctype html>
 <html class="no-js" lang="en">
-
     <head>
         <!-- Displays appropriate header -->
         @if($user)
