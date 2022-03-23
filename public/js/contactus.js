@@ -6,7 +6,7 @@ function gotowhatsapp() {
     var message = document.getElementById("contact-message").value;
 
     var url = 
-    "https://wa.me/+60138238263?text=" + 
+    "https://wa.me/+60198881654?text=" + 
     "Name: " + name + "%0a" + 
     "Phone: " + phone + "%0a" + 
     "Email: " + email  + "%0a" + 
