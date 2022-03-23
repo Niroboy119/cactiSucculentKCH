@@ -37,14 +37,96 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 		
 	}
 
-	/* .center {
-		margin: auto;
-		width: 60%;
-		border: 5px solid #FFFF00;
-		padding: 10px;
-	} */
+/* Position the "next button" to the right */
+.nextSSE {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
 
-	
+.welcome-hero-img{
+	margin-top:-170px;
+	margin-bottom:-170px;
+	transition: 0.5s all ease-in-out;
+
+
+}
+
+
+
+.primaryPic{
+
+	position: relative; /* Declared position allows for location changes */
+    top: -462px; /* Moves the image 2px closer to the top of the page */
+	right:-400px;
+	transition: 0.5s all ease-in-out;
+
+}
+
+.secondaryPic{
+
+position: relative; /* Declared position allows for location changes */
+top: -282px; /* Moves the image 2px closer to the top of the page */
+right:-400px;
+transition: 0.5s all ease-in-out;
+
+}
+
+.overlay {
+  position: absolute; 
+  bottom: 0; 
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1; 
+  width: 29%;
+  transition: .5s ease;
+  opacity:0;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
+
+.overlay2 {
+  position: absolute; 
+  bottom: 0; 
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1; 
+  width: 100%;
+  transition: .5s ease;
+  opacity:0;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
+
+.primaryPic:hover .overlay,.secondaryPic:hover .overlay{
+	opacity: 1;
+}
+
+
+
+
+
+
+
+
+.def {
+	/* top: -84560px; Moves the image 2px closer to the top of the page */
+	position: relative;
+  text-align: center;
+  color: white;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: white;
+
+  transform: translate(-50%, -50%);
+}
+
+
 	
 </style>
 
@@ -127,17 +209,31 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 
 					<div class="item active ">
 
-						<div class="single-slide-item slide1">
 
 						<div class="container">
+						<div class="slideshow-container">
 								<div class="welcome-hero-content">
 									<div class="row">
 									<div class="col-sm-7">
-											<div class="single-welcome-hero">
+								 <div class="single-welcome-hero">
+
 												<div class="welcome-hero-img">
 													<img src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" style="width:390px;height:500px;">
+													<div class="overlay2">Picture #1</div>
+
 												</div>
 											</div>
+											<div class=" welcome-hero-img primaryPic">
+													<img src="/images/populer-products/purpledream.jpg" style="width:190px;height:240px;"/>
+													<div class="overlay">Picture #2</div>
+
+												</div>
+												
+											<div class="welcome-hero-img secondaryPic">
+													<img src="/images/populer-products/images.jpg" style="width:190px;height:250px;">
+													<div class="overlay">Picture #3</div>
+
+												</div>
 										</div>
 										<div class="col-sm-5">
 											<div class="single-welcome-hero">
@@ -176,7 +272,16 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 				</div><!-- /.carousel-inner-->
 
 			</div><!--/#header-carousel-->
+
+		
 		</header><!--/.welcome-hero-->
+		<div class="def">
+					<img src="/images/homepage/bgimage40Pilgrim.jpg"/>
+				<div class="centered">
+					<a style="color:white; font-size:76px;"href="/product">Shop More</a>
+				</div>
+		</div>
+
 
 
 		
@@ -207,6 +312,7 @@ $product = Product::where([ 'Product_ID' => 6 ]);
         <!--Custom JS-->
         <script src="/js/custom.js"></script>
 
+		
 
 	</body>
 
