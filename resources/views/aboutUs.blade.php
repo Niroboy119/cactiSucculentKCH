@@ -68,8 +68,8 @@
                         <br>
                         <br>
                         <br>
-                        <p style="color:black; text-align:center; font-size:30px; font-family: 'Roboto', sans-serif;">Cacti Succulent KCH is a home-based business with 30 years of experience in Kuching.</p>
-                        <p style="color:black; text-align:center; font-size:30px; font-family: 'Roboto', sans-serif;">We are passionate about growing succulents!</p>
+                        <p style="color:black; text-align:center; font-size:28px; font-family: 'Roboto', sans-serif;">Cacti Succulent KCH is a home-based business with 30 years of experience in Kuching.</p>
+                        <p style="color:black; text-align:center; font-size:28px; font-family: 'Roboto', sans-serif;">We are passionate about growing succulents!</p>
                         <br>
                         <br>
                         <br>							
@@ -116,12 +116,82 @@
                 </div>
             </div>
         </div>
-        
-        <div class = "about-us-button">
+    </section>
+
+        <!-- ##### Service Area Start ##### -->
+        <section class="our-story-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Section Heading -->
+                    <div class="section-heading text-center">
+                        <br>
+                        <br>
+                        <h2><u>OUR STORY</u></h2>
+                        <p>"Healthy Plants, Good Packaging & Fast Delivery"</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-items-center justify-content-between">
+                <div class="col-12 col-lg-5">
+                    <div class="story-area mb-100">
+
+                        <!-- Single Service Area -->
+                        <div class="single-story-area d-flex align-items-center">
+                            <!-- Content -->
+                            <div class="story-content">
+                                <p>The family business started in the early 80s with selling various types of Bougainvillea (a.k.a Paper Flower) and Adenium (a.k.a Desert Rose) on every weekend, "Sunday Market" at Satok. In 1992 we started to sell various types of cactuses. We began to sell gardening products such as soil, pots, fertilizers, and stones.</p>
+                            </div> 
+                        </div>
+
+                        <!-- Single Service Area -->
+                        <div class="single-story-area d-flex align-items-center">
+                            <!-- Content -->
+                            <div class="story-content">
+                                <p>In 2020, due to COVID 19, physical shopping was restricted, we started to sell our products through Facebook. We also deliver products within Kuching areas (if purchased online) or ship outside Kuching areas (in Sarawak like Sibu, Bintulu, and Miri).</p>
+                            </div>
+                        </div>
+
+                         <!-- Single Service Area -->
+                         <div class="single-story-area d-flex align-items-center">
+                            <!-- Content -->
+                            <div class="story-content">
+                                <p>A few years later, we started to sell succulents and expanded our weekend market business to a home-based business. We now focused on cactus and succulents.</p>
+                            </div>
+                        </div>
+
+                        <!-- Single Service Area -->
+                        <div class="single-story-area d-flex align-items-center">
+                            <!-- Content -->
+                            <div class="story-content">
+                                <p>"Healthy Plants, Good Packaging & Fast Delivery." It is our motto and standard. From customers become friends where we are sharing gardening knowledge, advice on plants cares as we are opening to customers' feedbacks, new and exciting experience.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="story-image">
+                        <img src="images/about/story1.jpg" alt="story pic">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <br>
+    </section>
+    <!-- ##### Service Area End ##### --> 
+
+    <section>
+        <div class="container">
+            <div class = "about-us-button">
                 <button class="our-product" onclick="window.location.href='/product'">Our Product</button>
                 <button class="about-contact" onclick="window.location.href='/contactUs'">Contact Us</button>
+            </div>
         </div>
-
     </section>
 
 		<!-- Include all js compiled plugins (below), or include individual files as needed -->

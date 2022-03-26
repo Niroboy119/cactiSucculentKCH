@@ -1476,6 +1476,7 @@ td:last-child{
 /*===============================
     13. About Us Page
 ===============================*/
+/* Description */
 .description-benefits-area {
   position: relative;
   z-index: 1;
@@ -1485,9 +1486,40 @@ td:last-child{
   .single-benefits-area p {
     margin-bottom: 0; }
 
+/* Story Area */
+.our-story-area {
+    background-color: gainsboro;
+}
 
+.single-story-area {
+    position: relative;
+    z-index: 1;
+    /* margin-left: 80px; */
+    margin-bottom: 20px; }
+    .single-story-area:last-child {
+        margin-bottom: 0; }
+    .single-story-area .story-content h5 {
+        text-align: center;}
+    .single-story-area .story-content p {
+      margin-bottom: 0;
+      width: 650px;
+      text-align: left; }
+
+      .story-image {
+        position: relative;
+        z-index: 1;
+        margin-left: 200px;
+        width: 500px;
+        box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15); }
+        @media only screen and (max-width: 767px) {
+          .story-image {
+            margin-bottom: 50px; }
+        }
+
+
+/* About Button */
 .our-product {
-    margin-left: 580px;
+    margin-left: 400px;
     border: 0;
     padding: 10px 25px;
     background-color: #32CD32;
@@ -1501,7 +1533,7 @@ td:last-child{
   }
 
 .about-contact {
-    margin-left: 1000px;
+    /* margin-left: 1000px; */
     margin: 20px;
     border: 0;
     padding: 10px 25px;
