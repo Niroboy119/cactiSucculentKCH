@@ -58,8 +58,9 @@
     </head>
 	
 	<body>
-    <section id="about-us" class="about-us">
+    <section id="about-us" class="about-us" style="background-color: #f8f9fd;">
         <div class="container">
+            <div class="abouttop">
                 <div class="section-header">
                     <h2 style="color:#32CD32; font-size: 50px; font-family: 'Roboto', sans-serif;"><br>About Us</h2>
                 </div><!--/.section-header-->
@@ -74,7 +75,8 @@
                         <br>
                         <br>							
                     </div>
-                </div>	
+                </div>
+            </div>	
         </div>
         <div class="container">
             <div class="row">
