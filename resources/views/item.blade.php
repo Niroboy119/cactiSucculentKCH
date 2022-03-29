@@ -56,7 +56,7 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 .primaryPic{
 
 	position: relative; /* Declared position allows for location changes */
-    top: -462px; /* Moves the image 2px closer to the top of the page */
+    top: -447px; /* Moves the image 2px closer to the top of the page */
 	right:-400px;
 	transition: 0.5s all ease-in-out;
 
@@ -65,7 +65,7 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 .secondaryPic{
 
 position: relative; /* Declared position allows for location changes */
-top: -282px; /* Moves the image 2px closer to the top of the page */
+top: -267px; /* Moves the image 2px closer to the top of the page */
 right:-400px;
 transition: 0.5s all ease-in-out;
 
