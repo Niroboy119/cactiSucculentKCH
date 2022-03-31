@@ -134,7 +134,7 @@
                 </ul>
             </li>
             <li>
-                <a href="/dashboard">Manage Orders</a>
+                <a href="/manageOrders">Manage Orders</a>
             </li>
             <li>
                 <a href="/dashboard">Profile Page</a>

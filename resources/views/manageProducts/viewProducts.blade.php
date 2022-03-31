@@ -134,7 +134,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#">Manage Orders</a>
+                <a href="/manageOrders">Manage Orders</a>
             </li>
             <li>
                 <a href="#">Profile Page</a>
@@ -186,28 +186,52 @@ function searchProduct2()
 <div style="margin-left=-120px;" class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
         <div class="col-md-10">
+            
             @foreach($products as $product)
             <div class="row p-2 bg-white border rounded">
                 <div class="col-md-3 mt-1"><img  style="width:300px; height: 150px;" class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}"></div>
                 <div class="col-md-6 mt-1">
-                    <h4>{{$product->Product_Name}}</h4>
+                <h4>{{$product->Product_Name}}</h4>
                     <div class="mt-1 mb-1 spec-1"><span style="font-size:17px;">Type Of {{$product->Product_Type}}</span><span style="background:#32CD32" class="dot"></span><span style="font-size:17px;">${{$product->Product_Price}}</div>
                     <div class="mt-1 mb-1 spec-1"><span style="font-size:17px;">Supplied By {{$product->Product_Supplier}}</span></div>
                     <p style="color:black;" class="text-justify text-truncate para mb-0">{{$product->Product_Desc}}<br><br></p>
                 </div>
                 <div class="align-items-center align-content-center col-md-3 border-left mt-1">
-                    <div class="d-flex flex-row align-items-center">
-                        <h4>{{$product->Product_Quantity}} <span style="color:red;">  In   Stock</span></h4>
-                    </div>
-                    <a style="padding-left:44px; padding-right:44px; border-color:#32CD32; background:#32CD32" href="/increaseQuantity/{{ $product->Product_ID }}" class="btn btn-primary btn-sm" >+</a>
-                    <a style="padding-left:44px; padding-right:44px; border-color:#32CD32; background:#32CD32" href="/decreaseQuantity/{{ $product->Product_ID }}"  class="btn btn-primary btn-sm" >-</a>
-                    <div class="d-flex flex-column mt-4"><a style="border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" href="/editProduct/{{ $product->Product_ID }}">Edit</a><a onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" href="/deleteProduct/{{ $product->Product_ID }}" onclick= "return myFunction();">Delete</a></div>
+                    
+                <div style="text-align:center"><h4 style="color:red;"><span style="color:#32CD32;">In Stock: </span>{{$product->Product_Quantity}} </h4></div>
+
+                {{-- <div class="d-flex flex-row align-items-center">
+                    </div> --}}
+                    {{-- <a style="padding-left:44px; padding-right:44px; border-color:#32CD32; background:#32CD32" href="/increaseQuantity/{{ $product->Product_ID }}" class="btn btn-primary btn-sm" >+</a> --}}
+                    {{-- <a style="padding-left:44px; padding-right:44px; border-color:#32CD32; background:#32CD32" href="/decreaseQuantity/{{ $product->Product_ID }}"  class="btn btn-primary btn-sm" >-</a> --}}
+                    <div class="container py-4">
+                        <div class="row">
+                            <div>
+                                <div style="bottom:15%" class="input-group">
+                                    <span class="input-group-prepend">
+                                        <button type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="  padding-left:12px; padding-right:12px; bottom:17%; height:38px; border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" onclick="decreaseFunction('{{$product->Product_ID}}')" data-type="minus" data-field="quant[1]">
+                                            <span class="fa fa-minus"> - </span>
+                                        </button>
+                                        <input onchange="changeQuantity('{{$product->Product_ID}}')" id="inputBar" style="border-radius:0px; text-align: center;" type="text" name="quant[1]" class="form-control input-number" value="{{$product->Product_Quantity}}">
+                                        <button type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="  padding-left:12px; padding-right:12px; bottom:17%; border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" onclick="increaseFunction('{{$product->Product_ID}}')" data-type="minus" data-field="quant[1]">
+                                            <span class="fa fa-plus"> + </span>
+                                        </button>
+                                    </span>
+                                    
+                                    {{-- <a  id="confirm" hidden style="padding-left:80px; padding-right:80px; border-color:red; background:red"  class="btn btn-primary btn-sm" href="">Confirm</a> --}}
+                                </div>
+                              <a style="padding-left:93px; padding-right:93px; border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" href="/editProduct/{{ $product->Product_ID }}">Edit</a> 
+                              <br><a onclick="return myFunction()" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="padding-left:84px; padding-right:84px; border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" href="/deleteProduct/{{ $product->Product_ID }}" >Delete</a>
+
+                            </div>
+                        </div>
+                    </div> 
                 </div>
             </div>
-                <script type="text/javascript">
-                function myFunction() 
+            <script type="text/javascript">
+            function myFunction() 
                 {
-                    if (confirm("Are you sure you want to delete?")) {
+                    if (confirm("Are you sure you want to continue?")) {
 
                     return true;
 
@@ -217,9 +241,49 @@ function searchProduct2()
                     }
 
                 }
+
+                function increaseFunction(z)
+                {
+                    // var x=document.getElementById("inputBar").value;
+                    // y=parseInt(x)+1;
+                    // document.getElementById("inputBar").value=y;
+                    // document.getElementById("confirm").removeAttribute("hidden");
+                    location.replace("/increaseQuantity/"+z);
+                }
+
+                function decreaseFunction(z)
+                {
+                    // var x=document.getElementById("inputBar").value;
+                    // y=parseInt(x)-1;
+                    // document.getElementById("inputBar").value=y;
+                    location.replace("/decreaseQuantity/"+z);
+                }
+
+                function changeQuantity(z)
+                {
+                    var x=document.getElementById("inputBar").value;
+                    if (confirm("Are you sure you want to delete?")) {
+
+                        location.replace("/changeQuantity/"+z+"/"+x);
+
+                            } else {
+
+                                return false;
+                            }
+
+                }
+
+               
+                
+               
+
              </script>
             <br>
+
+            
+
             @endforeach
+
         </div>
     </div>
 </div>

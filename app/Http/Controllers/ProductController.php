@@ -102,6 +102,15 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
+    public function changeQuantity($id,$quantity)
+    {
+        $product=Product::where('Product_ID', $id);
+        Product::where('Product_ID', $id)->update(array('Product_Quantity' => $quantity));
+       
+        return redirect()->back();
+     
+    }
+
     public function searchProducts($search)
     {   
         $product = Product::where ( 'Product_Name', 'LIKE', $search . '%' )->get ();

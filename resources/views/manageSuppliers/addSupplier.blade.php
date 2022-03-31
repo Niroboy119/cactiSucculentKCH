@@ -134,7 +134,7 @@
                 </ul>
             </li>
             <li>
-                <a href="/dashboard">Manage Orders</a>
+                <a href="/manageOrders">Manage Orders</a>
             </li>
             <li>
                 <a href="/dashboard">Profile Page</a>
@@ -166,6 +166,7 @@
                       type="text"
                       class="form-control validate"
                       required
+                      value="Enter name"
                     />
                   </div>
                   <div class="form-group mb-3">
@@ -179,6 +180,7 @@
                       class="form-control validate"
                       rows="3"
                       required
+                      value="Enter address"
                     ></textarea>
                   </div>
                   <div class="form-group mb-3">
@@ -192,6 +194,7 @@
                       type="email"
                       class="form-control validate"
                       required
+                      value="Enter email"
                     />
                     </div>
                     <div class="form-group mb-3">
@@ -204,6 +207,7 @@
                       name="phoneno"
                       type="phoneno"
                       class="form-control validate"
+                      value="Enter number"
                       required
                     />
                    

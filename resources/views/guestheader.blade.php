@@ -1,4 +1,6 @@
 <?php use App\Models\Product;
+	use App\Models\Notification;
+
     $products=Product::all();?>
 <!--font-family-->
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
@@ -124,7 +126,7 @@ border-radius:12px;
 				                	</li><!--/.search-->
 									
 									<li class="dropdown">
-				                        <a href="/cart" class="dropdown-toggle" data-toggle="dropdown" >
+				                        <a href="/cart" class="dropdown-toggle" data-toggle="dropdown" data-target="#cartdrop" >
 				                            <span class="lnr lnr-cart"></span>
 											@if(count((array) session('cart')) != 0)
 												<span class="badge badge-bg-1" aria-hidden="true">{{ count((array) session('cart')) }}</span>
@@ -132,11 +134,8 @@ border-radius:12px;
 										</a>		
 										
 										@if(session('cart'))
-										<ul class="dropdown-menu cart-list s-cate">
-				                                <div class="cart-close">
-				                                	<span class="lnr lnr-cross"></span>
-				                                </div><!--/.cart-close-->
-
+										<ul id="cartdrop" style="border:none;" class="dropdown-menu cart-list s-cate">
+				                                
 											<?php $total = 0 ?>
 											@foreach((array) session('cart') as $id => $details)
 													<?php $total += $details['Product_Price'] * $details['Product_Quantity'] ?>
@@ -170,7 +169,58 @@ border-radius:12px;
 				                	</li>
 								</ul>
 
-									
+									<?php
+										$notifications=Notification::all();
+										$count=0;
+
+										foreach($notifications as $n)
+										{
+											if($n->status=="unseen" && $n->type=="customer")
+											{
+												$count+=1;
+											}
+										}
+									?>
+
+									<li class="dropdown">
+				                		<a href="" class="dropdown-toggle" data-toggle="dropdown" data-target="#cartdrop"><span class="lnr lnr-alarm"></span>
+											@if($count != 0)
+												<span class="badge badge-bg-1" aria-hidden="true">{{ $count }}</span>
+											@endif
+										</a>
+											<ul id="cartdrop" style="border:none;" class="dropdown-menu cart-list s-cate">
+				                                
+
+												@foreach($notifications as $notification)
+
+													@if($notification['type']=="customer")
+													@php
+														$img="images/homepage/".$notification['photo'].".png"
+													@endphp
+
+													<li class="single-cart-list">
+														<a href="#" class="photo"><img src="{{$img}}" class="cart-thumb" alt="image" /></a>
+														<div class="cart-list-txt">
+															<h6><a href="#">{{$notification['title']}}</a></h6>
+															<p>{{$notification['message']}}</p>
+														</div>
+														<div class="cart-close">
+															<a href="{{ url('/deleteNotification'.'/'.$notification['id']) }}" class="lnr lnr-cross" role="button"></a>
+														</div><!--/.cart-close-->
+										
+														<!--/.cart-list-txt-->
+														<!--/.cart-close-->
+													</li><!--/.single-cart-list -->
+													@endif
+												@endforeach
+
+											
+											</ul>
+
+
+				                	</li>
+
+										
 				                </ul>
 				            </div><!--/.attr-nav-->
 				            <!-- End Atribute Navigation -->
