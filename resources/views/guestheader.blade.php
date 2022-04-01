@@ -1,5 +1,4 @@
 <?php use App\Models\Product;
-	use App\Models\Notification;
 
     $products=Product::all();?>
 <!--font-family-->
@@ -165,61 +164,11 @@ border-radius:12px;
 										@endif
 				                    </li><!--/.dropdown-->
 									<li>
-										<a href="/login" style="font-size:18px;font-style:sans-serif;">Login</a>
+										<a href="/login" style="font-size:16px;font-style:sans-serif;">Login</a>
 				                	</li>
 								</ul>
 
-									<?php
-										$notifications=Notification::all();
-										$count=0;
-
-										foreach($notifications as $n)
-										{
-											if($n->status=="unseen" && $n->type=="customer")
-											{
-												$count+=1;
-											}
-										}
-									?>
-
-									<li class="dropdown">
-				                		<a href="" class="dropdown-toggle" data-toggle="dropdown" data-target="#cartdrop"><span class="lnr lnr-alarm"></span>
-											@if($count != 0)
-												<span class="badge badge-bg-1" aria-hidden="true">{{ $count }}</span>
-											@endif
-										</a>
-											<ul id="cartdrop" style="border:none;" class="dropdown-menu cart-list s-cate">
-				                                
-
-												@foreach($notifications as $notification)
-
-													@if($notification['type']=="customer")
-													@php
-														$img="images/homepage/".$notification['photo'].".png"
-													@endphp
-
-													<li class="single-cart-list">
-														<a href="#" class="photo"><img src="{{$img}}" class="cart-thumb" alt="image" /></a>
-														<div class="cart-list-txt">
-															<h6><a href="#">{{$notification['title']}}</a></h6>
-															<p>{{$notification['message']}}</p>
-														</div>
-														<div class="cart-close">
-															<a href="{{ url('/deleteNotification'.'/'.$notification['id']) }}" class="lnr lnr-cross" role="button"></a>
-														</div><!--/.cart-close-->
-										
-														<!--/.cart-list-txt-->
-														<!--/.cart-close-->
-													</li><!--/.single-cart-list -->
-													@endif
-												@endforeach
-
-											
-											</ul>
-
-
-				                	</li>
-
+								
 										
 				                </ul>
 				            </div><!--/.attr-nav-->

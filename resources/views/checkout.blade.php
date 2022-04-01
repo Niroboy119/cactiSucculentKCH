@@ -94,7 +94,7 @@
                 <div class="mb-3">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="homeDelivery" onclick="javascript:yesnoCheck();">
-                        <label class="form-check-label" for="inlineRadio1">Home deliver</label>
+                        <label class="form-check-label" for="inlineRadio1">Home delivery</label>
                     </div>
 
                     <div class="form-check form-check-inline">

@@ -146,9 +146,15 @@ Route::post('/updateProduct/{id}', [App\Http\Controllers\ProductController::clas
 Route::post('/updateStatus/{id}', [App\Http\Controllers\OrderController::class, 'updateS'])->name('orders');
 Route::get('/increaseQuantity/{id}', [App\Http\Controllers\ProductController::class, 'increaseQuantity'])->name('products');
 Route::get('/decreaseQuantity/{id}', [App\Http\Controllers\ProductController::class, 'decreaseQuantity'])->name('products');
+Route::get('/changeQuantity/{id}/{quantity}', [App\Http\Controllers\ProductController::class, 'changeQuantity'])->name('products');
 Route::get('/searchProducts/{search}', [App\Http\Controllers\ProductController::class, 'searchProducts'])->name('products');
 Route::get('/searchProducts', [App\Http\Controllers\ProductController::class, 'displayProducts'])->name('products');
 
+Route::get('/manageOrders', [App\Http\Controllers\OrderController::class, 'displayadminManageOrders'])->name('orders');
+Route::get('/acceptOrder/{id}/{dateS}/{dateE}/{time}', [App\Http\Controllers\OrderController::class, 'acceptOrder'])->name('orders');
+Route::get('/denyOrder/{id}/{reason}', [App\Http\Controllers\OrderController::class, 'denyOrder'])->name('orders');
+Route::get('/completeOrder/{id}', [App\Http\Controllers\OrderController::class, 'completeOrder'])->name('orders');
+Route::get('/changeQuantityAdmin/{id}/{quantity}', [App\Http\Controllers\OrderController::class, 'changeQuantityAdmin'])->name('orders');
 
 Route::get('/manageSuppliers', [App\Http\Controllers\SupplierController::class, 'displaySuppliers'])->name('suppliers');
 Route::get('/addSupplierForm', [App\Http\Controllers\SupplierController::class, 'displayaddSupplierForm'])->name('suppliers');
@@ -165,6 +171,10 @@ Route::get('search/{search}', [App\Http\Controllers\ProductController::class, 's
 Route::get('/test', [App\Http\Controllers\ProductController::class, 'test'])->name('products');
 
 
+Route::get('/acceptOrderNotification/{id}/{dateS}/{dateE}/{time}', [App\Http\Controllers\NotificationController::class, 'acceptOrderNotification'])->name('notification');
+Route::get('/denyOrderNotification/{id}/{reason}', [App\Http\Controllers\NotificationController::class, 'denyOrderNotification'])->name('notification');
+Route::get('/completeOrderNotification/{id}', [App\Http\Controllers\NotificationController::class, 'completeOrderNotification'])->name('notification');
+Route::get('/deleteNotification/{id}', [App\Http\Controllers\NotificationController::class, 'deleteNotification'])->name('notification');
 
 
 Route::get('cart/{Product_ID}', 'App\Http\Controllers\ProductController@addToCart');
@@ -219,3 +229,28 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/checkout', [OrderController::class, 'store']);
+
+
+Route::post('/messages', function(Request $request) {
+    // TODO: validate incoming params first!
+
+    $url = "https://messages-sandbox.nexmo.com/v0.1/messages";
+    $params = ["to" => ["type" => "whatsapp", "number" => $request->input('number')],
+        "from" => ["type" => "whatsapp", "number" => "601160651997"],
+        "message" => [
+            "content" => [
+                "type" => "text",
+                "text" => "Hello from Vonage and Laravel :) Please reply to this message with a number between 1 and 100"
+            ]
+        ]
+    ];
+    $headers = ["Authorization" => "Basic " . base64_encode(env('NEXMO_API_KEY') . ":" . env('NEXMO_API_SECRET'))];
+
+    $client = new \GuzzleHttp\Client();
+    $response = $client->request('POST', $url, ["headers" => $headers, "json" => $params]);
+    $data = $response->getBody();
+    Log::Info($data);
+
+    return view('thanks');
+});

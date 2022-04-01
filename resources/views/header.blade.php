@@ -1,4 +1,7 @@
-<?php use App\Models\Product;
+<?php 
+use App\Models\Product;
+use App\Models\Notification;
+
 	$products=Product::all();?>
 <!--font-family-->
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
@@ -139,6 +142,62 @@
 				                        </ul>
 										@endif
 				                    </li><!--/.dropdown-->
+
+									<?php
+									$notifications=Notification::all();
+									$count=0;
+
+									foreach($notifications as $n)
+									{
+										if($n->status=="unseen" && $n->type=="customer" && $n->user_Id==Auth::user()->id)
+										{
+											$count+=1;
+										}
+									}
+								?>
+
+								<li class="dropdown">
+									<a href="" class="dropdown-toggle" data-toggle="dropdown" data-target="#cartdrop"><span class="lnr lnr-alarm"></span>
+										@if($count != 0)
+											<span class="badge badge-bg-1" aria-hidden="true">{{ $count }}</span>
+										@endif
+									</a>
+
+									@if($count != 0)
+										<ul id="cartdrop" class="dropdown-menu cart-list s-cate">
+											
+
+											@foreach($notifications as $notification)
+
+												@if($notification['type']=="customer" && $notification['user_Id']==Auth::user()->id)
+												@php
+													$img="images/homepage/".$notification['photo'].".png"
+												@endphp
+
+												<li class="single-cart-list">
+													<a href="#" class="photo"><img src="{{$img}}" class="cart-thumb" alt="image" /></a>
+													<div class="cart-list-txt">
+														<h6><a href="#">{{$notification['title']}}</a></h6>
+														<p>{{$notification['message']}}</p>
+													</div>
+													<div class="cart-close">
+														<a href="{{ url('/deleteNotification'.'/'.$notification['id']) }}" class="lnr lnr-cross" role="button"></a>
+													</div><!--/.cart-close-->
+									
+													<!--/.cart-list-txt-->
+													<!--/.cart-close-->
+												</li><!--/.single-cart-list -->
+												@endif
+											@endforeach
+										@endif
+										
+										</ul>
+
+
+								</li>
+
+
+
 				                </ul>
 				            </div><!--/.attr-nav-->
 				            <!-- End Atribute Navigation -->

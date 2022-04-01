@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrdersTable extends Migration
+class CreateOrderTable extends Migration
 {
     /**
      * Run the migrations.
@@ -22,7 +22,11 @@ class CreateOrdersTable extends Migration
             $table->decimal('grand_total', 20, 2);
             $table->enum('status', ['pending', 'processing', 'completed', 'decline', 'cancelled'])->default('pending');
             $table->string('delivery_type');    
-            
+            $table->date('orderMadeDate');
+            $table->string('shippingStartDate')->default('To Be Decided'); 
+            $table->string('shippingEndDate')->default('To Be Decided'); 
+            $table->string('shippingTime')->default('To Be Decided'); 
+            $table->longText('denyReason')->nullable();	
             $table->timestamps();
         });
     }
