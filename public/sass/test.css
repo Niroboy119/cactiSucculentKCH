@@ -44,7 +44,14 @@ a, a:hover, a:focus {
 
 #sidebar ul.components {
     padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    height: auto;
     /*border-bottom: 1px solid #47748b;*/
+}
+
+#sidebar ul> :last-child{
+    margin-top:140px;
 }
 
 #sidebar ul p {

@@ -133,7 +133,7 @@ use App\Models\User;
                       <h6 class="mb-0">Full Name</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-					<input id="name" name="name" type="text" class="form-control" value="{{Auth::user()->name}}">
+					          <input id="name" name="name" type="text" class="form-control" value="{{Auth::user()->name}}">
                     </div>
                   </div>
                   <hr>
@@ -142,7 +142,7 @@ use App\Models\User;
                       <h6 class="mb-0">Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-					<input id="email" name="email" type="email" class="form-control" value="{{Auth::user()->email}}">
+					          <input id="email" name="email" type="email" class="form-control" value="{{Auth::user()->email}}">
                     @if($errors->has('email'))
                       <div class="error">{{ $errors->first('email') }}</div>
                     @endif
@@ -159,7 +159,6 @@ use App\Models\User;
                       <div class="error">{{ $errors->first('cust_phone_number') }}</div>
                       @endif
                     </div>
-                    
                   </div>
                   <hr>
                   <div class="row">
@@ -167,7 +166,7 @@ use App\Models\User;
                       <h6 class="mb-0">Home Address</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-					<input id="cust_address" name="cust_address" type="text" class="form-control" value="{{Auth::user()->cust_address}}">
+					          <input id="cust_address" name="cust_address" type="text" class="form-control" value="{{Auth::user()->cust_address}}">
                     </div>
                   </div>
                   <hr>

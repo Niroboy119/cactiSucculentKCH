@@ -29,6 +29,27 @@ class UserController extends Controller
     return redirect('/userProfile');
     }
 
+    public function updateAdmin(Request $request, $id)
+    {
+    if($request->profilepicfile!=null){
+    $request->validate([
+    'email' => 'unique:users,email,'.$id, 
+    'cust_phone_number' => 'unique:users,cust_phone_number,'.$id,
+    ]);    
+    $request->profilepicfile->store('images/profilepic', 'public');
+    User::where('id',$id)->update(array('name'=>$request->name,'email'=>$request->email,'cust_phone_number'=>$request->customer_phone_number,
+    'cust_address'=>$request->cust_address, 'profilepicture'=>$request->profilepicfile->hashname()));
+    }
+    else{
+        $request->validate([
+            'email' => 'unique:users,email,'.$id, 'cust_phone_number' => 'unique:users,cust_phone_number,'.$id,
+        ]); 
+    User::where('id',$id)->update(array('name'=>$request->name,'email'=>$request->email,'cust_phone_number'=>$request->customer_phone_number,
+    'cust_address'=>$request->cust_address,));
+    }
+    return redirect('/adminProfile');
+    }
+
     public function updateUserProfile(Request $request, $id)
     {
         if($id!=null){

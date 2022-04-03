@@ -95,6 +95,16 @@ Route::get('/manageAdmin', function(){
     return view('manageAdmin');
 });
 
+
+Route::get('/adminProfile', function(){
+    return view('adminProfile');
+});
+
+Route::get('/adminProfileEdit', function(){
+    return view('adminProfileEdit');
+});
+
+
 // Route::get('/reset-password/{token}', function ($token) {
 //     return view('forgotPasswordForm', ['token' => $token]);
 // })->middleware('guest')->name('password.reset');
@@ -213,6 +223,7 @@ Route::get('cart/decreaseCartQuantity/{Product_ID}', 'App\Http\Controllers\Produ
 Route::get('checkout/proceedtocheckout','App\Http\Controllers\ProductController@proceedToCheckout');
 Route::post('updateUser/{id}', 'App\Http\Controllers\UserController@updateUser');
 Route::post('updateUserProfile/{id}','App\Http\Controllers\UserController@updateUserProfile');
+Route::post('updateAdmin/{id}', 'App\Http\Controllers\UserController@updateAdmin');
 
 Route::post('/checkout', [OrderController::class, 'store']);
 
