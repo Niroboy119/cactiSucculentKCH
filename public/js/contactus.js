@@ -1,4 +1,5 @@
 function gotowhatsapp() {
+    alert("You will be prompt to Whatsapps.");
 
     var name = document.getElementById("name").value;
     var phone = document.getElementById("contact-phone").value;
