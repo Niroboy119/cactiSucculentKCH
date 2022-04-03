@@ -65,7 +65,7 @@
             <div class="col-md-12" style="margin-top:25px ;">
               <div class="card mb-3">
                 <div class="card-body" style="margin-left:15px; margin-top:20px;">
-                  <br>
+                  
                   <div class="row">
                     <div class="col-sm-3">
                       <h6 class="mb-0"> Full Name </h6>
@@ -111,9 +111,14 @@
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <a href="/adminProfileEdit">
                             <button style="border-color:#32CD32; background:#32CD32;" class="btn btn-primary btn-block text-uppercase">Edit Profile</button>
+                        </a>
+                    </div>
+                    <div class="col-sm-3">
+                        <a href="/adminChangePassword">
+                            <button style="border-color:#32CD32; background:#32CD32;" class="btn btn-primary btn-block text-uppercase">Change Password</button>
                         </a>
                     </div>
                   </div>

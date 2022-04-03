@@ -68,7 +68,7 @@
             </tbody>
         </table>
 
-        <button type="button" class="btn btn-success" id="addNewAdminBtn" onclick="showForm()">Add new admin</button>
+        <button style="background:#32CD32" type="button" class="btn btn-success" id="addNewAdminBtn" onclick="showForm()">Add new admin</button>
 
         <!-- <form style="border: 1px solid #000">
         <div class="form-group row">

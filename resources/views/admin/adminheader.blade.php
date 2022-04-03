@@ -1,3 +1,7 @@
+<?php 
+
+use App\Models\Notification;
+?>
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -24,8 +28,8 @@
     
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 
 </head>
 <body>
@@ -73,23 +77,53 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                        <!-- Notification Starts Here -->
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                    <?php
+									$notifications=Notification::all();
+									$count=0;
+
+									foreach($notifications as $n)
+									{
+										if($n->status=="unseen" && $n->type=="admin")
+										{
+											$count+=1;
+										}
+									}
+									?>
+
+                                    <!-- Notification Counter -->
+
+                                    <li class="dropdown">
+									<a href="" class="dropdown-toggle" data-toggle="dropdown" data-target="#cartdrop" style="background:white;"><span class="material-icons md-48">notifications</span>
+										@if($count != 0)
+											<span class="badge badge-bg-1" aria-hidden="true">{{ $count }}</span>
+										@endif
+									</a>
+
+									@if($count != 0)
+										<ul id="cartdrop" class="dropdown-menu cart-list s-cate">
+											@foreach($notifications as $notification)
+												@if($notification['type']=="admin")
+												@php
+													$img="images/homepage/".$notification['photo'].".png"
+												@endphp
+												<li class="single-cart-list">
+													<div class="cart-list-txt">
+                                                        
+														<h2 style="font-size:15px;padding:10px 5px 0px 5px;">{{$notification['title']}}</h6>
+														<h6 style="font-size:12px;padding:10px 5px 0px 5px;">{{$notification['message']}}</h6>
+                                                        <a href="{{ url('/deleteNotification'.'/'.$notification['id']) }}" class="lnr lnr-cross" role="button" style="background:white;">Cancel</a>
+													</div>
+                                                    <hr>
+												</li><!--/.single-cart-list -->
+												@endif
+											@endforeach
+									@endif
+                                    </ul>
+								</li>
+                                <!-- notification end here -->
                         @endguest
                     </ul>
                 </div>
@@ -122,7 +156,7 @@
         <div>
         <ul class="list-unstyled components">
             <li>
-                <a href="#"> <span class="material-icons md-48" style="vertical-align: middle;">dashboard</span>  Dashboard</a>
+                <a href="/admin"> <span class="material-icons md-48" style="vertical-align: middle;">dashboard</span>  Dashboard</a>
             </li>
             <li>
                 <a href="/manageAdmin"> <span class="material-icons md-48" style="vertical-align: middle;">people_alt</span>  Manage Admin</a>

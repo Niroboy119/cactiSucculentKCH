@@ -104,6 +104,10 @@ Route::get('/adminProfileEdit', function(){
     return view('adminProfileEdit');
 });
 
+Route::get('/adminChangePassword', function(){
+    return view('adminChangePassword');
+});
+
 
 // Route::get('/reset-password/{token}', function ($token) {
 //     return view('forgotPasswordForm', ['token' => $token]);
@@ -228,6 +232,7 @@ Route::post('updateAdmin/{id}', 'App\Http\Controllers\UserController@updateAdmin
 Route::post('/checkout', [OrderController::class, 'store']);
 
 Route::post('/changePassword',[App\Http\Controllers\UserController::class,'changePassword'])->name('changePassword');
+Route::post('/changeAdminPassword',[App\Http\Controllers\UserController::class,'changeAdminPassword'])->name('changeAdminPassword');
 
 Route::get('/editSupplier/{id}', [App\Http\Controllers\SupplierController::class,'editSupplier'])->name('editSupplier');
 
