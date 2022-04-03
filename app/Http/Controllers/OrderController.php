@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Notification;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\OrderItem;
@@ -19,9 +19,34 @@ class OrderController extends Controller
     
     public function store(Request $request){
 
+        // notifications for admin for when order is made
+        $notification=new Notification();
+        $notification->type="admin";
+        $notification->user_Id=Auth::user()->id;
+        $notification->title="Order Incoming!";
+        $notification->message="An Order has been placed";
+        $notification->status="unseen";
+        $notification->photo="processing";
+        $notification->save();
+
         $order_total = 0;
         foreach ((array) session('cart') as $id => $details) {
             $order_total += $details['Product_Price'] * $details['Product_Quantity'];
+        }
+
+        foreach ((array) session('cart') as $id => $details) {
+            $productquantity = Product::where('Product_Name', $details['Product_Name'])->value('Product_Quantity');
+            Product::where('Product_Name', $details['Product_Name'])->update(array('Product_Quantity' => $productquantity-$details['Product_Quantity']));
+            if($productquantity<=3){
+            $notification=new Notification();
+            $notification->type="admin";
+            $notification->user_Id=Auth::user()->id;
+            $notification->title="Low Supplies Notification";
+            $notification->message="An item is low on supply!";
+            $notification->status="unseen";
+            $notification->photo="processing";
+            $notification->save();
+            }
         }
 
         $order = new Order();
@@ -52,10 +77,14 @@ class OrderController extends Controller
         foreach (session('cart') as $id=>$odr_details) {
             foreach ($products as $key => $product) {
                 if ($product->Product_Name == $odr_details['Product_Name']) {
+
+                    // $newquantity=$product->Product_Quantity;
+                    // $oldProductQuantity = Product::where('Product_Name', $product->Product_Name)->value('Product_Quantity');
+                    // Product::where('Product_Name', $product->Product_Name)->update(array('Product_Quantity' => $oldProductQuantity-$newquantity));
+                    
                     DB::table('order_items')->insert(['order_Id' => $order_ID, 'product_Id' => $product->Product_ID, 'quantity' => $odr_details['Product_Quantity'], 'price' => $odr_details['Product_Price']]);
                 }
             }
-            
         }
 
         $request->session()->forget('cart');

@@ -75,7 +75,6 @@ use App\Models\User;
         <br>
         <div class="col-md-8 col-md-offset-2" >
             <div class="panel panel-default">
-
                 <div class="panel-body" style="box-shadow:2px 2px 4px;">
                     @if (session('error'))
                         <div class="alert alert-danger">

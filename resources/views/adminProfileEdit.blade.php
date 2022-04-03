@@ -1,10 +1,3 @@
-<?php use Illuminate\Support\Facades\Auth;
-	$user=Auth::check();
-    $userphonenumber = Auth::user()->cust_phone_number;
-    $userhomeaddress = Auth::user()->cust_address;
-    $userprofilepicture = Auth::user()->profilepicture;
-    // $userProfile=User::where(['id'=>$id]);
-?>
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -49,12 +42,13 @@
 
 
 <!-- Page Content -->
+
 <div style="margin-left=-120px;" class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
         <div class="col-md-10">
                 <div>
                   <br><br>
-                    <h2><br> Admin Profile </h2>
+                    <h2><br>Edit Admin Profile </h2>
                    
                     <!-- <h3 style="color: #32CD32;"> Manage and secure your account! </h3> -->
                     
@@ -62,16 +56,17 @@
                 <br>
                 <hr>
                 <br>
+        <form action="updateAdmin/{{Auth::id()}}" method="POST" enctype="multipart/form-data">
             <div class="col-md-12" style="margin-top:25px ;">
               <div class="card mb-3">
                 <div class="card-body" style="margin-left:15px; margin-top:20px;">
-                  
+                  <br>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0"> Full Name </h6>
+                      <h6 class="mb-0">Full Name</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        <h7 style="display:inline; color: #32CD32;font:sans-serif">{{ Auth::user()->name }}</h7>
+					          <input id="name" name="name" type="text" class="form-control" value="{{Auth::user()->name}}">
                     </div>
                   </div>
                   <hr>
@@ -80,7 +75,10 @@
                       <h6 class="mb-0">Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        <h7 style="display:inline; color: #32CD32;font:sans-serif">{{ Auth::user()->email }}</h7>
+					          <input id="email" name="email" type="email" class="form-control" value="{{Auth::user()->email}}">
+                    @if($errors->has('email'))
+                      <div class="error">{{ $errors->first('email') }}</div>
+                    @endif
                     </div>
                   </div>
                   <hr>
@@ -89,11 +87,10 @@
                       <h6 class="mb-0">Phone Number</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        @if($userphonenumber!=null)
-                        <h7 id="phone-number" style="display:inline; color: #32CD32;font:sans-serif">{{Auth::user()->cust_phone_number}}</h7>
-                        @else
-                        <h7 style="display:inline; color: #b9b9b9;font:sans-serif; font-style:italic;">Fill in your phone number!</h7>
-                        @endif
+					          <input id="cust_phone_number" name="customer_phone_number" type="text" class="form-control" value="{{Auth::user()->cust_phone_number}}">
+                      @if($errors->has('cust_phone_number'))
+                      <div class="error">{{ $errors->first('cust_phone_number') }}</div>
+                      @endif
                     </div>
                   </div>
                   <hr>
@@ -102,32 +99,25 @@
                       <h6 class="mb-0">Business Address</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        @if($userhomeaddress!=null)
-                        <h7 style="display:inline; color: #32CD32;font:sans-serif">{{Auth::user()->cust_address}}</h7>
-                        @else
-                        <h7 style="display:inline; color: #b9b9b9;font:sans-serif; font-style:italic;">Fill in your home address!</h7>
-                        @endif
+					          <input id="cust_address" name="cust_address" type="text" class="form-control" value="{{Auth::user()->cust_address}}">
                     </div>
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm-3">
-                        <a href="/adminProfileEdit">
-                            <button style="border-color:#32CD32; background:#32CD32;" class="btn btn-primary btn-block text-uppercase">Edit Profile</button>
-                        </a>
-                    </div>
-                    <div class="col-sm-3">
-                        <a href="/adminChangePassword">
-                            <button style="border-color:#32CD32; background:#32CD32;" class="btn btn-primary btn-block text-uppercase">Change Password</button>
+                    <div class="col-sm-2">
+                        <a href="/adminProfile">
+                            <button style="border-color:#32CD32; background:#32CD32;" class="btn btn-primary btn-block text-uppercase">Save Edit</button>
                         </a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            {{ csrf_field() }}
+        </form>
+    </div>
+    </div>
 </div>
-</div>
-
 
 
             </body>

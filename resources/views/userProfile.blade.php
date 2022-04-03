@@ -86,9 +86,6 @@
                                 @endif
                               </div>
                               </div>
-                            
-                                
-                                
                                 <!-- <div class="col-4">
                                   <button type="submit" style="border-color:#32CD32; background:#32CD32;">Update Picture</button>
                                 </div> -->
