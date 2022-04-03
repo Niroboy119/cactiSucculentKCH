@@ -2960,6 +2960,7 @@ input[type=button].btn-block {
 .dropdown-toggle {
   white-space: nowrap;
 }
+
 .dropdown-toggle::after {
   display: inline-block;
   margin-left: 0.255em;
@@ -2970,6 +2971,7 @@ input[type=button].btn-block {
   border-bottom: 0;
   border-left: 0.3em solid transparent;
 }
+
 .dropdown-toggle:empty::after {
   margin-left: 0;
 }
@@ -3148,6 +3150,7 @@ input[type=button].btn-block {
   background-color: transparent;
   border: 0;
 }
+
 .dropdown-item:hover, .dropdown-item:focus {
   color: #16181b;
   text-decoration: none;
