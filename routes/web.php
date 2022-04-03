@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -88,6 +89,10 @@ Route::get('/editUserProfile', function(){
 
 Route::get('/editPassword', function(){
     return view('editPassword');
+});
+
+Route::get('/manageAdmin', function(){
+    return view('manageAdmin');
 });
 
 // Route::get('/reset-password/{token}', function ($token) {
@@ -254,3 +259,11 @@ Route::post('/messages', function(Request $request) {
 
     return view('thanks');
 });
+
+// admin routes
+
+Route::get('/manageAdmin', [AdminController::class, 'getAllAdmins']);
+
+Route::get('/addNewAdmin', [AdminController::class, 'create']);
+
+
