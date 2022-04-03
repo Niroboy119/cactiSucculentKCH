@@ -136,20 +136,24 @@
             <li>
                 <a href="/manageOrders"> <span class="material-icons md-48" style="vertical-align: middle;">directions_car_filled</span>  Manage Orders</a>
             </li>
+            @if(Auth::check())
             <li>
                 <a href="/adminProfile"> <span class="material-icons md-48" style="vertical-align: middle;">manage_accounts</span>  Profile Page</a>
             </li>
+            @endif
+            <div class="sidebar-footer">
             <li>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
 															document.getElementById('logout-form').submit();"><span class="material-icons md-48" style="vertical-align: middle;">logout</span>
 												{{ __('Logout') }}</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
 												@csrf
-											</form>Logout</a>
+											</form></a>
             </li>
+            </div>
         </ul>
         </div>
-    </nav>
+</nav>
 
 </body>
 </html>
