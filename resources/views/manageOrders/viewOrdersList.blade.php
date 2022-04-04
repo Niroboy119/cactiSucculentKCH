@@ -6,50 +6,13 @@ $dateCount=1;
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-    
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <link href="{{ asset('css/viewProductsAdmin.css') }}" rel="stylesheet">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    
+   
 
 </head>
 <body>
    
 
  <!-- jQuery CDN - Slim version (=without AJAX) -->
- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-   
-    <link href="{{ asset('sass/test.css') }}" rel="stylesheet">
 
 
     @include('admin/adminheader')
@@ -216,7 +179,7 @@ function searchSupplier2()
                                         </div> <!-- Modal footer -->
                                         <div class="modal-footer">
                                             <button  onclick="myFunction1('{{$order->order_Id}}',document.getElementById('dateS{{$dateCount}}').value, document.getElementById('dateE{{$dateCount}}').value,document.getElementById('timeCount{{$dateCount}}').value,document.getElementById('time{{$dateCount}}').value)" type="button" class="btn" data-dismiss="modal">Submit</button> 
-                                             <button type="button" class="btn" data-dismiss="modal">Close</button> </div>
+                                             <button ty pe="button" class="btn" data-dismiss="modal">Close</button> </div>
                                     </div>
 
                                     @php
@@ -245,6 +208,7 @@ function searchSupplier2()
                                                     <div class="col-xs-6">
                                                         <ul type="none">
                                                             <li class="left">Order Id</li>
+                                                            <li class="left">Order Number</li>
                                                             <li class="left">Name</li>
                                                             <li class="left">Email</li>
                                                             <li class="left">Phone Number</li>
@@ -255,6 +219,7 @@ function searchSupplier2()
                                                     <div class="col-xs-6">
                                                         <ul class="right" type="none">
                                                             <li class="right">{{$order->order_Id}}</li>
+                                                            <li class="right">{{$order->orderNumber}}</li>
                                                             <li class="right">{{$user->name}}</li>
                                                             <li class="right">{{$user->email}}</li>
                                                             <li class="right">{{$user->cust_phone_number}}</li>

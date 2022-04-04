@@ -61,6 +61,7 @@ $products=Product::all();
 	
 	<body>
 		
+		
 		<!--welcome-hero start -->
 		<header id="home" class="welcome-hero">
 

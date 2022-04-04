@@ -8,10 +8,26 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- <link rel="stylesheet" href="css/checkout.css"> -->
+    <link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
     <title>Checkout : Cacti Succulent KCH</title>
   </head>
   <body>
+ 
+   
+       <link href="{{ asset('css/modal.css') }}" rel="stylesheet">
 
     <div class="pos-f-t">
         <nav class="navbar navbar-dark bg-success">
@@ -159,13 +175,162 @@
                 </div>
                 <hr class="mb-4">
                 <!-- <a class="btn btn-success btn-lg btn-block" href="{{ url('checkout/proceedtocheckout') }}" role="button" onclick="return confirm('Confirm Checkout?')">Place Order</a> -->
-                <button class="btn btn-success btn-lg btn-block" type="submit" >Place Order</button>
+                <button id="submitButton" class="btn btn-success btn-lg btn-block" type="submit" >Place Order</button>
+                <button id="myCheck" hidden="hidden" data-toggle="modal" data-target="#mediaModal" class="btn btn-success btn-lg btn-block" type="button" >Place Order</button>
+
                 <!-- return confirm('Order request sent. Redirect to home?') -->
+            
+                <script type="text/javascript">
+               
+                    function mediaSelect(m){
+                       document.getElementById('contactMedia').value=m;
+                       document.getElementById('close1').click();
+                      
+                       if(m=="email")
+                       {
+                            document.getElementById('emailButton').click();
+                       }else
+                       {
+                            document.getElementById('copyButton').click();
+                       }
+                      
+                    }
+
+                    function copyText() {
+
+                        var name=document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value;
+                        var email=document.getElementById('email').value;
+                        var address=document.getElementById('address').value;
+                        var phonenumber=document.getElementById('phonenumber').value;
+
+                        var random1=Math.floor(Math.random() * name.length-1)+2;
+                        var random2=Math.floor(Math.random() * name.length-1)+2;
+                        var random3=Math.floor(Math.random() * phonenumber.length-1)+2;
+                        var random4=Math.floor(Math.random() * phonenumber.length-1)+2;
+                        var random5=Math.floor(Math.random() * phonenumber.length-1)+2;
+                        var random6=Math.floor(Math.random() * phonenumber.length-1)+2;
+
+                        var name1 = name.replace(/\s/g, '');
+                        name1=name1.toUpperCase();
+                        var orderNumber=Math.floor(Math.random() * 100000)+name1.substring(random1-1,random1)+name1.substring(random2-1,random2)+phonenumber.substring(random3-1,random3)+phonenumber.substring(random4-1,random4)+phonenumber.substring(random5-1,random5)+phonenumber.substring(random6-1,random6);
+                        document.getElementById('orderNumber').value=orderNumber;
+                        
+                        if(address.length<=3)
+                        {
+                            address="None";
+                        }
+                        var deliveryType=delivery;
+
+                        var text='Hi, I have just placed an order with the following details:\nOrder Number: ' + orderNumber + '\nCustomer Name: ' + name + '\nEmail: ' + email + '\nAddress: ' + address + '\nDelivery Type: ' + deliveryType ;
+                        navigator.clipboard.writeText(text);
+                        media=1;
+                        document.getElementById('submitButton').click();
+                    }
+
+                    function emailSent()
+                    {
+                        var name=document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value;
+                        var email=document.getElementById('email').value;
+                        var address=document.getElementById('address').value;
+                        var phonenumber=document.getElementById('phonenumber').value;
+
+                        var random1=Math.floor(Math.random() * name.length-1)+2;
+                        var random2=Math.floor(Math.random() * name.length-1)+2;
+                        var random3=Math.floor(Math.random() * phonenumber.length-1)+2;
+                        var random4=Math.floor(Math.random() * phonenumber.length-1)+2;
+                        var random5=Math.floor(Math.random() * phonenumber.length-1)+2;
+                        var random6=Math.floor(Math.random() * phonenumber.length-1)+2;
+
+                        var name1 = name.replace(/\s/g, '');
+                        name1=name1.toUpperCase();
+                        var orderNumber=Math.floor(Math.random() * 100000)+name1.substring(random1-1,random1)+name1.substring(random2-1,random2)+phonenumber.substring(random3-1,random3)+phonenumber.substring(random4-1,random4)+phonenumber.substring(random5-1,random5)+phonenumber.substring(random6-1,random6);
+                        document.getElementById('orderNumber').value=orderNumber;
+                        media=1;
+                        document.getElementById('submitButton').click();
+                    }
+                  
+        
+                </script>
+
+              <!-- Social Media Modal -->
+              <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div  class="modal-content col-12">
+                        <div class="modal-header">
+                            <h6 style="font-size:17px; padding-left:40px; color:#25D366" class="modal-title">Choose Your Preferred Way Of Communication</h6> <button id="close1" type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="icon-container1 d-flex">
+                                <div class="smd"> <button type="button" style="background-color:white; border:none;" onclick="mediaSelect('whatsapp')"><i class="img-thumbnail fab fa-whatsapp fa-2x" style="color: #25D366;background-color: #cef5dc;"></i> </button>
+                                    <p>Whatsapp</p>
+                                </div>
+                                <div class="smd"> <button type="button" style="background-color:white; border:none;" onclick="mediaSelect('messenger')"><i class="img-thumbnail fab fa-facebook-messenger fa-2x" style="color: #3b5998;background-color: #eceff5;"></i> </button>
+                                    <p>Messenger</p>
+                                </div>
+                                <div class="smd"> <button type="button" style="background-color:white; border:none;" onclick="mediaSelect('email')"><i class="img-thumbnail fa fa-envelope-o fa-2x" style="padding-top:15px; color: red;background-color:rgb(255, 195, 195);"></i> </button>
+                                    <p>Email</p>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" type="text" class="form-control" id="contactMedia" name="contactMedia"> 
+                        <input type="hidden" type="text" class="form-control" id="orderNumber" name="orderNumber"> 
+
+                        <div class="modal-footer">
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Social Media Modal End -->
+            <button  hidden="hidden" type="button" id="copyButton" data-toggle="modal" data-target="#copyModal"></button>
+            <!-- Click To Copy Modal-->
+            <div class="modal fade" id="copyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div  class="modal-content col-12">
+                        <div class="modal-header">
+                            <h6 style="font-size:17px; padding-left:170px; color:#25D366" class="modal-title">IMPORTANT!</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Please Click Below To Copy Your Order Details And Complete Checkout. Paste The Details In Your Chosen Social Media Platform To Immediately Notify The Client!</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" onclick="copyText()" class="btn btn-success btn-sm btn-block">Click To Copy</button> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Click To Copy Modal End-->
+
+             <button  hidden="hidden" type="button" id="emailButton" data-toggle="modal" data-target="#emailModal"></button>
+             <!-- Click To Copy Modal-->
+             <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                 <div class="modal-dialog" role="document">
+                     <div  class="modal-content col-12">
+                         <div class="modal-header">
+                             <h6 style="font-size:17px; padding-left:180px; color:#25D366" class="modal-title">Email Sent</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                         </div>
+                         <div class="modal-body">
+                             <p>An Email Has Been Successfully Sent To Cacti Succulent. Please Click Below To Complete Checkout.</p>
+                         </div>
+                         <div class="modal-footer">
+                             <button type="button" onclick="emailSent()" class="btn btn-success btn-sm btn-block">Proceed</button> </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <!-- Click To Copy Modal End-->
+            
+          
+            
             </form>
         </div>
       </div>    
 
     </div>
+
+   
+    
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -176,13 +341,15 @@
     <script src="../../dist/js/bootstrap.min.js"></script>
     <script src="../../assets/js/vendor/holder.min.js"></script>
     <script>
+        var media=0;
+        var delivery="";
       // Example starter JavaScript for disabling form submissions if there are invalid fields
       (function() {
         'use strict';
-
         window.addEventListener('load', function() {
           // Fetch all the forms we want to apply custom Bootstrap validation styles to
           var forms = document.getElementsByClassName('needs-validation');
+        
 
           // Loop over them and prevent submission
           var validation = Array.prototype.filter.call(forms, function(form) {
@@ -190,9 +357,11 @@
               if (form.checkValidity() === false) {
                 event.preventDefault();
                 event.stopPropagation();
-              }else{
-                redirectTo();
-              }  
+              }else if(media==0){
+                event.preventDefault();
+                event.stopPropagation();
+                document.getElementById("myCheck").click();
+              }
               form.classList.add('was-validated');
             }, false);
           });
@@ -206,9 +375,17 @@
             if (document.getElementById('inlineRadio2').checked) {
                 document.getElementById('ifYes').style.display = 'none';
                 document.getElementById('address').required = false;
-            } else{
+                delivery="Pick up";
+            } else if(document.getElementById('inlineRadio1').checked){
                 document.getElementById('ifYes').style.display = 'block';
+                delivery="Home Delivery";
+            } else if(document.getElementById('inlineRadio3').checked){
+                document.getElementById('ifYes').style.display = 'block';
+                delivery="Remote Pick up";
             }
+
+           
+            
 
         // function checkDelivery(){
         //     if ((document.getElementById('inlineRadio1').checked || document.getElementById('inlineRadio2').checked) && (document.getElementById('ifYes').style.visibility = 'hidden')) {
@@ -230,6 +407,7 @@
                 //window.location.href = "{{ url('checkout/proceedtocheckout') }}";
             }
         }
+
 
     </script>
     
