@@ -21,7 +21,9 @@ class CreateOrderTable extends Migration
             $table->unsignedInteger('item_count');
             $table->decimal('grand_total', 20, 2);
             $table->enum('status', ['pending', 'processing', 'completed', 'decline', 'cancelled'])->default('pending');
-            $table->string('delivery_type');    
+            $table->string('delivery_type');
+            $table->string('orderNumber');
+            $table->string('contactMedia')->nullable();        
             $table->date('orderMadeDate');
             $table->string('shippingStartDate')->default('To Be Decided'); 
             $table->string('shippingEndDate')->default('To Be Decided'); 

@@ -48,7 +48,7 @@ use App\Models\Notification;
     <div id="app">
         <nav style="position:fixed; top:0; left:0; z-index:9999; width: 100%; background: #000000; height: 80px; padding-left: 0px;" class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a style="color:#32CD32;" class="navbar-brand" href="{{ url('/') }}">
+                <a style="color:#32CD32;" class="navbar-brand" href="{{ url('/dashboard') }}">
                     Cacti Succulent KCH
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
