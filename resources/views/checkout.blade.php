@@ -25,6 +25,14 @@
     <title>Checkout : Cacti Succulent KCH</title>
   </head>
   <body>
+
+    <?php 
+        use Illuminate\Support\Facades\Auth;
+        
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+    ?>
  
    
        <link href="{{ asset('css/modal.css') }}" rel="stylesheet">
@@ -83,25 +91,35 @@
             <form class="needs-validation" novalidate action="/checkout" method="POST" >
                 @csrf    
                 <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="firstName">First name</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="" value="" name="firstName" required>
+                    <div class="col-12 md-6 mb-3">
+                        <label for="fullName">Full name</label>
+                            @if (Auth::check())
+                                <input type="text" class="form-control" id="fullName" placeholder="" value="{{$user->name}}" name="fullName" required>
+                            @else
+                                <input type="text" class="form-control" id="fullName" placeholder="John Doe" value="" name="fullName" required>
+                            @endif
+                        
                         <div class="invalid-feedback">
-                        Valid first name is required.
+                        Valid full name is required.
                         </div>
                     </div>
-                    <div class="col-md-6 mb-3">
+                    {{-- <div class="col-md-6 mb-3">
                         <label for="lastName">Last name</label>
                         <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="" required>
                         <div class="invalid-feedback">
                         Valid last name is required.
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="mb-3">
-                    <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com">
+                    <label for="email">Email</label>
+                    @if (Auth::check())
+                        <input type="email" class="form-control" id="email" name="email" value="{{$user->email}}" placeholder="you@example.com" required>
+                    @else
+                        <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+                    @endif
+                    
                     <div class="invalid-feedback">
                         Please enter a valid email address for delivery updates.
                     </div>
@@ -127,7 +145,12 @@
                 <div class="mb-3" id="ifYes"> 
                     <div class="mb-3">
                         <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" name="address" placeholder="1234 Main St" required>
+                        @if (Auth::check() && $user->cust_address != null)
+                            <input type="text" class="form-control" id="address" name="address" value="{{$user->cust_address}}" placeholder="1234 Main St" required>
+                        @else
+                            <input type="text" class="form-control" id="address" name="address" placeholder="Apartment or suite" required>
+                        @endif
+                        
                         <div class="invalid-feedback">
                             Please enter your home address.
                         </div>
@@ -141,7 +164,12 @@
 
                 <div class="mb-3">
                     <label for="phonenumber">Phone Number</label>
-                    <input type="number" class="form-control" id="phonenumber" name="phonenumber" placeholder="+06-111-111-111" pattern="^(?:\d{2}-\d{3}-\d{3}-\d{3}|\d{11})$" required>
+                    @if (Auth::check() && $user->cust_phone_number != null)
+                        <input type="number" class="form-control" id="phonenumber" name="phonenumber" value="{{$user->cust_phone_number}}" placeholder="+06-111-111-111" pattern="^(?:\d{2}-\d{3}-\d{3}-\d{3}|\d{11})$" required>
+                    @else
+                        <input type="number" class="form-control" id="phonenumber" name="phonenumber" placeholder="+06-111-111-111" pattern="^(?:\d{2}-\d{3}-\d{3}-\d{3}|\d{11})$" required>
+                    @endif
+                    
                 </div>
 
                 <div class="row">
@@ -198,7 +226,7 @@
 
                     function copyText() {
 
-                        var name=document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value;
+                        var name=document.getElementById('fullName').value;
                         var email=document.getElementById('email').value;
                         var address=document.getElementById('address').value;
                         var phonenumber=document.getElementById('phonenumber').value;
@@ -229,7 +257,7 @@
 
                     function emailSent()
                     {
-                        var name=document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value;
+                        var name=document.getElementById('fullName').value;
                         var email=document.getElementById('email').value;
                         var address=document.getElementById('address').value;
                         var phonenumber=document.getElementById('phonenumber').value;

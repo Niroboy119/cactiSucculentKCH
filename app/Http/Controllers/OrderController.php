@@ -60,7 +60,7 @@ class OrderController extends Controller
 
         }else { // make a new user of type 'guest' and store their personal information into the users table
             
-            $guest = DB::table('users')->insertGetId(['user_type' => 'guest', 'name' => ($request->firstName.' '.$request->lastName), 'email' => $request->email, 'cust_address' => $request->address, 'cust_phone_number' => $request->phonenumber, 'password' => 123456789]);
+            $guest = DB::table('users')->insertGetId(['user_type' => 'guest', 'name' => ($request->fullName), 'email' => $request->email, 'cust_address' => $request->address, 'cust_phone_number' => $request->phonenumber, 'password' => 123456789]);
 
             $order->user_Id = $guest;
         }
