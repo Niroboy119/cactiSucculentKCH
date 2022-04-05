@@ -70,26 +70,16 @@
 
         <button style="background:#32CD32" type="button" class="btn btn-success" id="addNewAdminBtn" onclick="showForm()">Add new admin</button>
 
-        <!-- <form style="border: 1px solid #000">
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-5">
-            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+        <button type="button" class="btn btn-danger ml-3" id="deleteAdminBtn" onclick="showDeleteForm()">Remove admin</button>
+    
+
+        <form class="needs-validation" action="/deleteAdmin" id="removeAdminForm" novalidate style="display: none;">
+            <div class="mt-4 mb-3 col-5">
+                <input type="text" class="form-control" name="adminId" id="adminId" placeholder="Enter admin Id" required>
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-5">
-            <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-            </div>
-        </div>
-        
-        <div class="form-group row">
-            <div class="col-sm-5">
-            <button type="submit" class="btn btn-primary">Sign in</button>
-            </div>
-        </div>
-        </form> -->
+
+            <button type="submit" class="btn btn-success mt-3">Confirm</button>
+        </form>
 
         <form class="needs-validation" action="/addNewAdmin" id="adminRegisterForm" novalidate style="display: none;">
             <div class="mt-4 mb-3">
@@ -144,10 +134,38 @@
         </div>
         </div>
 
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle2">System alert</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>Administrator account has been successfully removed</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
         @if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
             <script>
                 $(function() {
                     $('#exampleModalCenter').modal('show');
+                });
+            </script>
+        @endif
+
+        @if(!empty(Session::get('error_code')) && Session::get('error_code') == 6)
+            <script>
+                $(function() {
+                    $('#exampleModalCenter2').modal('show');
                 });
             </script>
         @endif
@@ -193,6 +211,16 @@
             form.style.display = "block";
         }else {
             form.style.display = "none";
+        }
+    }
+
+    function showDeleteForm() {
+        var deleteForm = document.getElementById('removeAdminForm');
+
+        if (deleteForm.style.display === "none") {
+            deleteForm.style.display = "block";
+        }else {
+            deleteForm.style.display = "none";
         }
     }
 

@@ -20,4 +20,9 @@ class AdminController extends Controller
         $admin = User::where(["user_type" => "admin"])->get();
         return view('manageAdmin', compact("admin"));
     }
+
+    public function delete(Request $request){
+        DB::table('users')->delete($request->adminId);
+        return Redirect::back()->with('error_code', 6);
+    }
 }

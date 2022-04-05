@@ -282,4 +282,6 @@ Route::get('/manageAdmin', [AdminController::class, 'getAllAdmins']);
 
 Route::get('/addNewAdmin', [AdminController::class, 'create']);
 
+Route::get('/deleteAdmin', [AdminController::class, 'delete']);
+
 
