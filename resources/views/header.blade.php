@@ -157,7 +157,7 @@ use App\Models\Notification;
 									?>
 
 								<li class="dropdown">
-									<a href="" class="dropdown-toggle" data-toggle="dropdown" data-target="#cartdrop"><span class="lnr lnr-alarm"></span>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#cartdrop"><span class="lnr lnr-alarm"></span>
 										@if($count != 0)
 											<span class="badge badge-bg-1" aria-hidden="true">{{ $count }}</span>
 										@endif
