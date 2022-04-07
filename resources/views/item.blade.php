@@ -46,6 +46,7 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 .welcome-hero-img{
 	margin-top:-170px;
 	margin-bottom:-170px;
+	margin-right:-555px;
 	transition: 0.5s all ease-in-out;
 
 
@@ -59,6 +60,10 @@ $product = Product::where([ 'Product_ID' => 6 ]);
     top: -447px; /* Moves the image 2px closer to the top of the page */
 	right:-400px;
 	transition: 0.5s all ease-in-out;
+	box-shadow: 2px 2px 2px 2px;
+	width:190px;height:240px;
+	
+	
 
 }
 
@@ -68,43 +73,29 @@ position: relative; /* Declared position allows for location changes */
 top: -267px; /* Moves the image 2px closer to the top of the page */
 right:-400px;
 transition: 0.5s all ease-in-out;
+width:190px;height:240px;
+}
+
+.col-sm-5{
 
 }
 
-.overlay {
-  position: absolute; 
-  bottom: 0; 
-  background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.5); /* Black see-through */
-  color: #f1f1f1; 
-  width: 29%;
-  transition: .5s ease;
-  opacity:0;
-  color: white;
-  font-size: 20px;
-  text-align: center;
+
+.carousel-control-prev-icon
+{
+	background-color: black;
+	opacity:10px;
+
 }
 
-.overlay2 {
-  position: absolute; 
-  bottom: 0; 
-  background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.5); /* Black see-through */
-  color: #f1f1f1; 
-  width: 100%;
-  transition: .5s ease;
-  opacity:0;
-  color: white;
-  font-size: 20px;
-  text-align: center;
+.carousel-control-next-icon
+{
+    background-color: black;
+	opacity:10px;
+
+
+
 }
-
-.primaryPic:hover .overlay,.secondaryPic:hover .overlay{
-	opacity: 1;
-}
-
-
-
 
 
 
@@ -124,6 +115,14 @@ transition: 0.5s all ease-in-out;
   color: white;
 
   transform: translate(-50%, -50%);
+}
+
+.available {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color:white;
 }
 
 
@@ -180,6 +179,7 @@ transition: 0.5s all ease-in-out;
         
         <!--responsive.css-->
         <link rel="stylesheet" href="css/responsive.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         
 
     </head>
@@ -190,6 +190,7 @@ transition: 0.5s all ease-in-out;
 		<!--welcome-hero start -->
 		<header id="home" class="welcome-hero">
 
+		
 
 			<div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
 				<!--/.carousel-indicator -->
@@ -216,26 +217,32 @@ transition: 0.5s all ease-in-out;
 									<div class="row">
 									<div class="col-sm-7">
 								 <div class="single-welcome-hero">
-
-												<div class="welcome-hero-img">
-													<img src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" style="width:390px;height:500px;">
-													<div class="overlay2">Picture #1</div>
-
+											<div class="welcome-hero-img">
+											<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" >
+												
+											<div class="carousel-inner" style="width:390px;height:500px;">
+												<div class="carousel-item active">
+												<img src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" alt="..." style="width:390px;height:500px;">
+												</div>
+												<div class="carousel-item">
+												<img src="/images/populer-products/grapeto.jpg" alt="..." style="width:390px;height:500px;">
+												</div>
+												<div class="carousel-item">
+												<img src="/images/populer-products/purpledream2.jpg" alt="..." style="width:390px;height:500px;">
 												</div>
 											</div>
-											<div class=" welcome-hero-img primaryPic">
-													<img src="/images/populer-products/purpledream.jpg" style="width:190px;height:240px;"/>
-													<div class="overlay">Picture #2</div>
+											<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev" >
+												<span class="carousel-control-prev-icon"  style="font-size:30px;"></span>
+											</button>
+											<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+												<span class="carousel-control-next-icon" aria-hidden="true"></span>
+											</button>
+											</div>
 
-												</div>
-												
-											<div class="welcome-hero-img secondaryPic">
-													<img src="/images/populer-products/images.jpg" style="width:190px;height:250px;">
-													<div class="overlay">Picture #3</div>
-
-												</div>
+											</div>
+											</div>
 										</div>
-										<div class="col-sm-5">
+										<div class="col-sm-5" style="	margin-left:-145px;">
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-txt">
 													<h4>Cacti collection</h4>
@@ -311,7 +318,7 @@ transition: 0.5s all ease-in-out;
         
         <!--Custom JS-->
         <script src="/js/custom.js"></script>
-
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 		
 
 	</body>
