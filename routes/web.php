@@ -89,6 +89,9 @@ Route::get('/editPassword', function(){
     return view('editPassword');
 });
 
+Route::get('/manageAdmin', function(){
+    return view('manageAdmin');
+});
 
 
 // admin routes wrapped in admin middleware
@@ -106,9 +109,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
     Route::get('/deleteAdmin', [AdminController::class, 'delete']);
 
-    Route::get('/manageAdmin', function(){
-        return view('manageAdmin');
-    });
+    
     
     Route::get('/adminProfile', function(){
         return view('adminProfile');
