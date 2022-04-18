@@ -23,7 +23,7 @@ class AdminMiddleware
         if (Auth::user()->user_type == 'admin') {
             return $next($request);    
         }else {
-            return redirect('/dashboard');
+            return redirect('/homepage');
         }
         
     }

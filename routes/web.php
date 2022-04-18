@@ -71,9 +71,7 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
-Route::get('/dashboard', function () {
-    return view('admin/dashboard');
-});
+
 
 Route::get('/userProfile', function(){
     return view('userProfile');
@@ -91,33 +89,83 @@ Route::get('/editPassword', function(){
     return view('editPassword');
 });
 
-Route::get('/manageAdmin', function(){
-    return view('manageAdmin');
+
+
+// admin routes wrapped in admin middleware
+// these routes can only be accessed if the user is of type "admin"
+
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+
+    Route::get('/admin', function () {
+      return view('admin.dashboard');
+    })->name('dashboard');
+
+    Route::get('/manageAdmin', [AdminController::class, 'getAllAdmins']);
+
+    Route::get('/addNewAdmin', [AdminController::class, 'create']);
+
+    Route::get('/deleteAdmin', [AdminController::class, 'delete']);
+
+    Route::get('/manageAdmin', function(){
+        return view('manageAdmin');
+    });
+    
+    Route::get('/adminProfile', function(){
+        return view('adminProfile');
+    });
+    
+    Route::get('/adminProfileEdit', function(){
+        return view('adminProfileEdit');
+    });
+    
+    Route::get('/adminChangePassword', function(){
+        return view('adminChangePassword');
+    });
+
+    Route::get('/dashboard', function () {
+        return view('admin/dashboard');
+    });
+
+    Route::get('/adminProfile', function(){
+        return view('adminProfile');
+    });
+
+    Route::get('/manageProducts', [App\Http\Controllers\ProductController::class, 'displayProducts'])->name('products');
+    Route::get('/addProductForm', [App\Http\Controllers\ProductController::class, 'displayaddProductForm'])->name('products');
+    Route::post('/addProduct', [App\Http\Controllers\ProductController::class, 'create'])->name('products');
+    Route::get('/deleteProduct/{id}', [App\Http\Controllers\ProductController::class, 'deleteProduct'])->name('products');
+    Route::get('/editProduct/{id}', [App\Http\Controllers\ProductController::class, 'editProduct'])->name('products');
+    Route::post('/updateProduct/{id}', [App\Http\Controllers\ProductController::class, 'update'])->name('products');
+    Route::post('/updateStatus/{id}', [App\Http\Controllers\OrderController::class, 'updateS'])->name('orders');
+    Route::get('/increaseQuantity/{id}', [App\Http\Controllers\ProductController::class, 'increaseQuantity'])->name('products');
+    Route::get('/decreaseQuantity/{id}', [App\Http\Controllers\ProductController::class, 'decreaseQuantity'])->name('products');
+    Route::get('/changeQuantity/{id}/{quantity}', [App\Http\Controllers\ProductController::class, 'changeQuantity'])->name('products');
+    Route::get('/searchProducts/{search}', [App\Http\Controllers\ProductController::class, 'searchProducts'])->name('products');
+    Route::get('/searchProducts', [App\Http\Controllers\ProductController::class, 'displayProducts'])->name('products');
+
+    Route::get('/manageOrders', [App\Http\Controllers\OrderController::class, 'displayadminManageOrders'])->name('orders');
+    Route::get('/acceptOrder/{id}/{dateS}/{dateE}/{time}', [App\Http\Controllers\OrderController::class, 'acceptOrder'])->name('orders');
+    Route::get('/denyOrder/{id}/{reason}', [App\Http\Controllers\OrderController::class, 'denyOrder'])->name('orders');
+    Route::get('/completeOrder/{id}', [App\Http\Controllers\OrderController::class, 'completeOrder'])->name('orders');
+    Route::get('/changeQuantityAdmin/{id}/{quantity}', [App\Http\Controllers\OrderController::class, 'changeQuantityAdmin'])->name('orders');
+
+    Route::get('/manageSuppliers', [App\Http\Controllers\SupplierController::class, 'displaySuppliers'])->name('suppliers');
+    Route::get('/addSupplierForm', [App\Http\Controllers\SupplierController::class, 'displayaddSupplierForm'])->name('suppliers');
+    Route::post('/addSupplier', [App\Http\Controllers\SupplierController::class, 'create'])->name('suppliers');
+    Route::get('/deleteSupplier/{id}', [App\Http\Controllers\SupplierController::class, 'deleteSupplier'])->name('suppliers');
+    Route::get('/editSupplier/{id}', [App\Http\Controllers\SupplierController::class, 'editSupplier'])->name('suppliers');
+    Route::post('/updateSupplier/{id}', [App\Http\Controllers\SupplierController::class, 'update'])->name('suppliers');
+    Route::get('/searchSuppliers/{search}', [App\Http\Controllers\SupplierController::class, 'searchSuppliers'])->name('suppliers');
+    Route::get('/searchSuppliers', [App\Http\Controllers\SupplierController::class, 'displaySuppliers'])->name('suppliers');
+
+    Route::post('updateAdmin/{id}', 'App\Http\Controllers\UserController@updateAdmin');
+    Route::post('/changeAdminPassword',[App\Http\Controllers\UserController::class,'changeAdminPassword'])->name('changeAdminPassword');
+    Route::get('/editSupplier/{id}', [App\Http\Controllers\SupplierController::class,'editSupplier'])->name('editSupplier');
 });
-
-
-Route::get('/adminProfile', function(){
-    return view('adminProfile');
-});
-
-Route::get('/adminProfileEdit', function(){
-    return view('adminProfileEdit');
-});
-
-Route::get('/adminChangePassword', function(){
-    return view('adminChangePassword');
-});
-
-
-// Route::get('/reset-password/{token}', function ($token) {
-//     return view('forgotPasswordForm', ['token' => $token]);
-// })->middleware('guest')->name('password.reset');
 
 Route::get('/forgotPasswordLink/{token}', [App\Http\Controllers\ResetPasswordController::class, 'showResetForm'])->name('forgotPasswordLink');
 
-Route::get('/adminProfile', function(){
-    return view('adminProfile');
-});
+
 
 
 Route::get('/forgotPasswordLink', function () {
@@ -156,34 +204,6 @@ Route::post('/reset-password', function (Request $request) {
 })->middleware('guest')->name('password.update');
 ///------------------------------------------------------------------------
 
-Route::get('/manageProducts', [App\Http\Controllers\ProductController::class, 'displayProducts'])->name('products');
-Route::get('/addProductForm', [App\Http\Controllers\ProductController::class, 'displayaddProductForm'])->name('products');
-Route::post('/addProduct', [App\Http\Controllers\ProductController::class, 'create'])->name('products');
-Route::get('/deleteProduct/{id}', [App\Http\Controllers\ProductController::class, 'deleteProduct'])->name('products');
-Route::get('/editProduct/{id}', [App\Http\Controllers\ProductController::class, 'editProduct'])->name('products');
-Route::post('/updateProduct/{id}', [App\Http\Controllers\ProductController::class, 'update'])->name('products');
-Route::post('/updateStatus/{id}', [App\Http\Controllers\OrderController::class, 'updateS'])->name('orders');
-Route::get('/increaseQuantity/{id}', [App\Http\Controllers\ProductController::class, 'increaseQuantity'])->name('products');
-Route::get('/decreaseQuantity/{id}', [App\Http\Controllers\ProductController::class, 'decreaseQuantity'])->name('products');
-Route::get('/changeQuantity/{id}/{quantity}', [App\Http\Controllers\ProductController::class, 'changeQuantity'])->name('products');
-Route::get('/searchProducts/{search}', [App\Http\Controllers\ProductController::class, 'searchProducts'])->name('products');
-Route::get('/searchProducts', [App\Http\Controllers\ProductController::class, 'displayProducts'])->name('products');
-
-Route::get('/manageOrders', [App\Http\Controllers\OrderController::class, 'displayadminManageOrders'])->name('orders');
-Route::get('/acceptOrder/{id}/{dateS}/{dateE}/{time}', [App\Http\Controllers\OrderController::class, 'acceptOrder'])->name('orders');
-Route::get('/denyOrder/{id}/{reason}', [App\Http\Controllers\OrderController::class, 'denyOrder'])->name('orders');
-Route::get('/completeOrder/{id}', [App\Http\Controllers\OrderController::class, 'completeOrder'])->name('orders');
-Route::get('/changeQuantityAdmin/{id}/{quantity}', [App\Http\Controllers\OrderController::class, 'changeQuantityAdmin'])->name('orders');
-
-Route::get('/manageSuppliers', [App\Http\Controllers\SupplierController::class, 'displaySuppliers'])->name('suppliers');
-Route::get('/addSupplierForm', [App\Http\Controllers\SupplierController::class, 'displayaddSupplierForm'])->name('suppliers');
-Route::post('/addSupplier', [App\Http\Controllers\SupplierController::class, 'create'])->name('suppliers');
-Route::get('/deleteSupplier/{id}', [App\Http\Controllers\SupplierController::class, 'deleteSupplier'])->name('suppliers');
-Route::get('/editSupplier/{id}', [App\Http\Controllers\SupplierController::class, 'editSupplier'])->name('suppliers');
-Route::post('/updateSupplier/{id}', [App\Http\Controllers\SupplierController::class, 'update'])->name('suppliers');
-Route::get('/searchSuppliers/{search}', [App\Http\Controllers\SupplierController::class, 'searchSuppliers'])->name('suppliers');
-Route::get('/searchSuppliers', [App\Http\Controllers\SupplierController::class, 'displaySuppliers'])->name('suppliers');
-
 
 Route::get('search/{search}', [App\Http\Controllers\ProductController::class, 'search'])->name('products');
 
@@ -205,20 +225,6 @@ Auth::routes();
 Route::get('/homepage', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/forgotPasswordForm',[App\Http\Controllers\HomeController::class, 'forgotPasswordForm'])->name('forgotPasswordForm');
 
-Route::middleware(['auth', 'isAdmin'])->group(function () {
-    Route::get('/admin', function () {
-      return view('admin.dashboard');
-    })->name('dashboard');
-  });
-
-// Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::get('cart/delete/{Product_ID}', 'App\Http\Controllers\ProductController@removeCartProducts');
 Route::get('cart/update/{Product_ID}', 'App\Http\Contorllers\ProductController@updateCartProducts');
 
@@ -227,14 +233,11 @@ Route::get('cart/decreaseCartQuantity/{Product_ID}', 'App\Http\Controllers\Produ
 Route::get('checkout/proceedtocheckout','App\Http\Controllers\ProductController@proceedToCheckout');
 Route::post('updateUser/{id}', 'App\Http\Controllers\UserController@updateUser');
 Route::post('updateUserProfile/{id}','App\Http\Controllers\UserController@updateUserProfile');
-Route::post('updateAdmin/{id}', 'App\Http\Controllers\UserController@updateAdmin');
+
 
 Route::post('/checkout', [OrderController::class, 'store']);
 
 Route::post('/changePassword',[App\Http\Controllers\UserController::class,'changePassword'])->name('changePassword');
-Route::post('/changeAdminPassword',[App\Http\Controllers\UserController::class,'changeAdminPassword'])->name('changeAdminPassword');
-
-Route::get('/editSupplier/{id}', [App\Http\Controllers\SupplierController::class,'editSupplier'])->name('editSupplier');
 
 
 
@@ -275,13 +278,3 @@ Route::post('/messages', function(Request $request) {
 
     return view('thanks');
 });
-
-// admin routes
-
-Route::get('/manageAdmin', [AdminController::class, 'getAllAdmins']);
-
-Route::get('/addNewAdmin', [AdminController::class, 'create']);
-
-Route::get('/deleteAdmin', [AdminController::class, 'delete']);
-
-
