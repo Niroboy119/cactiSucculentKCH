@@ -62,15 +62,15 @@
         <div class="container">
             <div class="abouttop">
                 <div class="section-header">
-                    <h2 style="color:#32CD32; font-size: 50px; font-family: 'Roboto', sans-serif;"><br>About Us</h2>
+                    <h2><br>About Us</h2>
                 </div><!--/.section-header-->
                 <div class="carousel-inner" role="listbox">
-                    <div>
+                    <div class = "about-paragraph">
                         <br>
                         <br>
                         <br>
-                        <p style="color:black; text-align:center; font-size:28px; font-family: 'Roboto', sans-serif;">Cacti Succulent KCH is a home-based business with 30 years of experience in Kuching.</p>
-                        <p style="color:black; text-align:center; font-size:28px; font-family: 'Roboto', sans-serif;">We are passionate about growing succulents!</p>
+                        <p>Cacti Succulent KCH is a home-based business with 30 years of experience in Kuching.</p>
+                        <p>We are passionate about growing succulents!</p>
                         <br>
                         <br>
                         <br>							

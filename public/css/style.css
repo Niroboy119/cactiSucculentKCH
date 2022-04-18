@@ -1476,6 +1476,19 @@ td:last-child{
 /*===============================
     13. About Us Page
 ===============================*/
+.about-paragraph p {
+    color: black;
+    text-align: center;
+    font-size: 28px;
+    font-family: 'Roboto', sans-serif;
+} @media only screen and (max-width: 767px) {
+    .about-paragraph {
+        margin-top: -30px;
+    }
+    .about-paragraph p {
+        font-size: 16px;
+    }
+}
 
 /* Description */
 .description-benefits-area {
@@ -1485,7 +1498,13 @@ td:last-child{
   .single-benefits-area img {
     margin-bottom: 30px; }
   .single-benefits-area p {
-    margin-bottom: 0; }
+    margin-bottom: 0; 
+} @media only screen and (max-width: 767px) {
+    .description-benefits-area {
+        margin-top: -30px;
+    }
+}
+
 
 /* Story Area */
 .our-story-area {
@@ -1506,18 +1525,28 @@ td:last-child{
     .single-story-area .story-content p {
       margin-bottom: 0;
       width: 650px;
-      text-align: left; }
+      text-align: left; 
+} @media only screen and (max-width: 767px) {
+    .single-story-area {
+        width: 100%;
+    }
+    .single-story-area .story-content p {
+        width: fit-content;
+    }
+}
 
-      .story-image {
-        position: relative;
-        z-index: 1;
-        margin-left: 200px;
-        width: 500px;
-        box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15); }
+.story-image {
+    position: relative;
+    z-index: 1;
+    margin-left: 200px;
+    width: 500px;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15); }
         @media only screen and (max-width: 767px) {
-          .story-image {
-            margin-bottom: 50px; }
-        }
+            .story-image {
+                width: 100%;
+                margin-bottom: -50px;
+                margin-left: auto; }
+}
 
 
 /* About Button */
@@ -1533,6 +1562,10 @@ td:last-child{
     height: 60px;
     width: 170px;
     display: inline-block;
+  } @media only screen and (max-width: 767px) {
+      .our-product {
+          margin-left: 0;
+      }
   }
 
 .about-contact {
@@ -1548,109 +1581,178 @@ td:last-child{
     height: 60px;
     width: 170px;
     display: inline-block;
+} @media only screen and (max-width: 767px) {
+  .about-contact {
+      margin-left: 20px;
+  }
 }
 
 /*===============================
   14 Contact Area Page
 ===============================*/
+.section-header h2{
+    color:#32CD32;
+    font-size: 50px;
+} @media only screen and (max-width: 1000px) {
+    .section-header h2 {
+        font-size: 35px;
+    }
+}
+
 .contact-thumbnail {
     position: relative;
     z-index: 1;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15); }
-    @media only screen and (max-width: 767px) {
+    @media screen and (max-width: 1500px) and (min-width: 900px) {
       .contact-thumbnail {
-        margin-bottom: 50px; }
-    }
+        margin-top: -50px;
+        margin-bottom: 50px;
+        margin-right: auto;
+        max-width: 100%;
+        max-height: 100%; }
+    } @media screen and (max-width: 767px) {
+        .contact-thumbnail {
+          margin-top: -50px;
+          margin-bottom: 25px;
+          margin-right: auto;
+          max-width: 100%;
+          max-height: 100%; }
+      } 
 
+
+.contact-info-area {
+    font-family: 'Roboto', sans-serif;
+    background-color: white;
+    width: 540px;
+    height: 557px;
+    border: 15px solid #32CD32;
+    padding: 50px;
+    } @media only screen and (max-width: 767px) {
+        .contact-info-area {
+            width: 100%;
+            height: 100%;
+            border: 10px solid #32CD32; }}
+        .contact-info-area a {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .section-heading {
+            font-family: 'Roboto', sans-serif;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 50px; 
+            margin-left: 50px;}
+            @media screen and (max-width: 767px){
+                .section-heading {
+                    margin-left: auto;
+                    margin-top: -50px;}
+            }
+            .section-heading h2 {
+                font-family: 'Roboto', sans-serif;
+                font-size: 30px;
+                text-transform: uppercase;
+                margin-bottom: 10px; }
+                @media only screen and (max-width: 767px) {
+                    .section-heading h2 {
+                        font-size: 20px; 
+                        margin-bottom: 10px;} }
+                        
+            .section-heading p {
+                font-size: 20px;
+                color: #707070;
+                margin-bottom: 0;
+            } @media only screen and (max-width: 767px) {
+                .section-heading p {
+                    font-size: 18px;
+                    margin-bottom: -20px;
+                }
+            }
+            
 .contact-information{
     font-family: 'Roboto', sans-serif;
     margin-left: 50px;
-  }
-  .contact-information p {
+} @media only screen and (max-width: 767px) {
+    .contact-information {
+        margin-left: auto;
+    }
+}
+    .contact-information p {
         font-family: 'Roboto', sans-serif;
         font-size: 20px;
         line-height: 1.3;
         color: #707070;
         margin-bottom: 13px; }
-      .contact-information p span {
+        .contact-information p span {
           color: #303030; }
-      .contact-information p:last-child {
+        .contact-information p:last-child {
           margin-bottom: 0; } 
-  .contact-information a {
+    .contact-information a {
         font-family: 'Roboto', sans-serif;
         font-size: 20px;
         color: #707070;
         text-transform: lowercase;
+  } @media only screen and (max-width: 767px) {
+        .contact-information p {
+            font-size: 17px;
+            margin-bottom: 5px;
+      }
+        .contact-information a {
+            font-size: 17px;
+      }
   }
+
+.contact-area {
+    font-family: 'Roboto', sans-serif;
+    background-color: white;
+    width: 565px;
+    height: 570px;
+    border: 15px solid #32CD32;
+    padding: 50px;
+    margin-left: 200px;
+} @media only screen and (max-width:767px) {
+    .contact-area {
+        width: 86%;
+        height: 80%;
+        border: 10px solid #32CD32;
+        margin-left: 30px;
+        margin-top: -80px;
+    }
+}
+
+.section-heading-touch {
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 50px;
+    margin-left: -16px; 
+    } @media only screen and (max-width: 499px) {
+        .section-heading-touch {
+            margin-bottom: 5px;
+        }
+    }
+    .section-heading-touch h2 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 35px;
+        text-transform: uppercase;
+        margin-bottom: 10px; }
+        @media only screen and (max-width: 767px) {
+            .section-heading-touch h2 {
+                font-size: 18px;
+                margin-bottom: 5px; } }
+    .section-heading-touch p {
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        color: #707070;
+        margin-bottom: 0;
+    }  @media only screen and (max-width: 767px) {
+            .section-heading-touch p {
+                font-size: 18px; } }
 
 .section-padding-0-100 {
     padding-top: 0;
     padding-bottom: 100px;
 }
 
-.section-heading {
-    font-family: 'Roboto', sans-serif;
-    position: relative;
-    z-index: 1;
-    margin-bottom: 50px; 
-    margin-left: 50px;}
-    .section-heading h2 {
-        font-family: 'Roboto', sans-serif;
-        font-size: 30px;
-        text-transform: uppercase;
-        margin-bottom: 10px; }
-        @media only screen and (max-width: 767px) {
-        .section-heading h2 {
-            font-size: 20px; } }
-    .section-heading p {
-        font-size: 20px;
-        color: #707070;
-        margin-bottom: 0;
-    }
-    .section-heading-touch {
-        font-family: 'Roboto', sans-serif;
-        position: relative;
-        z-index: 1;
-        margin-bottom: 50px;
-        margin-left: -16px; 
-        }
-        .section-heading-touch h2 {
-            font-family: 'Roboto', sans-serif;
-            font-size: 35px;
-            text-transform: uppercase;
-            margin-bottom: 10px; }
-            @media only screen and (max-width: 767px) {
-                .section-heading-touch h2 {
-                    font-size: 20px; } }
-        .section-heading-touch p {
-            font-family: 'Roboto', sans-serif;
-            font-size: 20px;
-            color: #707070;
-            margin-bottom: 0;
-        }
-
-        .contact-area {
-            font-family: 'Roboto', sans-serif;
-            background-color: white;
-            width: 565px;
-            border: 15px solid #32CD32;
-            padding: 50px;
-            margin-left: 200px;
-        }
-        
-        .contact-info-area {
-            font-family: 'Roboto', sans-serif;
-            background-color: white;
-            width: 540px;
-            height: 557px;
-            border: 15px solid #32CD32;
-            padding: 50px;
-        }
-        
-        .contact-info-area a {
-            font-family: 'Roboto', sans-serif;
-        }
-        
 .contact-form-area .form-control {
     position: relative;
     z-index: 2;
@@ -1677,6 +1779,29 @@ td:last-child{
         .contact-form-area .form-group-2{
             margin-right: -200px;
             width: 170px;
+} @media only screen and (max-width: 767px) {
+        .contact-form-area {
+            height: 100%;
+        }
+        .contact-form-area .form-control {
+            width: 80%;
+            height: 35px;
+            font-size: 14px; }
+        .control-form-area .form-control:focus {
+            border: 10px solid #32CD32;
+        }
+        .contact-form-area textarea.form-control {
+            width: 106%;
+        }
+        .contact-form-area .form-group-1 {
+            width: 150%; }
+        .contact-form-area .form-group-2 {
+            width: 150%;
+            margin-top: 12px;
+            margin-left: -15px; }
+        .contact-form-area .form-group-3 {
+            width: 132%;
+        }
 }
           
 .send-message {
@@ -1698,24 +1823,39 @@ td:last-child{
     line-height: 45px;
     text-transform: uppercase;
     font-weight: 600; 
+} @media only screen and (max-width: 767px){
+    .send-message {
+        font-size: 12px;
+        height: 60%;
+    }
+}
+
+.appointment-visit p {
+    font-size: 12px;
 }
 
 .map-area {
     position: relative;
-    margin-left: -740px;
-    margin-top: 12px;
+    margin-left: 877px;
+    margin-top: -285px;
     z-index: 2;
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.15); }
     .map-area iframe {
-      width: 543px;
-      height: 570px;
-      border: none;
-      margin-bottom: 0;
-      border-radius: 5px; }
-      @media only screen and (max-width: 767px) {
+        width: 543px;
+        height: 570px;
+        border: none;
+        border-radius: 5px; 
+    } @media only screen and (max-width: 767px) {
+        .map-area {
+            margin-left: -560PX;
+            margin-bottom: 510px;
+        }
         .map-area iframe {
-          height: 320px; } 
-}
+            width: 38%;
+            height: 400px;
+        }
+    }
+
 /*===============================
     Scroll Top
 ===============================*/
