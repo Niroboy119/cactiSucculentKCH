@@ -151,12 +151,24 @@ nav.navbar.bootsnav {
 /*.navbar-brand*/
 .navbar-header a.navbar-brand,.navbar-header a.navbar-brand:hover,.navbar-header a.navbar-brand:focus {
     display: inline-block;
-    color: #616060;
+    color: #32CD32;
     font-size: 24px;
     font-weight: 500;
     padding: 45px 0px;
     text-transform:capitalize;
 }
+
+@media only screen and (max-width:415px){
+    .navbar-header a.navbar-brand,.navbar-header a.navbar-brand:hover,.navbar-header a.navbar-brand:focus{
+    display: inline-block;
+    color:#32CD32;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 45px 80px;
+    text-transform:capitalize;
+    }
+}
+
 .navbar-header a.navbar-brand span{display: inline-block;color:#32CD32	;text-transform:capitalize;}
 
 .wrap-sticky nav.navbar.bootsnav.sticked .navbar-header a.navbar-brand,.wrap-sticky nav.navbar.bootsnav.sticked .navbar-header a.navbar-brand:hover,.wrap-sticky nav.navbar.bootsnav.sticked .navbar-header a.navbar-brand:focus {padding:30px 0px;}
@@ -388,6 +400,17 @@ div.single-welcome-hero video.home-banner{
     height: 650px;
 }
 
+@media only screen and (max-width: 415px){
+    .single-welcome-hero{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        height: 650px;
+        width:415px;
+    }
+}
+
 /* .welcome-hero-txt h2 {
     color: #998d80;
     font-size: 24px;
@@ -402,6 +425,36 @@ div.single-welcome-hero video.home-banner{
     font-weight: 600;
     width: 100%;
     font-family:Arial, Helvetica, sans-serif;
+}
+
+.welcome-hero-txt h3{
+    font-size: 20px;
+    color:#fff;
+    text-transform:none;
+    margin: 35px 0 20px;
+    font-family:Verdana;
+}
+
+@media only screen and (max-width: 415px){
+    
+    .welcome-hero-txt h2 {
+        font-size: 30px !important;
+        color: #ffffff;
+        margin: 20px 0 40px 25px !important;
+        font-weight: 600;
+        width: 70%;
+        font-family:Arial, Helvetica, sans-serif;
+    }
+
+    .welcome-hero-txt h3{
+       
+        font-size: 20px !important;
+        color:#fff;
+        text-transform:none;
+        margin: 5px 0 20px 25px !important;
+        font-family:Verdana;
+        width: 70%
+    }
 }
 
 .welcome-hero-txt a:hover{
@@ -423,13 +476,24 @@ div.single-welcome-hero video.home-banner{
     z-index: 100;
 }
 
-.welcome-hero-txt h3{
-    font-size: 20px;
-    color:#fff;
-    text-transform:none;
-    margin: 35px 0 20px;
-    font-family:Verdana;
+@media only screen and (max-width: 415px){
+    
+    .welcome-hero-txt a{
+        display: inline-block;
+        font-size: 1em;
+        background: #fff;
+        padding: 10px 30px;
+        text-decoration: none;
+        color:#111;
+        margin-top: 10px;
+        margin-left: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        z-index: 100;
+    }
+
 }
+
 
 .welcome-hero-txt .packages-price p {
     margin: 0;
@@ -643,6 +707,14 @@ REGISTER BANNER
     height:100%;
 }
 
+@media only screen and (max-width:415px){
+    #register-banner{
+        position: relative;
+        display: flex;
+        height:80px;
+    }
+}
+
 .register-text a:hover{
     background: #000;
     color: #fff;
@@ -665,6 +737,39 @@ REGISTER BANNER
     border-style: solid;
 }
 
+@media only screen and (max-width: 415px){
+    .register-text a{
+        margin-top: 15px;
+        margin-left: 10px;
+        display: inline-block;
+        font-size: 1em;
+        background: #fff;
+        padding: 10px 30px;
+        text-decoration: none;
+        color:#111;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        /* z-index: 100; */
+        border-style: solid;
+    }
+}
+
+.single-register-banner {
+    align-items: center;
+    flex-direction: column;
+    height: 650px;
+}
+
+@media only screen and (max-width:415px){
+    div.single-register-banner {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 650px;
+    }
+}
+
+
 div.single-register-banner img{
     z-index: -1;
     margin-top: 100px;
@@ -676,6 +781,22 @@ div.single-register-banner img{
     width:800px;
     height: 500px;
     /* filter: grayscale(80%); */
+}
+
+@media only screen and (max-width:415px){
+    div.single-register-banner img{
+        display:none;
+        z-index: -1;
+        margin-top: 100px;
+        margin-left: 0px;
+        box-shadow: 10px 10px 5px #ccc;
+        float: left;
+        border: transparent;
+        position: absolute;
+        width:800px;
+        height: 500px;
+        /* filter: grayscale(80%); */
+    }
 }
 
 .register-text h3 {
@@ -698,6 +819,34 @@ div.single-register-banner img{
     font-weight: 600;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     justify-content: center;
+}
+
+@media only screen and (max-width:415px){
+    .register-text h3 {
+    font-size: 15px;
+    color:#000;
+    margin-top: 20px !important;
+    margin-left: 10px;
+    text-transform:none;
+    font-family:Verdana;
+    }
+
+    .register-text h2 {
+        font-size: 30px;
+        color: #000000;
+        /* font-weight: bold; */
+        /* text-shadow: 10px 10px 5px #ccc; */
+        margin-top: 50px !important;
+        margin-left: 10px;
+        width: 350px;
+        font-weight: 600;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        justify-content: center;
+    }
+
+    .begin-btn {
+        margin-left: 10px;
+    }
 }
 
 .single-welcome-hero{
@@ -996,7 +1145,16 @@ p.arrival-review span {margin-right: 15px;}
     position: relative;
     
     margin-top: 300px;
+    margin-top: 80px;
 }
+
+@media screen and (max-width:415px) {
+    #Cacti-collection {
+        position: relative;
+        margin-top: 180px;
+    }
+}
+
 .Cacti-collection{
     position: relative;
     display: flex;
