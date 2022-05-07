@@ -1,6 +1,7 @@
 <?php
 $count=1;
 $dateCount=1;
+$currentdateCount=1;
 ?>
 
 <!doctype html>
@@ -20,6 +21,10 @@ $dateCount=1;
 
     <link href="{{ asset('css/viewProductsAdmin.css') }}" rel="stylesheet">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 
 
     <!-- Fonts -->
@@ -28,7 +33,6 @@ $dateCount=1;
     
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     
@@ -157,6 +161,20 @@ function searchSupplier2()
                 $date="To Be Decided"; 
                 $timeDet="To Be Decided";
 
+                if($order->contactMedia=="whatsapp")
+                {
+                    $orderType="copy";
+                    $orderContact="img-thumbnail fab fa-whatsapp fa-1x";
+                }else if($order->contactMedia=="messenger")
+                {
+                    $orderType="copy";
+                    $orderContact="img-thumbnail fab fa-facebook-messenger fa-1x";
+                }else
+                {
+                    $orderType="email";
+                    $orderContact="img-thumbnail fa fa-envelope-o fa-1x";
+                }
+
             ?>
             <div class="row p-2 bg-white border rounded">
                 <div class="col-md-3 mt-1"><img  style="width:200px; height: 170px;" class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/'.$img)}}"></div>
@@ -164,7 +182,7 @@ function searchSupplier2()
                     <h4>Order Id: {{$order->order_Id}}</h4>
                     <div class="mt-1 mb-1 spec-1"><span style="font-size:17px;">Name: {{$user->name}}</span><span style="background:{{$color}}" class="dot"></span><span style="font-size:17px;">Email: {{$user->email}}<span style="background:{{$color}}" class="dot"></span><span style="font-size:17px;">Number of Items: {{$order->item_count}}
                     <span style="background:{{$color}}" class="dot"></span><span style="font-size:17px;">Order Total: ${{sprintf('%.2f', ($order->grand_total))}}
-                    <span style="background:{{$color}}" class="dot"></span><span style="color:{{$color}}; font-size:17px;">{{$order->status}}</div>
+                    <span style="background:{{$color}}" class="dot"></span><span style="color:{{$color}}; font-size:17px;">{{$order->status}}</span><span style="background:{{$color}}" class="dot"></span><span><i class="{{$orderContact}}" style="border-style:none; background-color:white;"></i></span></div>
                     <p style="color:black;" class="text-justify text-truncate para mb-0"><br><br></p>
                 </div>
                 <div class="align-items-center align-content-center col-md-3 border-left mt-1">
@@ -172,13 +190,15 @@ function searchSupplier2()
                     <div style="position:relative; padding-bottom:40px;" class="d-flex flex-column mt-4">
                         <a style="display:{{$display1}}; margin-bottom:10px; border-color:#32CD32; background:#32CD32;" data-toggle="modal" data-target="#datetimeModal{{$dateCount}}" class="btn btn-primary btn-sm" href="">Accept</a>
                         
+                      
+                      
                         <div class="container d-flex justify-content-center mt-100">
                             <div class="modal fade" id="datetimeModal{{$dateCount}}">
-                                <div style="width:500px; margin-top:230px; margin-left:570px;" class="modal-dialog modal-lg">
+                                <div style="width:500px; margin-top:200px; margin-left:570px;" class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <!-- Modal Header -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Pick Date & Time
+                                            <h4 class="modal-title">Pick Date & Time</h4>
                                         </div> <!-- Modal body -->
                                         <div class="modal-body">
                                             <div class="container">   
@@ -211,20 +231,81 @@ function searchSupplier2()
                                                     <option value="PM">PM</option>
                                                   </select>
                                             </div>
-                                        </div> <!-- Modal footer -->
+                                        </div> 
+                        
+                                        
+                                        <!-- Modal footer -->
                                         <div class="modal-footer">
-                                            <button  onclick="myFunction1('{{$order->order_Id}}',document.getElementById('dateS{{$dateCount}}').value, document.getElementById('dateE{{$dateCount}}').value,document.getElementById('timeCount{{$dateCount}}').value,document.getElementById('time{{$dateCount}}').value)" type="button" class="btn" data-dismiss="modal">Submit</button> 
-                                             <button ty pe="button" class="btn" data-dismiss="modal">Close</button> </div>
-                                    </div>
-
-                                    @php
-                                        $dateCount+=1;
-                                    @endphp
+                                            <button  type="button" class="btn" data-toggle="modal" data-dismiss="modal" data-target="#copyModal{{$orderType}}{{$dateCount}}">Submit</button> 
+                                            <button type="button" class="btn" data-dismiss="modal">Close</button> </div>
+                                    </div>                                    
                                 </div>
                             </div>
                         </div>
-                            
+
+
+                        <!-- Click To Copy Modal-->
+                        <div class="modal fade" id="copyModalcopy{{$dateCount}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div style="margin-left:550px; margin-top:230px;" class="modal-dialog" role="document">
+                                <div  class="modal-content col-12">
+                                    <div class="modal-header">
+                                        <h6 style="font-size:17px; padding-left:170px; color:#32CD32;" class="modal-title">IMPORTANT!</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p style="color:dimgray; font-size:15px;">Please Click Below To Copy The Delivery Details. Paste The Details In The Customer's Chosen Social Media Platform To Immediately Notify Them!</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" style="background-color:#32CD32" onclick="copyDeliveryDetails('{{$user->name}}','{{$order->orderNumber}}','{{$order->order_Id}}',document.getElementById('dateS{{$dateCount}}').value,document.getElementById('dateE{{$dateCount}}').value,document.getElementById('timeCount{{$dateCount}}').value,document.getElementById('time{{$dateCount}}').value)" class="btn btn-success btn-sm btn-block">Click To Copy</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                          <!-- Email Modal-->
+             <div class="modal fade" id="copyModalemail{{$dateCount}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div style="margin-left:550px; margin-top:250px;" class="modal-dialog" role="document">
+                    <div  class="modal-content col-12">
+                         <div class="modal-header">
+                             <h6 style="font-size:17px; padding-left:170px; color:#32CD32;" class="modal-title">Email Request</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                         </div>
+                         <div class="modal-body">
+                             <p style="color:dimgray; font-size:15px;">An Email Will Be Sent To The Customer.Please Click Below To Proceed.</p>
+                         </div>
+                         <div class="modal-footer">
+                             <button type="button" onclick="copyDeliveryDetails('{{$user->name}}','{{$order->orderNumber}}','{{$order->order_Id}}',document.getElementById('dateS{{$dateCount}}').value,document.getElementById('dateE{{$dateCount}}').value,document.getElementById('timeCount{{$dateCount}}').value,document.getElementById('time{{$dateCount}}').value)" style="background-color:#32CD32"  data-dismiss="modal"  class="btn btn-success btn-sm btn-block">Proceed</button> 
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <!-- Click To Copy Modal End-->
+
+             
+                       
+                        <script type="text/javascript">
+                        function copyDeliveryDetails(name,number,id,dateSt,dateEn,timeCount,time) 
+                        {
+                           if (confirm("Are you sure you want to continue?")) 
+                           { 
+                              var text= 'Hi '+ name + ', the order you placed with Order Number: ' + number + ' has been accepted and will be delivered within the following timeframe:\n\nDate Range: '+ dateSt +' to '+ dateEn +'\nTime: '+ timeCount +' '+ time;
+                              navigator.clipboard.writeText(text);
+                              location.replace("/acceptOrderNotification/"+id+"/"+dateSt+"/"+dateEn+"/"+timeCount+" "+time);
+                           } 
+                           else 
+                           {
+                               return false;
+                           }
+                      }
+                          
+
+                    </script>
+                       
+                       
+                        <!-- Click To Copy Modal End-->
+
                      
+                                   
 
                         <a style="display:{{$display3}}; margin-bottom:10px; border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" onclick= "return myFunction();" href="/completeOrderNotification/{{$order->order_Id}}">Order Completed</a>
                         <a style="margin-top:{{$margin}}; border-color:#32CD32; background:#32CD32;"  class="btn btn-primary btn-sm" href="/editSupplier/"  data-toggle="modal" data-target="#{{$count}}">View Details</a>
@@ -401,20 +482,7 @@ function searchSupplier2()
 
                 }
 
-                
-
-                  function myFunction1(id,dateS,dateE,timeCount,time) 
-                            {
-                                 if (confirm("Are you sure you want to continue?")) 
-                                 {     
-                                     location.replace("/acceptOrderNotification/"+id+"/"+dateS+"/"+dateE+"/"+timeCount+" "+time);
-                                 } 
-                                 else 
-                                 {
-                                     return false;
-                                 }
-                            }
-                                                      
+                     
 
                             function myFunction2(id,reason) 
                             {
@@ -432,6 +500,7 @@ function searchSupplier2()
              </script>
             <br>
             @php
+                $dateCount+=1;
                 $count+=1;    
             @endphp
             @endforeach

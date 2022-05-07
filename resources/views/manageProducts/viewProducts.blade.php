@@ -23,7 +23,6 @@
     
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
@@ -172,11 +171,11 @@ function searchProduct2()
                                 <div style="bottom:15%" class="input-group">
                                     <span class="input-group-prepend">
                                         <button type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="  padding-left:12px; padding-right:12px; bottom:17%; height:38px; border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" onclick="decreaseFunction('{{$product->Product_ID}}')" data-type="minus" data-field="quant[1]">
-                                            <span class="fa fa-minus"> - </span>
+                                            <span class="fa fa-minus"> </span>
                                         </button>
                                         <input onchange="changeQuantity('{{$product->Product_ID}}')" id="inputBar" style="border-radius:0px; text-align: center;" type="text" name="quant[1]" class="form-control input-number" value="{{$product->Product_Quantity}}">
                                         <button type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="  padding-left:12px; padding-right:12px; bottom:17%; border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" onclick="increaseFunction('{{$product->Product_ID}}')" data-type="minus" data-field="quant[1]">
-                                            <span class="fa fa-plus"> + </span>
+                                            <span class="fa fa-plus"> </span>
                                         </button>
                                     </span>
                                     
