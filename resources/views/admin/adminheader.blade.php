@@ -12,12 +12,17 @@ use App\Models\Notification;
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/linearicons.css">
+    		<link rel="stylesheet" href="/css/adminHeader.css" >	
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <link href="{{ asset('css/viewProductsAdmin.css') }}" rel="stylesheet">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -32,7 +37,7 @@ use App\Models\Notification;
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 
 </head>
-<body>
+<body >
     
 
  <!-- jQuery CDN - Slim version (=without AJAX) -->
@@ -96,7 +101,7 @@ use App\Models\Notification;
                                     <!-- Notification Counter -->
 
                                     <li class="dropdown">
-									<a href="" class="dropdown-toggle" data-toggle="dropdown" data-target="#cartdrop" style="background:white;"><span class="material-icons md-48">notifications</span>
+									<a href="#"  class="data-toggle" data-toggle="dropdown" data-target="#cartdrop" style="font-size:18px;"><span class="lnr lnr-alarm"></span>
 										@if($count != 0)
 											<span class="badge badge-bg-1" aria-hidden="true">{{ $count }}</span>
 										@endif

@@ -126,7 +126,7 @@ class OrderController extends Controller
         $mail->IsHTML(true);
         $mail->AddAddress($user->email, "Saad Sultan");
         $mail->SetFrom("noreplycactisucculent@gmail.com", "noreplycactisucculent");
-        $mail->Subject = "A New Order Was Placed - Order ID: ". $order_ID;
+        $mail->Subject = "A New Order Was Placed - Order Number: ". $orderNumber;
         $content='A new order has been placed with the following details: <br><br>Order Number: '. $orderNumber .'<br>Name: '. $user->name .'<br>Email: '. $user->email .'<br>Address: '. $user->cust_address. '<br>Products:'. $products;
 
 
@@ -170,8 +170,45 @@ class OrderController extends Controller
         Order::where('order_Id', $id)->update(array('status' => 'processing','shippingStartDate' => $dateS,'shippingEndDate' => $dateE,'shippingTime' => $time));
         
         $order=DB::table('orders')->where('order_Id', $id)->first();
-        $user=DB::table('users')->where('id', $order->user_Id)->first();       
-        return redirect()->away('https://api.whatsapp.com/send?phone='. $user->cust_phone_number .'&text=Hi '. $user->name . ', the order you placed with Order ID: '. $order->order_Id .' has been accepted and will be delivered within the following timeframe:%0A%0ADate Range: '. $order->shippingStartDate .' to '. $order->shippingEndDate .'%0ATime: '. $order->shippingTime);
+        $user=DB::table('users')->where('id', $order->user_Id)->first();  
+        
+        $mail= new PHPMailer();
+        $mail->IsSMTP();
+        $mail->Mailer= "smtp";
+        $mail->SMTPDebug= 1;  
+        $mail->SMTPAuth= TRUE;
+        $mail->SMTPSecure= "tls";
+        $mail->Port= 587;
+        $mail->Host= "smtp.gmail.com";
+        $mail->Username= "noreplycactisucculent@gmail.com";
+        $mail->Password= "cactiSucculent3481@test";
+
+        $mail->IsHTML(true);
+        $mail->AddAddress($user->email, "Saad Sultan");
+        $mail->SetFrom("noreplycactisucculent@gmail.com", "noreplycactisucculent");
+        $mail->Subject = "Order Accepted - Order Numberer: ". $order->orderNumber;
+        $content= 'Hi '. $user->name . ', the order you placed with <b>Order Number: ' . $order->orderNumber . '</b> has been accepted and will be delivered within the following timeframe: <br>Date Range: '. $dateS .' to '. $dateE .'<br>Time: ' . $time;
+
+
+
+        if($order->contactMedia=='whatsapp')
+        {
+            $redirectString='https://api.whatsapp.com/send?phone='. $user->cust_phone_number;
+        }else if($order->contactMedia=='messenger')
+        {
+            $redirectString="https://m.me/cactisucculentkch";
+        }else{
+            $mail->MsgHTML($content); 
+            if(!$mail->Send()) {
+            echo "Error while sending Email.";
+            var_dump($mail);
+            } else {
+            echo "Email sent successfully";
+            }
+            $redirectString="/manageOrders";
+        }
+
+        return redirect()->away($redirectString);
     }
 
     public function completeOrder($id)
