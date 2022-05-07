@@ -1786,21 +1786,31 @@ td:last-child{
         .contact-form-area .form-control {
             width: 80%;
             height: 35px;
-            font-size: 14px; }
+            font-size: 14px;
+            border: 1px solid #e1e1e1;
+            border-radius: 2px;
+            padding: 15px 20px;
+            background-color: #ffffff;
+            font-weight: 400;
+            color: #b7b7b7;
+            -webkit-transition-duration: 500ms;
+            transition-duration: 500ms; }
+        }
         .control-form-area .form-control:focus {
             border: 10px solid #32CD32;
         }
         .contact-form-area textarea.form-control {
-            width: 106%;
+            width: 100%;
         }
         .contact-form-area .form-group-1 {
-            width: 150%; }
+            margin-left: -14px;
+            width: 141%; }
         .contact-form-area .form-group-2 {
-            width: 150%;
+            width: 142%;
             margin-top: 12px;
             margin-left: -15px; }
         .contact-form-area .form-group-3 {
-            width: 132%;
+            width: 125%;
         }
 }
           
