@@ -84,8 +84,6 @@
                                         <div class="contact-info-area">
                                             <!-- Section Heading -->
                                             <div class="section-heading">
-                                                <br>
-                                                <br>
                                                 <h2>CONTACT US</h2>
                                                 <p>Any questions? Feel free to contact us. We will provide our best services to solve your concerns!</p>
                                             </div>
@@ -141,7 +139,7 @@
                                             </div>
                                         </div>
                                         <div class="col-12" required>
-                                            <div class="form-group">
+                                            <div class="form-group-4">
                                                 <textarea class="form-control" name="message" id="contact-message" cols="30" rows="10" placeholder="Message"></textarea>
                                             </div>
                                         </div>
@@ -176,7 +174,7 @@
                     </div>
                 </div>
             </div>
-    </section>
+        </section>
 
 		<!-- Include all js compiled plugins (below), or include individual files as needed -->
 
