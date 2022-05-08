@@ -116,7 +116,7 @@ $products=Product::all();
 <br><br> 
 
 <div class="d-flex justify-content-center h-100">
-    <div style="margin-left:100px;" class="search"> <input  onchange="searchProduct()" id="searchBar" style=" padding-right:750px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Product Name...." name=""><i class="fa fa-search"></i> </a> <button onclick="location.href='{{ url('addProductForm') }}'" style="border-color:#32CD32; color:#32CD32;" type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" class="btn btn-outline-primary">Add New Product</button> </div>
+    <div style="margin-left:100px;" class="search"> <input  onchange="searchProduct()" id="searchBar" style=" padding-right:750px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Product Name...." name=""></a> <button onclick="location.href='{{ url('addProductForm') }}'" style="border-color:#32CD32; color:#32CD32;" type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" class="btn btn-outline-primary">Add New Product</button> </div>
 </div>
 
 <br>
@@ -149,8 +149,13 @@ function searchProduct2()
         <div class="col-md-10">
             
             @foreach($products as $product)
+
+            @php
+                $img=Str::substr($product->Product_Image, 0, 44);   
+            @endphp
+
             <div class="row p-2 bg-white border rounded">
-                <div class="col-md-3 mt-1"><img  style="width:300px; height: 150px;" class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}"></div>
+                <div class="col-md-3 mt-1"><img  style="width:300px; height: 190px;" class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/products/'.$img)}}"></div>
                 <div class="col-md-6 mt-1">
                 <h4>{{$product->Product_Name}}</h4>
                     <div class="mt-1 mb-1 spec-1"><span style="font-size:17px;">Type Of {{$product->Product_Type}}</span><span style="background:#32CD32" class="dot"></span><span style="font-size:17px;">RM {{$product->Product_Price}}</div>
@@ -223,7 +228,7 @@ function searchProduct2()
                 function changeQuantity(z)
                 {
                     var x=document.getElementById("inputBar").value;
-                    if (confirm("Are you sure you want to delete?")) {
+                    if (confirm("Are you sure you want to continue?")) {
 
                         location.replace("/changeQuantity/"+z+"/"+x);
 

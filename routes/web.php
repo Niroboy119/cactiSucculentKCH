@@ -152,12 +152,13 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
     Route::get('/manageSuppliers', [App\Http\Controllers\SupplierController::class, 'displaySuppliers'])->name('suppliers');
     Route::get('/addSupplierForm', [App\Http\Controllers\SupplierController::class, 'displayaddSupplierForm'])->name('suppliers');
-    Route::post('/addSupplier', [App\Http\Controllers\SupplierController::class, 'create'])->name('suppliers');
+    Route::post('/addSupplier/{status}', [App\Http\Controllers\SupplierController::class, 'create'])->name('suppliers');
     Route::get('/deleteSupplier/{id}', [App\Http\Controllers\SupplierController::class, 'deleteSupplier'])->name('suppliers');
     Route::get('/editSupplier/{id}', [App\Http\Controllers\SupplierController::class, 'editSupplier'])->name('suppliers');
     Route::post('/updateSupplier/{id}', [App\Http\Controllers\SupplierController::class, 'update'])->name('suppliers');
     Route::get('/searchSuppliers/{search}', [App\Http\Controllers\SupplierController::class, 'searchSuppliers'])->name('suppliers');
     Route::get('/searchSuppliers', [App\Http\Controllers\SupplierController::class, 'displaySuppliers'])->name('suppliers');
+    Route::get('/addSupplierForm/{status}', [App\Http\Controllers\SupplierController::class, 'displayaddSupplierFromProduct'])->name('suppliers');
 
     Route::post('updateAdmin/{id}', 'App\Http\Controllers\UserController@updateAdmin');
     Route::post('/changeAdminPassword',[App\Http\Controllers\UserController::class,'changeAdminPassword'])->name('changeAdminPassword');
@@ -253,7 +254,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/checkout', [OrderController::class, 'store']);
 
 

@@ -72,7 +72,7 @@ $users=User::all();
 <br><br> 
 
 <div class="d-flex justify-content-center h-100">
-    <div style="margin-left:100px;" class="search"> <input  onchange="searchSupplier()" id="searchBar" style=" padding-right:750px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Order Number...." name=""> <button style="border-color:#32CD32; color:#32CD32;" onclick="searchSupplier2()" type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" class="btn btn-outline-primary">Search Order</button> <i class="fa fa-search"></i> </a> </div>
+    <div style="margin-left:100px;" class="search"> <input  onchange="searchSupplier()" id="searchBar" style=" padding-right:750px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Order Number...." name=""> <button style="border-color:#32CD32; color:#32CD32;" onclick="searchSupplier2()" type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" class="btn btn-outline-primary">Search Order</button> </a> </div>
 </div>
 
 <br>

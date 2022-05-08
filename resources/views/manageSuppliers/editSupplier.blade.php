@@ -69,6 +69,7 @@ $supplier = Supplier::where([ 'Supplier_ID' => $id ]);
                       value="{{$supplier->value('Supplier_Name')}}"
                       class="form-control validate"
                       required
+                      placeholder="Enter Name"
                     />
                   </div>
                   <div class="form-group mb-3">
@@ -81,6 +82,7 @@ $supplier = Supplier::where([ 'Supplier_ID' => $id ]);
                       name="Address"
                       class="form-control validate"
                       rows="3"
+                      placeholder="Enter Address"
                       required
                     >{{$supplier->value('Supplier_Address')}}</textarea>
                   </div>
@@ -93,6 +95,7 @@ $supplier = Supplier::where([ 'Supplier_ID' => $id ]);
                       id="email"
                       name="email"
                       type="email"
+                      placeholder="Enter Email"
                       class="form-control validate"
                       value="{{$supplier->value('Supplier_Email')}}"
                       required
@@ -107,6 +110,7 @@ $supplier = Supplier::where([ 'Supplier_ID' => $id ]);
                       id="phoneno"
                       name="phoneno"
                       type="phoneno"
+                      placeholder="Enter Mobile Number"
                       class="form-control validate"
                       value="{{$supplier->value('Supplier_PhoneNo')}}"
                       required

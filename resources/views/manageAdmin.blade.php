@@ -72,13 +72,56 @@
         <button type="button" class="btn btn-danger ml-3" id="deleteAdminBtn" onclick="showDeleteForm()">Remove admin</button>
     
 
+        {{-- remove add admin account form --}}
+        {{-- onsubmit="return confirm('Are you sure you want to delete this admin account?');" --}}
+        
         <form class="needs-validation" action="/deleteAdmin" id="removeAdminForm" novalidate style="display: none;">
             <div class="mt-4 mb-3 col-5">
                 <input type="text" class="form-control" name="adminId" id="adminId" placeholder="Enter admin Id" required>
             </div>
 
-            <button type="submit" class="btn btn-success mt-3">Confirm</button>
+            {{-- button calls the modal below to execute --}}
+            <button type="button" data-toggle="modal" data-target="#exampleModalCenter3" class="btn btn-success mt-3" >Remove admin</button>
         </form>
+
+        {{-- double check to confirm if user wanted to remove admin account --}}
+        {{-- If confirm button is clicked in the modal, it runs a jQuery function(which at the bottom of this file) to submit the removeAdminForm above --}}
+
+        <div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div  class="modal-content col-12">
+                    <div class="modal-header">
+                        <h6 style="font-size:17px; padding-left:170px; color:#25D366" class="modal-title">IMPORTANT!</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to remove this account?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" id="rmvAdmin" data-dismiss="modal">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Pop up message for successfully removing admin account --}}
+
+        <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div  class="modal-content col-12">
+                    <div class="modal-header">
+                        <h6 style="font-size:17px; padding-left:170px; color:#25D366" class="modal-title">IMPORTANT!</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Administrator account has been successfully removed</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- add a new admin account form --}}
 
         <form class="needs-validation" action="/addNewAdmin" id="adminRegisterForm" novalidate style="display: none;">
             <div class="mt-4 mb-3">
@@ -113,26 +156,8 @@
             <button class="btn btn-success btn" type="submit">Submit form</button>
         </form>
 
-        <!-- Modal -->
-        {{-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">System alert</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h5>New administrator account has been successfully added</h5>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-            </div>
-            </div>
-        </div>
-        </div> --}}
-
+        {{-- Pop up message for successfully adding new admin account --}}
+        
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div  class="modal-content col-12">
@@ -141,42 +166,6 @@
                     </div>
                     <div class="modal-body">
                         <p>New administrator account has been successfully added</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal -->
-        {{-- <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle2">System alert</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h5>Administrator account has been successfully removed</h5>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-                </div>
-                </div>
-            </div>
-        </div> --}}
-
-        <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div  class="modal-content col-12">
-                    <div class="modal-header">
-                        <h6 style="font-size:17px; padding-left:170px; color:#25D366" class="modal-title">IMPORTANT!</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Administrator account has been successfully removed</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
@@ -254,6 +243,11 @@
             deleteForm.style.display = "none";
         }
     }
+
+    // if confirm button is clicked the remove admin form is submmited 
+    $('#rmvAdmin').click(function() {
+        $('#removeAdminForm').submit();
+    });
 
 </script>
 

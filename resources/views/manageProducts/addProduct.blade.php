@@ -63,6 +63,7 @@ $suppliers = Supplier::all();
                     <input
                       id="name"
                       name="name"
+                      placeholder="Enter Name"
                       type="text"
                       class="form-control validate"
                       required
@@ -76,6 +77,7 @@ $suppliers = Supplier::all();
                     <textarea
                       id="Desc"
                       name="Desc"
+                      placeholder="Enter Description"
                       class="form-control validate"
                       rows="3"
                       required
@@ -109,6 +111,7 @@ $suppliers = Supplier::all();
                             id="Price"
                             name="Price"
                             type="text"
+                            placeholder="Enter Price"
                             class="form-control validate"
                             data-large-mode="true"
                             required
@@ -123,6 +126,7 @@ $suppliers = Supplier::all();
                             id="quantity"
                             name="quantity"
                             type="text"
+                            placeholder="Enter Quantity"
                             class="form-control validate"
                             required
                           />
@@ -134,6 +138,7 @@ $suppliers = Supplier::all();
                       for="Supplier"
                       >Supplier</label
                     >
+                    <a style="text-decoration:underline;  color:blue; margin-left:210px; font-size:13.5px;" href="/addSupplierForm/addProductForm">Add New Supplier</a>
                     <select name="Supplier" id="Supplier" class="form-control @error('Supplier') is-invalid @enderror" required autocomplete="Supplier">
                             <option  disabled selected value>Select Supplier</option>
                             @foreach($suppliers as $supplier)
@@ -145,22 +150,32 @@ $suppliers = Supplier::all();
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+
                 
                 </div>
                   
               </div>
               <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                 <div class="tm-product-img-dummy mx-auto">
-                <img src="{{URL::asset('storage/images/products/upload.jpg')}}" id="imgTag" height="330px" width="400px" />
+               <img src="{{URL::asset('storage/images/products/upload.jpg')}}" id="imgTag" height="330px" width="400px" />
+
+               <button hidden onclick="decreaseIndex()" id="prev" class="carousel-control-prev" style="background-color:black; border:none; margin-left:20px; margin-top:165px; width:30px; height:50px;" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev" >
+                <span class="carousel-control-prev-icon"  style="color:black; font-size:30px;"></span>
+              </button>
+              <button hidden onclick="addIndex()" id="next" class="carousel-control-next" style="background-color:black; border:none; margin-right:20px; margin-top:165px; width:30px; height:50px;" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next" >
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              </button>
+              
                 </div>
                 <div class="custom-file mt-3 mb-3">
-                  <input onchange="readURL(this);" id="fileInput" type="file" style="display:none;" name="file" required>
+                  <input onchange="readURL(this);" id="fileInput" multiple type="file" style="display:none;" name="file[]" required>
                   <input
                     type="button"
                     class="btn btn-primary btn-block mx-auto"
                     style="border-color:#32CD32; background:#32CD32;"
                     value="UPLOAD PRODUCT IMAGE"
                     onclick="document.getElementById('fileInput').click();"
+                    required
                   />
                 </div>
                 </div>
@@ -176,19 +191,52 @@ $suppliers = Supplier::all();
     </div>
 
                                 <script type="text/javascript">
+
+                                    index=0;
+                                    var global_input=null;
                                     function readURL(input) {
+
+                                            global_input=input;
+
+                                            document.getElementById("prev").hidden = false;
+                                            document.getElementById("next").hidden = false;
+
                                             if (input.files && input.files[0]) {
                                                 var reader = new FileReader();
                                                 
                                                 reader.onload = function (e) {
                                                     $('#imgTag').attr('src', e.target.result);
                                                 }
-                                                reader.readAsDataURL(input.files[0]);
+                                                reader.readAsDataURL(input.files[index]);
                                             }
                                         }
                                         $("#fileInput").change(function(){
                                             readURL(this);
                                         });
+
+                                        function addIndex() {
+                                          if (global_input.files && global_input.files[0] && index!=(global_input.files.length-1)) {
+                                              index+=1;
+                                                var reader = new FileReader();
+                                                
+                                                reader.onload = function (e) {
+                                                    $('#imgTag').attr('src', e.target.result);
+                                                }
+                                                reader.readAsDataURL(global_input.files[index]);
+                                            }
+                                        }
+
+                                        function decreaseIndex() {
+                                          if (global_input.files && global_input.files[0] && index!=0) {
+                                                index-=1;
+                                                var reader = new FileReader();
+                                                
+                                                reader.onload = function (e) {
+                                                    $('#imgTag').attr('src', e.target.result);
+                                                }
+                                                reader.readAsDataURL(global_input.files[index]);
+                                            }
+                                        }
                                     </script>
                                     </body>
                                     </html>

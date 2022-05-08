@@ -39,9 +39,16 @@ class ProductController extends Controller
         $product->Product_Desc=$request->Desc;
         $product->Product_Price=$request->Price;
         $product->Product_Supplier=$request->Supplier;
-        $request->file->store('images/products', 'public');
-        $product->Product_Image=$request->file->hashName();
+        // $request->file->store('images/products', 'public');
 
+        $img="";
+        foreach($request->file as $f)
+        {
+            $img= $img . $f->hashName() . ", " ;
+            $f->store('images/products', 'public');
+        }
+        
+        $product->Product_Image=$img;
         $product->save();
         return redirect('/manageProducts');
     }
@@ -51,10 +58,18 @@ class ProductController extends Controller
     {
         if($request->img_Text=="1")
         {
-            $request->file->store('images/products', 'public');
+
+            $img="";
+
+            foreach($request->file as $f)
+            {
+                $img= $img . $f->hashName() . ", " ;
+                $f->store('images/products', 'public');
+            }
+
             Product::where('Product_ID', $id)->update(array('Product_Name' => $request->name, 
             'Product_Quantity' => $request->quantity, 'Product_Type' => $request->Type, 'Product_Desc' => $request->Desc,
-            'Product_Price' => $request->Price, 'Product_Supplier' => $request->Supplier, 'Product_Image' => $request->file->hashName() ));
+            'Product_Price' => $request->Price, 'Product_Supplier' => $request->Supplier, 'Product_Image' => $img ));
         }
         else
         {

@@ -147,10 +147,15 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 												</div><!--/.welcome-hero-txt-->
 											</div><!--/.single-welcome-hero-->
 										</div><!--/.col-->
+
+										@php
+										$img=Str::substr($product->Product_Image, 0, 44);   
+										@endphp
+
 										<div class="col-sm-5">
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-img">
-													<img src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" style="width:390px;height:500px;">
+													<img src="{{URL::asset('storage/images/products/'.$img)}}" style="width:390px;height:500px;">
 												</div><!--/.welcome-hero-txt-->
 											</div><!--/.single-welcome-hero-->
 										</div><!--/.col-->
@@ -194,10 +199,15 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 												</div><!--/.welcome-hero-txt-->
 											</div><!--/.single-welcome-hero-->
 										</div><!--/.col-->
+
+										@php
+										$img=Str::substr($product->Product_Image, 0, 44);   
+										@endphp
+
 										<div class="col-sm-5">
 											<div class="single-welcome-hero">
 												<div class="welcome-hero-img">
-													<img src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" style="max-height:500px">
+													<img src="{{URL::asset('storage/images/products/'.$img)}}" style="max-height:500px">
 												</div><!--/.welcome-hero-txt-->
 											</div><!--/.single-welcome-hero-->
 										</div><!--/.col-->
@@ -297,10 +307,14 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 				<div class="new-arrivals-content">
 					<div class="Row">
 
+						@php
+						$img=Str::substr($product->Product_Image, 0, 44);   
+						@endphp
+						
 						@foreach($products as $product)
 							<div class="single-new-arrival" style="float:left; padding:8px;">
 								<div class="single-new-arrival-bg">
-									<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" alt="new-arrivals images">
+									<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$img)}}" alt="new-arrivals images">
 									<div class="single-new-arrival-bg-overlay"></div>
 									<div class="new-arrival-cart">
 										

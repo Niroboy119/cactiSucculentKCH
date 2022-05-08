@@ -26,6 +26,8 @@
 
 </head>
 <body>
+
+
    
  <!-- jQuery CDN - Slim version (=without AJAX) -->
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -38,6 +40,16 @@
     
     @include('admin/adminheader')
 
+    @php
+      if(isset($status))
+      {
+        $link="/addSupplier/$status";
+      } else {
+        $link="/addSupplier/default";
+      }   
+    @endphp
+
+
 <div style="margin-top:130px; margin-left:260px;" class="container tm-mt-big tm-mb-big">
       <div class="row">
         <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
@@ -49,7 +61,7 @@
             </div>
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
-                <form action="/addSupplier" method="POST" enctype="multipart/form-data">
+                <form action={{$link}} method="POST" enctype="multipart/form-data">
                   <div class="form-group mb-3">
                     <label
                       for="name"
@@ -61,8 +73,8 @@
                       type="text"
                       class="form-control validate"
                       required
-                      value="Enter name"
-                    />
+                      placeholder="Enter Name"
+                      />
                   </div>
                   <div class="form-group mb-3">
                     <label
@@ -75,6 +87,7 @@
                       class="form-control validate"
                       rows="3"
                       required
+                      placeholder="Enter Address"
                       value="Enter address"
                     ></textarea>
                   </div>
@@ -89,8 +102,8 @@
                       type="email"
                       class="form-control validate"
                       required
-                      value="Enter email"
-                    />
+                      placeholder="Enter Email"
+                      />
                     </div>
                     <div class="form-group mb-3">
                     <label
@@ -102,7 +115,7 @@
                       name="phoneno"
                       type="phoneno"
                       class="form-control validate"
-                      value="Enter number"
+                      placeholder="Enter Mobile Number"
                       required
                     />
                    
@@ -111,7 +124,7 @@
               </div>
               <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                 <div class="tm-product-img-dummy mx-auto">
-                <img src="{{URL::asset('storage/images/products/upload.jpg')}}" id="imgTag" height="330px" width="400px" />
+                <img src="{{URL::asset('storage/images/suppliers/defaultSupplier.jpg')}}" id="imgTag" height="330px" width="400px" />
                 </div>
                 <div class="custom-file mt-3 mb-3">
                   <input onchange="readURL(this);" id="fileInput" type="file" style="display:none;" name="file">
@@ -135,6 +148,8 @@
         </div>
       </div>
     </div>
+
+
 
                                 <script type="text/javascript">
                                     function readURL(input) {
