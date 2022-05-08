@@ -143,24 +143,6 @@ function searchProduct2()
 }
 </script>
 
-<div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div  class="modal-content col-12">
-            <div class="modal-header">
-                <h6 style="font-size:17px; padding-left:170px; color:#25D366" class="modal-title">IMPORTANT!</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to delete this product?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="rmvAdmin" data-dismiss="modal">Confirm</button>
-                <button type="button" style="border:red; background-color:red;" class="btn btn-success" data-dismiss="modal">Deny</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 
 <div style="margin-left=-120px;" class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">

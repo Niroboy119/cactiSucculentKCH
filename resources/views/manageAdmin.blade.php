@@ -75,13 +75,13 @@
         {{-- remove add admin account form --}}
         {{-- onsubmit="return confirm('Are you sure you want to delete this admin account?');" --}}
         
-        <form class="needs-validation" onkeydown="return event.key != 'Enter';" action="/deleteAdmin" id="removeAdminForm" novalidate style="display: none;">
+        <form class="needs-validation" action="/deleteAdmin" id="removeAdminForm" novalidate style="display: none;">
             <div class="mt-4 mb-3 col-5">
-                <input type="text" class="form-control" name="adminId" id="adminId" placeholder="Enter Admin Id" required>
+                <input type="text" class="form-control" name="adminId" id="adminId" placeholder="Enter admin Id" required>
             </div>
 
             {{-- button calls the modal below to execute --}}
-            <button type="button" onclick="deleteForm1()" style="background:#32CD32;" class="btn btn-success mt-3" >Remove Admin</button>
+            <button type="button" data-toggle="modal" data-target="#exampleModalCenter3" class="btn btn-success mt-3" >Remove admin</button>
         </form>
 
         {{-- double check to confirm if user wanted to remove admin account --}}
@@ -98,7 +98,6 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" id="rmvAdmin" data-dismiss="modal">Confirm</button>
-                        <button type="button" style="border:red; background-color:red;" class="btn btn-success" data-dismiss="modal">Deny</button>
                     </div>
                 </div>
             </div>
@@ -127,7 +126,7 @@
         <form class="needs-validation" action="/addNewAdmin" id="adminRegisterForm" novalidate style="display: none;">
             <div class="mt-4 mb-3">
                 <label for="fullname">Full Name</label>
-                <input type="text" class="form-control" name="fullname" id="fullname" placeholder="Enter Name"
+                <input type="text" class="form-control" name="fullname" id="fullname" placeholder="John Doe"
                     required>
                 <div class="invalid-feedback">
                     Please enter a name
@@ -136,7 +135,7 @@
 
             <div class="mb-3">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+                <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
                 <div class="invalid-feedback">
                     Please enter a valid email address.
                 </div>
@@ -144,7 +143,7 @@
 
             <div class="mb-3">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter Password" class="form-control"
+                <input type="password" id="password" name="password" class="form-control"
                 aria-describedby="passwordHelpInline" required>
                 <small id="passwordHelpInline" class="text-muted">
                 Must be 8-20 characters long.
@@ -154,7 +153,7 @@
                 </div>
             </div>
 
-            <button class="btn btn-success btn" type="submit">Submit</button>
+            <button class="btn btn-success btn" type="submit">Submit form</button>
         </form>
 
         {{-- Pop up message for successfully adding new admin account --}}
@@ -225,10 +224,6 @@
 
 <script type="text/javascript">
 
-$(document).on("keydown", "removeAdminForm", function(event) { 
-    return event.key != "Enter";
-});
-
     function showForm() {
         var form = document.getElementById('adminRegisterForm');
         
@@ -247,11 +242,6 @@ $(document).on("keydown", "removeAdminForm", function(event) {
         }else {
             deleteForm.style.display = "none";
         }
-    }
-
-
-    function deleteForm1() {
-        $("#exampleModalCenter3").modal();
     }
 
     // if confirm button is clicked the remove admin form is submmited 
