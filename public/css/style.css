@@ -1634,34 +1634,50 @@ td:last-child{
 /*===============================
     13. About Us Page
 ===============================*/
+.section-header-about h2{
+    color:#32CD32;
+    font-size: 50px;
+} @media only screen and (max-width: 1025px) {
+    .section-header-about h2 {
+        font-size: 300%;
+        color:#32CD32;
+        text-align: center;
+    }
+}
+
 .about-paragraph p {
     color: black;
     text-align: center;
     font-size: 28px;
     font-family: 'Roboto', sans-serif;
-} @media only screen and (max-width: 767px) {
-    .about-paragraph {
-        margin-top: -30px;
-    }
-    .about-paragraph p {
-        font-size: 16px;
-    }
 }
+    @media only screen and (max-width: 1025px) {
+        .about-paragraph p {
+            font-size: 125%;
+        }
+    }
 
 /* Description */
 .description-benefits-area {
-  position: relative;
-  z-index: 1;
-  margin-bottom: 50px; }
-  .single-benefits-area img {
-    margin-bottom: 30px; }
-  .single-benefits-area p {
-    margin-bottom: 0; 
-} @media only screen and (max-width: 767px) {
-    .description-benefits-area {
-        margin-top: -30px;
-    }
+    position: relative;
+    z-index: 1;
+    margin-bottom: 50px;
 }
+        .single-benefits-area img {
+            margin-bottom: 30px;
+        }
+        .single-benefits-area p {
+            margin-bottom: 0; 
+        } 
+            @media only screen and (max-width: 1025px)
+            {
+                .description-benefits-area {
+                    font-size: 110%;
+                }
+                .description-benefits-area img {
+                    size: 110%;
+                }
+            }
 
 
 /* Story Area */
@@ -1669,7 +1685,67 @@ td:last-child{
     border: 15px solid #32CD32;
     padding: 50px;
     background-color: #f8f9fd;
-}
+} 
+    @media only screen and (max-width: 1025px) {
+        .our-story-area {
+            width: 100%;
+        }
+    }   
+    @media only screen and (max-width: 1025px) {
+        .our-story-area {
+            width: 100%;
+            border: 7px solid #32CD32
+        }
+    }
+
+.section-heading-about {
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 50px; 
+    margin-left: 50px;
+    }
+    @media screen and (max-width: 1025px){
+        .section-heading-about {
+            margin-left: -2%;
+            margin-right: 5%;
+            margin-top: -50px;}
+    }
+    .section-heading-about h2 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 30px;
+        text-transform: uppercase;
+        margin-bottom: 10px; }
+        @media only screen and (max-width: 1025px) {
+            .section-heading h2 {
+                font-size: 90%; 
+                margin-bottom: 10px;
+                } 
+        }
+        @media only screen and (max-width: 281px) {
+            .section-heading h2 {
+                font-size: 80%; 
+                margin-bottom: 10px;
+                } 
+        }
+                
+    .section-heading-about p {
+        font-size: 20px;
+        color: #707070;
+        margin-bottom: 0;
+    } 
+        @media only screen and (max-width: 1025px) {
+            .section-heading-about p {
+                font-size: 90%;
+                margin-bottom: -20px;
+            }
+        }
+        @media only screen and (max-width: 281px) {
+            .section-heading-about p {
+                font-size: 70%;
+                margin-bottom: -20px;
+            }
+        }
 
 .single-story-area {
     position: relative;
@@ -1683,15 +1759,17 @@ td:last-child{
     .single-story-area .story-content p {
       margin-bottom: 0;
       width: 650px;
-      text-align: left; 
-} @media only screen and (max-width: 767px) {
-    .single-story-area {
-        width: 100%;
-    }
-    .single-story-area .story-content p {
-        width: fit-content;
-    }
-}
+      text-align: justify; 
+} 
+    @media only screen and (max-width: 1025px) {
+        .single-story-area {
+            width: 90%;
+        }
+        .single-story-area .story-content p {
+            width: fit-content;
+            margin-left: 0%;
+        }
+    }   
 
 .story-image {
     position: relative;
@@ -1699,13 +1777,12 @@ td:last-child{
     margin-left: 200px;
     width: 500px;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15); }
-        @media only screen and (max-width: 767px) {
+        @media only screen and (max-width: 1025px) {
             .story-image {
-                width: 100%;
-                margin-bottom: -50px;
-                margin-left: auto; }
+                width: 90%;
+                margin-left: 0%;
+            }                
 }
-
 
 /* About Button */
 .our-product {
@@ -1720,11 +1797,26 @@ td:last-child{
     height: 60px;
     width: 170px;
     display: inline-block;
-  } @media only screen and (max-width: 767px) {
-      .our-product {
-          margin-left: 0;
-      }
-  }
+  }  
+    @media only screen and (max-width: 1025px) {
+        .our-product {
+            font-size: 120%;
+            height: 200%;
+            width: 35%;
+            margin-left: 12%;
+            text-align: center; 
+        }
+    }
+    @media only screen and (max-width: 281px) {
+        .our-product {
+            font-size: 80%;
+            height: 200%;
+            width: 35%;
+            margin-left: 12%;
+            text-align: center;
+        }
+    }
+
 
 .about-contact {
     /* margin-left: 1000px; */
@@ -1739,11 +1831,26 @@ td:last-child{
     height: 60px;
     width: 170px;
     display: inline-block;
-} @media only screen and (max-width: 767px) {
-  .about-contact {
-      margin-left: 20px;
-  }
-}
+} 
+    @media only screen and (max-width: 1025px) {
+        .about-contact {
+            font-size: 120%;
+            height: 200%;
+            width: 35%;
+            margin-left: 20px;
+            text-align: center;
+        }
+    }
+    @media only screen and (max-width: 281px) {
+        .about-contact {
+            font-size: 80%;
+            height: 200%;
+            width: 35%;
+            margin-left: 12%;
+            text-align: center;
+        }
+    }
+
 
 /*===============================
   14 Contact Area Page
@@ -1751,32 +1858,27 @@ td:last-child{
 .section-header h2{
     color:#32CD32;
     font-size: 50px;
-} @media only screen and (max-width: 1000px) {
-    .section-header h2 {
-        font-size: 35px;
+} 
+    @media only screen and (max-width: 1025px) {
+        .section-header h2 {
+            font-size: 400%;
+            color:#32CD32;
+            text-align: center;
+        }
     }
-}
 
 .contact-thumbnail {
     position: relative;
     z-index: 1;
-    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15); }
-    @media screen and (max-width: 1500px) and (min-width: 900px) {
-      .contact-thumbnail {
-        margin-top: -50px;
-        margin-bottom: 50px;
-        margin-right: auto;
-        max-width: 100%;
-        max-height: 100%; }
-    } @media screen and (max-width: 767px) {
-        .contact-thumbnail {
-          margin-top: -50px;
-          margin-bottom: 25px;
-          margin-right: auto;
-          max-width: 100%;
-          max-height: 100%; }
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15);
+} 
+    @media only screen and (max-width: 1025px) {
+            .contact-thumbnail {
+                width: 100%;
+                height: 100%;
+                margin-bottom: 15%;
+            }
       } 
-
 
 .contact-info-area {
     font-family: 'Roboto', sans-serif;
@@ -1785,55 +1887,105 @@ td:last-child{
     height: 557px;
     border: 15px solid #32CD32;
     padding: 50px;
-    } @media only screen and (max-width: 767px) {
-        .contact-info-area {
-            width: 100%;
+}   
+    @media only screen and (max-width: 1025px) {
+        .contact-info-area {         
+            width: 110%;
             height: 100%;
-            border: 10px solid #32CD32; }}
+            border: 12px solid #32CD32;
+            margin-bottom: 30%;
+        }
+    }
+    
+    @media only screen and (max-width: 798px) {
+        .contact-info-area {         
+            width: 98%;
+            height: 100%;
+            border: 10px solid #32CD32;
+            margin-bottom: 30%;
+        }
         .contact-info-area a {
             font-family: 'Roboto', sans-serif;
         }
+    }
 
+.section-heading {
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 50px; 
+    margin-left: 50px;
+}
+    @media only screen and (max-width: 1025px) {
         .section-heading {
-            font-family: 'Roboto', sans-serif;
-            position: relative;
-            z-index: 1;
-            margin-bottom: 50px; 
-            margin-left: 50px;}
-            @media screen and (max-width: 767px){
-                .section-heading {
-                    margin-left: auto;
-                    margin-top: -50px;}
-            }
+            margin-left: 0%;
+            width: 100%;
+            text-align: justify;
+            margin-bottom: 0%;
+        }
+    }
+
+    .section-heading h2 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 30px;
+        text-transform: uppercase;
+        margin-bottom: 10px; 
+    }
+        @media only screen and (max-width: 1025px) {
             .section-heading h2 {
-                font-family: 'Roboto', sans-serif;
-                font-size: 30px;
-                text-transform: uppercase;
-                margin-bottom: 10px; }
-                @media only screen and (max-width: 767px) {
-                    .section-heading h2 {
-                        font-size: 20px; 
-                        margin-bottom: 10px;} }
+                margin-left: 0%;
+                font-size: 150%;
+                margin-top: -6%;
+            } 
+        }
+        @media only screen and (max-width: 798px) {
+            .section-heading h2 {
+                font-size: 160%;
+                margin-top: 0%;
+                margin-left: 0%;
+            }
+        }
                         
-            .section-heading p {
-                font-size: 20px;
-                color: #707070;
-                margin-bottom: 0;
-            } @media only screen and (max-width: 767px) {
+    .section-heading p {
+        font-size: 20px;
+        color: #707070;
+        margin-bottom: 0;
+    }
+            @media only screen and (max-width: 1025px) {
                 .section-heading p {
-                    font-size: 18px;
-                    margin-bottom: -20px;
+                    margin-left: 0%;
+                    margin-bottom: 2%;
+                    font-size: 120%;
+                }
+            }
+            @media only screen and (max-width: 798px) {
+                .section-heading p {
+                    font-size: 130%;
+                    margin-bottom: 3%;
+                    margin-top: -3%;
                 }
             }
             
 .contact-information{
     font-family: 'Roboto', sans-serif;
     margin-left: 50px;
-} @media only screen and (max-width: 767px) {
-    .contact-information {
-        margin-left: auto;
+} 
+    @media only screen and (max-width: 1025px) {
+        .contact-information {
+            font-size: 110%;
+            margin-left: 0%;
+            margin-bottom: 0%;
+            margin-top: 1%;
+        }
     }
-}
+    @media only screen and (max-width: 798px) {
+        .contact-information {
+            font-size: 150%;
+            margin-top: 0%;
+            margin-bottom: 10%;
+            margin-left: 0%
+        }
+    }
     .contact-information p {
         font-family: 'Roboto', sans-serif;
         font-size: 20px;
@@ -1843,21 +1995,32 @@ td:last-child{
         .contact-information p span {
           color: #303030; }
         .contact-information p:last-child {
-          margin-bottom: 0; } 
+          margin-bottom: 0; 
+    } 
     .contact-information a {
         font-family: 'Roboto', sans-serif;
         font-size: 20px;
         color: #707070;
         text-transform: lowercase;
-  } @media only screen and (max-width: 767px) {
-        .contact-information p {
-            font-size: 17px;
-            margin-bottom: 5px;
-      }
-        .contact-information a {
-            font-size: 17px;
-      }
-  }
+    } 
+        @media only screen and (max-width: 1025px) {
+            .contact-information p {
+                font-size: 110%;
+                margin-bottom: 2%;
+            } 
+            .contact-information a {
+                font-size: 110%;
+            }
+        }
+        @media only screen and (max-width: 798px) {
+            .contact-information p {
+                font-size: 100%;
+                margin-bottom: 3%;
+            } 
+            .contact-information a {
+                font-size: 100%;
+            }
+        }
 
 .contact-area {
     font-family: 'Roboto', sans-serif;
@@ -1867,15 +2030,54 @@ td:last-child{
     border: 15px solid #32CD32;
     padding: 50px;
     margin-left: 200px;
-} @media only screen and (max-width:767px) {
-    .contact-area {
-        width: 86%;
-        height: 80%;
-        border: 10px solid #32CD32;
-        margin-left: 30px;
-        margin-top: -80px;
+} 
+    @media only screen and (max-width:1025px) {
+        .contact-area {
+            width: 87.5%;
+            height: 100%;
+            border: 10px solid #32CD32;
+            margin-left: 5.5%;
+            margin-top: -5%;
+        }
     }
-}
+    @media only screen and (max-width:798px) {
+        .contact-area {
+            width: 89%;
+            height: 100%;
+            border: 10px solid #32CD32;
+            margin-left: 6.5%;
+            margin-top: -30%;
+        }
+    }
+    /*@media only screen and (max-width:769px) {
+        .contact-area {
+            width: 91%;
+            height: 100%;
+            border: 10px solid #32CD32;
+            margin-left: 5%;
+            margin-top: -5%;
+        } @media only screen and (max-width:651px) {
+            .contact-area {
+                width: 89%;
+                height: 100%;
+                border: 10px solid #32CD32;
+                margin-left: 5%;
+                margin-top: -5%;
+            }   @media only screen and (max-width:301px) {
+                .contact-area {
+                    width: 89%;
+                    height: 100%;
+                    border: 5px solid #32CD32;
+                    margin-left: 5%;
+                    margin-top: -5%;
+                }   @media only screen and (max-width:281px) {
+                    .contact-area {
+                        width: 89%;
+                        height: 100%;
+                        border: 5px solid #32CD32;
+                        margin-left: 5%;
+                        margin-top: -5%;
+                    } */
 
 .section-heading-touch {
     font-family: 'Roboto', sans-serif;
@@ -1883,28 +2085,68 @@ td:last-child{
     z-index: 1;
     margin-bottom: 50px;
     margin-left: -16px; 
-    } @media only screen and (max-width: 499px) {
+}
+    @media only screen and (max-width: 1025px) {
         .section-heading-touch {
-            margin-bottom: 5px;
+            margin-bottom: 3%;
+            margin-left: 0%;
+        }
+    }
+    @media only screen and (max-width: 798px) {
+        .section-heading-touch {
+            margin-bottom: 3%;
+            margin-left: -2%;
         }
     }
     .section-heading-touch h2 {
         font-family: 'Roboto', sans-serif;
         font-size: 35px;
         text-transform: uppercase;
-        margin-bottom: 10px; }
-        @media only screen and (max-width: 767px) {
+        margin-bottom: 10px;
+    }
+        @media only screen and (max-width: 1025px) {
             .section-heading-touch h2 {
-                font-size: 18px;
-                margin-bottom: 5px; } }
+                font-size: 180%;
+                margin-bottom: 1%;
+            } 
+        }
+        @media only screen and (max-width: 798px) {
+            .section-heading-touch h2 {
+                font-size: 160%;
+                margin-bottom: 1%; 
+            }      
+            /* @media only screen and (max-width: 301px) {
+                .section-heading-touch h2 {
+                    font-size: 70%;
+                    margin-bottom: 1%; 
+                }         @media only screen and (max-width: 281px) {
+                    .section-heading-touch h2 {
+                        font-size: 60%;
+                        margin-bottom: 1%; 
+                    }   */
     .section-heading-touch p {
         font-family: 'Roboto', sans-serif;
         font-size: 20px;
         color: #707070;
         margin-bottom: 0;
-    }  @media only screen and (max-width: 767px) {
+    }
+        @media only screen and (max-width: 1025px) {
             .section-heading-touch p {
-                font-size: 18px; } }
+                font-size: 150%; }
+        }
+        @media only screen and (max-width: 798px) {
+            .section-heading-touch p {
+                font-size: 150%; 
+                margin-bottom: 3%;
+            }
+        }  
+            /* @media only screen and (max-width: 301px) {
+                .section-heading-touch p {
+                    font-size: 70%; } 
+                }   @media only screen and (max-width: 281px) {
+                    .section-heading-touch p {
+                        font-size: 60%; } 
+                    } */
 
 .section-padding-0-100 {
     padding-top: 0;
@@ -1919,40 +2161,46 @@ td:last-child{
     background-color: #ffffff;
     font-size: 20px;
     margin-bottom: 10px;
-    border: 1px solid #e1e1e1;
+    border: 5px solid #e1e1e1;
     border-radius: 2px;
     padding: 15px 20px;
     font-size: 16px;
     font-weight: 400;
     color: #b7b7b7;
     -webkit-transition-duration: 500ms;
-    transition-duration: 500ms; }
+    transition-duration: 500ms; 
+}
         .contact-form-area .form-control:focus {
             box-shadow: none;
-            border-color: #32CD32; }
+            border-color: #32CD32; 
+        }
         .contact-form-area textarea.form-control {
-            height: 80px; }
-        .contact-form-area .form-group-1{
-            margin-left: -16px;}
-        .contact-form-area .form-group-2{
+            height: 80px; 
+        }
+        .contact-form-area .form-group-1 {
+            margin-left: -16px;
+        }
+        .contact-form-area .form-group-2 {
             margin-right: -200px;
             width: 170px;
-} @media only screen and (max-width: 767px) {
+        }  
+
+    @media only screen and (max-width: 1025px) {
         .contact-form-area {
             height: 100%;
         }
         .contact-form-area .form-control {
-            width: 80%;
-            height: 35px;
-            font-size: 14px;
-            border: 1px solid #e1e1e1;
+            width: 100%;
+            height: 100%;
+            font-size: 130%;
+            border: 5px solid #e1e1e1;
             border-radius: 2px;
             padding: 15px 20px;
             background-color: #ffffff;
             font-weight: 400;
             color: #b7b7b7;
             -webkit-transition-duration: 500ms;
-            transition-duration: 500ms; }
+            transition-duration: 500ms; 
         }
         .control-form-area .form-control:focus {
             border: 10px solid #32CD32;
@@ -1961,16 +2209,62 @@ td:last-child{
             width: 100%;
         }
         .contact-form-area .form-group-1 {
-            margin-left: -14px;
-            width: 141%; }
-        .contact-form-area .form-group-2 {
-            width: 142%;
-            margin-top: 12px;
-            margin-left: -15px; }
-        .contact-form-area .form-group-3 {
-            width: 125%;
+            margin-left: -5%;
+            width: 80%;
         }
-}
+        .contact-form-area .form-group-2 {
+            width: 50%;
+            margin-top: 0%;
+            margin-left: 0%; 
+        }
+        .contact-form-area .form-group-3 {
+            margin-left: 10%;
+            width: 78%; 
+        }
+        .contact-form-area .form-group-4 {
+            width: 78%;
+        }
+    }
+    @media only screen and (max-width: 798px) {
+        .contact-form-area {
+            height: 100%;
+        }
+        .contact-form-area .form-control {
+            width: 100%;
+            height: 100%;
+            font-size: 150%;
+            border: 5px solid #e1e1e1;
+            border-radius: 2px;
+            padding: 15px 20px;
+            background-color: #ffffff;
+            font-weight: 400;
+            color: #b7b7b7;
+            -webkit-transition-duration: 500ms;
+            transition-duration: 500ms; 
+        }
+        .control-form-area .form-control:focus {
+            border: 10px solid #32CD32;
+        }
+        .contact-form-area textarea.form-control {
+            width: 100%;
+        }
+        .contact-form-area .form-group-1 {
+            margin-left: -2%;
+            width: 78%;
+        }
+        .contact-form-area .form-group-2 {
+            width: 78%;
+            margin-top: 0%;
+            margin-left: -2%;
+        }
+        .contact-form-area .form-group-3 {
+            width: 75%;
+            margin-left: 0;
+        }
+        .contact-form-area .form-group-4 {
+            width: 75%;
+        }
+    }
           
 .send-message {
     -webkit-transition-duration: 400ms;
@@ -1978,7 +2272,7 @@ td:last-child{
     position: relative;
     z-index: 1;
     display: inline-block;
-    min-width: 150px;
+    width: 150px;
     height: 50px;
     color: #ffffff;
     background-color: #32CD32;
@@ -1991,38 +2285,106 @@ td:last-child{
     line-height: 45px;
     text-transform: uppercase;
     font-weight: 600; 
-} @media only screen and (max-width: 767px){
+} 
+
+/* @media only screen and (max-width: 1025px){
+    .send-message {
+        font-size: 15px;
+        height: 100%;
+        padding: 10px 30px;
+    }
+}    */
+
+@media only screen and (max-width: 798px){
+    .send-message {
+        font-size: 300%;
+        text-align: center;
+        width: 30%;
+        height: 100%;
+        padding: 10px 20px;
+    }
+}   
+/* 
+@media only screen and (max-width: 501px){
+    .send-message {
+        font-size: 13px;
+        height: 100%;
+        padding: 0px 20px;
+    }
+}   @media only screen and (max-width: 401px){
     .send-message {
         font-size: 12px;
-        height: 60%;
+        height: 100%;
+        padding: 0px 15px;
     }
-}
+}   @media only screen and (max-width: 281px){
+    .send-message {
+        font-size: 5px;
+        height: 100%;
+        padding: 0px 5px;
+        width:70%
+    }
+} */
+
 
 .appointment-visit p {
-    font-size: 12px;
-}
+    font-size: 13px;
+}  @media only screen and (max-width: 798px){
+    .appointment-visit p {
+        font-size: 100%;
+        text-align: justify;
+    }
+}   
+/* @media only screen and (max-width: 551px){
+    .appointment-visit p {
+        font-size: 12px;
+    }
+}   @media only screen and (max-width: 281px){
+    .appointment-visit p {
+        font-size: 8px;
+    }
+}    */
+
 
 .map-area {
     position: relative;
     margin-left: 877px;
     margin-top: -285px;
     z-index: 2;
-    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.15); }
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.15); 
+}
     .map-area iframe {
         width: 543px;
         height: 570px;
         border: none;
         border-radius: 5px; 
-    } @media only screen and (max-width: 767px) {
-        .map-area {
-            margin-left: -560PX;
-            margin-bottom: 510px;
-        }
-        .map-area iframe {
-            width: 38%;
-            height: 400px;
-        }
-    }
+    }   
+        @media only screen and (max-width: 1025px) {
+            .map-area {
+                margin-left: -100%;
+                margin-bottom: 75%;
+            }
+            .map-area iframe {
+                width: 40%;
+                height: 420px;
+                border: none;
+                border-radius: 5px; 
+            }
+        }   
+
+        @media only screen and (max-width: 798px) {
+            .map-area {
+                margin-left: -146%;
+                margin-bottom: 75%;
+            }
+            .map-area iframe {
+                width: 40%;
+                height: 420px;
+                border: none;
+                border-radius: 5px; 
+            }
+        }   
+
 
 /*===============================
     Scroll Top
