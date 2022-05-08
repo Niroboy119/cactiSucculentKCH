@@ -110,10 +110,13 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 					<div class="Row">
 
 						@foreach($products as $product)
+						@php
+						$img=Str::substr($product->Product_Image, 0, 44);   
+						@endphp
 						@if($product->Product_Type == "Pot")
 							<div class="single-new-arrival" style="float:left; padding:8px;">
 								<div class="single-new-arrival-bg">
-									<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" alt="new-arrivals images">
+									<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$img)}}" alt="new-arrivals images">
 									<div class="single-new-arrival-bg-overlay"></div>
 									<div class="new-arrival-cart">
 										

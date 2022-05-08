@@ -211,25 +211,42 @@ width:190px;height:240px;
 					<div class="item active ">
 
 
-						<div class="container">
+				  <div class="container">
 						<div class="slideshow-container">
 								<div class="welcome-hero-content">
 									<div class="row">
 									<div class="col-sm-7">
-								 <div class="single-welcome-hero">
+								 		<div class="single-welcome-hero">
 											<div class="welcome-hero-img">
 											<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" >
 												
-											<div class="carousel-inner" style="width:390px;height:500px;">
+												@php
+												$img_full=$product->Product_Image;
+												$img=Str::substr($img_full, 0, 44);
+												$img_full=Str::substr($img_full, 46);   
+												@endphp
+												
+											<div class="carousel-inner" style="width:450px;height:500px;">
 												<div class="carousel-item active">
-												<img src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" alt="..." style="width:390px;height:500px;">
+												<img src="{{URL::asset('storage/images/products/'.$img)}}" alt="..." style="width:450px;height:500px;">
 												</div>
-												<div class="carousel-item">
-												<img src="/images/populer-products/grapeto.jpg" alt="..." style="width:390px;height:500px;">
-												</div>
-												<div class="carousel-item">
-												<img src="/images/populer-products/purpledream2.jpg" alt="..." style="width:390px;height:500px;">
-												</div>
+
+												@while ($img_full!="")
+
+													@php
+														$img=Str::substr($img_full, 0, 44);
+													@endphp
+													
+													<div class="carousel-item " style="width:450px;height:500px;">
+														<img src="{{URL::asset('storage/images/products/'.$img)}}" alt="..." style="width:450px;height:500px;">
+													</div>
+													
+													@php
+														$img_full=Str::substr($img_full, 46);   
+													@endphp
+
+												@endwhile
+								
 											</div>
 											<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev" >
 												<span class="carousel-control-prev-icon"  style="font-size:30px;"></span>
@@ -237,7 +254,7 @@ width:190px;height:240px;
 											<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
 												<span class="carousel-control-next-icon" aria-hidden="true"></span>
 											</button>
-											</div>
+										  </div>
 
 											</div>
 											</div>

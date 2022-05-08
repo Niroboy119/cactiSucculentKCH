@@ -51,7 +51,7 @@ $suppliers=Supplier::all();
 <br><br> 
 
 <div class="d-flex justify-content-center h-100">
-    <div style="margin-left:100px;" class="search"> <input  onchange="searchSupplier()" id="searchBar" style=" padding-right:750px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Supplier Name...." name=""> <i class="fa fa-search"></i> </a> <button style="border-color:#32CD32; color:#32CD32;" onclick="location.href='{{ url('addSupplierForm') }}'" type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" class="btn btn-outline-primary">Add New Supplier</button></div>
+    <div style="margin-left:100px;" class="search"> <input  onchange="searchSupplier()" id="searchBar" style=" padding-right:750px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Supplier Name...." name=""></a> <button style="border-color:#32CD32; color:#32CD32;" onclick="location.href='{{ url('addSupplierForm') }}'" type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" class="btn btn-outline-primary">Add New Supplier</button></div>
 </div>
 
 <br>
@@ -98,7 +98,7 @@ function searchSupplier2()
                 <script type="text/javascript">
                 function myFunction() 
                 {
-                    if (confirm("Are you sure you want to delete?")) {
+                    if (confirm("All products sold by this supplier will be deleted as well. Are you sure you want to continue?")) {
 
                     return true;
 

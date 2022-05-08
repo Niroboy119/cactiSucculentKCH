@@ -150,9 +150,14 @@
 
 	@foreach($products as $product)
 
+			
+	@php
+	$img=Str::substr($product->Product_Image, 0, 44);   
+	@endphp
+
 		<div class="single-new-arrival" style="float:left; padding:8px;">
 			<div class="single-new-arrival-bg">
-				<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" alt="new-arrivals images">
+				<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$img)}}" alt="new-arrivals images">
 				<div class="single-new-arrival-bg-overlay"></div>
 				<div class="new-arrival-cart">
 		<p>
@@ -180,9 +185,13 @@
 						@foreach($products as $product)
 						@if($product->Product_Type == "Pot")
 
+						@php
+						$img=Str::substr($product->Product_Image, 0, 44);   
+						@endphp
+
 							<div class="single-new-arrival1" style="float:left; padding:8px;">
 								<div class="single-new-arrival-bg">
-									<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" alt="new-arrivals images">
+									<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$img)}}" alt="new-arrivals images">
 									<div class="single-new-arrival-bg-overlay"></div>
 									<div class="new-arrival-cart">
 							<p>
@@ -211,9 +220,13 @@
 					@foreach($products as $product)
 					@if($product->Product_Type == "Plant")
 
+					@php
+					$img=Str::substr($product->Product_Image, 0, 44);   
+					@endphp
+
 						<div class="single-new-arrival2" style="float:left; padding:8px;">
 							<div class="single-new-arrival-bg">
-								<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" alt="new-arrivals images">
+								<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$img)}}" alt="new-arrivals images">
 								<div class="single-new-arrival-bg-overlay"></div>
 								<div class="new-arrival-cart">
 						<p>
@@ -242,9 +255,13 @@
 @foreach($products as $product)
 @if($product->Product_Type == "Soil")
 
+	@php
+	$img=Str::substr($product->Product_Image, 0, 44);   
+	@endphp
+
 	<div class="single-new-arrival3" style="float:left; padding:8px;">
 		<div class="single-new-arrival-bg">
-			<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$product->Product_Image)}}" alt="new-arrivals images">
+			<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$img)}}" alt="new-arrivals images">
 			<div class="single-new-arrival-bg-overlay"></div>
 			<div class="new-arrival-cart">
 	<p>

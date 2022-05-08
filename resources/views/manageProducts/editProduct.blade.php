@@ -67,6 +67,7 @@ $product = Product::where([ 'Product_ID' => $id ]);
                       name="name"
                       type="text"
                       class="form-control validate"
+                      placeholder="Enter Name"
                       value="{{$product->value('Product_Name')}}"
                       required
                     />
@@ -78,6 +79,7 @@ $product = Product::where([ 'Product_ID' => $id ]);
                     <textarea
                       id="Desc"
                       name="Desc"
+                      placeholder="Enter Description"
                       class="form-control validate"
                       rows="3"
                       required
@@ -121,6 +123,7 @@ $product = Product::where([ 'Product_ID' => $id ]);
                             id="Price"
                             name="Price"
                             type="text"
+                            placeholder="Enter Price"
                             class="form-control validate"
                             value="{{$product->value('Product_Price')}}"
                             data-large-mode="true"
@@ -135,6 +138,7 @@ $product = Product::where([ 'Product_ID' => $id ]);
                           <input
                             id="quantity"
                             name="quantity"
+                            placeholder="Enter Quantity"
                             type="text"
                             value="{{$product->value('Product_Quantity')}}"
                             class="form-control validate"
@@ -148,6 +152,7 @@ $product = Product::where([ 'Product_ID' => $id ]);
                       for="Supplier"
                       >Supplier</label
                     >
+                    <a style="text-decoration:underline;  color:blue; margin-left:210px; font-size:13.5px;" href="/addSupplierForm/{{$product->value('Product_ID')}}">Add New Supplier</a>
                     <select name="Supplier" id="Supplier" class="form-control @error('Supplier') is-invalid @enderror" required autocomplete="Supplier">
                                 <option  disabled >Select Supplier</option>
                                  @foreach($suppliers as $supplier)
@@ -169,10 +174,33 @@ $product = Product::where([ 'Product_ID' => $id ]);
               </div>
               <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                 <div class="tm-product-img-dummy mx-auto">
-                <img src="{{URL::asset('storage/images/products/'.$product->value('Product_Image'))}}" id="imgTag" height="330px" width="400px" />
+
+                  @php
+                    $img_arr=[];
+                    $img=$product->value('Product_Image');   
+                    while($img!="")
+                    {
+                      array_push($img_arr,Str::substr($img, 0, 44));
+                      $img=Str::substr($img, 46);
+                    }
+                    $img=$img_arr[0];                    
+                    
+                  @endphp
+
+                
+
+                <img src="{{URL::asset('storage/images/products/'.$img)}}" id="imgTag" height="330px" width="400px" />
+
+                <button onclick="decreaseIndex('{{$product->value('Product_Image')}}')" class="carousel-control-prev" style="background-color:black; border:none; margin-left:20px; margin-top:165px; width:30px; height:50px;" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev" >
+                  <span class="carousel-control-prev-icon"  style="color:black; font-size:30px;"></span>
+                </button>
+                <button onclick="addIndex('{{$product->value('Product_Image')}}')" class="carousel-control-next" style="background-color:black; border:none; margin-right:20px; margin-top:165px; width:30px; height:50px;" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next" >
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
+                
                 </div>
                 <div class="custom-file mt-3 mb-3">
-                  <input onchange="readURL(this);" id="fileInput" type="file" style="display:none;" name="file" >
+                  <input onchange="readURL(this);" id="fileInput" multiple  name="file[]" type="file" style="display:none;" >
                   <input  hidden id="img_Text" type="img_Text" value="0" name="img_Text">
                   <input
                     type="button"
@@ -194,22 +222,102 @@ $product = Product::where([ 'Product_ID' => $id ]);
       </div>
     </div>
 
-                                <script type="text/javascript">
-                                    function readURL(input) {
-                                            if (input.files && input.files[0]) {
-                                                var reader = new FileReader();
-                                                
-                                                reader.onload = function (e) {
-                                                    $('#imgTag').attr('src', e.target.result);
-                                                }
-                                                reader.readAsDataURL(input.files[0]);
-                                            }
-                                            var img_File_text=document.getElementById("img_Text");
-                                            img_File_text.value="1";
-                                        }
-                                        $("#fileInput").change(function(){
-                                            readURL(this);
-                                        });
-                                    </script>
+                               
+    <script type="text/javascript">
+
+      index=0;
+      cond=0;
+      stop=0;
+
+      var global_input=null;
+      function readURL(input) {
+
+              global_input=input;
+              cond=1;
+              if (input.files && input.files[0]) {
+                  var reader = new FileReader();
+                  cond=1;
+                  reader.onload = function (e) {
+                      $('#imgTag').attr('src', e.target.result);
+                  }
+                  reader.readAsDataURL(input.files[index]);
+              }
+
+              var img_File_text=document.getElementById("img_Text");
+              img_File_text.value="1";
+          }
+          $("#fileInput").change(function(){
+              readURL(this);
+          });
+
+          function addIndex(img) {
+            if(cond==1){
+            if (global_input.files && global_input.files[0] && index!=(global_input.files.length-1)) {
+                index+=1;
+                  var reader = new FileReader();
+                  
+                  reader.onload = function (e) {
+                      $('#imgTag').attr('src', e.target.result);
+                  }
+                  reader.readAsDataURL(global_input.files[index]);
+              }
+            }else if(cond==0 && stop==0)
+              {
+               index+=1;
+               var x=index+1;
+               var result="";
+               while(x!=0)
+               {
+                 result=img.substring(0,44);
+                 img=img.substring(46);
+                 if(img==""){
+                   stop=1;
+                 }
+                 x-=1;
+               }
+
+                if(result!="")
+                {
+                  document.getElementById("imgTag").src= "../storage/images/products/"+result;
+                }
+              }
+
+          }
+
+          function decreaseIndex(img) {
+            if(cond==1){
+            if (global_input.files && global_input.files[0] && index!=0) {
+                  index-=1;
+                  var reader = new FileReader();
+                  
+                  reader.onload = function (e) {
+                      $('#imgTag').attr('src', e.target.result);
+                  }
+                  reader.readAsDataURL(global_input.files[index]);
+              }
+            }else if(cond==0)
+              {
+               index-=1;
+               if(index==-1)
+               {
+                 index=0;
+               }else{
+              
+               stop=0;
+               var x=index+1;
+               var result="";
+               while(x!=0)
+               {
+                 result=img.substring(0,44);
+                 img=img.substring(46);
+                 x-=1;
+               }
+
+                document.getElementById("imgTag").src= "../storage/images/products/"+result;
+              }
+
+            }
+          }
+      </script>
                                     </body>
                                     </html>

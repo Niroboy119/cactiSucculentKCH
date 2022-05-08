@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Supplier;
+use App\Models\Product;
 
 use Illuminate\Http\Request;
 
@@ -19,10 +20,16 @@ class SupplierController extends Controller
         return view('manageSuppliers/addSupplier');
     }
     
+    public function displayaddSupplierFromProduct($status)
+    {
+        return view('manageSuppliers/addSupplier',compact('status'));
+    }
 
     public function deleteSupplier($id)
     {
-        $supplier = Supplier::where([ 'Supplier_ID' => $id ])->delete();
+        $supplier = Supplier::where([ 'Supplier_ID' => $id ]);
+        $products=  Product::where([ 'Product_Supplier' => $supplier->value('Supplier_Name') ])->delete();
+        $supplier=$supplier->delete();
         return redirect('/manageSuppliers');
     }
 
@@ -37,7 +44,7 @@ class SupplierController extends Controller
         return view('/manageSuppliers/editSupplier',compact('id'));
     }
 
-    public function create(Request $request)
+    public function create(Request $request,$status)
     {
         if($request->img_Text=="1")
         {
@@ -61,7 +68,17 @@ class SupplierController extends Controller
 
         $supplier->save();
 
-        return redirect('/manageSuppliers');
+        $link="";
+        if($status=="default")
+        {
+            $link="/manageSuppliers";
+        }else if($status=="addProductForm"){
+            $link="/".$status;
+        }else{
+            $link="/"."editProduct/".$status;
+        }
+
+        return redirect($link);
 
     }
 
@@ -79,6 +96,8 @@ class SupplierController extends Controller
             Supplier::where('Supplier_ID', $id)->update(array('Supplier_Name' => $request->name, 
             'Supplier_Address' => $request->Address, 'Supplier_Email' => $request->email, 'Supplier_PhoneNo' => $request->phoneno));
         }
+
+        
         return redirect('/manageSuppliers');
     }
 
