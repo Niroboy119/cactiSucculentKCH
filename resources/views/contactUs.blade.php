@@ -19,7 +19,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <!-- The above 3 meta tags must come first in the head; any other head content must come after these tags -->
 
         <!--font-family-->
 		<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
@@ -84,6 +84,8 @@
                                         <div class="contact-info-area">
                                             <!-- Section Heading -->
                                             <div class="section-heading">
+                                                <br>
+                                                <br>
                                                 <h2>CONTACT US</h2>
                                                 <p>Any questions? Feel free to contact us. We will provide our best services to solve your concerns!</p>
                                             </div>
@@ -174,7 +176,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+    </section>
 
 		<!-- Include all js compiled plugins (below), or include individual files as needed -->
 
