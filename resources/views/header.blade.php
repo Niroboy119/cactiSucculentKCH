@@ -121,8 +121,14 @@ use App\Models\Notification;
 										
 											@if(session('cart'))
                             					@foreach(session('cart') as $id=>$details)
+
+												
+														@php
+														$img=Str::substr($details['Product_Image'], 0, 44);   
+														@endphp
+
 													<li class="single-cart-list">
-														<a href="#" class="photo"><img src="{{URL::asset('storage/images/products/'.$details['Product_Image'])}}" class="cart-thumb" alt="image" /></a>
+														<a href="#" class="photo"><img src="{{URL::asset('storage/images/products/'.$img)}}" class="cart-thumb" alt="image" /></a>
 														<div class="cart-list-txt">
 															<h6><a href="#">{{$details['Product_Name']}}</a></h6>
 															<p>{{$details['Product_Quantity']}} x - <span class="price">RM {{$details['Product_Price']}}</span></p>
