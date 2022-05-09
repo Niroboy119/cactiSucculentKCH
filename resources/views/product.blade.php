@@ -315,11 +315,14 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 				<div class="new-arrivals-content">
 					<div class="Row">
 
+						
+						
+						@foreach($products as $product)
+
 						@php
 						$img=Str::substr($product->Product_Image, 0, 44);   
 						@endphp
 						
-						@foreach($products as $product)
 							<div class="single-new-arrival" style="float:left; padding:8px;">
 								<div class="single-new-arrival-bg">
 									<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$img)}}" alt="new-arrivals images">
