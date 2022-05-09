@@ -88,10 +88,15 @@
                         <tbody>
                             @foreach(session('cart') as $id=>$details)
                         <tr>
+
+                            @php
+                            $img=Str::substr($details['Product_Image'], 0, 44);   
+                            @endphp
+
                             <td data-th="Product">
                                 <div class="items-info">
                                     <div class="item-image">
-                                        <img src="{{URL::asset('storage/images/products/'.$details['Product_Image'])}}" alt="cart images">
+                                        <img src="{{URL::asset('storage/images/products/'.$img)}}" alt="cart images">
                                     </div>
                                     <div class="items-details">
                                         <div class="items-name">

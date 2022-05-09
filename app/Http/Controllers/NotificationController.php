@@ -79,5 +79,13 @@ class NotificationController extends Controller
         Notification::where([ 'id' => $id ])->delete();      
         return redirect()->back();
     }
+
+    public function deleteAllNotifications($id)
+    {
+        Notification::where([ 'user_Id' => $id ])->delete();      
+        return redirect()->back();
+    }
+    
+
     
 }

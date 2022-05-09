@@ -137,7 +137,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/deleteProduct/{id}', [App\Http\Controllers\ProductController::class, 'deleteProduct'])->name('products');
     Route::get('/editProduct/{id}', [App\Http\Controllers\ProductController::class, 'editProduct'])->name('products');
     Route::post('/updateProduct/{id}', [App\Http\Controllers\ProductController::class, 'update'])->name('products');
-    Route::post('/updateStatus/{id}', [App\Http\Controllers\OrderController::class, 'updateS'])->name('orders');
     Route::get('/increaseQuantity/{id}', [App\Http\Controllers\ProductController::class, 'increaseQuantity'])->name('products');
     Route::get('/decreaseQuantity/{id}', [App\Http\Controllers\ProductController::class, 'decreaseQuantity'])->name('products');
     Route::get('/changeQuantity/{id}/{quantity}', [App\Http\Controllers\ProductController::class, 'changeQuantity'])->name('products');
@@ -216,6 +215,7 @@ Route::get('/acceptOrderNotification/{id}/{dateS}/{dateE}/{time}', [App\Http\Con
 Route::get('/denyOrderNotification/{id}/{reason}', [App\Http\Controllers\NotificationController::class, 'denyOrderNotification'])->name('notification');
 Route::get('/completeOrderNotification/{id}', [App\Http\Controllers\NotificationController::class, 'completeOrderNotification'])->name('notification');
 Route::get('/deleteNotification/{id}', [App\Http\Controllers\NotificationController::class, 'deleteNotification'])->name('notification');
+Route::get('/deleteNotification/{id}', [App\Http\Controllers\NotificationController::class, 'deleteAllNotifications'])->name('notification');
 
 
 Route::get('cart/{Product_ID}', 'App\Http\Controllers\ProductController@addToCart');
@@ -235,6 +235,8 @@ Route::get('cart/decreaseCartQuantity/{Product_ID}', 'App\Http\Controllers\Produ
 Route::get('checkout/proceedtocheckout','App\Http\Controllers\ProductController@proceedToCheckout');
 Route::post('updateUser/{id}', 'App\Http\Controllers\UserController@updateUser');
 Route::post('updateUserProfile/{id}','App\Http\Controllers\UserController@updateUserProfile');
+Route::post('/updateStatus/{id}', [App\Http\Controllers\OrderController::class, 'updateS'])->name('orders');
+
 
 
 Route::post('/checkout', [OrderController::class, 'store']);

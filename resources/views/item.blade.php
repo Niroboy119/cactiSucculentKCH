@@ -271,12 +271,16 @@ width:190px;height:240px;
 														<h3 style="font-size:33px;color:#32CD32;">
 														RM {{$product->Product_Price}}
 														</h3>
-													</div>
+													</div>@if($product->Product_Quantity == 0)
+								<a style="color:red;">Out of Stock</a>
+								@else
+													
 													<button class="btn-cart welcome-add-cart" style=" width:550px;color:white;"onClick="parent.open('{{ url('cart/'.$product->Product_ID) }}')">
 														<span class="lnr lnr-plus-circle" ></span>
 														add <span>to </span> cart
 													</button>
-													
+													@endif
+
 													
 												</div><!--/.welcome-hero-txt-->
 											</div><!--/.single-welcome-hero-->

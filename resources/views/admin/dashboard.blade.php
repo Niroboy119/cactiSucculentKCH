@@ -166,7 +166,7 @@ $admins=User::all()->where('user_type','admin');
                     </div>
                     <div style="margin-top:10px; margin-left:20px;">
                         <p style="font-size:30px; color:#32CD32;" class="fs-30 mb-2">RM {{$sum}}</p>
-                        <p style="margin-top:-18px; font-size:13px; color:#32CD32;">ringgit made in total</p>
+                        <p style="margin-top:-18px; font-size:13px; color:#32CD32;">made in total</p>
                     </div>
                   </div>
                 </div>

@@ -137,10 +137,14 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 														RM {{$product->Product_Price}}
 														</p>
 													</div>
+													@if($product->Product_Quantity == 0)
+								<a style="color:red;">Out of Stock</a>
+								@else
 													<button class="btn-cart welcome-add-cart" style="color:white;"onClick="parent.open('{{ url('cart/'.$product->Product_ID) }}')">
 														<span class="lnr lnr-plus-circle" ></span>
 														add <span>to </span> cart
 													</button>
+													@endif
 													<button class="btn-cart welcome-add-cart welcome-more-info" onClick="parent.open('{{ url('item/'.$product->Product_ID) }}')">
 														more info
 													</button>
@@ -189,10 +193,14 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 														RM {{$product->Product_Price}}
 														</p>
 													</div>
+													@if($product->Product_Quantity == 0)
+								<a style="color:red;">Out of Stock</a>
+								@else
 													<button class="btn-cart welcome-add-cart" style="color:white;"onClick="parent.open('{{ url('cart/'.$product->Product_ID) }}')">
 														<span class="lnr lnr-plus-circle" ></span>
 														add <span>to </span> cart
 													</button>
+													@endif
 													<button class="btn-cart welcome-add-cart welcome-more-info" onClick="parent.open('{{ url('item/'.$product->Product_ID) }}')">
 														more info
 													</button>
@@ -307,11 +315,14 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 				<div class="new-arrivals-content">
 					<div class="Row">
 
+						
+						
+						@foreach($products as $product)
+
 						@php
 						$img=Str::substr($product->Product_Image, 0, 44);   
 						@endphp
 						
-						@foreach($products as $product)
 							<div class="single-new-arrival" style="float:left; padding:8px;">
 								<div class="single-new-arrival-bg">
 									<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$img)}}" alt="new-arrivals images">
@@ -323,18 +334,25 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 										class="btn btn-warning btn-block text-center add-to-cart" role="button">Add to cart</a>
                                 <i class="fa fa-circle-o-notch fa-spin btn-loading" style="font-size:24px; display: none"></i>
                             </p> -->
-							<p>
+							<p>@if($product->Product_Quantity == 0)
+								<a href="{{ url('item/'.$product->Product_ID)}}" style="color:red;">Out of Stock</a>
+								@else
 											<span class="lnr lnr-cart"></span>
 											<a href="{{ url('cart/'.$product->Product_ID) }}" role="button">add <span>to </span> cart</a>
 										</p>
+										@endif
 										<p class="arrival-review pull-right">
 											<a href="{{ url('item/'.$product->Product_ID)}}" role="button" class="lnr lnr-frame-expand expand"></a>
 
 										</p>
 									</div>
 								</div>
-								<h4><a href="{{ url('item/'.$product->Product_ID)}}">{{$product->Product_Name}}</a></h4>
+								<h4><a href="{{ url('item/'.$product->Product_ID)}}">{{$product->Product_Name}}</a> 
+								</h4>
 								<p class="arrival-product-price">RM {{$product->Product_Price}}</p>
+								<!-- @if($product->Product_Quantity == 0)
+								<a href="{{ url('item/'.$product->Product_ID)}}" style="color:red;">Out of Stock</a>
+								@endif -->
 							</div>
 						@endforeach
 
