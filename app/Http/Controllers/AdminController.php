@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -17,12 +18,21 @@ class AdminController extends Controller
     }
 
     public function getAllAdmins(){
-        $admin = User::where(["user_type" => "admin"])->get();
+        $admin = User::whereNotIn('user_type' , ['registered', 'guest'])->get();
         return view('manageAdmin', compact("admin"));
     }
 
     public function delete(Request $request){
-        DB::table('users')->delete($request->adminId);
-        return Redirect::back()->with('error_code', 6);
+
+        if (Auth::user()->user_type == 'super_admin') {
+
+            DB::table('users')->delete($request->adminId);
+            return Redirect::back()->with('error_code', 6);
+               
+        }else {
+            return Redirect::back()->with('error_code', 11);
+        }
+
+        
     }
 }
