@@ -92,9 +92,9 @@
                                             <!-- Contact Information -->
                                             <div class="contact-information">
                                                 <p style ="font-family: 'Roboto', sans-serif;"><span>Phone:</span> <a href="tel:+60198182384">(+60)19-818-2384</a></p>
-                                                <p><span style="font-family: 'Roboto', sans-serif;">Location:</span> 95, Lor Bayan 6, 93250 Kuching, Sarawak, Malaysia.</p>
-                                                <p style="font-family: 'Roboto', sans-serif;"><span style>Email:</span> <a href="mailto:anniepeksf@gmail.com">anniepeksf@gmail.com</a></p>
-                                                <p><span>Open Hours:</span> Mon - Sun: 8am - 5am</p>
+                                                <p><span style="font-family: 'Roboto', sans-serif;">Location:</span><a>95, Lor Bayan 6, 93250 Kuching, Sarawak, Malaysia.</a></p>
+                                                <p style="font-family: 'Roboto', sans-serif;  "><span style>Email:</span> <a href="mailto:anniepeksf@gmail.com">anniepeksf@gmail.com</a></p>
+                                                <p><span>Open Hours:</span> <a>Mon - Sun: 8am - 5am</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -146,11 +146,11 @@
                                             </div>
                                         </div>
                                         <div class="send-message">
-                                            <button type="submit" name="submit" onclick="gotowhatsapp()" class="btn mt-15" onclick="gotowhatsapp()" value="Send us a message">Send us a message</button>                            
+                                            <button type="submit" name="submit" onclick="gotowhatsapp()" class="btn mt-15" onclick="gotowhatsapp()" value="Send message">Send message</button>                            
                                         </div>
                                         <div class="appointment-visit">
                                             <br>
-                                            <p>* Please make a appointment via Get in Touch message if you wish to visit us.</p>    
+                                            <p>* Please make a appointment via Get in Touch message if you wish to visit us. *</p>    
                                         </div>
                                     </div>
                                     </form>
