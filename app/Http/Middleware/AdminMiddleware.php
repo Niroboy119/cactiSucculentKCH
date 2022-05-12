@@ -20,11 +20,11 @@ class AdminMiddleware
         // if current logging in user is admin redirect to admin dashboard
         // else redirect to default user homepage
         
-        if (Auth::user()->user_type == 'admin') {
-            return $next($request);    
+        if (Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'super_admin') {
+            return $next($request);
         }else {
             return redirect('/homepage');
         }
-        
+ 
     }
 }

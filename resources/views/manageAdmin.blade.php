@@ -33,6 +33,14 @@
     
 @include('admin/adminheader')
 
+<?php 
+    use Illuminate\Support\Facades\Auth;
+    
+    if (Auth::check()) {
+        $userType = Auth::user()->user_type;
+    }
+?>
+
 
 <!-- Page Content -->
 <div style="margin-left:300px; padding-top:50px;" class="mr container mt-5 mb-5">
@@ -67,10 +75,11 @@
             </tbody>
         </table>
 
-        <button style="background:#32CD32" type="button" class="btn btn-success" id="addNewAdminBtn" onclick="showForm()">Add new admin</button>
+        @if ($userType != 'admin')
+            <button style="background:#32CD32" type="button" class="btn btn-success" id="addNewAdminBtn" onclick="showForm()">Add new admin</button>
 
-        <button type="button" class="btn btn-danger ml-3" id="deleteAdminBtn" onclick="showDeleteForm()">Remove admin</button>
-    
+            <button type="button" class="btn btn-danger ml-3" id="deleteAdminBtn" onclick="showDeleteForm()">Remove admin</button>
+        @endif
 
         {{-- remove add admin account form --}}
         {{-- onsubmit="return confirm('Are you sure you want to delete this admin account?');" --}}
@@ -114,6 +123,24 @@
                     </div>
                     <div class="modal-body">
                         <p>Administrator account has been successfully removed</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Pop up message for being unable to delete admin account --}}
+
+        <div class="modal fade" id="exampleModalCenter4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div  class="modal-content col-12">
+                    <div class="modal-header">
+                        <h6 style="font-size:17px; padding-left:170px; color:#25D366" class="modal-title">IMPORTANT!</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>This admin account cannot be deleted!</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
@@ -187,6 +214,14 @@
             <script>
                 $(function() {
                     $('#exampleModalCenter2').modal('show');
+                });
+            </script>
+        @endif
+
+        @if(!empty(Session::get('error_code')) && Session::get('error_code') == 11)
+            <script>
+                $(function() {
+                    $('#exampleModalCenter4').modal('show');
                 });
             </script>
         @endif
