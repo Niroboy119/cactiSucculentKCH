@@ -85,20 +85,8 @@ use App\Models\Notification;
 				                	<li class="search">
 				                		<a href="#"><span class="lnr lnr-magnifier"></span></a>
 				                	</li><!--/.search-->
-									<li class="user dropdown show">
-				                		<a href="/userProfile"><span id="navbarDropdown" class="lnr lnr-user" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre></span></a>
-
-										<!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-											<a class="dropdown-item" href="{{ route('logout') }}"
-											onclick="event.preventDefault();
-															document.getElementById('logout-form').submit();">
-												{{ __('Logout') }}
-											</a>
-											<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-												@csrf
-											</form>
-										</div> -->
-
+									<li>
+				                		<a href="/userProfile"><span class="lnr lnr-user" aria-haspopup="true" aria-expanded="false"></span></a>
 				                	</li><!--/.search-->
 									<li class="dropdown">
 				                        <a href="/cart" class="dropdown-toggle" data-toggle="dropdown" >

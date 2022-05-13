@@ -81,8 +81,9 @@ use Illuminate\Http\Request;
                                         <input type="hidden" name="token" value="{{ $token }}">
 
                                         <div>
-                                            <label for="email_address" class="col-md-4 control-label" style="color:#696969;font:sans-serif">E-Mail Address</label>
-
+                                            <div class="col-md-4">
+                                                <h6 id="email-address-forget-linked" class="mb-0">E-Mail Address</h6>
+                                            </div>
                                             <div class="col-md-6">
                                             <input type="text" id="email_address" class="form-control" name="email" required autofocus>
                                             @if ($errors->has('email'))
@@ -91,9 +92,10 @@ use Illuminate\Http\Request;
                                             </div>
                                         </div>
                                         <br style="line-height: 50px;">
-                                        <div>
-                                            <label for="password" class="col-md-4 control-label" style="color:#696969;font:sans-serif">Password</label>
-
+                                        <div> 
+                                            <div class="col-md-4">
+                                                <h6 id="email-address-password-linked" class="mb-0">Password</h6>
+                                            </div>
                                             <div class="col-md-6">
                                             <input type="password" id="password" class="form-control" name="password" required autofocus>
                                             @if ($errors->has('email'))
@@ -103,8 +105,9 @@ use Illuminate\Http\Request;
                                         </div>
                                         <br style="line-height: 50px;">
                                         <div>
-                                            <label for="password-confirm" class="col-md-4 control-label" style="color:#696969;font:sans-serif">Confirm Password</label>
-
+                                            <div class="col-md-4">
+                                                <h6 id="password-confirmed-linked" class="mb-0">Confirm Password</h6>
+                                            </div>
                                             <div class="col-md-6">
                                             <input type="password" id="password-confirm" class="form-control" name="password_confirmation" required autofocus>
                                             @if ($errors->has('password_confirmation'))
@@ -114,7 +117,7 @@ use Illuminate\Http\Request;
                                         </div>
                                         <br><br><br>
                                         <div class="col-md-6 col-md-offset-4">
-                                            <button style="border-color:#32CD32; background:#32CD32;" type="submit" class="btn btn-primary">
+                                            <button id="reset-password-confirm" style="border-color:#32CD32; background:#32CD32;" type="submit" class="btn btn-primary">
                                                 Reset Password
                                             </button>
                                         </div>

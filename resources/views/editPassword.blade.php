@@ -90,9 +90,10 @@ use App\Models\User;
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
-                            <label for="new-password" class="col-md-4 control-label" style="color:#696969;font:sans-serif">Current Password</label>
-
-                            <div class="col-md-6">
+                            <div class="col-md-3">
+                            <h6 id="current-password-label" class="mb-0">Current Password</h6>
+                            </div>
+                            <div class="col-md-7">
                                 <input id="current-password" type="password" class="form-control" name="current-password" required>
 
                                 @if ($errors->has('current-password'))
@@ -104,8 +105,9 @@ use App\Models\User;
                         </div>
 
                         <div class="form-group{{ $errors->has('new-password') ? ' has-error' : '' }}">
-                            <label for="new-password" class="col-md-4 control-label" style="color:#696969;font:sans-serif">New Password</label>
-
+                            <div class="col-md-3">
+                                <h6 id="new-password-label" class="mb-0">New Password</h6>
+                            </div>
                             <div class="col-md-6">
                                 <input id="new-password" type="password" class="form-control" name="new-password" required>
 
@@ -118,8 +120,9 @@ use App\Models\User;
                         </div>
 
                         <div class="form-group">
-                            <label for="new-password-confirm" class="col-md-4 control-label" style="color:#696969;font:sans-serif">Confirm New Password</label>
-
+                            <div class="col-md-3">
+                                <h6 id="confirm-new-password-label" class="mb-0">Confirm New Password</h6>
+                            </div>
                             <div class="col-md-6">
                                 <input id="new-password-confirm" type="password" class="form-control" name="new-password_confirmation" required>
                             </div>
@@ -128,7 +131,7 @@ use App\Models\User;
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                             <a href="/editUserProfile">
-                                <button style="border-color:#32CD32; background:#32CD32;" class="btn btn-primary btn-block text-uppercase">Change Password</button>
+                                <button id="edit-user-password-confirm" class="btn btn-primary btn-block text-uppercase">Change Password</button>
                             </a>
                             </div>
                         </div>

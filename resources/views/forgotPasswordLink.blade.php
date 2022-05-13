@@ -86,8 +86,9 @@ $products=Product::all();
                         {{ csrf_field() }}
 
                         <div>
-                            <label for="email_address" class="col-md-4 control-label" style="color:#696969;font:sans-serif">{{ __('E-Mail Address') }}:</label>
-
+                            <div class="col-md-4">
+                                <h6 id="email-address-forget" class="mb-0">{{ __('E-Mail Address') }}:</h6>
+                            </div>
                             <div class="col-md-6">
                             <input type="text" id="email_address" class="form-control" name="email" required autofocus>
                                   @error('email')
@@ -99,7 +100,7 @@ $products=Product::all();
                         </div>
                         <br><br>
                         <div class="col-md-6 col-md-offset-4">
-                              <button style="border-color:#32CD32; background:#32CD32;" type="submit" class="btn btn-primary">
+                              <button id="send-reset-link-button" style="border-color:#32CD32; background:#32CD32;" type="submit" class="btn btn-primary">
                                   Send Password Reset Link
                               </button>
                           </div>

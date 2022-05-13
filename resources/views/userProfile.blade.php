@@ -161,16 +161,16 @@
                     </div>
                   </div>
                   <hr>
-                  <div class="row">
+                  <div id="user-profile-button" class="row">
                     <div class="col-sm-2">
                         <a href="/editUserProfile">
-                            <button style="border-color:#32CD32; background:#32CD32;" class="btn btn-primary btn-block text-uppercase">Edit Profile</button>
+                            <button id="edit-profile-button" class="btn btn-primary btn-block text-uppercase">Edit Profile</button>
                         </a>
                     </div>
                     
                     <div class="col-sm-2">
                     <a href="/editPassword">
-                            <button style="border-color:#32CD32; background:#32CD32;" class="btn btn-primary btn-block text-uppercase">Change Password</button>
+                            <button id="edit-password-button" class="btn btn-primary btn-block text-uppercase">Change Password</button>
                         </a>
                     </div>
                     <br><br><br><br>

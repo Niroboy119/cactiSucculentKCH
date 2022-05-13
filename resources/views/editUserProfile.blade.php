@@ -173,8 +173,24 @@ use App\Models\User;
                   <div class="row">
                     <div class="col-sm-12">
                         <a href="/editUserProfile">
-                            <button style="border-color:#32CD32; background:#32CD32;" class="btn btn-primary btn-block text-uppercase">Edit Profile</button>
+                            <button style="border-color:#32CD32; background:#32CD32;" data-toggle="modal" data-target="#cartbuttonCenter3" class="btn btn-primary btn-block text-uppercase">Save</button>
                         </a>
+                        <div class="modal fade" id="cartbuttonCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div  class="modal-content col-12">
+                                                            <div class="modal-header">
+                                                                <h6 style="font-size:17px; padding-left:230px; padding-top:20px; color:#25D366" class="modal-title">IMPORTANT!</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <h6 style="padding-left:130px; font-size:15px;font-color:grey;">Are you sure you want to remove {{$details['Product_Name']}}?</h6>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                            <a role="button" href="{{ url('cart/delete/'.$id) }}" style="background-color:#25D366;">Confirm</a> 
+                                                            </div>
+                                                        </div>
+                                    </div>
+                          </div>
+
                     </div>
                     <br><br>
                   </div>
