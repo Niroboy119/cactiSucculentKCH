@@ -36,7 +36,7 @@
 									<ul>
 										<li><a href="/aboutUs">about us</a></li><!--/li-->
 										<li><a href="/contactUs">contact us</a></li><!--/li-->
-										<li><a href="#">store</a></li><!--/li-->
+										<li><a href="/product">products</a></li><!--/li-->
 									</ul><!--/ul-->
 								</div><!--/.hm-foot-menu-->
 							</div><!--/.hm-footer-widget-->
@@ -48,9 +48,9 @@
 								</div><!--/.hm-foot-title-->
 								<div class="hm-foot-menu">
 									<ul>
-										<li><a href="#">Pots</a></li><!--/li-->
-										<li><a href="#">Soils</a></li><!--/li-->
-										<li><a href="#">Plants</a></li><!--/li-->
+										<li><a href="/pots">Pots</a></li><!--/li-->
+										<li><a href="/soils">Soils</a></li><!--/li-->
+										<li><a href="/plants">Plants</a></li><!--/li-->
 									</ul><!--/ul-->
 								</div><!--/.hm-foot-menu-->
 							</div><!--/.hm-footer-widget-->
@@ -62,8 +62,8 @@
 								</div><!--/.hm-foot-title-->
 								<div class="hm-foot-menu">
 									<ul>
-										<li><a href="#">my account</a></li><!--/li-->
-										<li><a href="#">order history</a></li><!--/li-->
+										<li><a href="/userProfile">my account</a></li><!--/li-->
+										<li><a href="/order">order history</a></li><!--/li-->
 										<li><a href="/cart">my cart</a></li><!--/li-->
 									</ul><!--/ul-->
 								</div><!--/.hm-foot-menu-->
