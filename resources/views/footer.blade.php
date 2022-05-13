@@ -61,8 +61,11 @@
 									<h4>my accounts</h4>
 								</div><!--/.hm-foot-title-->
 								<div class="hm-foot-menu">
-									<ul>
-										<li><a href="/userProfile">my account</a></li><!--/li-->
+									<ul>@if($user)
+									<li><a href="/userProfile">my account</a></li><!--/li-->
+										@else
+										<li><a href="/login">Login</a></li><!--/li-->
+										@endif
 										<li><a href="/order">order history</a></li><!--/li-->
 										<li><a href="/cart">my cart</a></li><!--/li-->
 									</ul><!--/ul-->
