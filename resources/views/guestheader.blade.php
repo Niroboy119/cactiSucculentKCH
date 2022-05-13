@@ -157,7 +157,7 @@ border-radius:12px;
 				                            	
 				                            <li class="total">
 				                                <span>Total: RM {{ $total }}</span>
-												<button class="btn-cart pull-right"><a href='cart'>view cart</a></button>
+												<button class="btn-cart pull-right"><a href='/cart'>view cart</a></button>
 				                            </li>
 											@endif
 				                        </ul>
