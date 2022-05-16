@@ -71,6 +71,7 @@
         <!--cart item details-->
 		<section id="shopping-cart" class="shopping-cart">
             <div class="container">
+                <!-- <div class="section-header-cart"> -->
                 <div class="section-header">
                     <h2 style="font-size:40px"><br>Shopping Cart</h2>
                 </div><!--/.section-header-->
@@ -110,13 +111,25 @@
                                         </div>
                                         <br>
                                         <div class="items-removal">
-                                        <a href="{{ url('cart/delete/'.$id) }}" role="button" onclick="return confirm('Are you sure to remove this item?')">Remove <span>From </span> Cart</a> 
+                                            <a href="{{ url('cart/delete/'.$id) }}" role="button" onclick="return confirm('Are you sure to remove this item?')">Remove <span>From </span> Cart</a> 
                                         </div>
                                     </div>
                                 </div>
                             </td>
                             <td data-th="Quantity">
                                 <div class="quantity-update">
+                                    <!-- <div class="row">
+                                        <div class="cart-plus-button">
+                                            <a href="{{ url('cart/increaseCartQuantity/'.$id ) }}" role="button" class="btn btn-primary btn-sm">+</a>
+                                        </div>
+                                        <div class="number-present">
+                                            <a style="float:center" type="number" class="number">{{ $details['Product_Quantity'] }}</a>
+                                        </div>
+                                        <div class="cart-minus-button">
+                                            <a href="{{ url('cart/decreaseCartQuantity/'.$id ) }}" role="button" class="btn btn-primary btn-sm">-</a>
+                                        </div>
+                                    </div>
+                                    <div class="quantity-update"> -->
                                     <div class="row">
                                         <a href="{{ url('cart/increaseCartQuantity/'.$id ) }}" role="button" style="margin-left:60px;display:inline-block;"class="btn btn-primary btn-sm"  >+</a>
                                         <a style="float:center;display:inline-block;background-color:white;color:black;font-size:20px" type="number" class="number">{{ $details['Product_Quantity'] }}</a>
@@ -127,6 +140,7 @@
                             <td data-th="Subtotal" class="text-center">
                                 <div class="items-total">
                                     <p class="text-center" style="font-size:20px">RM {{ $details['Product_Price'] * $details['Product_Quantity'] }}</p>
+                                    <!-- <p class="text-center">RM {{ $details['Product_Price'] * $details['Product_Quantity'] }}</p> -->
                                 </div>    
                             </td>
                         </tr>
