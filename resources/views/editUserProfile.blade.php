@@ -132,7 +132,7 @@ use App\Models\User;
                       <h6 class="mb-0">Full Name</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-					          <input id="name" name="name" type="text" class="form-control" value="{{Auth::user()->name}}">
+					            <input id="name" name="name" type="text" class="form-control" value="{{Auth::user()->name}}">
                     </div>
                   </div>
                   <hr>
@@ -176,7 +176,7 @@ use App\Models\User;
                         </a>
                     </div>
                   </div>
-                  <br><br>
+                    <br><br>
                   </div>
                 </div>
               </div>

@@ -76,15 +76,15 @@ $products=Product::all();
 									<div class="row">
 										<div class="col-sm-7">
 											<div class="single-welcome-hero">											
-											<iframe src="https://www.youtube.com/embed/_vKQZp-MGFg?autoplay=1&mute=1&loop=1&playlist=_vKQZp-MGFg"></iframe>
+												<iframe src="https://www.youtube.com/embed/_vKQZp-MGFg?autoplay=1&mute=1&loop=1&playlist=_vKQZp-MGFg"></iframe>
 												<div class="welcome-hero-txt">
 													@if(Auth::check())
-													<h2 style="text-align:left;float:left;">Welcome To Cacti Succulent KCH, {{Auth::user()->name}}</h2>
+														<h2 style="text-align:left;float:left;">Welcome To Cacti Succulent KCH, {{Auth::user()->name}}</h2>
 													@else
-													<h2>Welcome To Cacti Succulent KCH</h2>
+														<h2>Welcome To Cacti Succulent KCH</h2>
 													@endif
-													<h3>The gardening that matters</h3>
-													<a href="product">Explore</a>
+														<h3>The gardening that matters</h3>
+														<a href="product">Explore</a>
 												</div><!--/.welcome-hero-txt-->
 											</div><!--/.single-welcome-hero-->
 										</div><!--/.col-->
@@ -106,15 +106,15 @@ $products=Product::all();
 						<img src="images/collection/gardener.png"/>
 					</div> -->
 					<div class="register-text">
-					@if(Auth::check())
-					<h2>Our Background</h2>
-					<h3>Find out more about us</h3>
-					<a class="begin-btn" href="aboutUs">Discover</a>
-					@else
-					<h2>Begin your Journey Here!</h2>
-					<h3 style="margin-top:10px;">Sign up for free!</h3>
-					<a class="begin-btn" href="register">Register</a>
-					@endif
+						@if(Auth::check())
+							<h2>Our Background</h2>
+							<h3>Find out more about us</h3>
+							<a class="begin-btn" href="aboutUs">Discover</a>
+						@else
+							<h2>Begin your Journey Here!</h2>
+							<h3 style="margin-top:10px;">Sign up for free!</h3>
+							<a class="begin-btn" href="register">Register</a>
+						@endif
 					<div>
 				</div>
 		</section>
@@ -180,18 +180,18 @@ $products=Product::all();
 					
 						@foreach($products as $product)
 								@php
-								$img=Str::substr($product->Product_Image, 0, 44); 
+									$img=Str::substr($product->Product_Image, 0, 44); 
 								@endphp
 								@if($loop->index!=4)
 								<div class="col-sm-3">
 									<div class="homepage-products">
-											<div class="homepage-products-bg">
+										<div class="homepage-products-bg">
 											<img src="{{URL::asset('storage/images/products/'.$img)}}">
-											</div>
-											<div class="single-feature-txt text-center">
-												<h3><a href="#">{{$product->Product_Name}}</a></h3>
-												<h5>Price: RM{{$product->Product_Price}}</h5>
-											</div>
+										</div>
+										<div class="single-feature-txt text-center">
+											<h3><a href="#">{{$product->Product_Name}}</a></h3>
+											<h5>Price: RM{{$product->Product_Price}}</h5>
+										</div>
 									</div>
 								</div>
 								@endif
@@ -208,7 +208,7 @@ $products=Product::all();
 		<!-- Include all js compiled plugins (below), or include individual files as needed -->
 
 		<script src="js/jquery.js">
-			function Function(){
+			function Function() {
 				window.location.href = "http://127.0.0.1:8000/product"
 			}
 

@@ -41,11 +41,11 @@
    @include('admin/adminheader')
 
     <?php
-use App\Models\Product;
-use App\Models\Supplier;
-$suppliers = Supplier::all();
-$product = Product::where([ 'Product_ID' => $id ]);
-?>
+      use App\Models\Product;
+      use App\Models\Supplier;
+      $suppliers = Supplier::all();
+      $product = Product::where([ 'Product_ID' => $id ]);
+    ?>
 <div style="margin-top:130px; margin-left:260px;" class="container tm-mt-big tm-mb-big">
       <div class="row">
         <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
