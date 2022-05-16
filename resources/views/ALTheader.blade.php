@@ -90,7 +90,7 @@ use App\Models\Notification;
 				                	</li><!--/.search-->
 									<li class="dropdown">
 				                        <a href="/cart" class="dropdown-toggle" data-toggle="dropdown" >
-				                            <span class="lnr lnr-cart"></span>
+				                            <span class="lnr lnr-cart" style="appearance:none;"></span>
 											@if(count((array) session('cart')) != 0)
 												<span class="badge badge-bg-1" aria-hidden="true">{{ count((array) session('cart')) }}</span>
 											@endif
@@ -130,7 +130,7 @@ use App\Models\Notification;
 				                            	
 				                            <li class="total">
 				                                <span>Total: RM {{ $total }}</span>
-												<button class="btn-cart pull-right"><a href='cart'>view cart</a></button>
+												<button class="btn-cart pull-right"><a href='/cart'>view cart</a></button>
 				                            </li>
 											@endif
 				                        </ul>

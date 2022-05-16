@@ -160,14 +160,18 @@
 				<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$img)}}" alt="new-arrivals images">
 				<div class="single-new-arrival-bg-overlay"></div>
 				<div class="new-arrival-cart">
-		<p>
-						<span class="lnr lnr-cart"></span>
-						<a href="{{ url('cart/'.$product->Product_ID) }}" role="button">add <span>to </span> cart</a>
-					</p>
-					<p class="arrival-review pull-right">
-						<a href="{{ url('item/'.$product->Product_ID)}}" role="button" class="lnr lnr-frame-expand expand"></a>
+		<p><p>@if($product->Product_Quantity == 0)
+								<a style="color:red;">Out of Stock</a>
+								@else
+											<span class="lnr lnr-cart"></span>
+											<a href="{{ url('cart/'.$product->Product_ID) }}" role="button">add <span>to </span> cart</a>
+										</p>
+										@endif
 
-					</p>
+										<p class="arrival-review pull-right">
+											<a href="{{ url('item/'.$product->Product_ID)}}" role="button" class="lnr lnr-frame-expand expand"></a>
+
+										</p>
 				</div>
 			</div>
 			<h4><a href="{{ url('item/'.$product->Product_ID)}}">{{$product->Product_Name}}</a></h4>
@@ -194,10 +198,14 @@
 									<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$img)}}" alt="new-arrivals images">
 									<div class="single-new-arrival-bg-overlay"></div>
 									<div class="new-arrival-cart">
-							<p>
+									<p>@if($product->Product_Quantity == 0)
+								<a style="color:red;">Out of Stock</a>
+								@else
 											<span class="lnr lnr-cart"></span>
 											<a href="{{ url('cart/'.$product->Product_ID) }}" role="button">add <span>to </span> cart</a>
 										</p>
+										@endif
+
 										<p class="arrival-review pull-right">
 											<a href="{{ url('item/'.$product->Product_ID)}}" role="button" class="lnr lnr-frame-expand expand"></a>
 
@@ -229,14 +237,18 @@
 								<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$img)}}" alt="new-arrivals images">
 								<div class="single-new-arrival-bg-overlay"></div>
 								<div class="new-arrival-cart">
-						<p>
-										<span class="lnr lnr-cart"></span>
-										<a href="{{ url('cart/'.$product->Product_ID) }}" role="button">add <span>to </span> cart</a>
-									</p>
-									<p class="arrival-review pull-right">
-										<a href="{{ url('item/'.$product->Product_ID)}}" role="button" class="lnr lnr-frame-expand expand"></a>
+								<p>@if($product->Product_Quantity == 0)
+								<a style="color:red;">Out of Stock</a>
+								@else
+											<span class="lnr lnr-cart"></span>
+											<a href="{{ url('cart/'.$product->Product_ID) }}" role="button">add <span>to </span> cart</a>
+										</p>
+										@endif
 
-									</p>
+										<p class="arrival-review pull-right">
+											<a href="{{ url('item/'.$product->Product_ID)}}" role="button" class="lnr lnr-frame-expand expand"></a>
+
+										</p>
 								</div>
 							</div>
 							<h4 style="text-align:center;padding-top:25px;"><a href="{{ url('item/'.$product->Product_ID)}}" >{{$product->Product_Name}}</a></h4>
@@ -264,14 +276,18 @@
 			<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$img)}}" alt="new-arrivals images">
 			<div class="single-new-arrival-bg-overlay"></div>
 			<div class="new-arrival-cart">
-	<p>
-					<span class="lnr lnr-cart"></span>
-					<a href="{{ url('cart/'.$product->Product_ID) }}" role="button">add <span>to </span> cart</a>
-				</p>
-				<p class="arrival-review pull-right">
-					<a href="{{ url('item/'.$product->Product_ID)}}" role="button" class="lnr lnr-frame-expand expand"></a>
+			<p>@if($product->Product_Quantity == 0)
+								<a style="color:red;">Out of Stock</a>
+								@else
+											<span class="lnr lnr-cart"></span>
+											<a href="{{ url('cart/'.$product->Product_ID) }}" role="button">add <span>to </span> cart</a>
+										</p>
+										@endif
 
-				</p>
+										<p class="arrival-review pull-right">
+											<a href="{{ url('item/'.$product->Product_ID)}}" role="button" class="lnr lnr-frame-expand expand"></a>
+
+										</p>
 			</div>
 		</div>
 		<h4 style="text-align:center;padding-top:25px;"><a href="{{ url('item/'.$product->Product_ID)}}" >{{$product->Product_Name}}</a></h4>
