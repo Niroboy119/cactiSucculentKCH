@@ -48,7 +48,7 @@
                 <div>
                   <br><br>
                     <h2><br>Edit Admin Profile </h2>
-                   
+                    
                     <!-- <h3 style="color: #32CD32;"> Manage and secure your account! </h3> -->
                     
                 </div><!--/.section-header-->

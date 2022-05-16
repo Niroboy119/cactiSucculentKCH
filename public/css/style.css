@@ -22,6 +22,8 @@ font-family: 'Roboto', sans-serif;
 10. News-letter
 11. Footer
 12. Cart Items
+13. About Us Page
+14. Contact Us Page
 ==========================================*/
 
 /*-------------------------------------
@@ -1453,6 +1455,39 @@ span.feature-review {margin-left: 10px;}
 /*-------------------------------------
         12. Cart Items
 --------------------------------------*/
+/* .section-header-cart h2{
+    color:#32CD32;
+    font-size: 40px;
+} 
+    @media only screen and (max-width: 1025px) {
+        .section-header-cart h2 {
+            font-size: 400%;
+            color:#32CD32;
+            text-align: center;
+        }
+    }
+    @media only screen and (max-width: 351px) {
+        .section-header-cart h2 {
+            font-size: 300%;
+            color:#32CD32;
+            text-align: center;
+        }
+    }
+    @media only screen and (max-width: 321px) {
+        .section-header-cart h2 {
+            font-size: 260%;
+            color:#32CD32;
+            text-align: center;
+        }
+    }
+    @media only screen and (max-width: 291px) {
+        .section-header-cart h2 {
+            font-size: 230%;
+            color:#32CD32;
+            text-align: center;
+        }
+    } */
+
 .cart-page{
     margin: 80px auto;
 }
@@ -1507,6 +1542,7 @@ td img{
 }
 
 .items-total p{
+    /* font-size:20px; */
     color: black;
 }
 
@@ -1546,9 +1582,20 @@ td img{
     z-index: 100;
 }
 
-.quantity-update a{
-    display: inline-block;
+.quantity-update a{ 
     font-size: 15px;
+    background: #32CD32;
+    padding: 2px;
+    text-decoration: none;
+    color:rgb(255, 255, 255);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 100;
+    
+}
+    
+/* .cart-plus-button a {
+    font-size: 18px;
     background: #32CD32;
     padding: 5px 13px;
     text-decoration: none;
@@ -1556,13 +1603,38 @@ td img{
     text-transform: uppercase;
     letter-spacing: 2px;
     z-index: 100;
+    margin-left:60px;
+    margin-top: 15px;
+} 
+
+.number-present{
+    font-size: 15px;
+    margin-left: 127px;
+    margin-top: -35px;
+    font-size: 20px;
+    background-color:white;
+    color:black;
+
 }
+.cart-minus-button a {
+    font-size: 18px;
+    background: #32CD32;
+    padding: 5px 13px;
+    text-decoration: none;
+    color:rgb(255, 255, 255);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 100;
+    margin-left: 163px;
+    margin-top: -51px;
+}      */
+
 
 /* Totals section */
 .totals{
     border-top: 3px solid #32CD32;
     width: 100%;
-    font-size: 20px;
+    /* font-size: 50px; */
 }
 .totals-item {
     float: right;
@@ -1580,10 +1652,9 @@ label {
 
 .totals-value {
     float: right;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
-    width: 21%;
-    text-align: right;
+    width: fit-content;
 }
     
 .totals-item-total {
@@ -1607,7 +1678,8 @@ label {
     float: right;
     border: 0;
     margin-top: 20px;
-    padding: 6px 25px;
+    /* padding: 10px 25px; */
+    padding: 10px 25px;
     background-color: #32CD32;
     color: #fff;
     font-size: 16px;
@@ -1630,6 +1702,218 @@ td:last-child{
 .items-info p{
     display: none;
 }
+
+/* Mobile integration for cart page */
+
+    /* @media only screen and (max-width: 1025px) {
+        .quantity-update {
+            margin-left: -15%;
+        }
+    }
+    @media only screen and (max-width: 601px) {
+        th{
+            text-align: center;
+            padding: 5px;
+            color: #fff;
+            background: #32CD32;
+            font-weight: normal;
+            font-size: 100%;
+        }
+        .update-cart{
+            border: 0;
+            padding: 8px 8px;
+            font-family: bold;
+            font-size: 100%;
+            border-radius: 5px;
+        }
+        .remove-from-cart {
+            border: 0;
+            padding: 4px 8px;
+            background-color: #c66;
+            color: #fff;
+            font-family: bold;
+            font-size: 70%;
+            border-radius: 5px;
+        }
+    
+        .items-removal a {
+            display: inline-block;
+            font-size: 70%;
+            font-weight: 500px;
+            background: rgb(241, 128, 128);
+            padding: 5px 10px;
+            text-decoration: none;
+            color:rgb(255, 255, 255);
+            margin-top: -5%;
+            margin-bottom: 10%;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            z-index: 100;
+        }
+        .item-image {
+            width: 100%;
+            height: 100%;
+            
+        }
+        td small {
+            font-size: 100%;
+        }
+        .quantity-update{
+            font-size: 100%;
+            margin-top: -20%;
+            margin-left: -15%;
+        }
+        .items-total p{
+            font-size: 100%;
+            text-align: center;
+            margin-top: -35%;
+            color: black;
+        }
+        .checkout {
+            float: right;
+            border: 0;
+            margin-top: 20px;
+            padding: 6px 25px;
+            background-color: #32CD32;
+            color: #fff;
+            font-size: 90%;
+            font-weight: bolder;
+            border-radius: 3px;
+            height: 100%;
+            width: 40%;
+        }
+        .totals{
+            border-top: 3px solid #32CD32;
+            width: 100%;
+            font-size: 150%;
+        }
+        .totals-value {
+            float: right;
+            font-size: 100%;
+            font-weight: bold;
+            width: 21%;
+            text-align: right;
+        }   
+        .totals-item-total {
+            font-weight: bold;
+            font-size: 100%;
+        }
+        .checkout:hover {
+            background-color: #32CD32;
+        } 
+    }
+    @media only screen and (max-width: 531px) {
+        .items-total p{
+            font-size: 100%;
+            text-align: center;
+            margin-top: -40%;
+            color: black;
+        }
+    }
+    @media only screen and (max-width: 451px) {
+        .cart-plus-button a {
+            font-size: 95%;
+            background: #32CD32;
+            padding: 5px 13px;
+            text-decoration: none;
+            color:rgb(255, 255, 255);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            z-index: 100;
+            margin-left: 70px;
+            margin-top: 15px;
+        } 
+        .number-present{
+            font-size: 95%;
+            margin-left: 120px;
+            margin-top: -35px;
+            font-size: 20px;
+            background-color:white;
+            color:black;
+        
+        }
+        .cart-minus-button a {
+            font-size: 95%;
+            background: #32CD32;
+            padding: 5px 13px;
+            text-decoration: none;
+            color:rgb(255, 255, 255);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            z-index: 100;
+            margin-left: 150px;
+            margin-top: -48px;
+        }     
+        .items-total p{
+            font-size: 95%;
+            text-align: center;
+            margin-top: -50%;
+            color: black;
+        }
+        .totals-value {
+            float: right;
+            font-size: 95%;
+            font-weight: bold;
+            width: 21%;
+            text-align: right;
+        }   
+        .totals-item-total {
+            font-weight: bold;
+            font-size: 90%;
+        }
+    }
+    @media only screen and (max-width: 381px) {
+        .totals-value {
+            margin-right: -5%;
+            font-size: 90%;
+            font-weight: bold;
+            width: 30%;
+            margin-top: -9.5%;
+        }   
+        .totals-item {
+            float: right;
+            clear: both;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .totals-item-total {
+            font-weight: bold;
+            font-size: 90%;
+            margin-right: 15%;
+        }
+        .checkout {
+            float: right;
+            border: 0;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background-color: #32CD32;
+            color: #fff;
+            font-size: 90%;
+            font-weight: bolder;
+            border-radius: 3px;
+            height: 100%;
+            width: 40%;
+        }
+    }
+    @media only screen and (max-width: 361px) {
+        .totals-value {
+            margin-right: -5%;
+            font-size: 90%;
+            font-weight: bold;
+            width: 30%;      
+        }   
+        .totals-item {
+            float: right;
+            clear: both;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .totals-item-total {
+            font-weight: bold;
+            font-size: 90%;
+            margin-right: 15%;
+        }
+    } */
 
 /*===============================
     13. About Us Page
@@ -1847,7 +2131,7 @@ td:last-child{
     }
 
 /*===============================
-  14 Contact Area Page
+  14 Contact Us Page
 ===============================*/
 .section-header h2{
     color:#32CD32;

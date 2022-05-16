@@ -222,7 +222,7 @@ $product = Product::where([ 'Product_ID' => $id ]);
       </div>
     </div>
 
-                               
+                       
     <script type="text/javascript">
 
       index=0;

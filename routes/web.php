@@ -71,8 +71,6 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
-
-
 Route::get('/userProfile', function(){
     return view('userProfile');
 });
@@ -227,7 +225,7 @@ Auth::routes();
 Route::get('/homepage', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/forgotPasswordForm',[App\Http\Controllers\HomeController::class, 'forgotPasswordForm'])->name('forgotPasswordForm');
 
-Route::get('cart/delete/{Product_ID}', 'App\Http\Controllers\ProductController@removeCartProducts');
+Route::get('cart/delete/{Product_ID}', 'App\Http\Controllers\ProductController@removeCartProducts')->name('removeCartProducts');
 Route::get('cart/update/{Product_ID}', 'App\Http\Contorllers\ProductController@updateCartProducts');
 
 Route::get('cart/increaseCartQuantity/{Product_ID}', 'App\Http\Controllers\ProductController@IncreaseCartProducts');
