@@ -116,7 +116,7 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 						@if($product->Product_Type == "Pot")
 							<div class="single-new-arrival" style="float:left; padding:8px;">
 								<div class="single-new-arrival-bg">
-									<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$img)}}" alt="new-arrivals images">
+								<a href="{{ url('item/'.$product->Product_ID)}}" class="photo"><img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$img)}}" alt="new-arrivals images">
 									<div class="single-new-arrival-bg-overlay"></div>
 									<div class="new-arrival-cart">
 										
@@ -125,7 +125,7 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 										class="btn btn-warning btn-block text-center add-to-cart" role="button">Add to cart</a>
                                 <i class="fa fa-circle-o-notch fa-spin btn-loading" style="font-size:24px; display: none"></i>
                             </p> -->
-							<p>
+							
 							<p>@if($product->Product_Quantity == 0)
 								<a style="color:red;">Out of Stock</a>
 								@else

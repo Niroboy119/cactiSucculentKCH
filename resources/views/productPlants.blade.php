@@ -117,7 +117,7 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 						@if($product->Product_Type == "Plant")
 							<div class="single-new-arrival" style="float:left; padding:8px;">
 								<div class="single-new-arrival-bg">
-									<img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$img)}}" alt="new-arrivals images">
+								<a href="{{ url('item/'.$product->Product_ID)}}" class="photo"><img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$img)}}" alt="new-arrivals images">
 									<div class="single-new-arrival-bg-overlay"></div>
 									<div class="new-arrival-cart">
 										
