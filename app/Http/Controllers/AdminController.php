@@ -26,6 +26,12 @@ class AdminController extends Controller
 
         if (Auth::user()->user_type == 'super_admin') {
 
+            $testAdmin = User::find($request->adminId);
+
+            if ($testAdmin->user_type == 'super_admin') {
+                return Redirect::back()->with('error_code', 12);
+            }
+            
             DB::table('users')->delete($request->adminId);
             return Redirect::back()->with('error_code', 6);
                
