@@ -28,9 +28,9 @@
     <head>
 		<!-- Displays appropriate header -->
         @if($user)
-		    @include('header')
+		    @include('ALTheader')
 		@else
-			@include('guestheader')
+			@include('ALTguestheader')
 		@endif
         <!-- meta data -->
         <meta charset="utf-8">
