@@ -1585,12 +1585,13 @@ td img{
 .quantity-update a{ 
     font-size: 15px;
     background: #32CD32;
-    padding: 5px 13px;
+    padding: 2px;
     text-decoration: none;
     color:rgb(255, 255, 255);
     text-transform: uppercase;
     letter-spacing: 2px;
     z-index: 100;
+    
 }
     
 /* .cart-plus-button a {
@@ -1628,6 +1629,7 @@ td img{
     margin-top: -51px;
 }      */
 
+
 /* Totals section */
 .totals{
     border-top: 3px solid #32CD32;
@@ -1650,10 +1652,9 @@ label {
 
 .totals-value {
     float: right;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
-    width: 21%;
-    text-align: right;
+    width: fit-content;
 }
     
 .totals-item-total {

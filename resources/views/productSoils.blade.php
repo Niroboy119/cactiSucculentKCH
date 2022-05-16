@@ -125,10 +125,14 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 										class="btn btn-warning btn-block text-center add-to-cart" role="button">Add to cart</a>
                                 <i class="fa fa-circle-o-notch fa-spin btn-loading" style="font-size:24px; display: none"></i>
                             </p> -->
-							<p>
+						<p>@if($product->Product_Quantity == 0)
+								<a style="color:red;">Out of Stock</a>
+								@else
 											<span class="lnr lnr-cart"></span>
 											<a href="{{ url('cart/'.$product->Product_ID) }}" role="button">add <span>to </span> cart</a>
 										</p>
+										@endif
+
 										<p class="arrival-review pull-right">
 											<a href="{{ url('item/'.$product->Product_ID)}}" role="button" class="lnr lnr-frame-expand expand"></a>
 

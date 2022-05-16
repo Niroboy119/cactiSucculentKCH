@@ -130,6 +130,8 @@ $order = Order::where([ 'order_Id' => auth()->id() ]);
 					<h2>All Orders</h2>
 
 				</div><!--/.section-header-->
+                @if($orders !=='')
+
 				<div class="new-arrivals-content">
 					<div class="Row">
                     @foreach($orders as $order)
@@ -184,6 +186,11 @@ $order = Order::where([ 'order_Id' => auth()->id() ]);
 								});
 							}
 						</script>
+                         @else
+                        <div>
+                            <h1 class="text-center" style="font-size:30px;color:#808080">You Have Placed No Orders!</h1>
+                        </div>
+                    @endif
 
     <!-- <script type="text/javascript">
         $(".add-to-cart").click(function (e) {

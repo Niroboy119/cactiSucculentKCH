@@ -106,7 +106,6 @@ use App\Models\User;
                 </div>
               <br>
             </div>
-
             <script type="text/javascript">
                                     function readURL(input) {
                                             if (input.files && input.files[0]) {
@@ -166,7 +165,7 @@ use App\Models\User;
                       <h6 class="mb-0">Home Address</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-					          <input id="cust_address" name="cust_address" type="text" class="form-control" value="{{Auth::user()->cust_address}}">
+					            <input id="cust_address" name="cust_address" type="text" class="form-control" value="{{Auth::user()->cust_address}}">
                     </div>
                   </div>
                   <hr>
@@ -175,24 +174,9 @@ use App\Models\User;
                         <a href="/editUserProfile">
                             <button style="border-color:#32CD32; background:#32CD32;" data-toggle="modal" data-target="#cartbuttonCenter3" class="btn btn-primary btn-block text-uppercase">Save</button>
                         </a>
-                        <div class="modal fade" id="cartbuttonCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelTitle" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div  class="modal-content col-12">
-                                                            <div class="modal-header">
-                                                                <h6 style="font-size:17px; padding-left:230px; padding-top:20px; color:#25D366" class="modal-title">IMPORTANT!</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <h6 style="padding-left:130px; font-size:15px;font-color:grey;">Are you sure you want to remove {{$details['Product_Name']}}?</h6>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                            <a role="button" href="{{ url('cart/delete/'.$id) }}" style="background-color:#25D366;">Confirm</a> 
-                                                            </div>
-                                                        </div>
-                                    </div>
-                          </div>
-
                     </div>
-                    <br><br>
+                  </div>
+                  <br><br>
                   </div>
                 </div>
               </div>
@@ -200,8 +184,6 @@ use App\Models\User;
               </form>
               <br>
             </div>
-
-            
         </section>
 
 		<!-- Include all js compiled plugins (below), or include individual files as needed -->

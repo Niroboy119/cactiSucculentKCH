@@ -135,9 +135,9 @@ width:190px;height:240px;
 
 		<!-- Displays appropriate header -->
         @if($user)
-		    @include('header')
+		    @include('ALTheader')
 		@else
-			@include('guestheader')
+			@include('ALTguestheader')
 		@endif
 
         <!-- meta data -->

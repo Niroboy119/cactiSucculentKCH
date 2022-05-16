@@ -245,7 +245,7 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 								<div class="single-populer-product-img mt40">
 									<img src="images/collection/pcacti2.png" style="max-height:125px;">
 								</div>
-								<h2><a href="pots">Pots</a></h2>
+								<h2><a href="/pots">Pots</a></h2>
 								<div class="single-populer-products-para">
 									<p>Pots of the Highest Quality</p>
 								</div>
@@ -263,7 +263,7 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 										<div class="col-md-8 col-sm-12">
 											<div class="single-inner-populer-product-txt">
 												<h2>
-													<a href="plants">
+													<a href="/plants">
 														Plants <span>and</span> Succulents
 													</a>
 												</h2>
@@ -288,7 +288,7 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 									<div class="single-populer-product-img">
 									<img src="images/collection/pcacti3.png" style="max-height:150px; padding-top:70px" >
 									</div>
-									<h2><a href="soils">Soils</a></h2>
+									<h2><a href="/soils">Soils</a></h2>
 									<div class="single-populer-products-para">
 										<p>Soils of the Highest Grade </p>
 									</div>
