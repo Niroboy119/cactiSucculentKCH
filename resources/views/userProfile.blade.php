@@ -1,9 +1,9 @@
 <?php use Illuminate\Support\Facades\Auth;
 	$user=Auth::check();
-    $userphonenumber = Auth::user()->cust_phone_number;
-    $userhomeaddress = Auth::user()->cust_address;
-    $userprofilepicture = Auth::user()->profilepicture;
-    // $userProfile=User::where(['id'=>$id]);
+  $userphonenumber = Auth::user()->cust_phone_number;
+  $userhomeaddress = Auth::user()->cust_address;
+  $userprofilepicture = Auth::user()->profilepicture;
+  // $userProfile=User::where(['id'=>$id]);
 ?>
 
 <!doctype html>
@@ -12,10 +12,10 @@
     <head>
         <!-- Displays appropriate header -->
         @if($user)
-		    @include('header')
-		@else
-			@include('guestheader')
-		@endif
+		      @include('header')
+		    @else
+			    @include('guestheader')
+		    @endif
 
         <!-- meta data -->
         <meta charset="utf-8">
@@ -89,7 +89,6 @@
                                 <!-- <div class="col-4">
                                   <button type="submit" style="border-color:#32CD32; background:#32CD32;">Update Picture</button>
                                 </div> -->
-                            
                             {{ csrf_field() }}
                       </form>
                   </div>

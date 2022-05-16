@@ -1546,17 +1546,56 @@ td img{
     z-index: 100;
 }
 
-.quantity-update a{
+.cart-modal-removal a{
     display: inline-block;
+    font-size: 10px;
+    font-weight: 500px;
+    background: rgb(247, 84, 84);
+    padding: 5px 10px;
+    text-decoration: none;
+    color:rgb(255, 255, 255);
+    margin-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 100;
+}
+
+.cart-modal-dismissal a{
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500px;
+    background: rgb(146, 144, 144);
+    padding: 5px 10px;
+    text-decoration: none;
+    color:rgb(255, 255, 255);
+    margin-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 100;
+}
+
+.cart-modal-list li{
+    margin-left:10px;
+    display: inline;
+    float:right;
+}
+
+.quantity-update{
+    text-align: center;
+}
+
+.quantity-update a{
     font-size: 15px;
     background: #32CD32;
-    padding: 5px 13px;
+    padding: 2px;
     text-decoration: none;
     color:rgb(255, 255, 255);
     text-transform: uppercase;
     letter-spacing: 2px;
     z-index: 100;
+    
 }
+
 
 /* Totals section */
 .totals{
@@ -1580,10 +1619,9 @@ label {
 
 .totals-value {
     float: right;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
-    width: 21%;
-    text-align: right;
+    width: fit-content;
 }
     
 .totals-item-total {

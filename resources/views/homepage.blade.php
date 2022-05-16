@@ -177,24 +177,26 @@ $products=Product::all();
 				</div><!--/.section-header-->
 				<div class="feature-content">
 					<div class="row">
-					@foreach($products as $product)
-
-					@php
-					$img=Str::substr($product->Product_Image, 0, 44);   
-					@endphp
-
-						<div class="col-sm-3">
-							<div class="homepage-products">
-								<div class="homepage-products-bg">
-									<img src="{{URL::asset('storage/images/products/'.$img)}}">
-									</div>
-									<div class="single-feature-txt text-center">
-										<h3><a href="#">{{$product->Product_Name}}</a></h3>
-										<h5>Price: RM{{$product->Product_Price}}</h5>
+					
+						@foreach($products as $product)
+								@php
+								$img=Str::substr($product->Product_Image, 0, 44); 
+								@endphp
+								@if($loop->index!=4)
+								<div class="col-sm-3">
+									<div class="homepage-products">
+											<div class="homepage-products-bg">
+											<img src="{{URL::asset('storage/images/products/'.$img)}}">
+											</div>
+											<div class="single-feature-txt text-center">
+												<h3><a href="#">{{$product->Product_Name}}</a></h3>
+												<h5>Price: RM{{$product->Product_Price}}</h5>
+											</div>
 									</div>
 								</div>
-							</div>
-							@endforeach
+								@endif
+						@endforeach
+
 							</div>
 						</div>
 					</div>
