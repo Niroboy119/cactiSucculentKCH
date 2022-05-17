@@ -210,7 +210,7 @@ Route::get('/acceptOrderNotification/{id}/{dateS}/{dateE}/{time}', [App\Http\Con
 Route::get('/denyOrderNotification/{id}/{reason}', [App\Http\Controllers\NotificationController::class, 'denyOrderNotification'])->name('notification');
 Route::get('/completeOrderNotification/{id}/{reason}', [App\Http\Controllers\NotificationController::class, 'completeOrderNotification'])->name('notification');
 Route::get('/deleteNotification/{id}', [App\Http\Controllers\NotificationController::class, 'deleteNotification'])->name('notification');
-Route::get('/deleteNotification/{id}', [App\Http\Controllers\NotificationController::class, 'deleteAllNotifications'])->name('notification');
+Route::get('/deleteNotificationAll/{id}', [App\Http\Controllers\NotificationController::class, 'deleteAllNotifications'])->name('notification');
 
 
 Route::get('cart/{Product_ID}', 'App\Http\Controllers\ProductController@addToCart');

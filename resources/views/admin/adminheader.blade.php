@@ -103,23 +103,24 @@ use App\Models\Notification;
                                     <li class="dropdown">
 									<a href="#"  class="data-toggle" data-toggle="dropdown" data-target="#cartdrop" style="font-size:18px;"><span class="lnr lnr-alarm"></span>
 										@if($count != 0)
-											<span class="badge badge-bg-1" aria-hidden="true">{{ $count }}</span>
+											<span class="badge badge-bg-1" aria-hidden="true" style="color:white;background-color:#32CD32;">{{ $count }}</span>
 										@endif
 									</a>
 
 									@if($count != 0)
 										<ul id="cartdrop" class="dropdown-menu cart-list s-cate">
 											@foreach($notifications as $notification)
-												@if($notification['type']=="admin")
+                                            @if($notification['type']=="admin")
 												@php
 													$img="images/homepage/".$notification['photo'].".png"
 												@endphp
 												<li class="single-cart-list">
+
 													<div class="cart-list-txt">
                                                         
 														<h2 style="font-size:15px;padding:10px 5px 0px 5px;">{{$notification['title']}}</h6>
 														<h6 style="font-size:12px;padding:10px 5px 0px 5px;">{{$notification['message']}}</h6>
-                                                        <a href="{{ url('/deleteNotification'.'/'.$notification['id']) }}" class="lnr lnr-cross" role="button" style="background:white;">Cancel</a>
+                                                        <a href="{{ url('/deleteNotification'.'/'.$notification['id']) }}" class="lnr lnr-cross" role="button" style="  font-weight: bold;color:white;"></a>
 													</div>
                                                     <hr>
 												</li><!--/.single-cart-list -->
