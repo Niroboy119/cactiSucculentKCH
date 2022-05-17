@@ -99,7 +99,6 @@ class OrderController extends Controller
         $request->session()->forget('cart');
 
         $user=DB::table('users')->where('id', $userID)->first();
-        $admins=DB::table('users')->where('user_type', 'admin')->get();
         $order1=DB::table('orders')->where('user_Id', $user->id)->first();
 
         $orderItems=OrderItem::all()->where('order_Id',$order_ID);
@@ -116,6 +115,7 @@ class OrderController extends Controller
         $mail= new PHPMailer();
         $mail->IsSMTP();
         $mail->Mailer= "smtp";
+        $mail->SMTPDebug= 1;  
         $mail->SMTPAuth= TRUE;
         $mail->SMTPSecure= "tls";
         $mail->Port= 587;
@@ -124,11 +124,7 @@ class OrderController extends Controller
         $mail->Password= "cactiSucculent3481@test";
 
         $mail->IsHTML(true);
-
-        foreach($admins as $admin)
-        {
-            $mail->AddAddress($admin->email, $admin->name);
-        }
+        $mail->AddAddress($user->email, "Saad Sultan");
         $mail->SetFrom("noreplycactisucculent@gmail.com", "noreplycactisucculent");
         $mail->Subject = "A New Order Was Placed - Order Number: ". $orderNumber;
         $content='A new order has been placed with the following details: <br><br>Order Number: '. $orderNumber .'<br>Name: '. $user->name .'<br>Email: '. $user->email .'<br>Address: '. $user->cust_address. '<br>Products:'. $products;
@@ -147,19 +143,12 @@ class OrderController extends Controller
             // $msg='A new order has been placed with the following details: %0AOrder ID: '. $order1->order_Id .'%0AName: '. $user->name .'%0AEmail: '. $user->email .'%0AAddress: '. $user->cust_address;
             // mail("saadsultan2018@gmail.com",$subject,$msg);
             $mail->MsgHTML($content); 
-            $mail->Send();
-
-
-            $mail->ClearAllRecipients();
-            $mail->IsHTML(true);
-            $mail->AddAddress($user->email, "Saad Sultan");
-            $mail->SetFrom("noreplycactisucculent@gmail.com", "noreplycactisucculent");
-            $mail->Subject = "Thanks For Your Order! - Order Number: ". $orderNumber;
-            $content='The new order you made with the following details has been placed: <br><br>Order Number: '. $orderNumber .'<br>Name: '. $user->name .'<br>Email: '. $user->email .'<br>Address: '. $user->cust_address. '<br>Products:'. $products;
-
-            $mail->MsgHTML($content); 
-            $mail->Send();
-
+            if(!$mail->Send()) {
+            echo "Error while sending Email.";
+            var_dump($mail);
+            } else {
+            echo "Email sent successfully";
+            }
             $redirectString="/home";
         }
         return redirect()->away($redirectString);
@@ -171,9 +160,9 @@ class OrderController extends Controller
         return redirect('/order');
     }
 
-    public function displayadminManageOrders($code,$supp,$sort,$search,$modal)
+    public function displayadminManageOrders()
     {
-        return view('manageOrders/viewOrdersList',compact('code','supp','sort','search','modal'));
+        return view('manageOrders/viewOrdersList');
     }
 
     function acceptOrder($id,$dateS,$dateE,$time)
@@ -216,19 +205,19 @@ class OrderController extends Controller
             } else {
             echo "Email sent successfully";
             }
-            $redirectString="/manageOrders/0/None/None/None/0";
+            $redirectString="/manageOrders";
         }
 
         return redirect()->away($redirectString);
     }
 
-    public function completeOrder($id,$reason)
+    public function completeOrder($id)
     {
-        Order::where('order_Id', $id)->update(array('status' => 'completed','denyReason' => $reason));
-        return redirect('/manageOrders/0/None/None/None/0');
+        Order::where('order_Id', $id)->update(array('status' => 'completed'));
+        return redirect('manageOrders');
     }
 
-    public function changeQuantityAdmin($id,$quantity,$count)
+    public function changeQuantityAdmin($id,$quantity)
     {
         if($quantity==0)
         {
@@ -238,7 +227,7 @@ class OrderController extends Controller
         {
             OrderItem::where('id', $id)->update(array('quantity' => $quantity)); 
         }
-        return redirect('/manageOrders/0/None/None/None/'.$count);
+        return redirect()->back();   
     }
 
     public function denyOrder($id,$reason)

@@ -27,6 +27,7 @@
 </head>
 <body>
    
+
  <!-- jQuery CDN - Slim version (=without AJAX) -->
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- Popper.JS -->
@@ -39,19 +40,17 @@
 
     @include('admin/adminheader')
 
-<!-- Page Content -->
-
-
 <?php
 use App\Models\Supplier;
-$suppliers=Supplier::all();
+$suppliers=$supplier;
+$s=$search;
 ?>
 
 <div class="combine">
 <br><br> 
 
 <div class="d-flex justify-content-center h-100">
-    <div style="margin-left:100px;" class="search"> <input  onchange="searchSupplier()" id="searchBar" style=" padding-right:750px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Supplier Name...." name=""></a> <button style="border-color:#32CD32; color:#32CD32;" onclick="location.href='{{ url('addSupplierForm') }}'" type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" class="btn btn-outline-primary">Add New Supplier</button></div>
+    <div style="margin-left:100px;" class="search"> <input  value="{{$s}}" onchange="searchSupplier()" id="searchBar" style=" padding-right:750px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Supplier Name...." name=""> <button style="border-color:#32CD32; color:#32CD32;" onclick="location.href='{{ url('addSupplierForm') }}'" type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" class="btn btn-outline-primary">Add New Supplier</button></a> </div>
 </div>
 
 <br>
@@ -92,13 +91,13 @@ function searchSupplier2()
                 </div>
                 <div class="align-items-center align-content-center col-md-3 border-left mt-1">
                     <br/>    
-                    <div class="d-flex flex-column mt-4"><a style="border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" href="/editSupplier/{{ $supplier->Supplier_ID }}">Edit</a><a onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" href="/deleteSupplier/{{ $supplier->Supplier_ID }}" onclick= "return myFunction();">Delete</a></div>
+                <div class="d-flex flex-column mt-4"><a style="border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" href="/editSupplier/{{ $supplier->Supplier_ID }}">Edit</a><a onclick="return myFunction();" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" href="/deleteSupplier/{{ $supplier->Supplier_ID }}" >Delete</a></div>
                 </div>
             </div>
-                <script type="text/javascript">
-                function myFunction() 
+            <script type="text/javascript">
+               function myFunction() 
                 {
-                    if (confirm("All products sold by this supplier will be deleted as well. Are you sure you want to continue?")) {
+                    if (confirm("Are you sure you want to delete?")) {
 
                     return true;
 
