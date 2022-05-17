@@ -66,18 +66,20 @@
 		<!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
-          
+            
         <section style="justify-content:center;">
 
-            <div class="section-header">
-                <h2><br> My Cart </h2>
-                <br>
-                <br>
-            </div>    
-
-            <div class="row">
-                <div class="table-responsive-md" style="width:80%;margin-left:auto;margin-right:auto;">
-                    <table class="table" style="border:thin;border-color:black;">
+        	<!--shopping cart start -->
+        <!--cart item details-->
+		<section id="shopping-cart" class="shopping-cart">
+            <div class="container">
+                <!-- <div class="section-header-cart"> -->
+                <div class="section-header">
+                    <h2 style="font-size:40px"><br>Shopping Cart</h2>
+                </div><!--/.section-header-->
+                <div class="small-container cart-page">
+                @if(session('cart'))
+                    <table>
                         <thead>
                             <tr>
                                 <th style="width:50%">Product</th>
@@ -87,54 +89,74 @@
                         </thead>
                         <tbody>
                             @foreach(session('cart') as $id=>$details)
-                        <tr>
+                            <tr>
                             @php
                                 $img=Str::substr($details['Product_Image'], 0, 44);   
                             @endphp
-                            <td>
-                                <div class="items-info">
-                                    <div class="item-image">
-                                        <img src="{{URL::asset('storage/images/products/'.$img)}}" alt="cart images" class="img-responsive">
-                                    </div>
-                                    <div class="items-details">
-                                        <div class="items-name">
-                                            <small>Name: {{$details['Product_Name']}}</small><br>
+                                    <td>
+                                        <div class="items-info">
+                                                <div class="item-image">
+                                                    <img src="{{URL::asset('storage/images/products/'.$img)}}" alt="cart images" class="img-responsive">
+                                                </div>
+                                                <div class="items-details">
+                                                    <div class="items-name">
+                                                        <small>Name: {{$details['Product_Name']}}</small><br>
+                                                    </div>
+                                                    <!-- <div class="items-description">
+                                                        <small>Description: {{$details['Product_Desc']}}</small><br>
+                                                    </div> -->
+                                                    <div class="items-price">
+                                                        <small>Price: RM {{$details['Product_Price']}}</small>
+                                                    </div>
+                                                    <br>
+                                                    <div class="items-removal">
+                                                    <a href="{{url('cart/delete/'.$id)}}">Remove <span>From </span> Cart</a>
+                                                    </div>
+                                                </div>
+                                        </div></td>
+                                    <td>
+                                        <div class="quantity-update">
+                                            <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <form action="{{ url('cart/increaseCartQuantity/'.$id ) }}">
+                                                            <button type="submit" class="btn btn-primary btn-sm" style="background:white;border:none;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);"><h1 style="color:#32CD32">+</h1></button>
+                                                        </form>
+                                                        <a style="background-color:white;color:black;font-size:20px;margin:1em 0 1em 0" type="number" class="number">{{ $details['Product_Quantity'] }}</a>
+                                                        <form action="{{ url('cart/decreaseCartQuantity/'.$id ) }}">
+                                                            <button type="submit" class="btn btn-primary btn-sm" style="background:white;border:none;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);"><h1 style="color:#32CD32">-</h1></button>
+                                                        </form>
+                                                    </div>
+                                            </div>
                                         </div>
-                                        <!-- <div class="items-description">
-                                            <small>Description: {{$details['Product_Desc']}}</small><br>
-                                        </div> -->
-                                        <div class="items-price">
-                                            <small>Price: RM {{$details['Product_Price']}}</small>
+                                    </td>
+                                    <td>
+                                        <div class="items-total">
+                                            <p class="text-center" style="font-size:20px">RM {{ $details['Product_Price'] * $details['Product_Quantity'] }}</p>
                                         </div>
                                         <br>
                                         <div class="items-removal">
-                                            <a href="{{url('cart/delete/'.$id)}}">Remove <span>From </span> Cart</a>
+                                            <a href="{{ url('cart/delete/'.$id) }}" role="button" onclick="return confirm('Are you sure to remove this item?')">Remove <span>From </span> Cart</a> 
                                         </div>
                                     </div>
                                 </div>
                             </td>
-                            <td>
+                            <td data-th="Quantity">
                                 <div class="quantity-update">
                                     <div class="row">
-                                        <div class="col-xs-12">
-                                            <form action="{{ url('cart/increaseCartQuantity/'.$id ) }}">
-                                                <button type="submit" class="btn btn-primary btn-sm" style="background:white;border:none;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);"><h1 style="color:#32CD32">+</h1></button>
-                                            </form>
-                                            <a style="background-color:white;color:black;font-size:20px;margin:1em 0 1em 0" type="number" class="number">{{ $details['Product_Quantity'] }}</a>
-                                            <form action="{{ url('cart/decreaseCartQuantity/'.$id ) }}">
-                                                <button type="submit" class="btn btn-primary btn-sm" style="background:white;border:none;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);"><h1 style="color:#32CD32">-</h1></button>
-                                            </form>
-                                        </div>
+                                        <a href="{{ url('cart/increaseCartQuantity/'.$id ) }}" role="button" style="margin-left:60px;display:inline-block;"class="btn btn-primary btn-sm"  >+</a>
+                                        <a style="float:center;display:inline-block;background-color:white;color:black;font-size:20px" type="number" class="number">{{ $details['Product_Quantity'] }}</a>
+                                        <a href="{{ url('cart/decreaseCartQuantity/'.$id ) }}" style="margin-right:60px;display:inline-block;" class="btn btn-primary btn-sm" >-</a>
                                     </div>
                                 </div>
                             </td>
-                            <td>
+                            <td data-th="Subtotal" class="text-center">
                                 <div class="items-total">
                                     <p class="text-center" style="font-size:20px">RM {{ $details['Product_Price'] * $details['Product_Quantity'] }}</p>
-                                </div>
+                                    <!-- <p class="text-center">RM {{ $details['Product_Price'] * $details['Product_Quantity'] }}</p> -->
+                                </div>    
                             </td>
                         </tr>
-                            @endforeach
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -161,40 +183,46 @@
                 <button class="checkout" type="submit" onclick="goToCheckout()" style="margin-right:11%">Checkout</button>
             </div>
 
-    <script>
-            function goToCheckout(){
-                window.location.href = "checkout";
-            }
-    </script>  
+            @else
+            <div>
+                <h1 class="text-center" style="font-size:30px;color:#808080">Your cart is empty!</h1>
+            </div>
+            @endif
 
-    </section>
-    <!-- Include all js compiled plugins (below), or include individual files as needed -->
+            <script>
+                    function goToCheckout(){
+                        window.location.href = "checkout";
+                    }
+            </script>  
 
-    <script src="js/jquery.js"></script>
-            
-            <!--modernizr.min.js-->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-            
-            <!--bootstrap.min.js-->
-            <script src="js/bootstrap.min.js"></script>
-            
-            <!-- bootsnav js -->
-            <script src="js/bootsnav.js"></script>
+        </section>
+        <!-- Include all js compiled plugins (below), or include individual files as needed -->
 
-            <!--owl.carousel.js-->
-            <script src="js/owl.carousel.min.js"></script>
-
-
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-            
-            
-            <!--Custom JS-->
-            <script src="js/custom.js"></script>
-            
-            <!--footer start -->
-            @include('footer')
-            <!--footer end -->
-
-        </body>
+		<script src="js/jquery.js"></script>
         
+        <!--modernizr.min.js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+		
+		<!--bootstrap.min.js-->
+        <script src="js/bootstrap.min.js"></script>
+		
+		<!-- bootsnav js -->
+		<script src="js/bootsnav.js"></script>
+
+		<!--owl.carousel.js-->
+        <script src="js/owl.carousel.min.js"></script>
+
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+		
+        
+        <!--Custom JS-->
+        <script src="js/custom.js"></script>
+        
+		<!--footer start -->
+		@include('footer')
+		<!--footer end -->
+
+    </body>
+	
 </html>
