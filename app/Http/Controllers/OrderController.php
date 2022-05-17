@@ -25,12 +25,16 @@ class OrderController extends Controller
         // notifications for admin for when order is made
         $notification=new Notification();
         $notification->type="admin";
-        $notification->user_Id=Auth::user()->id;
         $notification->title="Order Incoming!";
         $notification->message="An Order has been placed";
         $notification->status="unseen";
         $notification->photo="processing";
         $notification->save();
+        if(Auth::user()){
+            $notification->user_Id=Auth::user()->id;
+        }else{
+            $notification->user_Id="GuestUser";
+        }
 
         $order_total = 0;
         foreach ((array) session('cart') as $id => $details) {

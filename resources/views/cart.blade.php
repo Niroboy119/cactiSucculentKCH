@@ -68,18 +68,16 @@
         <![endif]-->
             
         <section style="justify-content:center;">
-
-        	<!--shopping cart start -->
-        <!--cart item details-->
-		<section id="shopping-cart" class="shopping-cart">
             <div class="container">
                 <!-- <div class="section-header-cart"> -->
                 <div class="section-header">
                     <h2 style="font-size:40px"><br>Shopping Cart</h2>
+                    <br>
+                    <br>
                 </div><!--/.section-header-->
-                <div class="small-container cart-page">
+                
                 @if(session('cart'))
-                    <table>
+                    <table style="table=responsive" style="width:75%">
                         <thead>
                             <tr>
                                 <th style="width:50%">Product</th>
@@ -118,52 +116,32 @@
                                         <div class="quantity-update">
                                             <div class="row">
                                                     <div class="col-xs-12">
-                                                        <form action="{{ url('cart/increaseCartQuantity/'.$id ) }}">
-                                                            <button type="submit" class="btn btn-primary btn-sm" style="background:white;border:none;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);"><h1 style="color:#32CD32">+</h1></button>
-                                                        </form>
-                                                        <a style="background-color:white;color:black;font-size:20px;margin:1em 0 1em 0" type="number" class="number">{{ $details['Product_Quantity'] }}</a>
-                                                        <form action="{{ url('cart/decreaseCartQuantity/'.$id ) }}">
-                                                            <button type="submit" class="btn btn-primary btn-sm" style="background:white;border:none;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);"><h1 style="color:#32CD32">-</h1></button>
-                                                        </form>
+                                                        <div class="center-form">
+                                                            <form action="{{ url('cart/increaseCartQuantity/'.$id ) }}" class="hform">
+                                                                <button type="submit" class="btn btn-primary btn-sm" style="background:white;border:none;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);"><h1 style="color:#32CD32">+</h1></button>
+                                                            </form>
+                                                            <a style="background-color:white;color:black;font-size:20px;margin:1em 0 1em 0" type="number" class="number">{{ $details['Product_Quantity'] }}</a>
+                                                            <form action="{{ url('cart/decreaseCartQuantity/'.$id ) }}" class="hform">
+                                                                <button type="submit" class="btn btn-primary btn-sm" style="background:white;border:none;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);"><h1 style="color:#32CD32">-</h1></button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="items-total">
-                                            <p class="text-center" style="font-size:20px">RM {{ $details['Product_Price'] * $details['Product_Quantity'] }}</p>
-                                        </div>
-                                        <br>
-                                        <div class="items-removal">
-                                            <a href="{{ url('cart/delete/'.$id) }}" role="button" onclick="return confirm('Are you sure to remove this item?')">Remove <span>From </span> Cart</a> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td data-th="Quantity">
-                                <div class="quantity-update">
-                                    <div class="row">
-                                        <a href="{{ url('cart/increaseCartQuantity/'.$id ) }}" role="button" style="margin-left:60px;display:inline-block;"class="btn btn-primary btn-sm"  >+</a>
-                                        <a style="float:center;display:inline-block;background-color:white;color:black;font-size:20px" type="number" class="number">{{ $details['Product_Quantity'] }}</a>
-                                        <a href="{{ url('cart/decreaseCartQuantity/'.$id ) }}" style="margin-right:60px;display:inline-block;" class="btn btn-primary btn-sm" >-</a>
-                                    </div>
-                                </div>
-                            </td>
-                            <td data-th="Subtotal" class="text-center">
-                                <div class="items-total">
-                                    <p class="text-center" style="font-size:20px">RM {{ $details['Product_Price'] * $details['Product_Quantity'] }}</p>
-                                    <!-- <p class="text-center">RM {{ $details['Product_Price'] * $details['Product_Quantity'] }}</p> -->
-                                </div>    
-                            </td>
+                                        <div>
+                                            <p class="text-center" style="font-size:20px;color:black;">RM {{ $details['Product_Price'] * $details['Product_Quantity'] }}</p>
+                                        </div>    
+                                    </td>
                         </tr>
                         @endforeach
                         </tbody>
                     </table>
-                </div>
             </div>
 
-            <div class="row">
-                <div class="container" style="width:80%">
+            <div class="row" style="width:100%;margin:0 auto;" >
+                <div class="container">
                     <?php $total = 0 ?>
                         @foreach((array) session('cart') as $id => $details)
                             <?php $total += $details['Product_Price'] * $details['Product_Quantity'] ?>
@@ -172,15 +150,13 @@
                     <div class="totals">
                         <div class="totals-item totals-item-total">
                             <div class="totals-value" id="cart-total">
+                                <br>
                                 Total: RM {{$total}}
                             </div>
                         </div>
                     </div>
+                    <button class="checkout" type="submit" onclick="goToCheckout()">Checkout</button>
                 </div>
-            </div>
-
-            <div class="row">
-                <button class="checkout" type="submit" onclick="goToCheckout()" style="margin-right:11%">Checkout</button>
             </div>
 
             @else
@@ -193,6 +169,8 @@
                     function goToCheckout(){
                         window.location.href = "checkout";
                     }
+
+
             </script>  
 
         </section>
