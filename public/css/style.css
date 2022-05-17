@@ -2064,13 +2064,13 @@ td:last-child{
         text-transform: uppercase;
         margin-bottom: 10px; }
         @media only screen and (max-width: 1025px) {
-            .section-heading h2 {
+            .section-heading-about h2 {
                 font-size: 90%; 
                 margin-bottom: 10px;
                 } 
         }
         @media only screen and (max-width: 281px) {
-            .section-heading h2 {
+            .section-heading-about h2 {
                 font-size: 80%; 
                 margin-bottom: 10px;
                 } 
