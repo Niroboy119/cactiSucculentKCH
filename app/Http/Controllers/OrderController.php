@@ -22,10 +22,23 @@ class OrderController extends Controller
     
     public function store(Request $request){
 
+        $order = new Order();
+
+        if (auth()->check()) { // if the order request is made by a already registered users
+
+            $order->user_Id = auth()->id();
+
+        }else { // make a new user of type 'guest' and store their personal information into the users table
+            
+            $guest = DB::table('users')->insertGetId(['user_type' => 'guest', 'name' => ($request->fullName), 'email' => $request->email, 'cust_address' => $request->address, 'cust_phone_number' => $request->phonenumber, 'password' => 123456789]);
+
+            $order->user_Id = $guest;
+        }
+
         // notifications for admin for when order is made
         $notification=new Notification();
         $notification->type="admin";
-        $notification->user_Id=Auth::user()->id;
+        $notification->user_Id=$guest;
         $notification->title="Order Incoming!";
         $notification->message="An Order has been placed";
         $notification->status="unseen";
@@ -52,18 +65,7 @@ class OrderController extends Controller
             }
         }
 
-        $order = new Order();
-
-        if (auth()->check()) { // if the order request is made by a already registered users
-
-            $order->user_Id = auth()->id();
-
-        }else { // make a new user of type 'guest' and store their personal information into the users table
-            
-            $guest = DB::table('users')->insertGetId(['user_type' => 'guest', 'name' => ($request->fullName), 'email' => $request->email, 'cust_address' => $request->address, 'cust_phone_number' => $request->phonenumber, 'password' => 123456789]);
-
-            $order->user_Id = $guest;
-        }
+        
         
         $userID=$order->user_Id;
         $orderNumber=$request->orderNumber;
@@ -160,7 +162,7 @@ class OrderController extends Controller
             $mail->MsgHTML($content); 
             $mail->Send();
 
-            $redirectString="/home";
+            $redirectString="/product";
         }
         return redirect()->away($redirectString);
     }
