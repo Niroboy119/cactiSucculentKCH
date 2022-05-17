@@ -126,7 +126,7 @@
             <div class="row">
                 <div class="col-12">
                     <!-- Section Heading -->
-                    <div class="section-heading text-center">
+                    <div class="section-heading-about text-center">
                         <br>
                         <br>
                         <h2><u>OUR STORY</u></h2>
