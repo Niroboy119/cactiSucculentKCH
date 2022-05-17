@@ -139,7 +139,8 @@ $order = Order::where([ 'order_Id' => auth()->id() ]);
 
                     <div class="card-order">
                             <div class="container-order">
-                                <h4><b style="color:#32CD32;">Order ID: {{$order->order_Id}}</b></h4> 
+                                <h4><b style="color:#32CD32;">Order Number: {{$order->orderNumber}}</b></h4> 
+                                <p style="color:black;">Order Date: <a>{{$order->orderMadeDate}}</a></p> 
                                 <p style="color:black;">Items Ordered: <a>
                                      @foreach($orderItems as $orderItem)
                                      @if($orderItem->order_Id == $order->order_Id)
