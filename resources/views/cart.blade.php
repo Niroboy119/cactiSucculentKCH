@@ -87,6 +87,7 @@
                         </thead>
                         <tbody>
                             @foreach(session('cart') as $id=>$details)
+                            <form action="{{url('cart/delete/'.$id)}}">
                             <tr>
                             @php
                                 $img=Str::substr($details['Product_Image'], 0, 44);   
@@ -108,7 +109,25 @@
                                                     </div>
                                                     <br>
                                                     <div class="items-removal">
-                                                    <a href="{{url('cart/delete/'.$id)}}">Remove <span>From </span> Cart</a>
+                                                    <a data-toggle="modal" data-target="#exampleModalCenter{{$id}}">Remove <span>From </span> Cart</a>
+                                                    <!-- modal here -->
+                                                        <div class="modal fade" id="exampleModalCenter{{$id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="margin-top:10%;">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                <div class="modal-content">
+                                                                <div class="modal-header" style="text-align:center;">
+                                                                    <h1 class="modal-title" id="exampleModalLongTitle" style="color:#32CD32;">IMPORTANT!</h1>
+                                                                </div>
+                                                                <div class="modal-body" style="text-align:center">
+                                                                    <h4 autocapitalize="off" style="margin-top:5%;margin-bottom:5%;">Are you sure you want to delete this item?</h4>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                        <button type="submit" class="btn btn-primary" style="background-color:#32CD32;border:none;">Confirm</button>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <!-- modal end -->
                                                     </div>
                                                 </div>
                                         </div></td>
@@ -135,6 +154,7 @@
                                         </div>    
                                     </td>
                         </tr>
+                        </form>
                         @endforeach
                         </tbody>
                     </table>

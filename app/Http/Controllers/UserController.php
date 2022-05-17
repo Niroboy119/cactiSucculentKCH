@@ -16,14 +16,15 @@ class UserController extends Controller
     'cust_phone_number' => 'unique:users,cust_phone_number,'.$id,
     ]);    
     $request->profilepicfile->store('images/profilepic', 'public');
-    User::where('id',$id)->update(array('name'=>$request->name,'email'=>$request->email,'cust_phone_number'=>$request->customer_phone_number,
+    User::where('id',$id)->update(array('name'=>$request->name,'email'=>$request->email,'cust_phone_number'=>$request->cust_phone_number,
     'cust_address'=>$request->cust_address, 'profilepicture'=>$request->profilepicfile->hashname()));
     }
     else{
         $request->validate([
-            'email' => 'unique:users,email,'.$id, 'cust_phone_number' => 'unique:users,cust_phone_number,'.$id,
+            'email' => 'unique:users,email,'.$id, 
+            'cust_phone_number' => 'unique:users,cust_phone_number,'.$id,
         ]); 
-    User::where('id',$id)->update(array('name'=>$request->name,'email'=>$request->email,'cust_phone_number'=>$request->customer_phone_number,
+    User::where('id',$id)->update(array('name'=>$request->name,'email'=>$request->email,'cust_phone_number'=>$request->cust_phone_number,
     'cust_address'=>$request->cust_address,));
     }
     return redirect('/userProfile');
@@ -35,7 +36,8 @@ class UserController extends Controller
     $request->validate([
     'email' => 'unique:users,email,'.$id, 
     'cust_phone_number' => 'unique:users,cust_phone_number,'.$id,
-    ]);    
+    ]);
+        
     $request->profilepicfile->store('images/profilepic', 'public');
     User::where('id',$id)->update(array('name'=>$request->name,'email'=>$request->email,'cust_phone_number'=>$request->customer_phone_number,
     'cust_address'=>$request->cust_address, 'profilepicture'=>$request->profilepicfile->hashname()));
@@ -70,6 +72,7 @@ class UserController extends Controller
             return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
         }
 
+        $getpassword = $request->get('new-password');
         $validatedData = $request->validate([
             'current-password' => 'required',
             'new-password' => 'required|string|min:8|confirmed',

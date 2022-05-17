@@ -1141,6 +1141,10 @@ p.arrival-review span {margin-right: 15px;}
 }
 .homepage-products:hover h4 a{color:#32CD32	;}
 
+.cart-item-row{
+    border-top: black;
+}
+
 /*-------------------------------------
         6. Cacti-coolection
 --------------------------------------*/

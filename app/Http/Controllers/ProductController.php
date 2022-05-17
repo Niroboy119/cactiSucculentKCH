@@ -259,7 +259,6 @@ class ProductController extends Controller
         }
 
         public function removeCartProducts($id){
-            $product = Product::find($id);
             $cart = session()->get('cart');
             if(isset($cart[$id])){
                 unset($cart[$id]);

@@ -236,7 +236,7 @@ Route::post('/updateStatus/{id}', [App\Http\Controllers\OrderController::class, 
 
 Route::post('/checkout', [OrderController::class, 'store']);
 
-Route::post('/changePassword',[App\Http\Controllers\UserController::class,'changePassword'])->name('changePassword');
+
 
 
 

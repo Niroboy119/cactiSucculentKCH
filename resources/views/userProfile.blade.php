@@ -101,12 +101,31 @@
                     <hr>
                     <li><a href="cart"> My Cart </a></li>
                     <hr>
-                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
-															document.getElementById('logout-form').submit();">
+                    <li>
+                        <a href="{{ route('logout') }}" data-toggle="modal" data-target="#exampleModalCenter">
 												{{ __('Logout') }}</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-												@csrf
-											</form></li>
+                        <!-- modal here -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="margin-top:10%;">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                <div class="modal-content">
+                                                                <div class="modal-header" style="text-align:center;">
+                                                                    <h1 class="modal-title" id="exampleModalLongTitle" style="color:#32CD32;">IMPORTANT!</h1>
+                                                                </div>
+                                                                <div class="modal-body" style="text-align:center">
+                                                                    <h4 autocapitalize="off" style="margin-top:5%;margin-bottom:5%;">Are you sure you want to logout?</h4>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                        <button type="submit" class="btn btn-primary" style="background-color:#32CD32;border:none;">Confirm</button>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                        <!-- modal end -->
+                        @csrf
+											  </form>
+                    </li>
                     <hr>
               </ul>
               </div>

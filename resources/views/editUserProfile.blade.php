@@ -143,7 +143,7 @@ use App\Models\User;
                     <div class="col-sm-9 text-secondary">
 					          <input id="email" name="email" type="email" class="form-control" value="{{Auth::user()->email}}">
                     @if($errors->has('email'))
-                      <div class="error">{{ $errors->first('email') }}</div>
+                        <div class="error">{{ $errors->first('email') }}</div>
                     @endif
                     </div>
                   </div>
@@ -153,9 +153,9 @@ use App\Models\User;
                       <h6 class="mb-0">Phone Number</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-					          <input id="cust_phone_number" name="customer_phone_number" type="text" class="form-control" value="{{Auth::user()->cust_phone_number}}">
+					          <input id="cust_phone_number" name="cust_phone_number" type="number" class="form-control" value="{{Auth::user()->cust_phone_number}}">
                       @if($errors->has('cust_phone_number'))
-                      <div class="error">{{ $errors->first('cust_phone_number') }}</div>
+                        <div class="error">{{ $errors->first('cust_phone_number') }}</div>
                       @endif
                     </div>
                   </div>
@@ -170,10 +170,26 @@ use App\Models\User;
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm-12">
-                        <a href="/editUserProfile">
-                            <button style="border-color:#32CD32; background:#32CD32;" data-toggle="modal" data-target="#cartbuttonCenter3" class="btn btn-primary btn-block text-uppercase">Save</button>
-                        </a>
+                    <div class="col-sm-3">
+                      <button type="button" style="border-color:#32CD32; background:#32CD32;" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-primary">Save</button>
+                      <!-- modal here -->
+                      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="margin-top:10%;">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                <div class="modal-content">
+                                                                <div class="modal-header" style="text-align:center;">
+                                                                    <h1 class="modal-title" id="exampleModalLongTitle" style="color:#32CD32;">IMPORTANT!</h1>
+                                                                </div>
+                                                                <div class="modal-body" style="text-align:center">
+                                                                    <h4 autocapitalize="off" style="margin-top:5%;margin-bottom:5%;">Are you sure you want to save?</h4>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                        <button type="submit" class="btn btn-primary" style="background-color:#32CD32;border:none;">Confirm</button>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <!-- modal end -->
                     </div>
                   </div>
                     <br><br>

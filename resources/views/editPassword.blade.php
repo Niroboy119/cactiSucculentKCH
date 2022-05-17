@@ -94,7 +94,7 @@ use App\Models\User;
                             <h6 id="current-password-label" class="mb-0">Current Password</h6>
                             </div>
                             <div class="col-md-7">
-                                <input id="current-password" type="password" class="form-control" name="current-password" required>
+                                <input id="current-password" type="password" class="form-control" name="current-password">
 
                                 @if ($errors->has('current-password'))
                                     <span class="help-block">
@@ -104,12 +104,12 @@ use App\Models\User;
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('new-password') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <div class="col-md-3">
-                                <h6 id="new-password-label" class="mb-0">New Password</h6>
+                                <h6 id="password-label" class="mb-0">New Password</h6>
                             </div>
                             <div class="col-md-6">
-                                <input id="new-password" type="password" class="form-control" name="new-password" required>
+                                <input id="new-password" type="password" class="form-control" name="new-password">
 
                                 @if ($errors->has('new-password'))
                                     <span class="help-block">
@@ -124,15 +124,31 @@ use App\Models\User;
                                 <h6 id="confirm-new-password-label" class="mb-0">Confirm New Password</h6>
                             </div>
                             <div class="col-md-6">
-                                <input id="new-password-confirm" type="password" class="form-control" name="new-password_confirmation" required>
+                                <input id="new-password-confirm" type="password" class="form-control" name="new-password_confirmation">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                            <a href="/editUserProfile">
-                                <button id="edit-user-password-confirm" class="btn btn-primary btn-block text-uppercase">Change Password</button>
-                            </a>
+                            <button type="button" data-toggle="modal" data-target="#exampleModalCenter" id="edit-user-password-confirm" class="btn btn-primary" style="background-color:#32CD32;border:none;">CHANGE PASSWORD</button>
+                            <!-- modal here -->
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="margin-top:10%;">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                <div class="modal-content">
+                                                                <div class="modal-header" style="text-align:center;">
+                                                                    <h1 class="modal-title" id="exampleModalLongTitle" style="color:#32CD32;">IMPORTANT!</h1>
+                                                                </div>
+                                                                <div class="modal-body" style="text-align:center">
+                                                                    <h4 autocapitalize="off" style="margin-top:5%;margin-bottom:5%;">Are you sure you want to save this password?</h4>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                        <button type="submit" class="btn btn-primary" style="background-color:#32CD32;border:none;">Confirm</button>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <!-- modal end -->
                             </div>
                         </div>
                     </form>
