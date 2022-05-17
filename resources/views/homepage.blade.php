@@ -8,6 +8,26 @@ $products=Product::all();
 ?>
 
 <!doctype html>
+<style>
+	.single-new-arrival-bg img{
+		
+	}
+
+	.Rows {
+    display: table;
+    width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+	}
+	
+	.expand{
+		margin-right: 12px;
+		
+	}
+
+	
+	
+</style>
 <html class="no-js" lang="en">
 
     <head>
@@ -175,30 +195,48 @@ $products=Product::all();
 				<div class="section-header">
 					<h2>featured products</h2>
 				</div><!--/.section-header-->
-				<div class="feature-content">
-					<div class="row">
-					@foreach($products as $product)
+				<div class="new-arrivals-content">
+					<div class="Row">
 
-					@php
-					$img=Str::substr($product->Product_Image, 0, 44);   
-					@endphp
+						
+						
+						@foreach($products as $product)
 
-						<div class="col-sm-3">
-							<div class="homepage-products">
-								<div class="homepage-products-bg">
-								<a href="{{ url('item/'.$product->Product_ID)}}" class="photo"><img src="{{URL::asset('storage/images/products/'.$img)}}">
-									</div>
-									<div class="single-feature-txt text-center">
-										<h3><a href="#">{{$product->Product_Name}}</a></h3>
-										<h5>Price: RM{{$product->Product_Price}}</h5>
+						@php
+						$img=Str::substr($product->Product_Image, 0, 44);   
+						@endphp
+						
+							<div class="single-new-arrival" style="float:left; padding:8px;">
+								<div class="single-new-arrival-bg">
+								<a href="{{ url('item/'.$product->Product_ID)}}" class="photo"><img style="width:269px; height: 370px;"src="{{URL::asset('storage/images/products/'.$img)}}" alt="new-arrivals images">
+									<div class="single-new-arrival-bg-overlay"></div>
+									<div class="new-arrival-cart">
+										
+							<p>@if($product->Product_Quantity == 0)
+								<a href="{{ url('item/'.$product->Product_ID)}}" style="color:red;">Out of Stock</a>
+								@else
+											<span class="lnr lnr-cart"></span>
+											<a href="{{ url('cart/'.$product->Product_ID) }}" role="button">add <span>to </span> cart</a>
+										</p>
+										@endif
+										<p class="arrival-review pull-right">
+											<a href="{{ url('item/'.$product->Product_ID)}}" role="button" class="lnr lnr-frame-expand expand"></a>
+
+										</p>
 									</div>
 								</div>
+								<h4><a href="{{ url('item/'.$product->Product_ID)}}">{{$product->Product_Name}}</a> 
+								</h4>
+								<p class="arrival-product-price">RM {{$product->Product_Price}}</p>
+								
 							</div>
-							@endforeach
-							</div>
-						</div>
+						@endforeach
+						
 					</div>
-				</div>
+				</div>		
+			</div><!--/.container-->
+		
+		</section><!--/.new-arrivals-->
 			</div>
 		</section><!--/.feature-->
 		<!--feature end -->
