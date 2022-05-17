@@ -2007,27 +2007,27 @@ td:last-child{
 
 /* Story Area */
 .our-story-area {
-    border: 15px solid #32CD32;
+    
     padding: 50px;
     background-color: #f8f9fd;
 } 
     @media only screen and (max-width: 2001px) {
         .our-story-area {
             width: 100%;
-            border: 15px solid #32CD32
+            /* border: 15px solid #32CD32 */
         }
     }
     @media only screen and (max-width: 1081px) {
         .our-story-area {
             width: 100%;
             padding: 70px;
-            border: 15px solid #32CD32
+            /* border: 15px solid #32CD32 */
         }
     }
     @media only screen and (max-width: 1025px) {
         .our-story-area {
             width: 100%;
-            border: 7px solid #32CD32
+            /* border: 7px solid #32CD32 */
         }
     }
 
