@@ -167,13 +167,13 @@ use App\Models\Notification;
                 <a href="/manageAdmin"> <span class="material-icons md-48" style="vertical-align: middle;">people_alt</span>  Manage Admin</a>
             </li>
             <li>
-                <a href="/manageProducts"> <span class="material-icons md-48" style="vertical-align: middle;">shopping_bag</span>  Manage Products</a>
+                <a href="/manageProducts/0/None/None/None"> <span class="material-icons md-48" style="vertical-align: middle;">shopping_bag</span>  Manage Products</a>
             </li>
             <li>
-                <a href="/manageSuppliers"> <span class="material-icons md-48" style="vertical-align: middle;">factory</span>  Manage Suppliers</a>
+                <a href="/manageSuppliers/0/None/None/None"> <span class="material-icons md-48" style="vertical-align: middle;">factory</span>  Manage Suppliers</a>
             </li>
             <li>
-                <a href="/manageOrders"> <span class="material-icons md-48" style="vertical-align: middle;">directions_car_filled</span>  Manage Orders</a>
+                <a href="/manageOrders/0/None/None/None/0"> <span class="material-icons md-48" style="vertical-align: middle;">directions_car_filled</span>  Manage Orders</a>
             </li>
             @if(Auth::check())
             <li>

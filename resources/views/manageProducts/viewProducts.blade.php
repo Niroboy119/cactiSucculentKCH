@@ -27,6 +27,7 @@
 
 </head>
 <body>
+
     <div class="con">
     <div id="app">
         <nav style="position:fixed; top:0; left:0; z-index:9999; width: 100%; background: #000000; height: 80px; padding-left: 20px;" class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -109,23 +110,197 @@
 
 <?php
 use App\Models\Product;
-$products=Product::all();
+use App\Models\Supplier;
+
+$products=null;
+
+$left="260px";
+
+if($sort=="None"){
+    $order="Product_ID";
+    $x='asc';
+}
+else if($sort=="Alphabetical Order"){
+    $order="Product_Name";
+    $x='asc';
+}
+else if($sort=="PriceL"){
+    $order="Product_Price";
+    $x='asc';
+}
+else if($sort=="PriceH"){
+    $order="Product_Price";
+    $x='desc';
+}
+else if($sort=="QuantityL"){
+    $order="Product_Quantity";
+    $x='asc';
+}
+else if($sort=="QuantityH"){
+    $order="Product_Quantity";
+    $x='desc';
+}
+
+if($code==0)
+{
+    $products=Product::orderBy($order,$x)->get();
+}
+else if($code==1)
+{
+    $products=Product::where('Product_Type', 'Plant')->orderBy($order,$x)->get();    
+}
+else if($code==2)
+{
+    $products=Product::where('Product_Type', 'Soil')->orderBy($order,$x)->get();    
+}
+else if($code==3)
+{
+    $products=Product::where('Product_Type', 'Pot')->orderBy($order,$x)->get();    
+}
+else if($code==12)
+{
+    $products=Product::where('Product_Type', 'Plant')
+    ->orWhere('Product_Type', 'Soil')
+    ->orderBy($order,$x)->get();    
+}
+else if($code==13)
+{
+    $products=Product::where('Product_Type', 'Plant')
+    ->orWhere('Product_Type', 'Pot')
+    ->orderBy($order,$x)->get();    
+}
+else if($code==23)
+{
+    $products=Product::where('Product_Type', 'Soil')
+    ->orWhere('Product_Type', 'Pot')
+    ->orderBy($order,$x)->get();    
+}
+else if($code==123)
+{
+    $products=Product::where('Product_Type', 'Plant')
+    ->orWhere('Product_Type', 'Soil')
+    ->orWhere('Product_Type', 'Pot')
+    ->orderBy($order,$x)->get();    
+}
+
+
+if($supp!="None")
+{
+    $prod=[];
+    foreach($products as $product)
+    {
+        if($product->Product_Supplier==$supp)
+        {
+            array_push($prod,$product);
+        }
+    }
+        $products=$prod;
+}
+
+
+if($search== "None")
+    $displaysearch="";
+else
+{
+    $displaysearch=$search;
+    $newProducts=[];
+    foreach($products as $product)
+    {
+        if(str_starts_with(strtolower($product->Product_Name),strtolower($search)))
+            array_push($newProducts,$product);
+    }
+    $products=$newProducts;
+}
+
+if($products==null||count($products)==0)
+{
+    $left="261px";
+}
+
+$suppliers=Supplier::all();
+$count=0;
 ?>
 
-<div class="combine">
+<div style="margin-left:{{$left}};" class="combine">
 <br><br> 
 
 <div class="d-flex justify-content-center h-100">
-    <div style="margin-left:100px;" class="search"> <input  onchange="searchProduct()" id="searchBar" style=" padding-right:750px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Product Name...." name=""></a> <button onclick="location.href='{{ url('addProductForm') }}'" style="border-color:#32CD32; color:#32CD32;" type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" class="btn btn-outline-primary">Add New Product</button> </div>
+    <div class="search"> <input  onchange="searchProduct('{{$code}}','{{$supp}}','{{$sort}}')" id="searchBar" style="padding-left:10px; padding-right:590px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Product Name...." value="{{$displaysearch}}"></a> <button onclick="location.href='{{ url('addProductForm') }}'" style="margin-left:10px; border-color:#32CD32; color:#32CD32;" type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" class="btn btn-outline-primary">Add New Product</button> </div>
 </div>
 
 <br>
-
+<div style="padding-top:5px; height:40px; width:950px; background-color:#ebeaea;" class="container ">
+    <div style="margin-left:-120px;" class="d-flex justify-content-center h-100">
+        <p style="font-size:15px; color:#636262;">Filter Product Type: </p>
+        @if(str_contains($code,'1'))
+            <input style="margin-left:10px; margin-top:8px;" type="checkbox" onchange="check('{{$supp}}','{{$sort}}','{{$search}}')" id="plant" name="age" value="30" checked>
+            <label style="font-size:15px; color:#636262; margin-left:10px; margin-top:3px;" for="age1">Plant</label>
+        @else
+            <input style="margin-left:10px; margin-top:8px;" type="checkbox"  onchange="check('{{$supp}}','{{$sort}}','{{$search}}')" id="plant" name="age" value="30">
+            <label style="font-size:15px; color:#636262; margin-left:10px; margin-top:3px;" for="age1">Plant</label>
+        @endif
+        @if(str_contains($code,'2'))
+            <input style="margin-left:10px; margin-top:8px;" type="checkbox" onchange="check('{{$supp}}','{{$sort}}','{{$search}}')" id="soil" name="age" value="30" checked>
+            <label style="font-size:15px; color:#636262; margin-left:10px; margin-top:3px;" for="age2">Soil</label>
+        @else
+            <input style="margin-left:10px; margin-top:8px;" type="checkbox" onchange="check('{{$supp}}','{{$sort}}','{{$search}}')" id="soil" name="age" value="30">
+            <label style="font-size:15px; color:#636262; margin-left:10px; margin-top:3px;" for="age2">Soil</label>
+        @endif
+        @if(str_contains($code,'3'))
+            <input style="margin-left:10px; margin-top:8px;" type="checkbox" onchange="check('{{$supp}}','{{$sort}}','{{$search}}')" id="pot" name="age" value="30" checked>
+            <label style="font-size:15px; color:#636262; margin-left:10px; margin-top:3px;" for="age2">Pot</label>
+        @else
+            <input style="margin-left:10px; margin-top:8px;" type="checkbox" onchange="check('{{$supp}}','{{$sort}}','{{$search}}')" id="pot" name="age" value="30">
+            <label style="font-size:15px; color:#636262; margin-left:10px; margin-top:3px;" for="age2">Pot</label>
+        @endif
+        <p style="margin-left:50px; font-size:15px; color:#636262;">Filter Supplier: </p>
+        <div style="font-size:15px; color:#636262; margin-left:10px;" class="dropdown">
+            <button class="dropbtn123" style="text-overflow: ellipsis; white-space: nowrap; overflow:hidden; width:210px; height:24px;  padding-left:30px; padding-right:30px; margin-top:3px; border:none; position:absolute; padding-top:1px; padding-bottom:1px; font-size:13px; background-color:white; color:#636262;" type="button" id="dropdownMenuButton"  onclick="suppdrop()">
+                {{$supp}}
+            </button>
+            <div id="suppDropdown" class="dropdown-content"  style="max-height:120px; overflow:auto; z-index:1; text-align:center; font-size:13px; margin-top:26.3px; display:none; position: absolute; background-color: white; width:210px;">
+                    <div class="dropdown-divider"></div>
+                    <a href="/manageProducts/{{$code}}/None/{{$sort}}/{{$search}}">None</a><br>
+                @foreach ($suppliers as $supplier)
+                    <div class="dropdown-divider"></div>
+                    <a href="/manageProducts/{{$code}}/{{$supplier->Supplier_Name}}/{{$sort}}/{{$search}}">{{$supplier->Supplier_Name}}</a><br>
+                @endforeach
+                <div class="dropdown-divider"></div>
+        </div>
+          </div>
+        <p style="margin-left:230px; font-size:15px; color:#636262;">Sort By: </p>
+          <div style="font-size:15px; color:#636262; margin-left:10px;" class="dropdown">
+            <button class="dropbtn1" style="text-overflow: ellipsis; white-space: nowrap; overflow:hidden; width:130px; height:24px;  padding-left:30px; padding-right:30px; margin-top:3px; border:none; position:absolute; padding-top:1px; padding-bottom:1px; font-size:13px; background-color:white; color:#636262;" type="button" id="dropdownMenuButton"  onclick="suppdrop1()">
+                {{$sort}}
+            </button>
+            <div id="suppDropdown1" class="dropdown-content1"  style="height:120px; overflow:auto; z-index:3; text-align:center; font-size:13px; margin-top:26.3px; display:none; position: absolute; background-color: white; width:130px;">
+                <div class="dropdown-divider"></div>
+                <a href="/manageProducts/{{$code}}/{{$supp}}/None/{{$search}}">None</a><br>
+                <div class="dropdown-divider"></div>
+                <a href="/manageProducts/{{$code}}/{{$supp}}/Alphabetical Order/{{$search}}">Alphabetical Order</a><br>
+                <div class="dropdown-divider"></div>
+                <a href="/manageProducts/{{$code}}/{{$supp}}/PriceL/{{$search}}">Price - Low</a><br>
+                <div class="dropdown-divider"></div>
+                <a href="/manageProducts/{{$code}}/{{$supp}}/PriceH/{{$search}}">Price - High</a><br>
+                <div class="dropdown-divider"></div>
+                <a href="/manageProducts/{{$code}}/{{$supp}}/QuantityL/{{$search}}">Quantity - Low</a><br>
+                <div class="dropdown-divider"></div>
+                <a href="/manageProducts/{{$code}}/{{$supp}}/QuantityH/{{$search}}">Quantity - High</a><br>
+                <div class="dropdown-divider"></div>
+        </div>
+          </div>
+    </div>
+  </div>
 <script type="text/javascript">
     window.scrollTo(0, 0);
-function searchProduct()
+function searchProduct(code,supp,sort)
 {
-    var link= "/searchProducts/"+document.getElementById("searchBar").value;
+    if((document.getElementById("searchBar").value).trim()=="")
+    {
+        var link= "/manageProducts/"+code+"/"+supp+"/"+sort+"/None";
+    }else{
+        var link= "/manageProducts/"+code+"/"+supp+"/"+sort+"/"+document.getElementById("searchBar").value;
+    }
     document.addEventListener("keyup", function(event) {
         if (event.keyCode === 13) {
             location.replace(link);
@@ -133,18 +308,89 @@ function searchProduct()
     });
 }
 
-function searchProduct2()
+const checkbox1 = document.getElementById('plant');
+const checkbox2 = document.getElementById('soil');
+const checkbox3 = document.getElementById('pot');
+
+
+function check(supp,sort,search)
 {
-    var link= "/searchProducts/"+document.getElementById("searchBar").value;
-    if(document.getElementById("searchBar").value!="")
+    var checked="";
+    if(checkbox1.checked==true)
     {
-        location.replace(link);
+        checked=checked+"1";
+    }
+    if(checkbox2.checked==true)
+    {
+        checked=checked+"2";
+    }
+    if(checkbox3.checked==true)
+    {
+        checked=checked+"3";
+    }
+
+    if(checked=="")
+    {
+        checked="0";
+    }
+    location.replace('/manageProducts/'+checked+'/'+supp+'/'+sort+'/'+search);
+}
+
+
+function suppdrop()
+{
+    var display= document.getElementById("suppDropdown").style.display;
+    if(display=="none")
+    {
+        document.getElementById("suppDropdown").style.display = "block";
+    }else{
+        document.getElementById("suppDropdown").style.display = "none";
     }
 }
+
+window.onclick = function(event) {
+    var display= document.getElementById("suppDropdown").style.display;
+    var display1= document.getElementById("suppDropdown1").style.display;
+  if (!event.target.matches('.dropbtn123')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (display=="block") {
+        document.getElementById("suppDropdown").style.display = "none";
+      }
+    }
+  }
+
+  if (!event.target.matches('.dropbtn1')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content1");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (display1=="block") {
+        document.getElementById("suppDropdown1").style.display = "none";
+      }
+    }
+  }
+
+}
+
+function suppdrop1()
+{
+    var display= document.getElementById("suppDropdown1").style.display;
+    if(display=="none")
+    {
+        document.getElementById("suppDropdown1").style.display = "block";
+    }else{
+        document.getElementById("suppDropdown1").style.display = "none";
+    }
+}
+
+
 </script>
 
 
-<div style="margin-left=-120px;" class="container mt-5 mb-5">
+<div style="width:1600px; margin-left=-120px;" class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
         <div class="col-md-10">
             
@@ -178,7 +424,7 @@ function searchProduct2()
                                         <button type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="  padding-left:12px; padding-right:12px; bottom:17%; height:38px; border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" onclick="decreaseFunction('{{$product->Product_ID}}')" data-type="minus" data-field="quant[1]">
                                             <span class="fa fa-minus"> </span>
                                         </button>
-                                        <input onchange="changeQuantity('{{$product->Product_ID}}')" id="inputBar" style="border-radius:0px; text-align: center;" type="text" name="quant[1]" class="form-control input-number" value="{{$product->Product_Quantity}}">
+                                        <input onchange="changeQuantity('{{$product->Product_ID}}',{{$count}})" id="inputBar{{$count}}" style="border-radius:0px; text-align: center;" type="text" name="quant[1]" class="form-control input-number" value="{{$product->Product_Quantity}}">
                                         <button type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="  padding-left:12px; padding-right:12px; bottom:17%; border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" onclick="increaseFunction('{{$product->Product_ID}}')" data-type="minus" data-field="quant[1]">
                                             <span class="fa fa-plus"> </span>
                                         </button>
@@ -225,9 +471,9 @@ function searchProduct2()
                     location.replace("/decreaseQuantity/"+z);
                 }
 
-                function changeQuantity(z)
+                function changeQuantity(z,count)
                 {
-                    var x=document.getElementById("inputBar").value;
+                    var x=document.getElementById("inputBar"+count).value;
                     if (confirm("Are you sure you want to continue?")) {
 
                         location.replace("/changeQuantity/"+z+"/"+x);
@@ -247,8 +493,21 @@ function searchProduct2()
             <br>
 
             
+            @php
+                $count+=1;
+            @endphp
 
             @endforeach
+
+            @if (count($products)==0)
+            <div style="left:35%" class="col-md-3 mt-1"><img  style="" class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/magGlass.png')}}"></div>
+            <br/> <br/>
+            <h1 style="margin-left: 25%">No Results Were Found</h1>
+
+
+            
+
+            @endif
 
         </div>
     </div>

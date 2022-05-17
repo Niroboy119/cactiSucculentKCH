@@ -38,7 +38,7 @@ $currentdateCount=1;
     
 
 </head>
-<body>
+<body onload="showModal({{$modal}})">
    @include('admin/adminheader')
 
  <!-- jQuery CDN - Slim version (=without AJAX) -->
@@ -63,41 +63,322 @@ use App\Models\Order;
 use App\Models\User;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\Supplier;
 
-$orders=Order::all();
+
 $users=User::all();
+$suppliers=Supplier::all();
+
+$orders=[];
+date_default_timezone_set("Asia/Kuching");
+
+$left="260px";
+
+if($sort=="None"){
+    $orderBy="order_Id";
+    $x='desc';
+}
+else if($sort=="Latest Orders"){
+    $orderBy="orderMadeDate";
+    $x='desc';
+}
+else if($sort=="Upcoming Due Date"){
+    $orderBy="shippingEndDate";
+    $x='desc';
+}
+else if($sort=="Order Total - Low"){
+    $orderBy="grand_total";
+    $x='asc';
+}
+else if($sort=="Order Total - High"){
+    $orderBy="grand_total";
+    $x='desc';
+}
+else if($sort=="No. of Items - Low"){
+    $orderBy="item_count";
+    $x='asc';
+}
+else if($sort=="No. of Items - High"){
+    $orderBy="item_count";
+    $x='desc';
+}
+
+if($code==0)
+{
+    $orders=Order::orderBy($orderBy,$x)->get();
+}
+else if($code==1)
+{
+    $orders=Order::where('delivery_type', 'homeDelivery')->orderBy($orderBy,$x)->get();    
+}
+else if($code==2)
+{
+    $orders=Order::where('delivery_type', 'pickUp')->orderBy($orderBy,$x)->get();    
+}
+else if($code==3)
+{
+    $orders=Order::where('delivery_type', 'remotePickUp')->orderBy($orderBy,$x)->get();    
+}
+else if($code==12)
+{
+    $orders=Order::where('delivery_type', 'homeDelivery')
+    ->orWhere('delivery_type', 'pickUp')
+    ->orderBy($orderBy,$x)->get();    
+}
+else if($code==13)
+{
+    $orders=Order::where('delivery_type', 'homeDelivery')
+    ->orWhere('delivery_type', 'remotePickUp')
+    ->orderBy($orderBy,$x)->get();    
+}
+else if($code==23)
+{
+    $orders=Order::where('delivery_type', 'pickUp')
+    ->orWhere('delivery_type', 'remotePickUp')
+    ->orderBy($orderBy,$x)->get();    
+}
+else if($code==123)
+{
+    $orders=Order::where('delivery_type', 'homeDelivery')
+    ->orWhere('delivery_type', 'pickUp')
+    ->orWhere('delivery_type', 'remotePickUp')
+    ->orderBy($orderBy,$x)->get();    
+}
+
+$displaysupp="None";
+
+if($supp!="None")
+{
+    $ord=[];
+    foreach($orders as $o)
+    {
+        if($o->status==$supp)
+        {
+            array_push($ord,$o);
+        }
+    }
+
+    $orders=$ord;
+
+    if($supp=="pending")
+    {
+        $displaysupp="Pending";
+    }else if($supp=="processing")
+    {
+        $displaysupp="Processing";
+    }else if($supp=="cancelled")
+    {
+        $displaysupp="Denied";
+    }else if($supp=="completed")
+    {
+        $displaysupp="Completed";
+    }
+}
+
+
+if($search== "None")
+    $displaysearch="";
+else
+{
+    $displaysearch=$search;
+    $newOrders=[];
+    foreach($orders as $o)
+    {
+        $user=DB::table('users')->where('id', $o->user_Id)->first();
+        if(str_starts_with(strtolower($user->name),strtolower($search)))
+            array_push($newOrders,$o);
+    }
+    $orders=$newOrders;
+}
+
+if($orders==null||count($orders)==0)
+{
+    $left="354px";
+}
+
 ?>
 
-<div class="combine">
-<br><br> 
+<div style="margin-left:{{$left}};" class="combine">
+    <br><br> 
 
 <div class="d-flex justify-content-center h-100">
-    <div style="margin-left:100px;" class="search"> <input  onchange="searchSupplier()" id="searchBar" style=" padding-right:750px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Order Number...." name=""> <button style="border-color:#32CD32; color:#32CD32;" onclick="searchSupplier2()" type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" class="btn btn-outline-primary">Search Order</button> </a> </div>
+    <div class="search"> <input  onchange="searchOrder('{{$code}}','{{$supp}}','{{$sort}}')" id="searchBar" style="padding-left:10px; padding-right:755px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Customer Name...." value="{{$displaysearch}}"></a></div>
 </div>
 
 <br>
+<div style="padding-top:5px; height:40px; width:950px; background-color:#ebeaea;" class="container ">
+    <div style="margin-left:-120px;" class="d-flex justify-content-center h-100">
+        <p style="margin-top:1px; font-size:15px; color:#636262;">Filter Delivery Type: </p>
+        @if(str_contains($code,'1'))
+            <input style="margin-left:10px; margin-top:8px;" type="checkbox" onchange="check('{{$supp}}','{{$sort}}','{{$search}}')" id="plant" name="age" value="30" checked>
+            <label style="font-size:15px; color:#636262; margin-left:10px; margin-top:3px;" for="age1">Home</label>
+        @else
+            <input style="margin-left:10px; margin-top:8px;" type="checkbox"  onchange="check('{{$supp}}','{{$sort}}','{{$search}}')" id="plant" name="age" value="30">
+            <label style="font-size:15px; color:#636262; margin-left:10px; margin-top:3px;" for="age1">Home</label>
+        @endif
+        @if(str_contains($code,'2'))
+            <input style="margin-left:10px; margin-top:8px;" type="checkbox" onchange="check('{{$supp}}','{{$sort}}','{{$search}}')" id="soil" name="age" value="30" checked>
+            <label style="font-size:15px; color:#636262; margin-left:10px; margin-top:3px;" for="age2">PickUp</label>
+        @else
+            <input style="margin-left:10px; margin-top:8px;" type="checkbox" onchange="check('{{$supp}}','{{$sort}}','{{$search}}')" id="soil" name="age" value="30">
+            <label style="font-size:15px; color:#636262; margin-left:10px; margin-top:3px;" for="age2">PickUp</label>
+        @endif
+        @if(str_contains($code,'3'))
+            <input style="margin-left:10px; margin-top:8px;" type="checkbox" onchange="check('{{$supp}}','{{$sort}}','{{$search}}')" id="pot" name="age" value="30" checked>
+            <label style="font-size:15px; color:#636262; margin-left:10px; margin-top:3px;" for="age2">Remote</label>
+        @else
+            <input style="margin-left:10px; margin-top:8px;" type="checkbox" onchange="check('{{$supp}}','{{$sort}}','{{$search}}')" id="pot" name="age" value="30">
+            <label style="font-size:15px; color:#636262; margin-left:10px; margin-top:3px;" for="age2">Remote</label>
+        @endif
+        <p style="margin-top:1px; margin-left:20px; font-size:15px; color:#636262;">Filter Order Status: </p>
+        <div style="font-size:15px; color:#636262; margin-left:10px;" class="dropdown">
+            <button class="dropbtn123" style="text-overflow: ellipsis; white-space: nowrap; overflow:hidden; width:130px; height:24px;  padding-left:30px; padding-right:30px; margin-top:3px; border:none; position:absolute; padding-top:1px; padding-bottom:1px; font-size:13px; background-color:white; color:#636262;" type="button" id="dropdownMenuButton"  onclick="suppdrop()">
+                {{$displaysupp}}
+            </button>
+            <div id="suppDropdown" class="dropdown-content"  style="max-height:120px; overflow:auto; z-index:1; text-align:center; font-size:13px; margin-top:26.3px; display:none; position: absolute; background-color: white; width:130px;">
+                    <div class="dropdown-divider"></div>
+                    <a href="/manageOrders/{{$code}}/None/{{$sort}}/{{$search}}/0">None</a><br>
+                    <div class="dropdown-divider"></div>
+                    <a href="/manageOrders/{{$code}}/pending/{{$sort}}/{{$search}}/0">Pending</a><br>
+                    <div class="dropdown-divider"></div>
+                    <a href="/manageOrders/{{$code}}/processing/{{$sort}}/{{$search}}/0">Processing</a><br>
+                    <div class="dropdown-divider"></div>
+                    <a href="/manageOrders/{{$code}}/cancelled/{{$sort}}/{{$search}}/0">Denied</a><br>
+                    <div class="dropdown-divider"></div>
+                    <a href="/manageOrders/{{$code}}/completed/{{$sort}}/{{$search}}/0">Completed</a><br>
+                    <div class="dropdown-divider"></div>
+        </div>
+          </div>
+        <p style="margin-top:2px; margin-left:150px; font-size:15px; color:#636262;">Sort By: </p>
+          <div style="font-size:15px; color:#636262; margin-left:10px;" class="dropdown">
+            <button class="dropbtn1" style="text-overflow: ellipsis; white-space: nowrap; overflow:hidden; width:130px; height:24px;  padding-left:30px; padding-right:30px; margin-top:3px; border:none; position:absolute; padding-top:1px; padding-bottom:1px; font-size:13px; background-color:white; color:#636262;" type="button" id="dropdownMenuButton"  onclick="suppdrop1()">
+                {{$sort}}
+            </button>
+            <div id="suppDropdown1" class="dropdown-content1"  style="height:120px; overflow:auto; z-index:3; text-align:center; font-size:13px; margin-top:26.3px; display:none; position: absolute; background-color: white; width:130px;">
+                <div class="dropdown-divider"></div>
+                <a href="/manageOrders/{{$code}}/{{$supp}}/None/{{$search}}/0">None</a><br>
+                <div class="dropdown-divider"></div>
+                <a href="/manageOrders/{{$code}}/{{$supp}}/Latest Orders/{{$search}}/0">Latest Orders</a><br>
+                <div class="dropdown-divider"></div>
+                <a href="/manageOrders/{{$code}}/{{$supp}}/Upcoming Due Date/{{$search}}/0">Upcoming Due Date</a><br>
+                <div class="dropdown-divider"></div>
+                <a href="/manageOrders/{{$code}}/{{$supp}}/Order Total - Low/{{$search}}/0">Order Total - Low</a><br>
+                <div class="dropdown-divider"></div>
+                <a href="/manageOrders/{{$code}}/{{$supp}}/Order Total - High/{{$search}}/0">Order Total - High</a><br>
+                <div class="dropdown-divider"></div>
+                <a href="/manageOrders/{{$code}}/{{$supp}}/No. of Items - Low/{{$search}}/0">No. of Items - Low</a><br>
+                <div class="dropdown-divider"></div>
+                <a href="/manageOrders/{{$code}}/{{$supp}}/No. of Items - High/{{$search}}/0">No. of Items - High</a><br>
+                <div class="dropdown-divider"></div>
+        </div>
+          </div>
+    </div>
+  </div>
 
 <script type="text/javascript">
     window.scrollTo(0, 0);
-function searchSupplier()
+
+    function showModal(modal)
+    {
+        if(modal!=0)
+            $("#"+modal).modal('show');   
+    }
+
+    function searchOrder(code,supp,sort)
 {
-    var link= "/searchSuppliers/"+document.getElementById("searchBar").value;
-    sdocument.addEventListener("keyup", function(event) {
+    if((document.getElementById("searchBar").value).trim()=="")
+    {
+        var link= "/manageOrders/"+code+"/"+supp+"/"+sort+"/None/0";
+    }else{
+        var link= "/manageOrders/"+code+"/"+supp+"/"+sort+"/"+document.getElementById("searchBar").value + "/0";
+    }
+    document.addEventListener("keyup", function(event) {
         if (event.keyCode === 13) {
             location.replace(link);
         }
     });
 }
+    
+    const checkbox1 = document.getElementById('plant');
+                        const checkbox2 = document.getElementById('soil');
+                        const checkbox3 = document.getElementById('pot');
 
-function searchSupplier2()
-{
-    var link= "/searchSuppliers/"+document.getElementById("searchBar").value;
-    if(document.getElementById("searchBar").value!="")
-    {
-        location.replace(link);
-    }
-}
-</script>
+
+                        function check(supp,sort,search)
+                        {
+                            var checked="";
+                            if(checkbox1.checked==true)
+                            {
+                                checked=checked+"1";
+                            }
+                            if(checkbox2.checked==true)
+                            {
+                                checked=checked+"2";
+                            }
+                            if(checkbox3.checked==true)
+                            {
+                                checked=checked+"3";
+                            }
+
+                            if(checked=="")
+                            {
+                                checked="0";
+                            }
+                            location.replace('/manageOrders/'+checked+'/'+supp+'/'+sort+'/'+search+"/0");
+                        }
+
+                       
+
+    function suppdrop()
+                        {
+                            var display= document.getElementById("suppDropdown").style.display;
+                            if(display=="none")
+                            {
+                                document.getElementById("suppDropdown").style.display = "block";
+                            }else{
+                                document.getElementById("suppDropdown").style.display = "none";
+                            }
+                        }
+                        
+                        window.onclick = function(event) {
+                            var display= document.getElementById("suppDropdown").style.display;
+                            var display1= document.getElementById("suppDropdown1").style.display;
+                        if (!event.target.matches('.dropbtn123')) {
+                            var dropdowns = document.getElementsByClassName("dropdown-content");
+                            var i;
+                            for (i = 0; i < dropdowns.length; i++) {
+                            var openDropdown = dropdowns[i];
+                            if (display=="block") {
+                                document.getElementById("suppDropdown").style.display = "none";
+                            }
+                            }
+                        }
+
+                        if (!event.target.matches('.dropbtn1')) {
+                            var dropdowns = document.getElementsByClassName("dropdown-content1");
+                            var i;
+                            for (i = 0; i < dropdowns.length; i++) {
+                            var openDropdown = dropdowns[i];
+                            if (display1=="block") {
+                                document.getElementById("suppDropdown1").style.display = "none";
+                            }
+                            }
+                        }
+
+                        }
+
+                        function suppdrop1()
+                        {
+                            var display= document.getElementById("suppDropdown1").style.display;
+                            if(display=="none")
+                            {
+                                document.getElementById("suppDropdown1").style.display = "block";
+                            }else{
+                                document.getElementById("suppDropdown1").style.display = "none";
+                            }
+                        }
+
+                </script>
 
 
 <div style="margin-left=-120px;" class="container mt-5 mb-5">
@@ -106,6 +387,8 @@ function searchSupplier2()
             @php
             $inputId=100;
             @endphp
+
+            @if(count($orders)>0)
             @foreach($orders as $order)
             <?php      
                 $user=DB::table('users')->where('id', $order->user_Id)->first();
@@ -115,6 +398,8 @@ function searchSupplier2()
                     $display1="visibility";
                     $display2="visibility";
                     $display3="none";
+                    $display4="none";
+                    $display5="none";
                     $margin="0px";
                 }else if($order->status=='cancelled'){
                     $img="cancelled.png";
@@ -122,6 +407,8 @@ function searchSupplier2()
                     $display1="none";
                     $display2="none";
                     $display3="none";
+                    $display4="visibility";
+                    $display5="none";
                     $margin="25px";
                 }else if($order->status=='processing'){
                     $img="processing.png";
@@ -129,6 +416,8 @@ function searchSupplier2()
                     $display1="none";
                     $display2="visibility";
                     $display3="visibility";
+                    $display4="none";
+                    $display5="none";
                     $margin="0px";
                 }else if($order->status=='completed'){
                     $img="completed.png";
@@ -136,6 +425,8 @@ function searchSupplier2()
                     $display1="none";
                     $display2="none";
                     $display3="none";
+                    $display4="none";
+                    $display5="visibility";
                     $margin="25px";
                 }
 
@@ -179,9 +470,9 @@ function searchSupplier2()
             <div class="row p-2 bg-white border rounded">
                 <div class="col-md-3 mt-1"><img  style="width:200px; height: 170px;" class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/'.$img)}}"></div>
                 <div class="col-md-6 mt-1">
-                    <h4>Order Id: {{$order->order_Id}}</h4>
+                    <h4>Order Number: {{$order->orderNumber}}</h4>
                     <div class="mt-1 mb-1 spec-1"><span style="font-size:17px;">Name: {{$user->name}}</span><span style="background:{{$color}}" class="dot"></span><span style="font-size:17px;">Email: {{$user->email}}<span style="background:{{$color}}" class="dot"></span><span style="font-size:17px;">Number of Items: {{$order->item_count}}
-                    <span style="background:{{$color}}" class="dot"></span><span style="font-size:17px;">Order Total: ${{sprintf('%.2f', ($order->grand_total))}}
+                    <span style="background:{{$color}}" class="dot"></span><span style="font-size:17px;">Type of Delivery: {{$order->delivery_type}}</span><span style="background:{{$color}}" class="dot"></span><span style="font-size:17px;">Order Total: RM {{sprintf('%.2f', ($order->grand_total))}}
                     <span style="background:{{$color}}" class="dot"></span><span style="color:{{$color}}; font-size:17px;">{{$order->status}}</span><span style="background:{{$color}}" class="dot"></span><span><i class="{{$orderContact}}" style="border-style:none; background-color:white;"></i></span></div>
                     <p style="color:black;" class="text-justify text-truncate para mb-0"><br><br></p>
                 </div>
@@ -297,17 +588,15 @@ function searchSupplier2()
                                return false;
                            }
                       }
-                          
 
+                       
                     </script>
                        
                        
                         <!-- Click To Copy Modal End-->
-
-                     
                                    
 
-                        <a style="display:{{$display3}}; margin-bottom:10px; border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" onclick= "return myFunction();" href="/completeOrderNotification/{{$order->order_Id}}">Order Completed</a>
+                        <a style="display:{{$display3}}; margin-bottom:10px; border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" onclick= "return myFunction();" href="/completeOrderNotification/{{$order->order_Id}}/{{Auth::user()->name}}:{{date('d:m:Y')}}*{{date("h:i:sa")}}">Order Completed</a>
                         <a style="margin-top:{{$margin}}; border-color:#32CD32; background:#32CD32;"  class="btn btn-primary btn-sm" href="/editSupplier/"  data-toggle="modal" data-target="#{{$count}}">View Details</a>
                         <div class="container d-flex justify-content-center mt-100">
                             <div class="modal fade" id="{{$count}}">
@@ -343,37 +632,67 @@ function searchSupplier2()
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <br>
-                                                <h6>Item Details</h6>
+                                                <h6>Item Details 
+                                                </h6>
                                                 <div class="row" style="border-bottom: none">
                                                     <div class="col-xs-6">
                                                         <ul type="none">
                                                             <?php
                                                              $orderItems=OrderItem::all()->where('order_Id',$order->order_Id);
                                                             ?>
+                                                            @php
+                                                             $m=0;
+                                                            @endphp
                                                             @foreach ($orderItems as $item)
-                                                                    <li class="left">{{Product::where('Product_ID', $item->product_Id)->value('Product_Name')}}</li>
-                                                                    <br>
+                                                                    <li style="margin-top:{{$m}}px;" class="left">{{Product::where('Product_ID', $item->product_Id)->value('Product_Name')}}</li>
+                                                            
+                                                                    @php
+                                                                    $m=0;
+                                                                    @endphp
                                                             @endforeach
                                                         </ul>
                                                     </div>
                                                     <div class="col-xs-6">
                                                         <ul style="top:100px;" class="right" type="none">
                                                            
+                                                                @php
+                                                                    $m=0;
+                                                                @endphp
+
                                                             @foreach ($orderItems as $item)
+
+                                                                    @php
+                                                                        $name=Product::where('Product_ID', $item->product_Id)->value('Product_Name');
+                                                                        $no=Order::where('order_Id', $item->order_Id)->value('orderNumber');
+                                                                    @endphp
+                                
                                                                     <li class="right">
-                                                                        <input id="{{$inputId}}" onchange="changeQuantityAdmin({{$item->id}},document.getElementById({{$inputId}}).value)" style="margin-top:3px; height:20px; width:50px; border-radius:0px; text-align: center;" type="text" class="form-control input-number" value="{{$item->quantity}}">
-                                                                    {{--    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
-                                                                        <a style="padding:2px 5px 2px 5px; color:white; border-color:#32CD32; background:#32CD32; border-style: solid;" href="">+</a> 
-                                                                        <a style="padding:2px 5px 2px 5px; color:white; border-color:#32CD32; background:#32CD32; border-style: solid;" href="">-</a></li>
-                                                            --}}
+                                                                        <label style="margin-top:{{$m}}px; float: left; margin-right:10px;" for="test">Quantity: </label>
+                                                                        <span style="display: block; overflow: hidden;"><input id="{{$inputId}}" onchange="changeQuantityAdmin('{{$name}}','{{$no}}',{{$item->quantity}},{{$item->id}},document.getElementById({{$inputId}}).value,{{$count}})" style="margin-top:3px; height:20px; width:50px; border-radius:0px; text-align: center;" type="text" class="form-control input-number" value="{{$item->quantity}}"></span>
+
+                                                                        @php
+                                                                        $m=-8;
+                                                                        @endphp
+
+                                                           
+
 
                                                             <script type="text/javascript">
 
-                                                                function changeQuantityAdmin(y,x)
+                                                                itemID=0;
+                                                                itemVal=0;
+                                                                countID=0;
+                                                                function changeQuantityAdmin(name,ordN,prev,y,x,count)
                                                                         {
-                                                                            var link="/changeQuantityAdmin/"+y+"/"+x;
-                                                                            location.replace(link);
+                                                                            itemID=y;
+                                                                            itemVal=x;
+                                                                            countID=count;
+                                                                            document.getElementById("itm"+count).click();
+                                                                            $("#Sreason1").modal('show');
+                                                                            $("#itemName").html(name);
+                                                                            $("#OrderID").html(ordN);
+                                                                            $("#prevQuan").html(prev);
+                                                                            $("#newQuan").html(x);
                                                                         }
 
                                                                     
@@ -383,7 +702,6 @@ function searchSupplier2()
                                                                 $inputId+=1;
                                                             @endphp
 
-                                                            <br>
                                                             @endforeach
                                                         </ul>
                                                     </div>
@@ -409,7 +727,6 @@ function searchSupplier2()
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <br>
                                                 <h6>Grand Total</h6>
                                                 <div class="row" style="border-bottom: none">
                                                     <div class="col-xs-6">
@@ -419,13 +736,51 @@ function searchSupplier2()
                                                     </div>
                                                     <div class="col-xs-6">
                                                         <ul  class="right" type="none">                                                        
-                                                            <li class="right">${{round($order->grand_total)}}</li> 
+                                                            <li class="right">RM {{round($order->grand_total)}}</li> 
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            <div style="display:{{$display4}};">
+                                                <h6>Order Denied Details</h6>
+                                                <div class="row" style="border-bottom: none">
+                                                    <div class="col-xs-6">
+                                                        <ul type="none">     
+                                                            <li class="left">Order Denied By</li>                                                                                                              
+                                                            <li class="left">Reason For Denial</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <ul  class="right" type="none">  
+                                                            <li class="right">{{substr($order->denyReason,0,strpos($order->denyReason,":"))}}</li>                                                       
+                                                            <li class="right">{{substr($order->denyReason,strpos($order->denyReason,":")+1)}}</li> 
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div style="display:{{$display5}};">
+                                                <h6>Order Confirmation Details</h6>
+                                                <div class="row" style="border-bottom: none">
+                                                    <div class="col-xs-6">
+                                                        <ul type="none">     
+                                                            <li class="left">Order Confirmed By</li>                                                                                                              
+                                                            <li class="left">Order Confirm Date</li>
+                                                            <li class="left">Order Confirm Time</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <ul  class="right" type="none"> 
+                                                            <li class="right">{{substr($order->denyReason,0,strpos($order->denyReason,":"))}}</li>                                                        
+                                                            <li class="right">{{substr($order->denyReason,strpos($order->denyReason,":")+1,strpos($order->denyReason,":")-1)}}</li> 
+                                                            <li class="right">{{substr($order->denyReason,strpos($order->denyReason,"*")+1)}}</li> 
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
                                         </div> <!-- Modal footer -->
-                                        <div class="modal-footer"> <button type="button" class="btn" data-dismiss="modal">Close</button> </div>
+                                        <div class="modal-footer"> 
+                                            <button type="button" id="itm{{$count}}" class="btn" data-dismiss="modal">Close</button> 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -454,7 +809,7 @@ function searchSupplier2()
                                         </div>
                                     </div> <!-- Modal footer -->
                                     <div class="modal-footer">
-                                        <button  onclick="myFunction2('{{$order->order_Id}}',document.getElementById('textArea{{$dateCount}}').value)" type="button" class="btn" data-dismiss="modal">Submit</button> 
+                                        <button  onclick="myFunction2('{{ Auth::user()->name }}','{{$order->order_Id}}',document.getElementById('textArea{{$dateCount}}').value)" type="button" class="btn" data-dismiss="modal">Submit</button> 
                                          <button type="button" class="btn" data-dismiss="modal">Close</button> </div>
                                 </div>
                             </div>
@@ -467,7 +822,36 @@ function searchSupplier2()
                      
               
             </div>
+
+            <div class="container d-flex justify-content-center mt-100">
+                <div class="modal fade" id="Sreason1">
+                    <div style="width:500px; margin-top:230px; margin-left:570px;" class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h6 style="font-size:17px; padding-left:170px; color:#25D366" class="modal-title">IMPORTANT!</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                            </div> <!-- Modal body -->
+                            <div style="font-size:13px;" class="modal-body">
+                                <p style="color:dimgray; font-size:15px;"">The Quantity Of The Item: <span id="itemName"></span> Belonging To Order Number: <span id="OrderID"></span> Will Be Changed From (<span id="prevQuan"></span>) To (<span id="newQuan"></span>). Are You Sure You Want To Continue?</p>
+                            </div>
+                                <p id="itemID" hidden></p>
+                            <div class="modal-footer">
+                                <button  onclick="changeQuan()" type="button" class="btn" data-dismiss="modal">Confirm</button> 
+                                 <button type="button" class="btn" data-dismiss="modal">Close</button> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
                 <script type="text/javascript">
+
+
+
+                function changeQuan()
+                        {
+                            var link="/changeQuantityAdmin/"+itemID+"/"+itemVal+"/"+countID;
+                            location.replace(link);
+                        }
 
                 function myFunction() 
                 {
@@ -484,11 +868,11 @@ function searchSupplier2()
 
                      
 
-                            function myFunction2(id,reason) 
+                            function myFunction2(name,id,reason) 
                             {
                                  if (confirm("Are you sure you want to continue?")) 
                                  {     
-                                     location.replace("/denyOrderNotification/"+id+"/"+reason);
+                                     location.replace("/denyOrderNotification/"+id+"/"+name+":"+reason);
                                  } 
                                  else 
                                  {
@@ -504,6 +888,14 @@ function searchSupplier2()
                 $count+=1;    
             @endphp
             @endforeach
+
+            @elseif (count($orders)==0)
+            <div style="left:35%" class="col-md-3 mt-1"><img  style="" class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/magGlass.png')}}"></div>
+            <br/> <br/>
+            <h1 style="margin-left: 25%">No Results Were Found</h1>
+
+
+            @endif
         </div>
     </div>
 </div>

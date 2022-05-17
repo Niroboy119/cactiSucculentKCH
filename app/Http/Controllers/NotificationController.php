@@ -58,7 +58,7 @@ class NotificationController extends Controller
         return redirect('/denyOrder'.'/'.$id.'/'.$reason);
     }
 
-    public function completeOrderNotification($id)
+    public function completeOrderNotification($id,$reason)
     {
         $order=Order::where('order_Id', $id)->first();
         $notification=new Notification();
@@ -71,7 +71,7 @@ class NotificationController extends Controller
         $notification->photo="completed";
         $notification->save();
         
-        return redirect('/completeOrder'.'/'.$id);
+        return redirect('/completeOrder'.'/'.$id.'/'.$reason);
     }
 
     public function deleteNotification($id)

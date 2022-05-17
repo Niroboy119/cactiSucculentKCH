@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
+use App\Models\Supplier;
 
 use Illuminate\Http\Request;
 
 
 class ProductController extends Controller
 {
-    public function displayProducts()
-    {   
-        return view('manageProducts/viewProducts');
+    public function displayProducts($code,$supp,$sort,$search)
+    {
+        return view('manageProducts/viewProducts',compact('code','supp','sort','search'));
     }
 
     public function displayaddProductForm()
@@ -20,8 +21,20 @@ class ProductController extends Controller
 
     public function deleteProduct($id)
     {
+        $product = Product::where('Product_ID',$id)->first();
+        $suppliers=Supplier::all();
+       
+        foreach($suppliers as $supplier)
+        {
+            if($supplier->Supplier_Name==$product->Product_Supplier)
+            {
+                $count=$supplier->Products_Supplied-1;
+                 Supplier::where('Supplier_Name', $supplier->Supplier_Name)->update(['Products_Supplied' => $count]);   
+            }
+        } 
+        
         $product = Product::where([ 'Product_ID' => $id ])->delete();
-        return redirect('/manageProducts');
+        return redirect('/manageProducts/0/None/None/None');
     }
 
     public function editProduct($id)
@@ -49,13 +62,47 @@ class ProductController extends Controller
         }
         
         $product->Product_Image=$img;
+        $suppliers=Supplier::all();
+       
+        foreach($suppliers as $supplier)
+        {
+            if($supplier->Supplier_Name==$product->Product_Supplier)
+            {
+                $count=$supplier->Products_Supplied+1;
+                 Supplier::where('Supplier_Name', $supplier->Supplier_Name)->update(['Products_Supplied' => $count]);   
+            }
+        }
+
+
         $product->save();
-        return redirect('/manageProducts');
+
+       
+        return redirect('/manageProducts/0/None/None/None');
     }
 
 
     public function update(Request $request,$id)
     {
+        $product = Product::where('Product_ID',$id)->first();
+        if($request->Supplier!=$product->Product_Supplier)
+        {
+            $suppliers=Supplier::all();
+            foreach($suppliers as $supplier)
+            {
+                if($supplier->Supplier_Name==$product->Product_Supplier)
+                {
+                    $count=$supplier->Products_Supplied-1;
+                    Supplier::where('Supplier_Name', $supplier->Supplier_Name)->update(['Products_Supplied' => $count]);   
+                }
+
+                if($supplier->Supplier_Name==$request->Supplier)
+                {
+                    $count=$supplier->Products_Supplied+1;
+                    Supplier::where('Supplier_Name', $supplier->Supplier_Name)->update(['Products_Supplied' => $count]);   
+                }
+            }
+        }
+
         if($request->img_Text=="1")
         {
 
@@ -77,7 +124,7 @@ class ProductController extends Controller
             'Product_Quantity' => $request->quantity, 'Product_Type' => $request->Type, 'Product_Desc' => $request->Desc,
             'Product_Price' => $request->Price, 'Product_Supplier' => $request->Supplier ));
         }
-        return redirect('/manageProducts');
+        return redirect('/manageProducts/0/None/None/None');
     }
 
     public function index()
@@ -124,12 +171,6 @@ class ProductController extends Controller
        
         return redirect()->back();
      
-    }
-
-    public function searchProducts($search)
-    {   
-        $product = Product::where ( 'Product_Name', 'LIKE', $search . '%' )->get ();
-        return view('manageProducts/searchProducts',compact('product','search'));
     }
 
     public function search($search)
