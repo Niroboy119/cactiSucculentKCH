@@ -139,7 +139,7 @@ $admins=User::all()->where('user_type','admin');
               </div>
             </div>
           </div>
-          <div style="margin-left:130px; margin-top:50px;" class="row">
+          <div style="margin-left:142px; margin-top:50px;" class="row">
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card tale-sbg" style="border-radius:15px; width:94.7%;">
                 <div class="card-people mt-auto">
@@ -217,18 +217,18 @@ $admins=User::all()->where('user_type','admin');
                   <div style="color:#32CD32; font-size:12.5px;" class="d-flex flex-wrap mb-5">
                     <div class="mr-5 mt-3">
                       <p class="text-muted">Best-Selling Product</p>
-                      <h3 style="font-size:23px;">{{$max_name}}</h3>
+                      <h3 style=" white-space: nowrap;  overflow: hidden; width:150px; text-overflow: ellipsis; font-size:15px;">{{$max_name}}</h3>
                     </div>
                     <div class="mr-5 mt-3">
                       <p class="text-muted">Quantity Sold</p>
-                      <h3 style="font-size:23px;">{{$max_quantity}}</h3>
+                      <h3 style="text-align:center; font-size:15px;">{{$max_quantity}}</h3>
                     </div>
                     <div class="mr-5 mt-3">
                       <p class="text-muted">Total Completed Orders</p>
-                      <h3 style="font-size:23px;">{{count($ordersCompleted)}}</h3>
+                      <h3 style="text-align:center; font-size:15px;">{{count($ordersCompleted)}}</h3>
                     </div>
                   </div>
-                  <canvas id="myChart1" style="width:100%;max-width:600px"></canvas>
+                  <canvas id="myChart1" style="max-width:600px"></canvas>
                 </div>
               </div>
             </div>
@@ -240,7 +240,7 @@ $admins=User::all()->where('user_type','admin');
                  </div>
                   <p style="color:#32CD32; font-size:13.5px;" class="font-weight-500">The bar graph below represents the total number of sales in each month that have taken place in the current year.</p>
                   <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
-                  <canvas id="myChart" style="width:100%; height:600px; max-width:1200px"></canvas>
+                  <canvas id="myChart" style=" width:100%; height:6px;"></canvas>
                 </div>
               </div>
             </div>
@@ -283,11 +283,11 @@ $admins=User::all()->where('user_type','admin');
             i=0;
             var products= <?php echo json_encode($prodNames); ?>;
             var quantity= <?php echo json_encode($quantities); ?>;
-
             new Chart("myChart1", {
               type: "line",
               data: {
                 labels: products,
+                size: 34,
                 datasets: [{
                   fill: false,
                   lineTension: 0,

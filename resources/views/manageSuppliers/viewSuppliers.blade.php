@@ -43,24 +43,225 @@
 
 
 <?php
+use App\Models\Product;
 use App\Models\Supplier;
-$suppliers=Supplier::all();
+
+$suppliers=[];
+$products=Product::all();
+$allSupp=[];
+
+$left="260px";
+
+if($sort=="None"){
+     $allSupp=Supplier::orderBy("Supplier_ID","asc")->get();
+     $displaysort="None";
+}
+else if($sort=="Alphabetical Order"){
+    $allSupp=Supplier::orderBy("Supplier_Name","asc")->get();
+    $displaysort="Alphabetical Order";
+}
+else if($sort=="PrSL"){
+    $allSupp=Supplier::orderBy("Products_Supplied","asc")->get();
+    $displaysort="Products Supplied - Low";
+}
+else if($sort=="PrSH"){
+    $allSupp=Supplier::orderBy("Products_Supplied","desc")->get();
+    $displaysort="Products Supplied - High";
+}
+
+if($code==0)
+{
+    $suppliers=$allSupp;
+}
+else if($code==1)
+{
+    foreach($allSupp as $supplier)
+    {
+        foreach($products as $product)
+        {
+            if($product->Product_Type=="Plant" and $supplier->Supplier_Name==$product->Product_Supplier)
+            {
+                array_push($suppliers,$supplier);
+                break;
+            }
+        } 
+    } 
+}
+else if($code==2)
+{
+    foreach($allSupp as $supplier)
+    {
+        foreach($products as $product)
+        {
+            if($product->Product_Type=="Soil" and $supplier->Supplier_Name==$product->Product_Supplier)
+            {
+                array_push($suppliers,$supplier);
+                break;
+            }
+        } 
+    } 
+}
+else if($code==3)
+{
+    foreach($allSupp as $supplier)
+    {
+        foreach($products as $product)
+        {
+            if($product->Product_Type=="Pot" and $supplier->Supplier_Name==$product->Product_Supplier)
+            {
+                array_push($suppliers,$supplier);
+                break;
+            }
+        } 
+    } 
+}
+else if($code==12)
+{
+    foreach($allSupp as $supplier)
+    {
+        foreach($products as $product)
+        {
+            if(($product->Product_Type=="Plant" or $product->Product_Type=="Soil") and $supplier->Supplier_Name==$product->Product_Supplier)
+            {
+                array_push($suppliers,$supplier);
+                break;
+            }
+        } 
+    }     
+}
+else if($code==13)
+{
+    foreach($allSupp as $supplier)
+    {
+        foreach($products as $product)
+        {
+            if(($product->Product_Type=="Plant" or $product->Product_Type=="Pot") and $supplier->Supplier_Name==$product->Product_Supplier)
+            {
+                array_push($suppliers,$supplier);
+                break;
+            }
+        } 
+    }        
+}
+else if($code==23)
+{
+    foreach($allSupp as $supplier)
+    {
+        foreach($products as $product)
+        {
+            if(($product->Product_Type=="Pot" or $product->Product_Type=="Soil") and $supplier->Supplier_Name==$product->Product_Supplier)
+            {
+                array_push($suppliers,$supplier);
+                break;
+            }
+        } 
+    }       
+}
+else if($code==123)
+{
+    foreach($allSupp as $supplier)
+    {
+        foreach($products as $product)
+        {
+            if(($product->Product_Type=="Plant" or $product->Product_Type=="Pot" or $product->Product_Type=="Soil") and $supplier->Supplier_Name==$product->Product_Supplier)
+            {
+                array_push($suppliers,$supplier);
+                break;
+            }
+        } 
+    }   
+}
+
+if($search== "None")
+    $displaysearch="";
+else
+{
+    $displaysearch=$search;
+    $newSuppliers=[];
+    foreach($suppliers as $supplier)
+    {
+        if(str_starts_with(strtolower($supplier->Supplier_Name),strtolower($search)))
+            array_push($newSuppliers,$supplier);
+    }
+    $suppliers=$newSuppliers;
+}
+
+
+
+if($suppliers==null||count($suppliers)==0)
+{
+    $left="261px";
+}
+
+$count=0;
 ?>
 
 <div class="combine">
 <br><br> 
 
 <div class="d-flex justify-content-center h-100">
-    <div style="margin-left:100px;" class="search"> <input  onchange="searchSupplier()" id="searchBar" style=" padding-right:750px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Supplier Name...." name=""></a> <button style="border-color:#32CD32; color:#32CD32;" onclick="location.href='{{ url('addSupplierForm') }}'" type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" class="btn btn-outline-primary">Add New Supplier</button></div>
+    <div class="search"> <input  onchange="searchSupplier('{{$code}}','{{$supp}}','{{$sort}}')" id="searchBar" style="margin-left:95px; padding-left:10px; padding-right:590px; padding-bottom:6px; padding-top:4px;" type="text" class="search-input" placeholder="Enter Supplier Name...." value="{{$displaysearch}}"></a> <button onclick="location.href='{{ url('addSupplierForm') }}'" style="margin-left:10px; border-color:#32CD32; color:#32CD32;" type="button" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" class="btn btn-outline-primary">Add New Supplier</button> </div>
 </div>
 
 <br>
 
+<div style="margin-left:95px; padding-top:5px; height:40px; width:950px; background-color:#ebeaea;" class="container ">
+    <div style="margin-left:-250px;" class="d-flex justify-content-center h-100">
+        <p style="font-size:15px; color:#636262;">Filter Types of Products Supplied: </p>
+        @if(str_contains($code,'1'))
+            <input style="margin-left:10px; margin-top:8px;" type="checkbox" onchange="check('{{$supp}}','{{$sort}}','{{$search}}')" id="plant" name="age" value="30" checked>
+            <label style="font-size:15px; color:#636262; margin-left:10px; margin-top:3px;" for="age1">Plant</label>
+        @else
+            <input style="margin-left:10px; margin-top:8px;" type="checkbox"  onchange="check('{{$supp}}','{{$sort}}','{{$search}}')" id="plant" name="age" value="30">
+            <label style="font-size:15px; color:#636262; margin-left:10px; margin-top:3px;" for="age1">Plant</label>
+        @endif
+        @if(str_contains($code,'2'))
+            <input style="margin-left:10px; margin-top:8px;" type="checkbox" onchange="check('{{$supp}}','{{$sort}}','{{$search}}')" id="soil" name="age" value="30" checked>
+            <label style="font-size:15px; color:#636262; margin-left:10px; margin-top:3px;" for="age2">Soil</label>
+        @else
+            <input style="margin-left:10px; margin-top:8px;" type="checkbox" onchange="check('{{$supp}}','{{$sort}}','{{$search}}')" id="soil" name="age" value="30">
+            <label style="font-size:15px; color:#636262; margin-left:10px; margin-top:3px;" for="age2">Soil</label>
+        @endif
+        @if(str_contains($code,'3'))
+            <input style="margin-left:10px; margin-top:8px;" type="checkbox" onchange="check('{{$supp}}','{{$sort}}','{{$search}}')" id="pot" name="age" value="30" checked>
+            <label style="font-size:15px; color:#636262; margin-left:10px; margin-top:3px;" for="age2">Pot</label>
+        @else
+            <input style="margin-left:10px; margin-top:8px;" type="checkbox" onchange="check('{{$supp}}','{{$sort}}','{{$search}}')" id="pot" name="age" value="30">
+            <label style="font-size:15px; color:#636262; margin-left:10px; margin-top:3px;" for="age2">Pot</label>
+        @endif
+        
+        <p style="margin-left:100px; font-size:15px; color:#636262;">Sort Supplier By: </p>
+          <div style="font-size:15px; color:#636262; margin-left:10px;" class="dropdown">
+            <button class="dropbtn1" style="text-overflow: ellipsis; white-space: nowrap; overflow:hidden; width:250px; height:24px;  padding-left:30px; padding-right:30px; margin-top:3px; border:none; position:absolute; padding-top:1px; padding-bottom:1px; font-size:13px; background-color:white; color:#636262;" type="button" id="dropdownMenuButton"  onclick="suppdrop1()">
+                {{$displaysort}}
+            </button>
+            <div id="suppDropdown1" class="dropdown-content1"  style="height:120px; overflow:auto; z-index:3; text-align:center; font-size:13px; margin-top:26.3px; display:none; position: absolute; background-color: white; width:250px;">
+                <div class="dropdown-divider"></div>
+                <a href="/manageSuppliers/{{$code}}/{{$supp}}/None/{{$search}}">None</a><br>
+                <div class="dropdown-divider"></div>
+                <a href="/manageSuppliers/{{$code}}/{{$supp}}/Alphabetical Order/{{$search}}">Alphabetical Order</a><br>
+                <div class="dropdown-divider"></div>
+                <a href="/manageSuppliers/{{$code}}/{{$supp}}/PrSL/{{$search}}">Products Supplied - Low</a><br>
+                <div class="dropdown-divider"></div>
+                <a href="/manageSuppliers/{{$code}}/{{$supp}}/PrSH/{{$search}}">Products Supplied - High</a><br>
+                <div class="dropdown-divider"></div>
+        </div>
+          </div>
+    </div>
+  </div>
+
+
 <script type="text/javascript">
     window.scrollTo(0, 0);
-function searchSupplier()
+function searchSupplier(code,supp,sort)
 {
-    var link= "/searchSuppliers/"+document.getElementById("searchBar").value;
+    if((document.getElementById("searchBar").value).trim()=="")
+    {
+        var link= "/manageSuppliers/"+code+"/"+supp+"/"+sort+"/None";
+    }else{
+        var link= "/manageSuppliers/"+code+"/"+supp+"/"+sort+"/"+document.getElementById("searchBar").value;
+    }
+
     document.addEventListener("keyup", function(event) {
         if (event.keyCode === 13) {
             location.replace(link);
@@ -68,14 +269,63 @@ function searchSupplier()
     });
 }
 
-function searchSupplier2()
+
+const checkbox1 = document.getElementById('plant');
+const checkbox2 = document.getElementById('soil');
+const checkbox3 = document.getElementById('pot');
+
+
+function check(supp,sort,search)
 {
-    var link= "/searchSuppliers/"+document.getElementById("searchBar").value;
-    if(document.getElementById("searchBar").value!="")
+    var checked="";
+    if(checkbox1.checked==true)
     {
-        location.replace(link);
+        checked=checked+"1";
+    }
+    if(checkbox2.checked==true)
+    {
+        checked=checked+"2";
+    }
+    if(checkbox3.checked==true)
+    {
+        checked=checked+"3";
+    }
+
+    if(checked=="")
+    {
+        checked="0";
+    }
+    location.replace('/manageSuppliers/'+checked+'/'+supp+'/'+sort+'/'+search);
+}
+
+window.onclick = function(event) {
+    var display1= document.getElementById("suppDropdown1").style.display;
+
+  if (!event.target.matches('.dropbtn1')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content1");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (display1=="block") {
+        document.getElementById("suppDropdown1").style.display = "none";
+      }
+    }
+  }
+
+}
+
+function suppdrop1()
+{
+    var display= document.getElementById("suppDropdown1").style.display;
+    if(display=="none")
+    {
+        document.getElementById("suppDropdown1").style.display = "block";
+    }else{
+        document.getElementById("suppDropdown1").style.display = "none";
     }
 }
+
+
 </script>
 
 
@@ -83,12 +333,13 @@ function searchSupplier2()
     <div class="d-flex justify-content-center row">
         <div class="col-md-10">
             @foreach($suppliers as $supplier)
-            <div class="row p-2 bg-white border rounded">
+            <div style="margin-left:-5px; width:960px;" class="row p-2 bg-white border rounded">
                 <div class="col-md-3 mt-1"><img  style="width:300px; height: 150px;" class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/suppliers/'.$supplier->Supplier_Image)}}"></div>
                 <div class="col-md-6 mt-1">
                     <h4>{{$supplier->Supplier_Name}}</h4>
-                    <div class="mt-1 mb-1 spec-1"><span style="font-size:17px;">Email: {{$supplier->Supplier_Email}}</span><span style="background:#32CD32" class="dot"></span><span style="font-size:17px;">Mobile: {{$supplier->Supplier_PhoneNo}}</div>
-                    <p style="color:black;" class="text-justify text-truncate para mb-0">{{$supplier->Supplier_Address}}<br><br></p>
+                    <div class="mt-1 mb-1 spec-1"><span style="font-size:17px;">Email: {{$supplier->Supplier_Email}}</span><span style="background:#32CD32" class="dot"></span><span style="font-size:17px;">Mobile: {{$supplier->Supplier_PhoneNo}}
+                    <span style="background:#32CD32" class="dot"></span><span style="font-size:17px;">Number of Products Being Supplied: {{$supplier->Products_Supplied}}</div>
+                    <p style="color:black;" class="text-justify text-truncate para mb-0">Address: {{$supplier->Supplier_Address}}<br><br></p>
                 </div>
                 <div class="align-items-center align-content-center col-md-3 border-left mt-1">
                     <br/>    
@@ -111,6 +362,16 @@ function searchSupplier2()
              </script>
             <br>
             @endforeach
+
+            @if (count($suppliers)==0)
+            <div style="left:40%" class="col-md-3 mt-1"><img  style="" class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/magGlass.png')}}"></div>
+            <br/> <br/>
+            <h1 style="margin-left: 30%">No Results Were Found</h1>
+
+
+            
+
+            @endif
         </div>
     </div>
 </div>

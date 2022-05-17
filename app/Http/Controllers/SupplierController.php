@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
-    public function displaySuppliers()
-    {   
-        return view('manageSuppliers/viewSuppliers');
+    public function displaySuppliers($code,$supp,$sort,$search)
+    {
+        return view('manageSuppliers/viewSuppliers',compact('code','supp','sort','search'));
     }
 
 
@@ -30,15 +30,10 @@ class SupplierController extends Controller
         $supplier = Supplier::where([ 'Supplier_ID' => $id ]);
         $products=  Product::where([ 'Product_Supplier' => $supplier->value('Supplier_Name') ])->delete();
         $supplier=$supplier->delete();
-        return redirect('/manageSuppliers');
+        return redirect('/manageSuppliers/0/None/None/None');
     }
 
-    public function searchSuppliers($search)
-    {   
-        $supplier = Supplier::where ( 'Supplier_Name', 'LIKE', $search . '%' )->get ();
-        return view('manageSuppliers/searchSuppliers',compact('supplier','search'));
-    }
-
+    
     public function editSupplier($id)
     {
         return view('/manageSuppliers/editSupplier',compact('id'));
@@ -54,6 +49,7 @@ class SupplierController extends Controller
             $supplier->Supplier_Email=$request->email;
             $supplier->Supplier_Address=$request->Address;
             $request->file->store('images/suppliers', 'public');
+            $supplier->Products_Supplied=0;
             $supplier->Supplier_Image=$request->file->hashName();
         }
         else
@@ -63,6 +59,7 @@ class SupplierController extends Controller
             $supplier->Supplier_PhoneNo=$request->phoneno;
             $supplier->Supplier_Email=$request->email;
             $supplier->Supplier_Address=$request->Address;
+            $supplier->Products_Supplied=0;
             $supplier->Supplier_Image="defaultSupplier.jpg";   
         }
 
@@ -71,7 +68,7 @@ class SupplierController extends Controller
         $link="";
         if($status=="default")
         {
-            $link="/manageSuppliers";
+            $link="/manageSuppliers/0/None/None/None";
         }else if($status=="addProductForm"){
             $link="/".$status;
         }else{
@@ -98,7 +95,7 @@ class SupplierController extends Controller
         }
 
         
-        return redirect('/manageSuppliers');
+        return redirect('/manageSuppliers/0/None/None/None');
     }
 
 
