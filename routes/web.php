@@ -141,7 +141,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/searchProducts', [App\Http\Controllers\ProductController::class, 'displayProducts'])->name('products');
 
     Route::get('/manageOrders/{code}/{supp}/{sort}/{search}/{modal}', [App\Http\Controllers\OrderController::class, 'displayadminManageOrders'])->name('orders');
-    Route::get('/acceptOrder/{id}/{dateS}/{dateE}/{time}', [App\Http\Controllers\OrderController::class, 'acceptOrder'])->name('orders');
+    Route::get('/acceptOrder/{id}/{dateS}/{dateE}/{time}/{loc}', [App\Http\Controllers\OrderController::class, 'acceptOrder'])->name('orders');
     Route::get('/denyOrder/{id}/{reason}', [App\Http\Controllers\OrderController::class, 'denyOrder'])->name('orders');
     Route::get('/completeOrder/{id}/{reason}', [App\Http\Controllers\OrderController::class, 'completeOrder'])->name('orders');
     Route::get('/changeQuantityAdmin/{id}/{quantity}/{count}', [App\Http\Controllers\OrderController::class, 'changeQuantityAdmin'])->name('orders');
@@ -206,7 +206,7 @@ Route::get('search/{search}', [App\Http\Controllers\ProductController::class, 's
 Route::get('/test', [App\Http\Controllers\ProductController::class, 'test'])->name('products');
 
 
-Route::get('/acceptOrderNotification/{id}/{dateS}/{dateE}/{time}', [App\Http\Controllers\NotificationController::class, 'acceptOrderNotification'])->name('notification');
+Route::get('/acceptOrderNotification/{id}/{dateS}/{dateE}/{time}/{loc}', [App\Http\Controllers\NotificationController::class, 'acceptOrderNotification'])->name('notification');
 Route::get('/denyOrderNotification/{id}/{reason}', [App\Http\Controllers\NotificationController::class, 'denyOrderNotification'])->name('notification');
 Route::get('/completeOrderNotification/{id}/{reason}', [App\Http\Controllers\NotificationController::class, 'completeOrderNotification'])->name('notification');
 Route::get('/deleteNotification/{id}', [App\Http\Controllers\NotificationController::class, 'deleteNotification'])->name('notification');

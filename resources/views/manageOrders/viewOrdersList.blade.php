@@ -13,7 +13,7 @@ $currentdateCount=1;
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Cacti Manage Orders') }}</title>
     
 
     <!-- Scripts -->
@@ -432,18 +432,27 @@ if($orders==null||count($orders)==0)
 
                 if($order->delivery_type=="homeDelivery")
                 {
+                    $display6="none";
+                    $title="Pick Date & Time";
+                    $locM=200;
                     $deliveryS="Estimated Delivery Start Date";
                     $deliveryE="Estimated Delivery End Date";
                     $deliverytime="Estimated Delivery Time";
 
                 }else if($order->delivery_type=="pickUp")
                 {
+                    $display6="none";
+                    $title="Pick Date & Time";
+                    $locM=200;
                     $deliveryS="Estimated Pick Up Start Date";
                     $deliveryE="Estimated Pick Up End Date";
                     $deliverytime="Estimated Pick Up Time";
 
                 }else if($order->delivery_type=="remotePickUp")
                 {
+                    $display6="visibility";
+                    $title="Pick Date/Time & Meetup Location";
+                    $locM=140;
                     $deliveryS="Estimated Remote Pick Up Start Date";
                     $deliveryE="Estimated Remote Pick Up End Date";
                     $deliverytime="Estimated Remote Pick Up Time";
@@ -471,37 +480,48 @@ if($orders==null||count($orders)==0)
                 <div class="col-md-3 mt-1"><img  style="width:200px; height: 170px;" class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/'.$img)}}"></div>
                 <div class="col-md-6 mt-1">
                     <h4>Order Number: {{$order->orderNumber}}</h4>
-                    <div class="mt-1 mb-1 spec-1"><span style="font-size:17px;">Name: {{$user->name}}</span><span style="background:{{$color}}" class="dot"></span><span style="font-size:17px;">Email: {{$user->email}}<span style="background:{{$color}}" class="dot"></span><span style="font-size:17px;">Number of Items: {{$order->item_count}}
-                    <span style="background:{{$color}}" class="dot"></span><span style="font-size:17px;">Type of Delivery: {{$order->delivery_type}}</span><span style="background:{{$color}}" class="dot"></span><span style="font-size:17px;">Order Total: RM {{sprintf('%.2f', ($order->grand_total))}}
+                    <div class="mt-1 mb-1 spec-1"><span style="font-size:17px;">Name: {{$user->name}}</span><span style="background:{{$color}}" class="dot"></span><span style="font-size:17px;">Email: {{$user->email}}<span style="background:{{$color}}" class="dot"></span><span style="font-size:17px;">Type of Delivery: {{$order->delivery_type}}</span><span style="background:{{$color}}" class="dot"></span><span style="font-size:17px;">Order Total: RM {{sprintf('%.2f', ($order->grand_total))}}
                     <span style="background:{{$color}}" class="dot"></span><span style="color:{{$color}}; font-size:17px;">{{$order->status}}</span><span style="background:{{$color}}" class="dot"></span><span><i class="{{$orderContact}}" style="border-style:none; background-color:white;"></i></span></div>
                     <p style="color:black;" class="text-justify text-truncate para mb-0"><br><br></p>
                 </div>
                 <div class="align-items-center align-content-center col-md-3 border-left mt-1">
                     <br/> 
                     <div style="position:relative; padding-bottom:40px;" class="d-flex flex-column mt-4">
-                        <a style="display:{{$display1}}; margin-bottom:10px; border-color:#32CD32; background:#32CD32;" data-toggle="modal" data-target="#datetimeModal{{$dateCount}}" class="btn btn-primary btn-sm" href="">Accept</a>
+                        <a style="display:{{$display1}}; margin-bottom:10px; border-color:#32CD32; background:#32CD32;" onclick="dateMinSet({{$dateCount}})" data-toggle="modal" data-target="#datetimeModal{{$dateCount}}" class="btn btn-primary btn-sm" href="">Accept</a>
                         
                       
+                        
+                        <script type="text/javascript">
+                            function dateMinSet(count)
+                            {
+                                var today = new Date().toISOString().split('T')[0];
+                                document.getElementsByName("dateS"+count)[0].setAttribute('min', today);
+                            }
+                            </script>
                       
                         <div class="container d-flex justify-content-center mt-100">
                             <div class="modal fade" id="datetimeModal{{$dateCount}}">
-                                <div style="width:500px; margin-top:200px; margin-left:570px;" class="modal-dialog modal-lg">
+                                <div style="width:500px; margin-top:{{$locM}}px; margin-left:570px;" class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <!-- Modal Header -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Pick Date & Time</h4>
+                                            <h4 class="modal-title">{{$title}}</h4>
                                         </div> <!-- Modal body -->
                                         <div class="modal-body">
                                             <div class="container">   
                                                 <h6>Delivery Type: {{$order->delivery_type}}</h6>
                                                 <br>
                                                 <h6>Start Date:</h6>
-                                                  <input id="dateS{{$dateCount}}" type = "date" name = "date" min="{{date('d-m-y')}}"> 
+                                                  @if($display6=="visibility")
+                                                  <input onchange="dateSet(1,{{$dateCount}})" id="dateS{{$dateCount}}" type = "date" name ="dateS{{$dateCount}}"> 
+                                                  @elseif($display6=="none")
+                                                  <input onchange="dateSet(0,{{$dateCount}})" id="dateS{{$dateCount}}" type = "date" name ="dateS{{$dateCount}}">
+                                                  @endif
                                                   <br>
                                                   <br>
-
+ 
                                                   <h6>End Date:</h6>
-                                                  <input id="dateE{{$dateCount}}" type = "date" name = "date"> 
+                                                  <input disabled id="dateE{{$dateCount}}" type = "date" name ="dateE{{$dateCount}}"> 
                                                   <br>
                                                   <br>
 
@@ -521,19 +541,66 @@ if($orders==null||count($orders)==0)
                                                     <option value="AM">AM</option>
                                                     <option value="PM">PM</option>
                                                   </select>
+
+                                                  <br>
+                                                  <br>
+
+                                                  <div style="display:{{$display6}};">
+                                                  <h6>Meetup Location</h6>
+                                                  <textarea oninput="allowSubmit({{$dateCount}})" disabled id="location{{$dateCount}}" rows="5" cols="40"></textarea> 
+                                                  </div>
                                             </div>
                                         </div> 
                         
                                         
                                         <!-- Modal footer -->
                                         <div class="modal-footer">
-                                            <button  type="button" class="btn" data-toggle="modal" data-dismiss="modal" data-target="#copyModal{{$orderType}}{{$dateCount}}">Submit</button> 
+                                            @if($display6=="visibility")
+                                            <button  type="button" id="btndateTime{{$dateCount}}" disabled class="btn" onclick="ToCopyLoc({{$dateCount}},'{{$user->name}}','{{$order->orderNumber}}','{{$order->order_Id}}',document.getElementById('dateS{{$dateCount}}').value,document.getElementById('dateE{{$dateCount}}').value,document.getElementById('timeCount{{$dateCount}}').value,document.getElementById('time{{$dateCount}}').value,document.getElementById('location{{$dateCount}}').value)" data-toggle="modal" data-dismiss="modal" data-target="#copyModal{{$orderType}}{{$dateCount}}">Submit</button> 
+                                            @elseif($display6=="none")
+                                            <button  type="button" id="btndateTime{{$dateCount}}" disabled class="btn" onclick="ToCopy({{$dateCount}},'{{$user->name}}','{{$order->orderNumber}}','{{$order->order_Id}}',document.getElementById('dateS{{$dateCount}}').value,document.getElementById('dateE{{$dateCount}}').value,document.getElementById('timeCount{{$dateCount}}').value,document.getElementById('time{{$dateCount}}').value)" data-toggle="modal" data-dismiss="modal" data-target="#copyModal{{$orderType}}{{$dateCount}}">Submit</button> 
+                                            @endif
                                             <button type="button" class="btn" data-dismiss="modal">Close</button> </div>
-                                    </div>                                    
+                                        </div>                                    
                                 </div>
                             </div>
                         </div>
 
+                        <script type="text/javascript">
+
+                            function dateSet(loc,count)
+                            {
+                                document.getElementById("dateE"+count).disabled = false;
+                                document.getElementById("location"+count).disabled = false;
+
+                                if(loc==0)
+                                    document.getElementById("btndateTime"+count).disabled = false;
+
+                                document.getElementsByName("dateE"+count)[0].setAttribute('min', document.getElementById("dateS"+count).value);
+                                if(document.getElementById("dateS"+count).value > document.getElementById("dateE"+count).value)
+                                    document.getElementById("dateE"+count).value=document.getElementById("dateS"+count).value; 
+                            }
+
+                            function allowSubmit(count)
+                            {
+                                if((document.getElementById("location"+count).value).trim()!="")
+                                    document.getElementById("btndateTime"+count).disabled = false;
+                                else if((document.getElementById("location"+count).value).trim()=="")
+                                    document.getElementById("btndateTime"+count).disabled = true;                                
+                            }
+
+                            function ToCopyLoc(count,name,number,id,dateSt,dateEn,timeCount,time,loc)
+                            {
+                                var text= 'Hi '+ name + ', the order you placed with Order Number: ' + number + ' has been accepted and will be delivered within the following timeframe:\nDate Range: '+ dateSt +' to '+ dateEn +'\nTime: '+ timeCount +' '+ time +'\nMeetup Location: '+ loc;
+                                $("#copyText"+count).html(text);
+                            }
+
+                            function ToCopy(count,name,number,id,dateSt,dateEn,timeCount,time)
+                            {
+                                var text= 'Hi '+ name + ', the order you placed with Order Number: ' + number + ' has been accepted and will be delivered within the following timeframe:\nDate Range: '+ dateSt +' to '+ dateEn +'\nTime: '+ timeCount +' '+ time;
+                                $("#copyText"+count).html(text);
+                            }
+                        </script>
 
                         <!-- Click To Copy Modal-->
                         <div class="modal fade" id="copyModalcopy{{$dateCount}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -543,10 +610,11 @@ if($orders==null||count($orders)==0)
                                         <h6 style="font-size:17px; padding-left:170px; color:#32CD32;" class="modal-title">IMPORTANT!</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p style="color:dimgray; font-size:15px;">Please Click Below To Copy The Delivery Details. Paste The Details In The Customer's Chosen Social Media Platform To Immediately Notify Them!</p>
+                                        <p style="color:dimgray; font-size:15px;">Please Copy The Delivery Details Below. Paste The Details In The Customer's Chosen Social Media Platform To Immediately Notify Them!</p>
+                                        <textarea style="margin-left:2px; max-width: 100%;" rows="4" cols="56" id="copyText{{$dateCount}}"></textarea>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" style="background-color:#32CD32" onclick="copyDeliveryDetails('{{$user->name}}','{{$order->orderNumber}}','{{$order->order_Id}}',document.getElementById('dateS{{$dateCount}}').value,document.getElementById('dateE{{$dateCount}}').value,document.getElementById('timeCount{{$dateCount}}').value,document.getElementById('time{{$dateCount}}').value)" class="btn btn-success btn-sm btn-block">Click To Copy</button>
+                                        <button type="button" style="background-color:#32CD32" onclick="copyDeliveryDetails(0,'{{$user->name}}','{{$order->orderNumber}}','{{$order->order_Id}}',document.getElementById('dateS{{$dateCount}}').value,document.getElementById('dateE{{$dateCount}}').value,document.getElementById('timeCount{{$dateCount}}').value,document.getElementById('time{{$dateCount}}').value,document.getElementById('location{{$dateCount}}').value)" class="btn btn-success btn-sm btn-block">Continue</button>
                                     </div>
                                 </div>
                             </div>
@@ -562,10 +630,10 @@ if($orders==null||count($orders)==0)
                              <h6 style="font-size:17px; padding-left:170px; color:#32CD32;" class="modal-title">Email Request</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
                          </div>
                          <div class="modal-body">
-                             <p style="color:dimgray; font-size:15px;">An Email Will Be Sent To The Customer.Please Click Below To Proceed.</p>
+                             <p style="color:dimgray; font-size:15px;">An Email Will Be Sent To The Customer. Please Click Below To Proceed.</p>
                          </div>
                          <div class="modal-footer">
-                             <button type="button" onclick="copyDeliveryDetails('{{$user->name}}','{{$order->orderNumber}}','{{$order->order_Id}}',document.getElementById('dateS{{$dateCount}}').value,document.getElementById('dateE{{$dateCount}}').value,document.getElementById('timeCount{{$dateCount}}').value,document.getElementById('time{{$dateCount}}').value)" style="background-color:#32CD32"  data-dismiss="modal"  class="btn btn-success btn-sm btn-block">Proceed</button> 
+                             <button type="button" onclick="copyDeliveryDetails(1,'{{$user->name}}','{{$order->orderNumber}}','{{$order->order_Id}}',document.getElementById('dateS{{$dateCount}}').value,document.getElementById('dateE{{$dateCount}}').value,document.getElementById('timeCount{{$dateCount}}').value,document.getElementById('time{{$dateCount}}').value,document.getElementById('location{{$dateCount}}').value)" style="background-color:#32CD32"  data-dismiss="modal"  class="btn btn-success btn-sm btn-block">Proceed</button> 
                          </div>
                      </div>
                  </div>
@@ -575,19 +643,21 @@ if($orders==null||count($orders)==0)
              
                        
                         <script type="text/javascript">
-                        function copyDeliveryDetails(name,number,id,dateSt,dateEn,timeCount,time) 
-                        {
-                           if (confirm("Are you sure you want to continue?")) 
-                           { 
-                              var text= 'Hi '+ name + ', the order you placed with Order Number: ' + number + ' has been accepted and will be delivered within the following timeframe:\n\nDate Range: '+ dateSt +' to '+ dateEn +'\nTime: '+ timeCount +' '+ time;
-                              navigator.clipboard.writeText(text);
-                              location.replace("/acceptOrderNotification/"+id+"/"+dateSt+"/"+dateEn+"/"+timeCount+" "+time);
-                           } 
-                           else 
-                           {
-                               return false;
-                           }
-                      }
+                        function copyDeliveryDetails(x,name,number,id,dateSt,dateEn,timeCount,time,loc) 
+                        {   
+                            if(loc=="")
+                                loc="None";
+
+                            if(x==0)
+                            {
+                                window.open("/acceptOrderNotification/"+id+"/"+dateSt+"/"+dateEn+"/"+timeCount+" "+time+"/"+loc); 
+                                setTimeout(function(){
+                                window.location.reload();
+                                }, 500);
+                            }else{
+                                location.replace("/acceptOrderNotification/"+id+"/"+dateSt+"/"+dateEn+"/"+timeCount+" "+time+"/"+loc); 
+                            }
+                        }
 
                        
                     </script>
@@ -809,16 +879,59 @@ if($orders==null||count($orders)==0)
                                         </div>
                                     </div> <!-- Modal footer -->
                                     <div class="modal-footer">
-                                        <button  onclick="myFunction2('{{ Auth::user()->name }}','{{$order->order_Id}}',document.getElementById('textArea{{$dateCount}}').value)" type="button" class="btn" data-dismiss="modal">Submit</button> 
+                                        <button onclick="ToCopy1('{{$user->name}}','{{$order->orderNumber}}','{{$user->cust_phone_number}}',{{$dateCount}},document.getElementById('textArea{{$dateCount}}').value)" data-toggle="modal" data-dismiss="modal" data-target="#copyModal{{$orderType}}1{{$dateCount}}" type="button" class="btn" >Submit</button> 
                                          <button type="button" class="btn" data-dismiss="modal">Close</button> </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    <script type="text/javascript">
+                        function ToCopy1(name,number,phoneno,count,reason)
+                        {
+                            var text="Sorry " + name+ ", the order you placed with Order Number: "+ number+' has been denied due to the following reason(s):\n'+reason;
+                            $("#copyText1"+count).html(text);
+                        }
+                    </script>
 
-                    
                 </div>
+
+                <div class="modal fade" id="copyModalcopy1{{$dateCount}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div style="margin-left:550px; margin-top:230px;" class="modal-dialog" role="document">
+                        <div  class="modal-content col-12">
+                            <div class="modal-header">
+                                <h6 style="font-size:17px; padding-left:170px; color:#32CD32;" class="modal-title">IMPORTANT!</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                            </div>
+                            <div class="modal-body">
+                                <p style="color:dimgray; font-size:15px;">Please Copy The Delivery Details Below. Paste The Details In The Customer's Chosen Social Media Platform To Immediately Notify Them!</p>
+                                <textarea style="margin-left:2px; max-width: 100%;" rows="4" cols="56" id="copyText1{{$dateCount}}"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" style="background-color:#32CD32" onclick="myFunction2(0,'{{ Auth::user()->name }}','{{$order->order_Id}}',document.getElementById('textArea{{$dateCount}}').value)" class="btn btn-success btn-sm btn-block">Continue</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                  <!-- Email Modal-->
+     <div class="modal fade" id="copyModalemail1{{$dateCount}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div style="margin-left:550px; margin-top:250px;" class="modal-dialog" role="document">
+            <div  class="modal-content col-12">
+                 <div class="modal-header">
+                     <h6 style="font-size:17px; padding-left:170px; color:#32CD32;" class="modal-title">Email Request</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                 </div>
+                 <div class="modal-body">
+                     <p style="color:dimgray; font-size:15px;">An Email Will Be Sent To The Customer. Please Click Below To Proceed.</p>
+                 </div>
+                 <div class="modal-footer">
+                    <button type="button" style="background-color:#32CD32" onclick="myFunction2(1,'{{ Auth::user()->name }}','{{$order->order_Id}}',document.getElementById('textArea{{$dateCount}}').value)" class="btn btn-success btn-sm btn-block">Continue</button>
+                </div>
+             </div>
+         </div>
+     </div>
+     <!-- Click To Copy Modal End-->
                      
               
             </div>
@@ -868,16 +981,18 @@ if($orders==null||count($orders)==0)
 
                      
 
-                            function myFunction2(name,id,reason) 
-                            {
-                                 if (confirm("Are you sure you want to continue?")) 
-                                 {     
-                                     location.replace("/denyOrderNotification/"+id+"/"+name+":"+reason);
-                                 } 
-                                 else 
-                                 {
-                                     return false;
-                                 }
+                            function myFunction2(x,name,id,reason) 
+                            { 
+                                if(x==0)
+                                {
+                                    window.open("/denyOrderNotification/"+id+"/"+name+":"+reason);
+                                    setTimeout(function(){
+                                    window.location.reload();
+                                    }, 500);
+                                }else if(x==1)
+                                {
+                                    location.replace("/denyOrderNotification/"+id+"/"+name+":"+reason);
+                                } 
                             }               
 
             

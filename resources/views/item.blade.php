@@ -275,7 +275,7 @@ width:190px;height:240px;
 								<a style="color:red;">Out of Stock</a>
 								@else
 													
-													<button class="btn-cart welcome-add-cart" style=" width:550px;color:white;"onClick="parent.open('{{ url('cart/'.$product->Product_ID) }}')">
+													<button class="btn-cart welcome-add-cart" style=" width:550px;color:white;"onClick="location.href='{{ url('cart/'.$product->Product_ID) }}'">
 														<span class="lnr lnr-plus-circle" ></span>
 														add <span>to </span> cart
 													</button>

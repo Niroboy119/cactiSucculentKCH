@@ -25,7 +25,7 @@ class NotificationController extends Controller
      */
   
 
-    public function acceptOrderNotification($id,$dateS,$dateE,$time)
+    public function acceptOrderNotification($id,$dateS,$dateE,$time,$loc)
     {
         $order=Order::where('order_Id', $id)->first();
         $notification=new Notification();
@@ -38,7 +38,7 @@ class NotificationController extends Controller
         $notification->photo="processing";
         $notification->save();
 
-        return redirect('/acceptOrder'.'/'.$id.'/'.$dateS.'/'.$dateE.'/'.$time);
+        return redirect('/acceptOrder'.'/'.$id.'/'.$dateS.'/'.$dateE.'/'.$time.'/'.$loc);
     }
 
 

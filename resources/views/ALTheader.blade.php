@@ -185,7 +185,8 @@ use App\Models\Notification;
 											@endforeach
 											<li class="total">
 												<button class="btn-cart pull-right" style="width:100%;"><a href="{{ url('/deleteNotificationAll'.'/'.$notification['user_Id']) }}" >Clear All Notifications</a></button>
-				                            </li>
+												<br>
+											</li>
 										@endif
 										
 										</ul>

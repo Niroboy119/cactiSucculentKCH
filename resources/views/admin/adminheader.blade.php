@@ -12,7 +12,7 @@ use App\Models\Notification;
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Cacti Succulent Admin') }}</title>
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/linearicons.css">
     <link rel="stylesheet" href="/css/adminHeader.css" >	
@@ -132,8 +132,9 @@ use App\Models\Notification;
 												@endif
 											@endforeach
                                             <li class="total">
-												<button class="btn-cart pull-right" style="width:100%;border:none;"><a href="{{ url('/deleteNotificationAllAdmin'.'/'.$notification['user_Id']) }}" >Clear All Notifications</a></button>
-				                            </li>
+												<button class="btn-cart pull-right" style="border-radius:25px; width:100%;border:none;"><a href="{{ url('/deleteNotificationAllAdmin'.'/'.$notification['user_Id']) }}" >Clear All Notifications</a></button>
+                                                <br>
+                                            </li>
 									@endif
                                     </ul>
 								</li>
@@ -164,7 +165,11 @@ use App\Models\Notification;
                 <h2 style="margin-left:10px;font-size:15px">Your Are Not Logged In</h2>
                 @endif
                 <hr>
+                @if(Auth::user()->user_type=="admin")
                 <h2 style="margin-left:10px;font-size:15px">Role : Admin</h2>
+                @elseif(Auth::user()->user_type=="super_admin")
+                <h2 style="margin-left:10px;font-size:15px">Role : Super Admin</h2>
+                @endif
             </div>
         </div>
         <div>
