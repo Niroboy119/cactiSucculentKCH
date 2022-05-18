@@ -85,6 +85,12 @@ class NotificationController extends Controller
         Notification::where([ 'user_Id' => $id,'type' => 'customer' ])->delete();      
         return redirect()->back();
     }
+
+    public function deleteAllNotificationsAdmin($id)
+    {
+        Notification::where([ 'user_Id' => $id,'type' => 'admin' ])->delete();      
+        return redirect()->back();
+    }
     
 
     
