@@ -29,9 +29,12 @@ class OrderController extends Controller
         $notification->message="An Order has been placed";
         $notification->status="unseen";
         $notification->photo="processing";
+        $notification->user_Id="GuestUser";
+        if(Auth::user()){
+            $notification->user_Id=Auth::user()->id;
+        }
         $notification->save();
-        $notification->user_Id=Auth::user()->id;
-        
+
 
         $order_total = 0;
         foreach ((array) session('cart') as $id => $details) {

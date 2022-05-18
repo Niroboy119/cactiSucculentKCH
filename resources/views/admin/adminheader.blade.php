@@ -3,6 +3,7 @@
 use App\Models\Notification;
 ?>
 <!doctype html>
+
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -14,7 +15,8 @@ use App\Models\Notification;
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/linearicons.css">
-    		<link rel="stylesheet" href="/css/adminHeader.css" >	
+    <link rel="stylesheet" href="/css/adminHeader.css" >	
+    <link rel="stylesheet" href="/css/styleScroll.css" >	
 
 
     <!-- Scripts -->
@@ -26,10 +28,12 @@ use App\Models\Notification;
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    
     
 
     <!-- Styles -->
@@ -108,7 +112,7 @@ use App\Models\Notification;
 									</a>
 
 									@if($count != 0)
-										<ul id="cartdrop" class="dropdown-menu cart-list s-cate">
+										<ul id="cartdrop" class="dropdown-menu cart-list s-cate" onfocus='this.size=5;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
 											@foreach($notifications as $notification)
                                             @if($notification['type']=="admin")
 												@php
@@ -116,6 +120,7 @@ use App\Models\Notification;
 												@endphp
 												<li class="single-cart-list">
 
+                                                <!-- <a href="#" class="photo"><img src="images/homepage/processing.png" class="cart-thumb" alt="image" /></a> -->
 													<div class="cart-list-txt">
                                                         
 														<h2 style="font-size:15px;padding:10px 5px 0px 5px;">{{$notification['title']}}</h6>
@@ -126,6 +131,9 @@ use App\Models\Notification;
 												</li><!--/.single-cart-list -->
 												@endif
 											@endforeach
+                                            <li class="total">
+												<button class="btn-cart pull-right" style="width:100%;border:none;"><a href="{{ url('/deleteNotificationAllAdmin'.'/'.$notification['user_Id']) }}" >Clear All Notifications</a></button>
+				                            </li>
 									@endif
                                     </ul>
 								</li>
