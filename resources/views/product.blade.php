@@ -140,12 +140,12 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 													@if($product->Product_Quantity == 0)
 								<a style="color:red;">Out of Stock</a>
 								@else
-													<button class="btn-cart welcome-add-cart" style="color:white;"onClick="parent.open('{{ url('cart/'.$product->Product_ID) }}')">
+													<button class="btn-cart welcome-add-cart" style="color:white;"onClick="location.href='{{ url('cart/'.$product->Product_ID) }}'">
 														<span class="lnr lnr-plus-circle" ></span>
 														add <span>to </span> cart
 													</button>
 													@endif
-													<button class="btn-cart welcome-add-cart welcome-more-info" onClick="parent.open('{{ url('item/'.$product->Product_ID) }}')">
+													<button class="btn-cart welcome-add-cart welcome-more-info" onClick="location.href='{{ url('item/'.$product->Product_ID) }}'">
 														more info
 													</button>
 												</div><!--/.welcome-hero-txt-->
@@ -196,12 +196,12 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 													@if($product->Product_Quantity == 0)
 								<a style="color:red;">Out of Stock</a>
 								@else
-													<button class="btn-cart welcome-add-cart" style="color:white;"onClick="parent.open('{{ url('cart/'.$product->Product_ID) }}')">
+													<button class="btn-cart welcome-add-cart" style="color:white;"onClick="location.href='{{ url('cart/'.$product->Product_ID) }}'">
 														<span class="lnr lnr-plus-circle" ></span>
 														add <span>to </span> cart
 													</button>
 													@endif
-													<button class="btn-cart welcome-add-cart welcome-more-info" onClick="parent.open('{{ url('item/'.$product->Product_ID) }}')">
+													<button class="btn-cart welcome-add-cart welcome-more-info" onClick="location.href='{{ url('item/'.$product->Product_ID) }}'">
 														more info
 													</button>
 												</div><!--/.welcome-hero-txt-->
@@ -273,7 +273,7 @@ $product = Product::where([ 'Product_ID' => 6 ]);
 												<div class="populer-products-price">
 													<h4>Sales Start from <span>RM 15.00</span></h4>
 												</div>
-												<button class="btn-cart welcome-add-cart populer-products-btn" onClick="parent.open('{{ url('plants') }}')">
+												<button class="btn-cart welcome-add-cart populer-products-btn" onClick="location.href='{{ url('plants') }}'">
 													discover more
 												</button>
 											</div>

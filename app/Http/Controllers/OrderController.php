@@ -26,10 +26,11 @@ class OrderController extends Controller
         $notification=new Notification();
         $notification->type="admin";
         $notification->title="Order Incoming!";
-        $notification->message="An Order has been placed";
+        $notification->message="An Order With Order Number ".$request->orderNumber." has been placed";
         $notification->status="unseen";
         $notification->photo="processing";
         $notification->user_Id="GuestUser";
+       
         if(Auth::user()){
             $notification->user_Id=Auth::user()->id;
         }
@@ -49,7 +50,7 @@ class OrderController extends Controller
             $notification->type="admin";
             $notification->user_Id=Auth::user()->id;
             $notification->title="Low Supplies Notification";
-            $notification->message="An item is low on supply!";
+            $notification->message="The item ".$details['Product_Name']." is low on supply!";
             $notification->status="unseen";
             $notification->photo="processing";
             $notification->save();
@@ -76,7 +77,7 @@ class OrderController extends Controller
         $order->orderNumber=$request->orderNumber;
         $order->item_count = count((array) session('cart'));
         $order->delivery_type = $request->inlineRadioOptions;
-        $order->orderMadeDate = date('d-m-y');
+        $order->orderMadeDate = date('y-m-d');
         $storeID=$order->order_Id;
         $order->save();
         
@@ -180,9 +181,9 @@ class OrderController extends Controller
         return view('manageOrders/viewOrdersList',compact('code','supp','sort','search','modal'));
     }
 
-    function acceptOrder($id,$dateS,$dateE,$time)
+    function acceptOrder($id,$dateS,$dateE,$time,$loc)
     {
-        Order::where('order_Id', $id)->update(array('status' => 'processing','shippingStartDate' => $dateS,'shippingEndDate' => $dateE,'shippingTime' => $time));
+        Order::where('order_Id', $id)->update(array('status' => 'processing','shippingStartDate' => $dateS,'shippingEndDate' => $dateE,'shippingTime' => $time,'meetupLocation' => $loc));
         
         $order=DB::table('orders')->where('order_Id', $id)->first();
         $user=DB::table('users')->where('id', $order->user_Id)->first();  
@@ -202,8 +203,10 @@ class OrderController extends Controller
         $mail->AddAddress($user->email, "Saad Sultan");
         $mail->SetFrom("noreplycactisucculent@gmail.com", "noreplycactisucculent");
         $mail->Subject = "Order Accepted - Order Numberer: ". $order->orderNumber;
-        $content= 'Hi '. $user->name . ', the order you placed with <b>Order Number: ' . $order->orderNumber . '</b> has been accepted and will be delivered within the following timeframe: <br>Date Range: '. $dateS .' to '. $dateE .'<br>Time: ' . $time;
-
+        if($order->delivery_type=="remotePickUp")
+            $content= 'Hi '. $user->name . ', the order you placed with <b>Order Number: ' . $order->orderNumber . '</b> has been accepted and will be delivered within the following timeframe: <br>Date Range: '. $dateS .' to '. $dateE .'<br>Time: ' . $time .'<br>Meetup Location: ' . $loc;
+        else
+            $content= 'Hi '. $user->name . ', the order you placed with <b>Order Number: ' . $order->orderNumber . '</b> has been accepted and will be delivered within the following timeframe: <br>Date Range: '. $dateS .' to '. $dateE .'<br>Time: ' . $time;
 
 
         if($order->contactMedia=='whatsapp')
@@ -249,9 +252,46 @@ class OrderController extends Controller
     {
         Order::where('order_Id', $id)->update(array('status' => 'cancelled','denyReason' => $reason));
         $order=DB::table('orders')->where('order_Id', $id)->first();
-        $user=DB::table('users')->where('id', $order->user_Id)->first();       
+        $user=DB::table('users')->where('id', $order->user_Id)->first();   
         
-        return redirect()->away('https://api.whatsapp.com/send?phone='. $user->cust_phone_number .'&text=Sorry '. $user->name . ', the order you placed with Order ID: '. $order->order_Id .' has been denied due to the following reason(s):%0A'. $order->denyReason);
+        $mail= new PHPMailer();
+        $mail->IsSMTP();
+        $mail->Mailer= "smtp";
+        $mail->SMTPDebug= 1;  
+        $mail->SMTPAuth= TRUE;
+        $mail->SMTPSecure= "tls";
+        $mail->Port= 587;
+        $mail->Host= "smtp.gmail.com";
+        $mail->Username= "noreplycactisucculent@gmail.com";
+        $mail->Password= "cactiSucculent3481@test";
+
+        $mail->IsHTML(true);
+        $mail->AddAddress($user->email, "Saad Sultan");
+        $mail->SetFrom("noreplycactisucculent@gmail.com", "noreplycactisucculent");
+        $mail->Subject = "Order Accepted - Order Numberer: ". $order->orderNumber;
+        $content= 'Sorry '. $user->name . ', the order you placed with <b>Order Number: ' . $order->orderNumber . '</b>  has been denied due to the following reason(s):<br><b>'.substr($order->denyReason,strpos($order->denyReason,":")+1).'</b>';
+
+
+
+        if($order->contactMedia=='whatsapp')
+        {
+            $redirectString='https://api.whatsapp.com/send?phone='. $user->cust_phone_number;
+        }else if($order->contactMedia=='messenger')
+        {
+            $redirectString="https://m.me/cactisucculentkch";
+        }else{
+            $mail->MsgHTML($content); 
+            if(!$mail->Send()) {
+            echo "Error while sending Email.";
+            var_dump($mail);
+            } else {
+            echo "Email sent successfully";
+            }
+            $redirectString="/manageOrders/0/None/None/None/0";
+        }
+
+        
+        return redirect()->away($redirectString);
     }
 
 }

@@ -88,7 +88,7 @@
             </div>
             <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Billing address</h4>
-            <form class="needs-validation" novalidate action="/checkout" method="POST" >
+            <form class="needs-validation" id="myForm" target="_blank"  novalidate action="/checkout" method="POST" >
                 @csrf    
                 <div class="row">
                     <div class="col-12 md-6 mb-3">
@@ -181,7 +181,7 @@
                         <label for="country">Country</label>
                         <select class="custom-select d-block w-100" id="country" required>
                         <option value="">Choose...</option>
-                        <option value="Malaysia">Malaysia</option>
+                        <option selected="selected" value="Malaysia">Malaysia</option>
                         </select>
                         <div class="invalid-feedback">
                         Please select a valid country.
@@ -191,7 +191,7 @@
                         <label for="state">State</label>
                         <select class="custom-select d-block w-100" id="state" required>
                         <option value="">Choose...</option>
-                        <option value="Sarawak">Sarawak</option>
+                        <option selected="selected" value="Sarawak">Sarawak</option>
                         </select>
                         <div class="invalid-feedback">
                         Please provide a valid state.
@@ -209,11 +209,12 @@
                 <!-- <a class="btn btn-success btn-lg btn-block" href="{{ url('checkout/proceedtocheckout') }}" role="button" onclick="return confirm('Confirm Checkout?')">Place Order</a> -->
                 <button id="submitButton" class="btn btn-success btn-lg btn-block" type="submit" >Place Order</button>
                 <button id="myCheck" hidden="hidden" data-toggle="modal" data-target="#mediaModal" class="btn btn-success btn-lg btn-block" type="button" >Place Order</button>
+                <input type="hidden" type="text" id="copyTextInBox"> 
 
                 <!-- return confirm('Order request sent. Redirect to home?') -->
             
                 <script type="text/javascript">
-               
+
                     function mediaSelect(m){
                        document.getElementById('contactMedia').value=m;
                        document.getElementById('close1').click();
@@ -224,39 +225,39 @@
                        }else
                        {
                             document.getElementById('copyButton').click();
+                            var name=document.getElementById('fullName').value;
+                            var email=document.getElementById('email').value;
+                            var address=document.getElementById('address').value;
+                            var phonenumber=document.getElementById('phonenumber').value;
+
+                            var random1=Math.floor(Math.random() * name.length-1)+2;
+                            var random2=Math.floor(Math.random() * name.length-1)+2;
+                            var random3=Math.floor(Math.random() * phonenumber.length-1)+2;
+                            var random4=Math.floor(Math.random() * phonenumber.length-1)+2;
+                            var random5=Math.floor(Math.random() * phonenumber.length-1)+2;
+                            var random6=Math.floor(Math.random() * phonenumber.length-1)+2;
+
+                            var name1 = name.replace(/\s/g, '');
+                            name1=name1.toUpperCase();
+                            var orderNumber=Math.floor(Math.random() * 100000)+name1.substring(random1-1,random1)+name1.substring(random2-1,random2)+phonenumber.substring(random3-1,random3)+phonenumber.substring(random4-1,random4)+phonenumber.substring(random5-1,random5)+phonenumber.substring(random6-1,random6);
+                            document.getElementById('orderNumber').value=orderNumber;
+                            
+                            if(address.length<=3)
+                            {
+                                address="None";
+                            }
+                            var deliveryType=delivery;
+                            var text='Hi, I have just placed an order with the following details:\nOrder Number: ' + orderNumber + '\nCustomer Name: ' + name + '\nEmail: ' + email + '\nAddress: ' + address + '\nDelivery Type: ' + deliveryType ;
+                            $("#copyText").html(text);
                        }
                       
                     }
 
-                    function copyText() {
+                    function finalSubmit() {
 
-                        var name=document.getElementById('fullName').value;
-                        var email=document.getElementById('email').value;
-                        var address=document.getElementById('address').value;
-                        var phonenumber=document.getElementById('phonenumber').value;
-
-                        var random1=Math.floor(Math.random() * name.length-1)+2;
-                        var random2=Math.floor(Math.random() * name.length-1)+2;
-                        var random3=Math.floor(Math.random() * phonenumber.length-1)+2;
-                        var random4=Math.floor(Math.random() * phonenumber.length-1)+2;
-                        var random5=Math.floor(Math.random() * phonenumber.length-1)+2;
-                        var random6=Math.floor(Math.random() * phonenumber.length-1)+2;
-
-                        var name1 = name.replace(/\s/g, '');
-                        name1=name1.toUpperCase();
-                        var orderNumber=Math.floor(Math.random() * 100000)+name1.substring(random1-1,random1)+name1.substring(random2-1,random2)+phonenumber.substring(random3-1,random3)+phonenumber.substring(random4-1,random4)+phonenumber.substring(random5-1,random5)+phonenumber.substring(random6-1,random6);
-                        document.getElementById('orderNumber').value=orderNumber;
-                        
-                        if(address.length<=3)
-                        {
-                            address="None";
-                        }
-                        var deliveryType=delivery;
-
-                        var text='Hi, I have just placed an order with the following details:\nOrder Number: ' + orderNumber + '\nCustomer Name: ' + name + '\nEmail: ' + email + '\nAddress: ' + address + '\nDelivery Type: ' + deliveryType ;
-                        navigator.clipboard.writeText(text);
                         media=1;
                         document.getElementById('submitButton').click();
+                        window.location.href = "/";
                     }
 
                     function emailSent()
@@ -280,7 +281,7 @@
                         media=1;
                         document.getElementById('submitButton').click();
                     }
-                  
+
         
                 </script>
 
@@ -323,10 +324,11 @@
                             <h6 style="font-size:17px; padding-left:170px; color:#25D366" class="modal-title">IMPORTANT!</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
                         </div>
                         <div class="modal-body">
-                            <p>Please Click Below To Copy Your Order Details And Complete Checkout. Paste The Details In Your Chosen Social Media Platform To Immediately Notify The Client!</p>
+                            <p>Please Copy Your Order Details Below And Click Continue To Complete Checkout. Paste The Details In Your Chosen Social Media Platform To Immediately Notify The Client!</p>
+                            <textarea style="margin-left:2px; max-width: 100%;" rows="4" cols="56" id="copyText"></textarea>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" onclick="copyText()" class="btn btn-success btn-sm btn-block">Click To Copy</button> </div>
+                            <button type="button" onclick="finalSubmit()" class="btn btn-success btn-sm btn-block">Continue</button> </div>
                         </div>
                     </div>
                 </div>
@@ -342,7 +344,7 @@
                              <h6 style="font-size:17px; padding-left:180px; color:#25D366" class="modal-title">Email Sent</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
                          </div>
                          <div class="modal-body">
-                             <p>An Email Has Been Successfully Sent To Cacti Succulent. Please Click Below To Complete Checkout.</p>
+                             <p>An Email Will Be Sent To Cacti Succulent. Please Click Below To Complete Checkout And Send The Email.</p>
                          </div>
                          <div class="modal-footer">
                              <button type="button" onclick="emailSent()" class="btn btn-success btn-sm btn-block">Proceed</button> </div>
@@ -374,7 +376,7 @@
     <script src="../../assets/js/vendor/holder.min.js"></script>
     <script>
         var media=0;
-        var delivery="";
+        var delivery="Home Delivery";
       // Example starter JavaScript for disabling form submissions if there are invalid fields
       (function() {
         'use strict';
