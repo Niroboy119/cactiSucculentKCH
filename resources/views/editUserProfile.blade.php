@@ -87,7 +87,7 @@ use App\Models\User;
                               <br>
 
                             <div class="custom-file mt-3 mb-3">
-                                <input onchange="readURL(this);" id="fileInput" type="file" style="display:none;" name="profilepicfile">
+                                <input onchange="readURL(this);" id="fileInput" type="file" style="display:none;" name="profilepicture">
                                 <input  hidden id="img_Text" type="img_Text" value="0" name="img_Text">
                                 <div class="col-sm-12">
                                 <input
@@ -97,6 +97,9 @@ use App\Models\User;
                                     value="Choose Profile Photo"
                                     onclick="document.getElementById('fileInput').click();"
                                 />
+                                @if($errors->has('profilepicture'))
+                                    <div class="error">{{ $errors->first('profilepicture') }}</div>
+                                @endif
                                 </div>
                               </div>
                                 <!-- <div class="col-4">

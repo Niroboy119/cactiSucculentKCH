@@ -87,7 +87,7 @@
                         </thead>
                         <tbody>
                             @foreach(session('cart') as $id=>$details)
-                            <form action="{{url('cart/delete/'.$id)}}">
+                            
                             <tr>
                             @php
                                 $img=Str::substr($details['Product_Image'], 0, 44);   
@@ -109,6 +109,7 @@
                                                     </div>
                                                     <br>
                                                     <div class="items-removal">
+                                                    <form action="{{url('cart/delete/'.$id)}}">
                                                     <a data-toggle="modal" data-target="#exampleModalCenter{{$id}}">Remove <span>From </span> Cart</a>
                                                     <!-- modal here -->
                                                         <div class="modal fade" id="exampleModalCenter{{$id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="margin-top:10%;">
@@ -128,6 +129,7 @@
                                                             </div>
                                                         </div>
                                                     <!-- modal end -->
+                                                    </form>
                                                     </div>
                                                 </div>
                                         </div></td>
@@ -154,7 +156,6 @@
                                         </div>    
                                     </td>
                         </tr>
-                        </form>
                         @endforeach
                         </tbody>
                     </table>

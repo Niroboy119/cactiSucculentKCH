@@ -143,7 +143,7 @@ class OrderController extends Controller
         if($request->contactMedia=='whatsapp')
         {
             //$redirectString='https://api.whatsapp.com/send?phone=601121409433&text=Hi, I have just placed an order with the following details:%0AOrder ID: '. $order1->order_Id .'%0AName: '. $user->name .'%0AEmail: '. $user->email .'%0AAddress: '. $user->cust_address .'%0AProducts: '. $products;
-            $redirectString='https://api.whatsapp.com/send?phone=601121409433';
+            $redirectString='https://api.whatsapp.com/send?phone=601116025564';
         }else if($request->contactMedia=='messenger')
         {
             $redirectString="https://m.me/cactisucculentkch";

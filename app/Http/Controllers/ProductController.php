@@ -234,10 +234,14 @@ class ProductController extends Controller
         public function IncreaseCartProducts($id){
             $cart = session()->get('cart');
             if(isset($cart[$id])) {
+                if($cart[$id]['Product_Quantity']!=0){
                 $cart[$id]['Product_Quantity']++;
                 session()->put('cart', $cart);
-                return redirect()->back()->with('success', 'Product added to cart successfully!');
-            }            
+                }else{
+                session()->put('cart', $cart);
+                }
+            }
+            return redirect()->back()->with('success', 'Product added to cart successfully!');           
         }
 
         public function DecreaseCartProducts($id){

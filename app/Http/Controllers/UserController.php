@@ -10,14 +10,15 @@ class UserController extends Controller
 {
     public function updateUser(Request $request, $id)
     {
-    if($request->profilepicfile!=null){
+    if($request->profilepicture!=null){
     $request->validate([
     'email' => 'unique:users,email,'.$id, 
     'cust_phone_number' => 'unique:users,cust_phone_number,'.$id,
+    'profilepicture'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:1000',
     ]);    
-    $request->profilepicfile->store('images/profilepic', 'public');
+    $request->profilepicture->store('images/profilepic', 'public');
     User::where('id',$id)->update(array('name'=>$request->name,'email'=>$request->email,'cust_phone_number'=>$request->cust_phone_number,
-    'cust_address'=>$request->cust_address, 'profilepicture'=>$request->profilepicfile->hashname()));
+    'cust_address'=>$request->cust_address, 'profilepicture'=>$request->profilepicture->hashname()));
     }
     else{
         $request->validate([
@@ -42,9 +43,11 @@ class UserController extends Controller
     User::where('id',$id)->update(array('name'=>$request->name,'email'=>$request->email,'cust_phone_number'=>$request->customer_phone_number,
     'cust_address'=>$request->cust_address, 'profilepicture'=>$request->profilepicfile->hashname()));
     }
+    
     else{
         $request->validate([
-            'email' => 'unique:users,email,'.$id, 'cust_phone_number' => 'unique:users,cust_phone_number,'.$id,
+            'email' => 'unique:users,email,'.$id, 
+            'cust_phone_number' => 'unique:users,cust_phone_number,'.$id,
         ]); 
     User::where('id',$id)->update(array('name'=>$request->name,'email'=>$request->email,'cust_phone_number'=>$request->customer_phone_number,
     'cust_address'=>$request->cust_address,));

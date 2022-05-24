@@ -104,9 +104,27 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-2">
-                        <a href="/adminProfile">
-                            <button style="border-color:#32CD32; background:#32CD32;" class="btn btn-primary btn-block text-uppercase">Save Edit</button>
-                        </a>
+                        
+                            <button type="button" data-toggle="modal" data-target="#exampleModalCenter" style="border-color:#32CD32; background:#32CD32;" class="btn btn-primary btn-block text-uppercase">Save Edit</button>
+                        
+                        <!-- modal here -->
+                      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="margin-top:1%;">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                <div class="modal-content">
+                                                                <div class="modal-header" style="text-align:center;">
+                                                                    <h1 class="modal-title" id="exampleModalLongTitle" style="color:#32CD32;margin-left:28%">IMPORTANT!</h1>
+                                                                </div>
+                                                                <div class="modal-body" style="text-align:center">
+                                                                    <h4 autocapitalize="off" style="margin-top:5%;margin-bottom:5%;">Are you sure you want to save?</h4>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                        <button type="submit" class="btn btn-primary" style="background-color:#32CD32;border:none;">Confirm</button>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <!-- modal end -->
                     </div>
                   </div>
                 </div>
