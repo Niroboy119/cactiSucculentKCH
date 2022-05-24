@@ -120,7 +120,7 @@ if($sort=="None"){
     $order="Product_ID";
     $x='asc';
 }
-else if($sort=="Alphabetical Order"){
+else if($sort=="Alphabetical"){
     $order="Product_Name";
     $x='asc';
 }
@@ -277,7 +277,7 @@ $count=0;
                 <div class="dropdown-divider"></div>
                 <a href="/manageProducts/{{$code}}/{{$supp}}/None/{{$search}}">None</a><br>
                 <div class="dropdown-divider"></div>
-                <a href="/manageProducts/{{$code}}/{{$supp}}/Alphabetical Order/{{$search}}">Alphabetical Order</a><br>
+                <a href="/manageProducts/{{$code}}/{{$supp}}/Alphabetical/{{$search}}">Alphabetical</a><br>
                 <div class="dropdown-divider"></div>
                 <a href="/manageProducts/{{$code}}/{{$supp}}/PriceL/{{$search}}">Price - Low</a><br>
                 <div class="dropdown-divider"></div>

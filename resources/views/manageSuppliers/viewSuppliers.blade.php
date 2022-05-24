@@ -56,9 +56,9 @@ if($sort=="None"){
      $allSupp=Supplier::orderBy("Supplier_ID","asc")->get();
      $displaysort="None";
 }
-else if($sort=="Alphabetical Order"){
+else if($sort=="Alphabetical"){
     $allSupp=Supplier::orderBy("Supplier_Name","asc")->get();
-    $displaysort="Alphabetical Order";
+    $displaysort="Alphabetical";
 }
 else if($sort=="PrSL"){
     $allSupp=Supplier::orderBy("Products_Supplied","asc")->get();
@@ -239,7 +239,7 @@ $count=0;
                 <div class="dropdown-divider"></div>
                 <a href="/manageSuppliers/{{$code}}/{{$supp}}/None/{{$search}}">None</a><br>
                 <div class="dropdown-divider"></div>
-                <a href="/manageSuppliers/{{$code}}/{{$supp}}/Alphabetical Order/{{$search}}">Alphabetical Order</a><br>
+                <a href="/manageSuppliers/{{$code}}/{{$supp}}/Alphabetical/{{$search}}">Alphabetical</a><br>
                 <div class="dropdown-divider"></div>
                 <a href="/manageSuppliers/{{$code}}/{{$supp}}/PrSL/{{$search}}">Products Supplied - Low</a><br>
                 <div class="dropdown-divider"></div>
