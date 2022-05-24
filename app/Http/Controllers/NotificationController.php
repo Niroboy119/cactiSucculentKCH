@@ -76,7 +76,22 @@ class NotificationController extends Controller
 
     public function deleteNotification($id)
     {
-        Notification::where([ 'id' => $id ])->delete();      
+        Notification::where([ 'id' => $id ])->delete();  
+        return redirect()->back();
+    }
+
+    public function deleteNotificationAdmin($id,$userid)
+    {
+        $notifications=Notification::all();
+        foreach($notifications as $notification)
+        {   if($id==$notification->id)
+            {
+                $admins=str_replace($userid.',',"",$notification->admins);
+                Notification::where([ 'id' => $notification->id,'type' => 'admin' ])->update(array('admins' => $admins));
+                if(!str_contains($notification->admins,','))
+                    Notification::where([ 'id' => $notification->id ])->delete();     
+            }    
+        }
         return redirect()->back();
     }
 
@@ -88,7 +103,15 @@ class NotificationController extends Controller
 
     public function deleteAllNotificationsAdmin($id)
     {
-        Notification::where([ 'user_Id' => $id,'type' => 'admin' ])->delete();      
+        $notifications=Notification::all();
+        foreach($notifications as $notification)
+        {
+            $admins=str_replace($id.',',"",$notification->admins);
+            Notification::where([ 'id' => $notification->id,'type' => 'admin' ])->update(array('admins' => $admins)); 
+            if(!str_contains($notification->admins,','))
+                Notification::where([ 'id' => $notification->id ])->delete();      
+        }
+        
         return redirect()->back();
     }
     

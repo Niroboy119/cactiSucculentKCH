@@ -326,7 +326,10 @@ function suppdrop1()
 }
 
 
+
+
 </script>
+
 
 
 <div style="margin-left=-120px;" class="container mt-5 mb-5">
@@ -343,7 +346,7 @@ function suppdrop1()
                 </div>
                 <div class="align-items-center align-content-center col-md-3 border-left mt-1">
                     <br/>    
-                    <div class="d-flex flex-column mt-4"><a style="border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" href="/editSupplier/{{ $supplier->Supplier_ID }}">Edit</a><a onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" href="/deleteSupplier/{{ $supplier->Supplier_ID }}" onclick= "return myFunction();">Delete</a></div>
+                    <div class="d-flex flex-column mt-4"><a style="border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" href="/editSupplier/{{ $supplier->Supplier_ID }}">Edit</a><a onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" data-toggle="modal" data-target="#Sreason1{{$count}}">Delete</a></div>
                 </div>
             </div>
                 <script type="text/javascript">
@@ -361,16 +364,49 @@ function suppdrop1()
                 }
              </script>
             <br>
+
+
+            <div class="container d-flex justify-content-center mt-100">
+                <div style="background-color:rgba(0, 0, 0, 0.5);" class="modal fade" id="Sreason1{{$count}}">
+                    <div style="width:500px; margin-top:280px; margin-left:570px;" class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h6 style="font-size:17px; padding-left:170px; color:#25D366" class="modal-title">IMPORTANT!</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                            </div> <!-- Modal body -->
+                            <div style="font-size:13px;" class="modal-body">
+                                <p style="color:dimgray; font-size:15px;">Are You Sure You Want To Remove This Supplier? The Following Products Will Be Deleted As Well:</p>
+                                @foreach($products as $product)
+                                    @if($product->Product_Supplier==$supplier->Supplier_Name)
+                                        <p style=" display: inline; text-align:center; color:dimgray; font-size:15px;">{{$product->Product_Name}}</p><br>
+                                    @endif
+                                @endforeach
+                            </div>
+                                <p id="itemID" hidden></p>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" onClick="location.href='/deleteSupplier/{{ $supplier->Supplier_ID }}'" id="rmvAdmin" data-dismiss="modal">Confirm</button>
+                                <button type="button" style="border:red; background-color:red;" class="btn btn-success" data-dismiss="modal">Deny</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @php
+                $count+=1;
+            @endphp
+
             @endforeach
 
-            @if (count($suppliers)==0)
+            <?php $p=Supplier::all();?>
+            @if(count($p)==0)
+            <div style="left:45%" class="col-md-3 mt-1"><img  style="" class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/supplier.png')}}"></div>
+            <br/> <br/>
+            <h1 style="margin-left: 20%">No Suppliers Exist In The Database!</h1>
+            @elseif (count($suppliers)==0)
             <div style="left:40%" class="col-md-3 mt-1"><img  style="" class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/magGlass.png')}}"></div>
             <br/> <br/>
             <h1 style="margin-left: 30%">No Results Were Found</h1>
-
-
-            
-
             @endif
         </div>
     </div>

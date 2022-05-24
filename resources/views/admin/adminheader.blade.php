@@ -91,15 +91,19 @@ use App\Models\Notification;
 
                                     <?php
 									$notifications=Notification::all();
+
 									$count=0;
+                                    $not=[];
 
 									foreach($notifications as $n)
 									{
-										if($n->status=="unseen" && $n->type=="admin")
+										if($n->status=="unseen" && $n->type=="admin" && str_contains($n->admins, Auth::user()->id.','))
 										{
 											$count+=1;
+                                            array_push($not,$n);
 										}
 									}
+
 									?>
 
                                     <!-- Notification Counter -->
@@ -113,7 +117,7 @@ use App\Models\Notification;
 
 									@if($count != 0)
 										<ul id="cartdrop" class="dropdown-menu cart-list s-cate" onfocus='this.size=5;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
-											@foreach($notifications as $notification)
+											@foreach($not as $notification)
                                             @if($notification['type']=="admin")
 												@php
 													$img="images/homepage/".$notification['photo'].".png"
@@ -125,14 +129,14 @@ use App\Models\Notification;
                                                         
 														<h2 style="font-size:15px;padding:10px 5px 0px 5px;">{{$notification['title']}}</h6>
 														<h6 style="font-size:12px;padding:10px 5px 0px 5px;">{{$notification['message']}}</h6>
-                                                        <a href="{{ url('/deleteNotification'.'/'.$notification['id']) }}" class="lnr lnr-cross" role="button" style="  font-weight: bold;color:white;"></a>
+                                                        <a href="{{ url('/deleteNotificationAdmin'.'/'.$notification['id'].'/'.Auth::user()->id) }}" class="lnr lnr-cross" role="button" style="  font-weight: bold;color:white;"></a>
 													</div>
                                                     <hr>
 												</li><!--/.single-cart-list -->
 												@endif
 											@endforeach
                                             <li class="total">
-												<button class="btn-cart pull-right" style="border-radius:25px; width:100%;border:none;"><a href="{{ url('/deleteNotificationAllAdmin'.'/'.$notification['user_Id']) }}" >Clear All Notifications</a></button>
+												<button class="btn-cart pull-right" style="border-radius:25px; width:100%;border:none;"><a href="{{ url('/deleteNotificationAllAdmin'.'/'.Auth::user()->id) }}" >Clear All Notifications</a></button>
                                                 <br>
                                             </li>
 									@endif

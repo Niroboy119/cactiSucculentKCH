@@ -96,7 +96,7 @@
         {{-- double check to confirm if user wanted to remove admin account --}}
         {{-- If confirm button is clicked in the modal, it runs a jQuery function(which at the bottom of this file) to submit the removeAdminForm above --}}
 
-        <div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelTitle" aria-hidden="true">
+        <div style="background-color:rgba(0, 0, 0, 0.908);" class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div  class="modal-content col-12">
                     <div class="modal-header">
@@ -115,7 +115,7 @@
 
         {{-- Pop up message for successfully removing admin account --}}
 
-        <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelTitle" aria-hidden="true">
+        <div  style="background-color:rgba(0, 0, 0, 0.908);"  class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div  class="modal-content col-12">
                     <div class="modal-header">
@@ -133,7 +133,7 @@
 
         {{-- Pop up message for being unable to delete admin account --}}
 
-        <div class="modal fade" id="exampleModalCenter4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelTitle" aria-hidden="true">
+        <div  style="background-color:rgba(0, 0, 0, 0.908);"  class="modal fade" id="exampleModalCenter4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div  class="modal-content col-12">
                     <div class="modal-header">
@@ -186,7 +186,7 @@
 
         {{-- Pop up message for successfully adding new admin account --}}
         
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelTitle" aria-hidden="true">
+        <div  style="background-color:rgba(0, 0, 0, 0.908);"  class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div  class="modal-content col-12">
                     <div class="modal-header">
@@ -202,7 +202,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="exampleModalCenter5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelTitle" aria-hidden="true">
+        <div  style="background-color:rgba(0, 0, 0, 0.908);"  class="modal fade" id="exampleModalCenter5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div  class="modal-content col-12">
                     <div class="modal-header">

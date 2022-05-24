@@ -81,6 +81,11 @@ class SupplierController extends Controller
 
     public function update(Request $request,$id)
     {
+        $products=Product::all();
+        $supplier = Supplier::where('Supplier_ID',$id)->first();
+        Product::where('Product_Supplier', $supplier->Supplier_Name)->update(['Product_Supplier' => $request->name]);   
+
+
         if($request->img_Text=="1")
         {
             $request->file->store('images/suppliers', 'public');

@@ -433,7 +433,7 @@ function suppdrop1()
                                     {{-- <a  id="confirm" hidden style="padding-left:80px; padding-right:80px; border-color:red; background:red"  class="btn btn-primary btn-sm" href="">Confirm</a> --}}
                                 </div>
                               <a style="padding-left:93px; padding-right:93px; border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" href="/editProduct/{{ $product->Product_ID }}">Edit</a> 
-                              <br><a onclick="return myFunction()" onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="padding-left:84px; padding-right:84px; border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" href="/deleteProduct/{{ $product->Product_ID }}" >Delete</a>
+                              <br><a onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="padding-left:84px; padding-right:84px; border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" data-target="#Sreason1{{$count}}" data-toggle="modal" >Delete</a>
 
                             </div>
                         </div>
@@ -493,20 +493,47 @@ function suppdrop1()
             <br>
 
             
-            @php
-                $count+=1;
-            @endphp
+
+
+
+          
+<div class="container d-flex justify-content-center mt-100">
+    <div style="background-color:rgba(0, 0, 0, 0.5);" class="modal fade" id="Sreason1{{$count}}">
+        <div style="width:500px; margin-top:300px; margin-left:570px;" class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h6 style="font-size:17px; padding-left:170px; color:#25D366" class="modal-title">IMPORTANT!</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                </div> <!-- Modal body -->
+                <div style="font-size:13px;" class="modal-body">
+                    <p style="color:dimgray; font-size:15px;">Are You Sure You Want To Remove This Product?</p>
+                </div>
+                    <p id="itemID" hidden></p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onClick="location.href='/deleteProduct/{{ $product->Product_ID }}'" id="rmvAdmin" data-dismiss="modal">Confirm</button>
+                    <button type="button" style="border:red; background-color:red;" class="btn btn-success" data-dismiss="modal">Deny</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@php
+$count+=1;
+@endphp
+
 
             @endforeach
 
-            @if (count($products)==0)
+            <?php $p=Product::all();?>
+            @if(count($p)==0)
+            <div style="left:40%" class="col-md-3 mt-1"><img  style="" class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/product.png')}}"></div>
+            <br/> <br/>
+            <h1 style="margin-left: 20%">No Products Exist In The Database!</h1>
+            @elseif (count($products)==0)
             <div style="left:35%" class="col-md-3 mt-1"><img  style="" class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/magGlass.png')}}"></div>
             <br/> <br/>
-            <h1 style="margin-left: 25%">No Results Were Found</h1>
-
-
-            
-
+            <h1 style="margin-left: 25%">No Results Were Found!</h1>
             @endif
 
         </div>
@@ -514,6 +541,10 @@ function suppdrop1()
 </div>
 <div>
 </div>  
+
+
+
+
 
             </body>
             </html>

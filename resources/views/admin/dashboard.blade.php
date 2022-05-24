@@ -121,6 +121,20 @@ $admins=User::all()->where('user_type','admin');
 
 <div class="container-scroller">
    
+               <?php
+									$notifications=Notification::all();
+
+									$count=0;
+
+									foreach($notifications as $n)
+									{
+										if($n->status=="unseen" && $n->type=="admin" && str_contains($n->admins, Auth::user()->id.','))
+										{
+											$count+=1;
+										}
+									}
+									?>
+
      
       <div style="margin-left:167.5px; margin-top:100px;" class="main-panel">
         <div class="content-wrapper">
@@ -129,7 +143,7 @@ $admins=User::all()->where('user_type','admin');
               <div class="row">
                 <div style="margin-top:40px; margin-left:140px;" class="col-12 col-xl-8 mb-4 mb-xl-0">
                   <h3 style="color:#32CD32;">Welcome {{ Auth::user()->name }}</h3>
-                  <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">{{count($notifications)}} unread notification(s)!</span></h6>
+                  <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">{{$count}} unread notification(s)!</span></h6>
                 </div>
                 <div class="col-12 col-xl-4">
                  <div class="justify-content-end d-flex">

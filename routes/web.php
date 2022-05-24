@@ -145,6 +145,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/denyOrder/{id}/{reason}', [App\Http\Controllers\OrderController::class, 'denyOrder'])->name('orders');
     Route::get('/completeOrder/{id}/{reason}', [App\Http\Controllers\OrderController::class, 'completeOrder'])->name('orders');
     Route::get('/changeQuantityAdmin/{id}/{quantity}/{count}', [App\Http\Controllers\OrderController::class, 'changeQuantityAdmin'])->name('orders');
+    Route::get('/removeOrder/{id}', [App\Http\Controllers\OrderController::class, 'removeOrder'])->name('orders');
+
 
     Route::get('/manageSuppliers/{code}/{supp}/{sort}/{search}', [App\Http\Controllers\SupplierController::class, 'displaySuppliers'])->name('suppliers');
     Route::get('/addSupplierForm', [App\Http\Controllers\SupplierController::class, 'displayaddSupplierForm'])->name('suppliers');
@@ -210,6 +212,7 @@ Route::get('/acceptOrderNotification/{id}/{dateS}/{dateE}/{time}/{loc}', [App\Ht
 Route::get('/denyOrderNotification/{id}/{reason}', [App\Http\Controllers\NotificationController::class, 'denyOrderNotification'])->name('notification');
 Route::get('/completeOrderNotification/{id}/{reason}', [App\Http\Controllers\NotificationController::class, 'completeOrderNotification'])->name('notification');
 Route::get('/deleteNotification/{id}', [App\Http\Controllers\NotificationController::class, 'deleteNotification'])->name('notification');
+Route::get('/deleteNotificationAdmin/{id}/{userid}', [App\Http\Controllers\NotificationController::class, 'deleteNotificationAdmin'])->name('notification');
 Route::get('/deleteNotificationAll/{id}', [App\Http\Controllers\NotificationController::class, 'deleteAllNotifications'])->name('notification');
 Route::get('/deleteNotificationAllAdmin/{id}', [App\Http\Controllers\NotificationController::class, 'deleteAllNotificationsAdmin'])->name('notification');
 

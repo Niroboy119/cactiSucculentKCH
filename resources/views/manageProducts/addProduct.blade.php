@@ -64,6 +64,7 @@ $suppliers = Supplier::all();
                       id="name"
                       name="name"
                       placeholder="Enter Name"
+                      maxlength="30"
                       type="text"
                       class="form-control validate"
                       required

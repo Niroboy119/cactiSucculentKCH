@@ -68,6 +68,8 @@ use App\Models\Supplier;
 
 $users=User::all();
 $suppliers=Supplier::all();
+$o1=Order::all();
+
 
 $orders=[];
 date_default_timezone_set("Asia/Kuching");
@@ -396,10 +398,11 @@ if($orders==null||count($orders)==0)
                     $img="pending.png";
                     $color="#F2DE1E";
                     $display1="visibility";
-                    $display2="visibility";
+                    $display2="block";
                     $display3="none";
                     $display4="none";
                     $display5="none";
+                    $display7="none";
                     $margin="0px";
                 }else if($order->status=='cancelled'){
                     $img="cancelled.png";
@@ -409,15 +412,17 @@ if($orders==null||count($orders)==0)
                     $display3="none";
                     $display4="visibility";
                     $display5="none";
-                    $margin="25px";
+                    $display7="block";
+                    $margin="17px";
                 }else if($order->status=='processing'){
                     $img="processing.png";
                     $color="#2132E0";
                     $display1="none";
-                    $display2="visibility";
+                    $display2="block";
                     $display3="visibility";
                     $display4="none";
                     $display5="none";
+                    $display7="none";
                     $margin="0px";
                 }else if($order->status=='completed'){
                     $img="completed.png";
@@ -427,7 +432,8 @@ if($orders==null||count($orders)==0)
                     $display3="none";
                     $display4="none";
                     $display5="visibility";
-                    $margin="25px";
+                    $display7="block";
+                    $margin="17px";
                 }
 
                 if($order->delivery_type=="homeDelivery")
@@ -452,7 +458,7 @@ if($orders==null||count($orders)==0)
                 {
                     $display6="visibility";
                     $title="Pick Date/Time & Meetup Location";
-                    $locM=140;
+                    $locM=120;
                     $deliveryS="Estimated Remote Pick Up Start Date";
                     $deliveryE="Estimated Remote Pick Up End Date";
                     $deliverytime="Estimated Remote Pick Up Time";
@@ -513,15 +519,15 @@ if($orders==null||count($orders)==0)
                                                 <br>
                                                 <h6>Start Date:</h6>
                                                   @if($display6=="visibility")
-                                                  <input onchange="dateSet(1,{{$dateCount}})" id="dateS{{$dateCount}}" type = "date" name ="dateS{{$dateCount}}"> 
+                                                  <input onkeydown="return false" onchange="dateSet(1,{{$dateCount}})" id="dateS{{$dateCount}}" type = "date" name ="dateS{{$dateCount}}"> 
                                                   @elseif($display6=="none")
-                                                  <input onchange="dateSet(0,{{$dateCount}})" id="dateS{{$dateCount}}" type = "date" name ="dateS{{$dateCount}}">
+                                                  <input onkeydown="return false" onchange="dateSet(0,{{$dateCount}})" id="dateS{{$dateCount}}" type = "date" name ="dateS{{$dateCount}}">
                                                   @endif
                                                   <br>
                                                   <br>
  
                                                   <h6>End Date:</h6>
-                                                  <input disabled id="dateE{{$dateCount}}" type = "date" name ="dateE{{$dateCount}}"> 
+                                                  <input onkeydown="return false" disabled id="dateE{{$dateCount}}" type = "date" name ="dateE{{$dateCount}}"> 
                                                   <br>
                                                   <br>
 
@@ -547,7 +553,7 @@ if($orders==null||count($orders)==0)
 
                                                   <div style="display:{{$display6}};">
                                                   <h6>Meetup Location</h6>
-                                                  <textarea oninput="allowSubmit({{$dateCount}})" disabled id="location{{$dateCount}}" rows="5" cols="40"></textarea> 
+                                                  <textarea placeholder="Enter Address..." oninput="allowSubmit({{$dateCount}})" disabled id="location{{$dateCount}}" rows="5" cols="40"></textarea> 
                                                   </div>
                                             </div>
                                         </div> 
@@ -587,6 +593,14 @@ if($orders==null||count($orders)==0)
                                     document.getElementById("btndateTime"+count).disabled = false;
                                 else if((document.getElementById("location"+count).value).trim()=="")
                                     document.getElementById("btndateTime"+count).disabled = true;                                
+                            }
+
+                            function allowSubmit1(count)
+                            {
+                                if((document.getElementById("textArea"+count).value).trim()!="")
+                                    document.getElementById("denybtn"+count).disabled = false;
+                                else if((document.getElementById("textArea"+count).value).trim()=="")
+                                    document.getElementById("denybtn"+count).disabled = true;                                
                             }
 
                             function ToCopyLoc(count,name,number,id,dateSt,dateEn,timeCount,time,loc)
@@ -666,10 +680,11 @@ if($orders==null||count($orders)==0)
                         <!-- Click To Copy Modal End-->
                                    
 
-                        <a style="display:{{$display3}}; margin-bottom:10px; border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" onclick= "return myFunction();" href="/completeOrderNotification/{{$order->order_Id}}/{{Auth::user()->name}}:{{date('d:m:Y')}}*{{date("h:i:sa")}}">Order Completed</a>
+                        <a style="display:{{$display3}}; margin-bottom:10px; border-color:#32CD32; background:#32CD32"  class="btn btn-primary btn-sm" data-target="#SreasonC{{$count}}" data-toggle="modal">Order Completed</a>
                         <a style="margin-top:{{$margin}}; border-color:#32CD32; background:#32CD32;"  class="btn btn-primary btn-sm" href="/editSupplier/"  data-toggle="modal" data-target="#{{$count}}">View Details</a>
+                        
                         <div class="container d-flex justify-content-center mt-100">
-                            <div class="modal fade" id="{{$count}}">
+                            <div style="background-color:rgba(0, 0, 0, 0.726);" class="modal fade" id="{{$count}}">
                                 <div style="margin-top:200px; margin-left:450px;" class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <!-- Modal Header -->
@@ -856,9 +871,11 @@ if($orders==null||count($orders)==0)
                             </div>
                         </div>
 
-                    <a onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="display:{{$display2}}; border-color:#32CD32; color:#32CD32;"data-toggle="modal" data-target="#reason{{$dateCount}}"  class="btn btn-outline-primary btn-sm mt-2">Deny</a></div>
-                    
-                    
+                    @if($display7=="none")
+                    <a onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="display:{{$display2}}; border-color:#32CD32; color:#32CD32;"data-toggle="modal" data-target="#reason{{$dateCount}}"  class="btn btn-outline-primary btn-sm mt-2">Deny</a></div>                      
+                    @elseif($display7=="block")
+                    <a onmouseover="this.style.background='#32CD32'; this.style.color='white';"  onmouseout="this.style.background='white'; this.style.color='#32CD32';" style="display:{{$display7}}; border-color:#32CD32; color:#32CD32;" class="btn btn-outline-primary btn-sm mt-2" data-toggle="modal" data-target="#SreasonR{{$dateCount}}">Remove</a></div>                    
+                    @endif
 
                     <div class="container d-flex justify-content-center mt-100">
                         <div class="modal fade" id="reason{{$dateCount}}">
@@ -872,14 +889,14 @@ if($orders==null||count($orders)==0)
                                         <div class="container">   
                                     
                                             <h6>Reason:</h6>
-                                            <textarea id="textArea{{$dateCount}}" rows="4" cols="55" name="comment" form="usrform">Enter text here...</textarea>
+                                            <textarea placeholder="Enter Reason Here..." oninput="allowSubmit1({{$dateCount}})" id="textArea{{$dateCount}}" rows="4" cols="55" name="comment" form="usrform"></textarea>
                                             <br>
                                             <br>
                                             
                                         </div>
                                     </div> <!-- Modal footer -->
                                     <div class="modal-footer">
-                                        <button onclick="ToCopy1('{{$user->name}}','{{$order->orderNumber}}','{{$user->cust_phone_number}}',{{$dateCount}},document.getElementById('textArea{{$dateCount}}').value)" data-toggle="modal" data-dismiss="modal" data-target="#copyModal{{$orderType}}1{{$dateCount}}" type="button" class="btn" >Submit</button> 
+                                        <button id="denybtn{{$dateCount}}" disabled onclick="ToCopy1('{{$user->name}}','{{$order->orderNumber}}','{{$user->cust_phone_number}}',{{$dateCount}},document.getElementById('textArea{{$dateCount}}').value)" data-toggle="modal" data-dismiss="modal" data-target="#copyModal{{$orderType}}1{{$dateCount}}" type="button" class="btn" >Submit</button> 
                                          <button type="button" class="btn" data-dismiss="modal">Close</button> </div>
                                 </div>
                             </div>
@@ -945,7 +962,7 @@ if($orders==null||count($orders)==0)
                                 <h6 style="font-size:17px; padding-left:170px; color:#25D366" class="modal-title">IMPORTANT!</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
                             </div> <!-- Modal body -->
                             <div style="font-size:13px;" class="modal-body">
-                                <p style="color:dimgray; font-size:15px;"">The Quantity Of The Item: <span id="itemName"></span> Belonging To Order Number: <span id="OrderID"></span> Will Be Changed From (<span id="prevQuan"></span>) To (<span id="newQuan"></span>). Are You Sure You Want To Continue?</p>
+                                <p style="color:dimgray; font-size:15px;">The Quantity Of The Item: <span id="itemName"></span> Belonging To Order Number: <span id="OrderID"></span> Will Be Changed From (<span id="prevQuan"></span>) To (<span id="newQuan"></span>). Are You Sure You Want To Continue?</p>
                             </div>
                                 <p id="itemID" hidden></p>
                             <div class="modal-footer">
@@ -998,18 +1015,66 @@ if($orders==null||count($orders)==0)
             
              </script>
             <br>
+
+            <div class="container d-flex justify-content-center mt-100">
+                <div style="background-color:rgba(0, 0, 0, 0.5);" class="modal fade" id="SreasonC{{$count}}">
+                    <div style="width:500px; margin-top:300px; margin-left:570px;" class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h6 style="font-size:17px; padding-left:170px; color:#25D366" class="modal-title">IMPORTANT!</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                            </div> <!-- Modal body -->
+                            <div style="font-size:13px;" class="modal-body">
+                                <p style="color:dimgray; font-size:15px;">The Status Of This Order Will Be Changed To Completed. Are You Sure You Want To Proceed?</p>
+                            </div>
+                                <p id="itemID" hidden></p>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" onClick="location.href='/completeOrderNotification/{{$order->order_Id}}/{{Auth::user()->name}}:{{date('d:m:Y')}}*{{date("h:i:sa")}}'" id="rmvAdmin" data-dismiss="modal">Confirm</button>
+                                <button type="button" style="border:red; background-color:red;" class="btn btn-success" data-dismiss="modal">Deny</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container d-flex justify-content-center mt-100">
+                <div style="background-color:rgba(0, 0, 0, 0.5);" class="modal fade" id="SreasonR{{$dateCount}}">
+                    <div style="width:500px; margin-top:300px; margin-left:570px;" class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h6 style="font-size:17px; padding-left:170px; color:#25D366" class="modal-title">IMPORTANT!</h6> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                            </div> <!-- Modal body -->
+                            <div style="font-size:13px;" class="modal-body">
+                                <p style="color:dimgray; font-size:15px;">The Order Will Be Completely Removed From The Database. Are You Sure You Want To Proceed?</p>
+                            </div>
+                                <p id="itemID" hidden></p>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" onClick="location.href='/removeOrder/{{$order->order_Id}}'" id="rmvAdmin" data-dismiss="modal">Confirm</button>
+                                <button type="button" style="border:red; background-color:red;" class="btn btn-success" data-dismiss="modal">Deny</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             @php
                 $dateCount+=1;
                 $count+=1;    
             @endphp
             @endforeach
+            
 
+            @elseif(count($o1)==0)
+
+            <div style="left:40%" class="col-md-3 mt-1"><img  style="" class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/order.png')}}"></div>
+            <br/> <br/>
+            <h1 style="margin-left: 15%">No Orders Exist In The Database!</h1>
             @elseif (count($orders)==0)
             <div style="left:35%" class="col-md-3 mt-1"><img  style="" class="img-fluid img-responsive rounded product-image" src="{{URL::asset('storage/images/magGlass.png')}}"></div>
             <br/> <br/>
             <h1 style="margin-left: 25%">No Results Were Found</h1>
-
-
             @endif
         </div>
     </div>

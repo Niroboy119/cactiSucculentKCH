@@ -23,17 +23,25 @@ class OrderController extends Controller
     public function store(Request $request){
 
         // notifications for admin for when order is made
+        $users=User::all();
         $notification=new Notification();
         $notification->type="admin";
         $notification->title="Order Incoming!";
         $notification->message="An Order With Order Number ".$request->orderNumber." has been placed";
         $notification->status="unseen";
         $notification->photo="processing";
-        $notification->user_Id="GuestUser";
        
         if(Auth::user()){
             $notification->user_Id=Auth::user()->id;
         }
+
+        $admins="";
+        foreach($users as $user)
+        {
+            if($user->user_type=="super_admin"||$user->user_type=="admin")
+                $admins= $admins.$user->id.',';
+        }
+        $notification->admins=$admins;
         $notification->save();
 
 
@@ -175,6 +183,13 @@ class OrderController extends Controller
         Order::where('order_Id', $id)->update(array('status' => 'cancelled'));
         return redirect('/order');
     }
+
+    public function removeOrder($id)
+    {
+        $order = Order::where([ 'order_Id' => $id ])->delete();
+        return redirect('/manageOrders/0/None/None/None/0');
+    }
+
 
     public function displayadminManageOrders($code,$supp,$sort,$search,$modal)
     {

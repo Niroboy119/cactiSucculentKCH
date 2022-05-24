@@ -65,6 +65,7 @@
                     <input
                       id="name"
                       name="name"
+                      maxlength="35"
                       type="text"
                       class="form-control validate"
                       placeholder="Enter Name"
@@ -72,6 +73,7 @@
                       required
                     />
                   </div>
+
                   <div class="form-group mb-3">
                     <label
                       for="Desc"
@@ -79,6 +81,7 @@
                     <textarea
                       id="Desc"
                       name="Desc"
+                      maxlength="100"
                       placeholder="Enter Description"
                       class="form-control validate"
                       rows="3"
