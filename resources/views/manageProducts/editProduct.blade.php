@@ -81,7 +81,6 @@
                     <textarea
                       id="Desc"
                       name="Desc"
-                      maxlength="100"
                       placeholder="Enter Description"
                       class="form-control validate"
                       rows="3"

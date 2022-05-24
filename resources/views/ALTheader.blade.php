@@ -89,7 +89,7 @@ use App\Models\Notification;
 				                		<a href="/userProfile"><span class="lnr lnr-user" aria-haspopup="true" aria-expanded="false"></span></a>
 				                	</li><!--/.search-->
 									<li class="dropdown">
-				                        <a href="/cart" class="dropdown-toggle" data-toggle="dropdown" >
+				                        <a href="/cart" class="" data-toggle="dropdown" >
 				                            <span class="lnr lnr-cart" style="appearance:none;"></span>
 											@if(count((array) session('cart')) != 0)
 												<span class="badge badge-bg-1" aria-hidden="true">{{ count((array) session('cart')) }}</span>
@@ -151,7 +151,7 @@ use App\Models\Notification;
 									?>
 
 								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#cartdrop"><span class="lnr lnr-alarm"></span>
+									<a href="#" class="" data-toggle="dropdown" data-target="#cartdrop"><span class="lnr lnr-alarm"></span>
 										@if($count != 0)
 											<span class="badge badge-bg-1" aria-hidden="true">{{ $count }}</span>
 										@endif

@@ -45,6 +45,10 @@ border-radius:12px;
   color: white;
 }
 
+span::-ms-expand {
+    display: none;
+}
+
 </style>
 <head>
         <!-- title of site -->
@@ -125,7 +129,7 @@ border-radius:12px;
 				                	</li><!--/.search-->
 									
 									<li class="dropdown">
-				                        <a href="/cart" class="dropdown-toggle" data-toggle="dropdown" data-target="#cartdrop" >
+				                        <a href="/cart" class="" data-toggle="dropdown" data-target="#cartdrop" >
 				                            <span class="lnr lnr-cart"></span>
 											@if(count((array) session('cart')) != 0)
 												<span class="badge badge-bg-1" aria-hidden="true">{{ count((array) session('cart')) }}</span>
@@ -139,11 +143,15 @@ border-radius:12px;
 											@foreach((array) session('cart') as $id => $details)
 													<?php $total += $details['Product_Price'] * $details['Product_Quantity'] ?>
 											@endforeach
+
+											@php
+												$img=Str::substr($details['Product_Image'], 0, 44);   
+											@endphp
 										
 											@if(session('cart'))
                             					@foreach(session('cart') as $id=>$details)
 													<li class="single-cart-list">
-														<a href="#" class="photo"><img src="{{URL::asset('storage/images/products/'.$details['Product_Image'])}}" class="cart-thumb" alt="image" /></a>
+														<a href="#" class="photo"><img src="{{URL::asset('storage/images/products/'.$img)}}" class="cart-thumb" alt="image" /></a>
 														<div class="cart-list-txt">
 															<h6><a href="#">{{$details['Product_Name']}}</a></h6>
 															<p>{{$details['Product_Quantity']}} x - <span class="price">RM {{$details['Product_Price']}}</span></p>
