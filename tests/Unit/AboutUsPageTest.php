@@ -12,11 +12,6 @@ class AboutUsPageTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
-    {
-        $this->assertTrue(true);
-    }
-
     public function test_routeToHomepage()
     {
         $response = $this->get('/');
@@ -47,10 +42,4 @@ class AboutUsPageTest extends TestCase
         $response->assertStatus(200);
     }
 
-
-    public function test_routeToRegister()
-    {
-        $response = $this->get('/register');
-        $response->assertStatus(200);
-    }
 }

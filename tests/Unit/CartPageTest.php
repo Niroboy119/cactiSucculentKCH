@@ -12,31 +12,19 @@ class CartPageTest extends TestCase
      *
      * @return void
      */
-    public function test_routeToHome()
+    public function test_routeToHomepage()
     {
         $response = $this->get('/');
         $response->assertStatus(200); 
     }
 
-    public function test_routeToProduct()
+    public function test_routeToProductPage()
     {
         $response = $this->get('/product');
         $response->assertStatus(200);
     } 
 
-    public function test_routeToAboutUsPage()
-    {
-        $response = $this->get('/aboutUs');
-        $response->assertStatus(200);
-    }
-
-    public function test_routeToContactUsPage()
-    {
-        $response = $this->get('/contactUs');
-        $response->assertStatus(200);
-    }
-
-    public function test_routeToCart() 
+    public function test_routeToCartPage() 
     {
         $response = $this->get('/cart');
         $response->assertStatus(200);
@@ -52,8 +40,20 @@ class CartPageTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_routeToCheckout(){
+    public function test_routeToCheckoutPage(){
         $response = $this->get('checkout');
+        $response->assertStatus(200);
+    }
+
+    public function test_routeToAboutUsPage()
+    {
+        $response = $this->get('/aboutUs');
+        $response->assertStatus(200);
+    }
+
+    public function test_routeToContactUsPage()
+    {
+        $response = $this->get('/contactUs');
         $response->assertStatus(200);
     }
 }
