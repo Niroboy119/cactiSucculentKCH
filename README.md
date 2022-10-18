@@ -12,9 +12,6 @@ This project is part of the final year project given by Swinburne University of 
 - User profile management
 - Make an order request
 - Notifications on the status of the order request 
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
 ### Administrator Features
 
